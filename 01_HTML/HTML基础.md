@@ -181,6 +181,53 @@ HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的。
 </html>
 ```
 
+### HTML 水平线
+
+`<hr>` 标签在 HTML 页面中创建水平线。
+
+hr 元素可用于分隔内容。
+
+### HTML 注释
+
+可以将注释插入 HTML 代码中，这样可以提高其可读性，使代码更易被人理解。浏览器会忽略注释，也不会显示它们。
+
+注释写法如下:
+
+```html
+<!-- 这是一个注释 -->
+```
+
+### HTML 标题大小与字体大小的关系
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Document</title>
+    </head>
+    <h1>这是1号标题</h1>
+    <font size="6">这是6号字体文本</font>
+
+    <h2>这是2号标题</h2>
+    <font size="5">这是5号字体文本</font>
+
+    <h3>这是3号标题</h3>
+    <font size="4">这是4号字体文本</font>
+
+    <h4>这是4号标题</h4>
+    <font size="3">这是3号字体文本</font>
+
+    <h5>这是5号标题</h5>
+    <font size="2">这是2号字体文本</font>
+
+    <h6>这是6号标题</h6>
+    <font size="1">这是1号字体文本</font>
+</html>
+```
+
+![image-20220811231933054](https://s2.loli.net/2022/08/11/eioMubz6rUOQBfJ.png)
+
 ## HTML 段落
 
 HTML 段落是通过标签 <p> 来定义的。
@@ -210,6 +257,65 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 </html>
 ```
 
+### 段落是不能嵌套的
+
+如果将代码写成这样：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<p>这是一个段落。</p>
+<p>段落是不能嵌套的
+    <h1>这是一个h1标题</h1>
+</p>
+<p>这是一个段落。</p>
+<p>这是一个段落。</p>
+
+</body>
+</html>
+```
+
+在浏览器中会自动改变源码：
+
+![image-20220811200630224](https://s2.loli.net/2022/08/11/glAbCLDqpOEm64x.png)
+
+上述案例是遇到 `<h>` 会自动帮助补全 `<p>`
+
+但是如果 `</h>` 后直接接文字就会出现无法意料的情况：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<p>这是一个段落。</p>
+<p>段落是不能嵌套的
+    <h1>这是一个h1标题</h1>
+</p>
+<p><h2>这是一个h2标题</h2>
+检查是否能正常显示</p>
+<p>这是一个段落。</p>
+
+</body>
+</html>
+```
+
+![image-20220811201742953](https://s2.loli.net/2022/08/11/RxwP5eqMo4DrJzZ.png)
+
+虽然能正常显示网页，但是浏览器处理的源码格式已经乱了：
+
+![image-20220811201837030](https://s2.loli.net/2022/08/11/Iku1CplfUOnGENY.png)
+
 ## HTML 链接
 
 HTML 链接是通过标签 <a> 来定义的。
@@ -235,6 +341,14 @@ HTML 链接是通过标签 <a> 来定义的。
 
 HTML 图像是通过标签 <img> 来定义的.
 
+页面上能够插入的图片类型：jpg(jpeg)、gif、png、bmp
+
+不能插入的图片类型：psd、ai
+
+**q1:为什么 img 是单标签而不是标签对？**
+
+因为如果是标签对，里面就包含内容，标签对就是对内容增加语义，而图片就是一个图片。
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -244,13 +358,19 @@ HTML 图像是通过标签 <img> 来定义的.
 </head>
 <body>
 
-<img src="./images/github_logo.png"/>
+<img src="./images/github_logo.png" alt="github logo"/>
 
 </body>
 </html>
 ```
 
 **注意：** 图像的名称和尺寸是以属性的形式提供的。
+
+### HTML 图像属性
+
+**src**: 就是图像的来源；
+
+**alt**: [alternate 替代] 当这个图片无法被显示时，出现的替代文字（有的浏览器不支持）
 
 ## HTML 元素
 
@@ -341,3 +461,61 @@ HTML 文档由相互嵌套的 HTML 元素构成。
 以上实例在浏览器中也能正常显示，因为关闭标签是可选的。
 
 但不要依赖这种做法。忘记使用结束标签会产生不可预料的结果或错误。
+
+## HTML 超级链接
+
+一个网站，是由很多HTML网页组成的。 HTML 网页之间能够相互跳转，点击超链接，形成“网”。
+
+`<a href="default.htm"> </a>`
+
+**a**: [anchor 锚]
+
+**href**: [hypertext reference 超文本地址] 
+
+**title**: 悬停文本
+
+**target**:  "_blank" 新弹窗；
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<a href="005_HTML图像.html">这是一个超链接</a>
+<br>
+<a href="005_HTML图像.html" title="这也是个超链接" target="_blank"><img src="images/github_logo.png" alt=""></a>
+
+
+</body>
+</html>
+```
+
+## HTML 页面锚点
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="#工作经验">点击我就查看工作经验</a>
+	<a href="#wdzp">点击我就查看我的作品</a>
+
+	<h1>个人简介</h1>
+	<h2>基本信息</h2>
+	<p>基本信息基本信息... 基本信息基本信息</p>
+
+	<h2><a id="工作经验">工作经验</a></h2>
+	<p>工作经验工作经验...工作经验工作经验</p>
+
+	<h2><a name="wdzp">我的作品</a></h2>
+	<p>我的作品我的作品...我的作品我的作品</p>
+</body>
+</html>
+```
