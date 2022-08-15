@@ -99,3 +99,10 @@ p { color: rgb(100%,0%,0%); }
 ```html
 p {font-family: "sans serif";}
 ```
+
+# 基础选择器
+
+## 标签选择器
+
+## id选择器
+
