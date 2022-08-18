@@ -1,6 +1,6 @@
 # HTML 5
 
-超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。
+超文本标记语言（英语：**HyperText Markup Language**，简称：HTML）是一种用于创建网页的标准标记语言。
 
 您可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析。
 
@@ -150,6 +150,16 @@ XHTML 1.0
 <meta name="" content="" />
 ```
 
+## head
+
+`<head>` 标签用于定义文档的头部，它是所有头部元素的容器。
+
+`<head>` 中的元素可以引用脚本、指示浏览器在哪里找到样式表，提供元素等等。
+
+以下标签可以用在 head 部分：<basc> , <link> , <meta> , <script> , <style> , <title> 
+
+其中 `<title>` 是 head 部分唯一必须的部分。
+
 # HTML 基础
 
 ## HTML 语法特性
@@ -157,7 +167,7 @@ XHTML 1.0
 1. HTML 对换行不敏感，对 tab 不敏感，只在乎标签的嵌套结构。
 2. 空白折叠现象：HTML中的所有文字之间，如果有空格，换行，tab 都将被折叠为一个空格显示。
 
-## HTML 标题
+## HTML h1-h6
 
 HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的。
 
@@ -522,6 +532,8 @@ HTML 文档由相互嵌套的 HTML 元素构成。
 
 ## HTML 样式
 
+style 元素可以出现在 HTML 文档中的各个部分，一个文档可以包含多个 style 元素
+
 ### HTML 的 style 属性
 
 style 属性的作用：
@@ -574,6 +586,14 @@ style 属性的作用：
 ```
 
 ![image-20220813172238083](https://s2.loli.net/2022/08/13/ZA6jGepTPLB4wfC.png)
+
+### HTML5 的 style 属性
+
+| 属性   | 值                                                           | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| media  | screen、tty、tv、projection、handheld、print、braille、aural、all | 指定样式适用的，媒体                                         |
+| scoped | scoped                                                       | 指定样式的作用范围(如果使用该属性，则样式仅仅应用到 style 元素的父元素及其子元素) |
+| type   | text/css                                                     | 指定样式的类型                                               |
 
 ## HTML 列表
 
