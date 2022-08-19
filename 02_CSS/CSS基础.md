@@ -235,3 +235,49 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 三个属性：线宽，线型，颜色。
 
 颜色默认为黑色。
+
+# 浮动
+
+## 浮动清除
+
+清除方法1：给浮动元素的祖先元素加高度
+
+清除方法2：增加属性：`clear: both;` ，如果父元素没有设置高时，margin 会失效
+
+清除方法3：用 `<div>` 建一堵墙
+
+清除方法4：内墙法
+
+清除方法5：`overflow: hidden;`
+
+# margin 的小知识
+
+## margin 的塌陷现象
+
+竖直方向的 margin 是不叠加的，以最大为标准。
+
+## 左右居中
+
+`margin: 0 auto;` auto 代表尽其所能的增加。
+
+只有标准流的盒子，才能使用；浮动，绝对定位，固定定位均不可以使用；
+
+`margin: 0 auto;` 是在居中盒子，而不是文本，文本居中需要使用 `text-align:center;`
+
+## 擅用 padding 来表示父子关系
+
+margin 不适用于表示父子关系，在没有 border
+
+# 超级链接的美化
+
+#  背景
+
+## 背景图片
+
+`background-imag:url();`	背景图片自动填充
+
+`background-repeat: no-repeat;` 不重复填充
+
+`background-repeat: repeat-x;` 只横向重复
+
+`background-repeat: repeat-x;` 只纵向重复
