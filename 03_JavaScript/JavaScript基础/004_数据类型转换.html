@@ -19,8 +19,36 @@
         
         <script>
             // 1.隐式转换
+            //  规则1: +号两边只要有一个是字符串，都会把另一个转成字符串
+            console.log("规则1")
+            console.log(typeof("18" + 1))
+            //  规则2：除了 + 以外的算术运算符，比如 - * / 等都会把数据转成数字类型
+            console.log("规则2")
+            console.log(10 - '5')
+            console.log('10' - 5)
+            //  小技巧：+号作为正号解析可以转换为 number
+            console.log(+"33")
+            console.log(+"-44")
             
+            // 2.显示转换 - 转为数字
+            console.log("显示转换：")
+            console.log(Number('11.11'))
+            console.log(parseInt('11.11'))
+            console.log(parseFloat('11.11'))
+            // Number() 输入参数不是纯数字字符串的话，会返回 NaN
+            console.log("转换不是纯数字字符串")
+            console.log(Number("123abc"))
+            // 但是 parseFloat 会过滤非数字类型字符串
+            console.log(parseFloat("123abc"))
+            // 只能过滤数字开头的字符串
+            console.log(parseFloat("abc123abc"))
 
+            // 3.显示转换 - 转为字符型
+            console.log("转为字符型")
+            console.log(String(33.11))
+            console.log(33.22 .toString())
+            // 转2进制字符
+            console.log(10 .toString(2))
         </script>
     </body>
 </html>
