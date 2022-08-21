@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .Bl {
+            width: 600px;
+            height: 540px;
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+            /* transform: translateY(-50%); */
+        }
+
+        .Bl>input {
+            width: 20%;
+            height: 40px;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .Bl input:nth-of-type(1) {
+            left: 0%;
+        }
+
+        .Bl input:nth-of-type(2) {
+            left: 20%;
+        }
+
+        .Bl input:nth-of-type(3) {
+            left: 40%;
+        }
+
+        .Bl input:nth-of-type(4) {
+            left: 60%;
+        }
+
+        .Bl input:nth-of-type(5) {
+            left: 80%;
+        }
+
+        /*切换效果*/
+
+        .Bl input:nth-of-type(1):checked~span:nth-of-type(1) {
+            color: white;
+        }
+
+        /* ~ 选择兄弟元素 */
+        .Bl input:nth-of-type(2):checked~span:nth-of-type(2) {
+            color: white;
+        }
+
+        .Bl input:nth-of-type(3):checked~span:nth-of-type(3) {
+            color: white;
+        }
+
+        .Bl input:nth-of-type(4):checked~span:nth-of-type(4) {
+            color: white;
+        }
+
+        .Bl input:nth-of-type(5):checked~span:nth-of-type(5) {
+            color: white;
+        }
+
+        .Bl input:nth-of-type(1):checked~.pagebox>.pages { }
+
+        .Bl input:nth-of-type(2):checked~.pagebox>.pages {
+            transform: translateY(-100%);
+        }
+
+        .Bl input:nth-of-type(3):checked~.pagebox>.pages {
+            transform: translateY(-200%);
+        }
+
+        .Bl input:nth-of-type(4):checked~.pagebox>.pages {
+            transform: translateY(-300%);
+        }
+
+        .Bl input:nth-of-type(5):checked~.pagebox>.pages {
+            transform: translateY(-400%);
+        }
+
+        span {
+            display: block;
+            width: 20%;
+            height: 40px;
+            background-color: red;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+        }
+
+        .pagebox,
+        .pages {
+            width: 100%;
+            height: 500px;
+        }
+
+        .pagebox {
+            overflow: hidden;
+        }
+
+        .pages {
+            transition: all 0.5s;
+        }
+
+        .page {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-family: "微软雅黑";
+            font-size: 30px;
+            line-height: 500px;
+            color: white;
+        }
+
+        .page1 {
+            background-color: pink;
+        }
+
+        .page2 {
+            background-color: blue;
+        }
+
+        .page3 {
+            background-color: red;
+        }
+
+        .page4 {
+            background-color: green;
+        }
+
+        .page5 {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Bl">
+        <input type="radio" name="btn" checked><span>1</span>
+        <input type="radio" name="btn"><span>2</span>
+        <input type="radio" name="btn"><span>3</span>
+        <input type="radio" name="btn"><span>4</span>
+        <input type="radio" name="btn"><span>5</span>
+        <section class="pagebox">
+            <div class="pages">
+                <div class="page page1">This is page1</div>
+                <div class="page page2">This is page2</div>
+                <div class="page page3">This is page3</div>
+                <div class="page page4">This is page4</div>
+                <div class="page page5">This is page5</div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
