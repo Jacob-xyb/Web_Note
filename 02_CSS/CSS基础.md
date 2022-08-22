@@ -199,6 +199,14 @@ ul li:nth-child(4)		/*第四个孩子*/
 ul li:nth-child(2n+2)	/*所有的偶数序列*/
 ```
 
+## 属性选择器
+
+- **E[attr]**
+
+```css
+form input[type='text'] {}
+```
+
 # CSS 继承性
 
 能继承的属性：`color`, `text- 开头的`, `line- 开头的`, `font- 开头的` 
