@@ -201,7 +201,7 @@ ul li:nth-child(2n+2)	/*所有的偶数序列*/
 
 ## 属性选择器
 
-- **E[attr]**
+- **E[attr=val]**
 
 ```css
 form input[type='text'] {}
