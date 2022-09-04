@@ -160,6 +160,38 @@ XHTML 1.0
 
 其中 `<title>` 是 head 部分唯一必须的部分。
 
+## meta
+
+- **声明网页解析编码格式**
+
+```html
+<meta charset="utf-8">
+```
+
+- **网页自适应**
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+```
+
+- **搜索优化**
+
+```html
+<mata name="keywords" content="Web开发,HTML5,CSS3">
+<meta name="description" content="实例演示，描述内容。">
+<meta name="author" content = "Jacob-xyb">
+```
+
+- **网页自动跳转**
+
+```html
+<meta http-equiv="refresh" content="5"; https://space.bilibili.com/12502993>
+```
+
+
+
+
+
 # HTML 基础
 
 ## HTML 语法特性
@@ -688,6 +720,14 @@ style 属性的作用：
 
 **注意：** 定义列表的列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
 
+## table 表格
+
+```css
+table {
+	border-collapse: collapse;
+}
+```
+
 ## HTML 块 和 内联
 
 **可以通过 <div> 和 <span> 将 HTML 元素组合起来。**
@@ -995,6 +1035,248 @@ label 可以起到一个绑定的作用
 ## HTML字符实体
 
 用常用字符表示这些符号的方式。
+
+## prep
+
+`<pre>` 标签用于定义预格式化的文本。
+
+pre 元素中的文本通常会保留空格和换行符，而文本自身也会呈现为等宽字体。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <pre>
+    pre 元素中的文本通常会保留空格   和
+
+换行符，而文本自身也会呈现为等宽字体。
+    </pre>
+</body>
+</html>
+```
+
+## code
+
+## q
+
+`<q>` 标签定义较短的引用。
+
+浏览器通常会在引用内容的两侧添加引号。
+
+**注意:**
+
+`<q>` 标签在本质上与[``](https://man.ilovefishc.com/pageHTML5/blockquote.html) 是一样的。不同之处在于它们的显示和应用。
+
+`<q>` 标签用于简短的行内引用。如果需要引用较长的内容，建议使用 `<blockquote>` 标签。
+
+## cite
+
+`<cite>` 标签定义作品（比如书籍、歌曲、电影、电视节目、绘画、雕塑等）的标题。
+
+## abbr
+
+`<abbr>` 标签定义简称或缩写，比如 “WWW” 或 “NATO”。
+
+通过对缩写进行标记，能够为浏览器、拼写检查和搜索引擎提供有用的信息。
+
+```html
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    The <abbr title="鱼C工作室">FishC</abbr> was founded in 2010.
+</body>
+</html>
+```
+
+## dfn
+
+`<dfn>` 标签表现定义中的术语。
+
+术语又称技术名词，是在特定专业领域中一般概念的词语指称，一个术语表示一个概念。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <dfn>HTML</dfn>是一门用于创建网页的标准标记语言。
+</body>
+</html>
+```
+
+![image-20220903145459187.png](https://s2.loli.net/2022/09/03/ypLwHnokE36tvFq.png)
+
+## address
+
+`<address>` 标签定义文档或文章的作者/拥有者的联系信息。
+
+**注意:**
+
+如果 `<address>` 位于 [``](https://man.ilovefishc.com/pageHTML5/body.html) 标签内，则它表示文档的联系信息。
+
+如果 `<address>` 位于[``](https://man.ilovefishc.com/pageHTML5/article.html) 标签内，则它表示文章的联系信息。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <address>
+        <strong>联系我们</strong><br>
+        邮箱：<a href="mailto:fishc_service@126.com">fishc_service@126.com</a>.<br>
+        旺旺：dingdingjiayu<br>
+        微信：FishC_Studio（公众号）<br>
+    </address>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/03/q7HELytckIUfCdj.png)
+
+## ruby、rt、rp
+
+`<ruby>` 标签定义注音符号。
+
+**注意：**
+
+ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素和 [rp](https://man.ilovefishc.com/pageHTML5/rp.html) 元素搭配使用。
+
+其中，[rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素用来标记注音符号，[rp](https://man.ilovefishc.com/pageHTML5/rp.html) 元素则用来标记当浏览器不支持 ruby 元素时所显示的内容。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <ruby>
+        小 <rp>(</rp><rt>xiǎo</rt><rp>)</rp>
+        甲 <rp>(</rp><rt>jiǎ</rt><rp>)</rp>
+        鱼 <rp>(</rp><rt>yú</rt><rp>)</rp>
+    </ruby>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/03/g3R7XshVUvQBlT1.png)
+
+## bdo
+
+`bdo` 标签修改默认的文本方向。
+
+| 属性 | 值       | 描述                                                         |
+| ---- | -------- | ------------------------------------------------------------ |
+| dir  | ltr、rtl | 定义文字的方向（ltr -> left to right；rtl -> right to left） |
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <p>正常：Welcome to FishC.com</p>
+    <p>
+        如果鱼油的浏览器支持 bi-directional override (bdo)，下一行会从右向左输出 (rtl)；
+    </p>
+    <bdo dir="rtl">
+        Welcome to FishC.com
+    </bdo>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/03/NwRtiuxHk5TKLIB.png)
+
+## strong
+
+`<strong>` 标签用于定义表示重要的文本。
+
+表现出加粗的样式
+
+提示：如果只是为了达到某种视觉效果而使用这个标签的话，强烈建议使用 CSS 代替，不要用 `b`。
+
+## em
+
+`<em>` 标签用于定义表示强调的文本。
+
+表现出倾斜的样式
+
+提示：如果只是为了达到某种视觉效果而使用这个标签的话，强烈建议使用 CSS 代替，不要用 `i` 。
+
+## del、ins
+
+`<del>`标签用于定义文已被删除的文本。
+
+请与 `ins`  标签配合使用，来描述文档中的更新和修正。
+
+| 属性     | 值                     | 描述                                                   |
+| -------- | ---------------------- | ------------------------------------------------------ |
+| cite     | URL                    | 指向另外一个文档的 URL，此文档可解释文本被删除的原因。 |
+| datetime | YYYY-MM-DDThh:mm:ssTZD | 定义文本被删除的日期和时间。                           |
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <p>从今天起，鱼C论坛的域名从 <del>bbs.fishc.com</del> 变成 <ins>fishc.com.cn</ins>，官网从 <del>www.fishc.com</del> 变成 <ins>ilovefishc.com</ins></p>
+    <p>不过你们要是觉得以前的域名布局比较好，也依旧可以访问旧的域名，它会自动进行跳转。</p>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/04/VPm2Sb5OEqFAGI9.png)
+
+## mark
+
+`<mark>` 标签用于定义带有标记的文本。
+
+黄底标记
+
+## sub、sup
+
+上下标文本
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+</head>
+<body>
+    <p>这个文本包含 <sub>sub-下标</sub>文本。</p>
+    <p>这个文本包含 <sup>sup-上标</sup> 文本。</p>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/04/ta81YJ25PkuwKon.png)
+
+## small
+
+`<small>` 标签用于定义更小字体的文本（比如旁注）。
 
 # HTML 表单
 
