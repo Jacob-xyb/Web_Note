@@ -358,27 +358,6 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 ![image-20220811201837030](https://s2.loli.net/2022/08/11/Iku1CplfUOnGENY.png)
 
-## HTML 链接
-
-HTML 链接是通过标签 <a> 来定义的。
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<a href="https://github.com/Jacob-xyb">这是一个链接使用了 href 属性</a>
-
-</body>
-</html>
-```
-
-**提示:**在 href 属性中指定链接的地址。
-
 ## HTML 图像
 
 HTML 图像是通过标签 <img> 来定义的.
@@ -720,13 +699,6 @@ style 属性的作用：
 
 **注意：** 定义列表的列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
 
-## table 表格
-
-```css
-table {
-	border-collapse: collapse;
-}
-```
 
 ## HTML 块 和 内联
 
@@ -1278,26 +1250,163 @@ ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素�
 
 `<small>` 标签用于定义更小字体的文本（比如旁注）。
 
-# HTML 表单
+# HTML 链接
 
-## HTML 表单
+## \<a>
 
-**HTML 表单用于搜集不同类型的用户输入。**
-
-### form 元素
-
-HTML 表单用于收集用户输入。
-
-<form> 元素定义 HTML 表单：
-
-实例：
+HTML 链接是通过标签 <a> 来定义的。
 
 ```html
-<form>
- .
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<a href="https://github.com/Jacob-xyb">这是一个链接使用了 href 属性</a>
+
+</body>
+</html>
+```
+
+**提示:**在 href 属性中指定链接的地址。
+
+## \<link>
+
+`<link>` 标签用于指定外部资源。
+
+link 元素最常见的用途是链接样式表。
+
+**注意：**
+
+- link 元素定义了 6 个属性，其中 rel 属性是必选的，它说明了当前文档与被链接资源之间的关系。
+
+| 属性                                                        | 值                                                           | 描述                                     |
+| ----------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------- |
+| href                                                        | URL                                                          | 指定被链接资源的 URL。                   |
+| hreflang                                                    | language_code                                                | 指定被链接资源使用的语言。               |
+| sizes                                                       | HeightxWidth                                                 | 指定图标的大小（比如 `sizes="16x16"`）。 |
+| [`media`](https://man.ilovefishc.com/pageHTML5/media1.html) | media_query                                                  | 指定被链接的资源将被显示到什么设备上。   |
+| [`rel`](https://man.ilovefishc.com/pageHTML5/rel.html)      | alternate、author、help、icon、licence、next、pingback、prefetch、prev、search、sidebar、stylesheet、tag | 指定当前文档与被链接资源之间的关系。     |
+| [`type`](https://man.ilovefishc.com/pageHTML5/type1.html)   | MIME_type                                                    | 规定被链接文档的 MIME 类型。             |
+
+最常见用例：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/fishc.css" >
+</head>
+<body>
+    <h1>我通过外部样式表进行格式化。</h1>
+</body>
+</html>
+```
+
+# HTML 表格 \<table>
+
+## table 简介
+
+`<table>` 标签用于定义 HTML 表格。
+
+简单的 HTML 表格由 table 元素以及一个或多个 [`tr`](https://man.ilovefishc.com/pageHTML5/tr.html) 、[`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 标签组成。
+
+tr 元素定义表格中的行，th 元素定义表格中的表头，td 元素定义表格中的单元格。
+
+更复杂的 HTML 表格也可能包括 `<caption>` 、`<col>`  、 [`<colgroup>`](https://man.ilovefishc.com/pageHTML5/colgroup.html) 、[`<thead>`](https://man.ilovefishc.com/pageHTML5/thead.html) 、[`<tfoot>`](https://man.ilovefishc.com/pageHTML5/tfoot.html) 以及 [`<tbody>`](https://man.ilovefishc.com/pageHTML5/tbody.html) 元素。
+
+```html
+<body>
+    <table>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+        </tr>
+        <tr>
+            <td>3476896</td>
+            <td>零基础入门学习Web（Html5+Css3）</td>
+        </tr>
+        <tr>
+            <td>2489604</td>
+            <td>零基础入门学习Web（JavaScript）</td>
+        </tr>
+    </table>
+</body>
+```
+
+```css
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+```
+
+![image.png](https://s2.loli.net/2022/09/07/LxuqzrsD91dAQbG.png)
+
+## \<tr>
+
+`<tr>` 标签用于定义 HTML 表格中的行。
+
+tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 元素。
+
+## \<th>
+
+`<th>` 标签用于定义表格内的表头单元格。
+
+th 元素内部的文本通常会呈现为居中的粗体文本
+
+| 属性    | 值                           | 描述                                           |
+| ------- | ---------------------------- | ---------------------------------------------- |
+| scope   | col、colgroup、row、rowgroup | 规定表头单元格是否是行、列、行组或列组的头部。 |
+| headers | header_id                    | 规定与表头单元格相关联的一个或多个表头单元格。 |
+| colspan | number                       | 规定表头单元格可横跨的列数。                   |
+| rowspan | number                       | 规定表头单元格可横跨的行数。                   |
+
+## table 边界融合(坍塌)
+
+```css
+table {
+	border-collapse: collapse;
+}
+```
+
+# HTML 表单
+
+## \<form>
+
+`<form>` 标签用于为用户输入创建 HTML 表单。用于向服务器传输数据。
+
+表单能够包含 input 元素，比如文本字段、复选框、单选框、提交按钮等等。
+
+表单还可以包含 menus、textarea、fieldset、legend 和 label 元素。
+
+| 属性           | 值                                                           | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| accept-charset | charset_list                                                 | 规定服务器可处理的表单数据字符集。                           |
+| action         | URL                                                          | 规定当提交表单时向何处发送表单数据。                         |
+| autocomplete   | on、off                                                      | 规定是否启用表单的自动完成功能。                             |
+| enctype        | application/x-www-form-urlencoded、multipart/form-data、text/plain | 规定在发送表单数据之前如何对其进行编码：application/x-www-form-urlencoded在发送前编码所有字符（默认）（空格被编码为“+”，特殊字符被编码为ASCII十六进制字符）multipart/form-data 不对字符编码。在使用包含文件上传控件的表单时，必须使用该值text/plain 空格转换为 “+” 加号，但不对特殊字符编码 |
+| method         | get、post                                                    | 规定用于发送 form-data 的 HTTP 方法。                        |
+| name           | form_name                                                    | 规定表单的名称。                                             |
+| novalidate     | novalidate                                                   | 如果使用该属性，则提交表单时不进行验证。                     |
+| target         | _blank、_self、_parent、_top、framename                      | 规定在何处打开 action URL。                                  |
+
+HTML <form> 元素，已设置所有可能的属性，是这样的：
+
+```html
+<form action="action_page.php" method="GET" target="_blank" accept-charset="UTF-8"
+ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
+.
 form elements
  .
-</form>
+</form> 
 ```
 
 ---
@@ -1306,7 +1415,7 @@ form elements
 
 表单元素指的是不同类型的 input 元素、复选框、单选按钮、提交按钮等等。
 
-### input 元素
+## \<input>
 
 *<input>* 元素是最重要的*表单元素*。
 
@@ -1464,41 +1573,7 @@ Last name:<br>
 
 ![image-20220814155201539](https://s2.loli.net/2022/08/14/P8RW2vB4wyS9ZEz.png)
 
-### form 属性
-
-HTML <form> 元素，已设置所有可能的属性，是这样的：
-
-```html
-<form action="action_page.php" method="GET" target="_blank" accept-charset="UTF-8"
-ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
-.
-form elements
- .
-</form> 
-```
-
-下面是 <form> 属性的列表：
-
-| 属性           | 描述                                                       |
-| -------------- | ---------------------------------------------------------- |
-| accept-charset | 规定在被提交表单中使用的字符集（默认：页面字符集）。       |
-| action         | 规定向何处提交表单的地址（URL）（提交页面）。              |
-| autocomplete   | 规定浏览器应该自动完成表单（默认：开启）。                 |
-| enctype        | 规定被提交数据的编码（默认：url-encoded）。                |
-| method         | 规定在提交表单时所用的 HTTP 方法（默认：GET）。            |
-| name           | 规定识别表单的名称（对于 DOM 使用：document.forms.name）。 |
-| novalidate     | 规定浏览器不验证表单。                                     |
-| target         | 规定 action 属性中地址的目标（默认：_self）。              |
-
-## HTML表单元素
-
-### \<input> 元素
-
-最重要的表单元素是 `<input>`  元素。
-
-<input> 元素根据不同的  **type**  属性，可以变化为多种形态。
-
-### \<select> 元素（下拉列表）
+## \<select> 元素（下拉列表）
 
 `<select>` 元素定义*下拉列表*：
 
@@ -1521,7 +1596,7 @@ form elements
 <option value="fiat" selected>Fiat</option>
 ```
 
-### \<textarea> 元素
+## \<textarea> 元素
 
 `<textarea>` 元素定义多行输入字段（**文本域**）：
 
@@ -1533,9 +1608,27 @@ The cat was playing in the garden.
 
 ![image-20220814160957790](https://s2.loli.net/2022/08/14/IbmJNGH1wj5VcZg.png)
 
-### \<button> 元素
+## \<button>
 
 `<button>` 元素定义可点击的*按钮*：
+
+使用 input 元素也可以设置成按钮的样式，但是在 button 元素的内部，你可以放置文本或图像，而 input 元素则不行。
+
+请始终为 button 元素设置 type 属性，因为不同的浏览器为其指定的默认值可能不同。
+
+| 属性           | 值                                                           | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| autofocus      | autofocus                                                    | 指定当页面加载的时候，按钮将获得焦点。                       |
+| disabled       | disabled                                                     | 禁用按钮。                                                   |
+| form           | form_id                                                      | 指定按钮所关联的表单 ID。                                    |
+| formaction     | url                                                          | 覆盖 form 元素的 action 属性。注释：该属性与 type="submit" 配合使用。 |
+| formenctype    | application/x-www-form-urlencoded、multipart/form-data、text/plain | 覆盖 form 元素的 enctype 属性。注释：该属性与 type="submit" 配合使用。 |
+| formmethod     | get、post                                                    | 覆盖 form 元素的 method 属性。注释：该属性与 type="submit" 配合使用。 |
+| formnovalidate | formnovalidate                                               | 覆盖 form 元素的 novalidate 属性。注释：该属性与 type="submit" 配合使用。 |
+| formtarget     | _blank、_self、_parent、_top、framename                      | 覆盖 form 元素的 target 属性。注释：该属性与 type="submit" 配合使用。 |
+| name           | button_name                                                  | 指定按钮的名称。                                             |
+| type           | button、reset、submit                                        | 指定按钮的类型。                                             |
+| value          | text                                                         | 指定按钮的初始值。注释：可由脚本进行修改。                   |
 
 ```html
 <button type="button" onclick="alert('Hello World!')">Click Me!</button>
@@ -1920,3 +2013,25 @@ HTML5 增加了多个新的输入类型：
 ## HTML 输入属性
 
 TODO
+
+# Frames
+
+## \<iframe>
+
+`<iframe>` 标签会创建包含另外一个文档的内联框架（即行内框架）。
+
+| 属性       | 值                                                           | 描述                                                         |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **height** | pixels、%                                                    | 指定 iframe 的高度。                                         |
+| name       | text                                                         | 指定 iframe 的名称。                                         |
+| sandbox    | allow-forms、allow-pointer-lock、allow-popups、allow-same-origin、allow-scripts、allow-top-navigation | 启用一系列对 `<iframe>`中内容的额外限制。                    |
+| seamless   | seamless                                                     | 指示浏览器将 iframe 的内容显示得像主 HTML 文档的一个整体组成部分。 |
+| **src**    | URL                                                          | 指定在 iframe 中显示的文档的 URL 地址。                      |
+| srcdoc     | HTML_code                                                    | 指定在 `<iframe>` 中显示的页面的 HTML 内容。                 |
+| **width**  | pixels、%                                                    | 指定 iframe 的宽度。                                         |
+
+```html
+<body>
+    <iframe src="https://jacob-xyb.github.io/" width="1600px" height="800px" frameborder="0">不支持iframe</iframe>
+</body>
+```
