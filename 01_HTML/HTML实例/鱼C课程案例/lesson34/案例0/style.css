@@ -1,0 +1,47 @@
+* {
+    padding: 10px;
+    background-color: #D1FEFF;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+.content {
+    text-indent: 2em;
+}
+
+span {
+    color: gray;
+    padding: 0px;
+}
+
+img {
+    width: 222px;
+}
+
+.slogan {
+    color: green;
+    text-align: center;
+}
+
+#ol {
+    color: red;
+}
+
+body > .content {
+    border: 1px black solid;
+}
+
+h2, p, span {
+    font-style: italic;
+}
+
+.slogan + p {
+    color: blueviolet;
+}
+
+p ~ p{
+    color: rgb(124, 28, 44);
+}
