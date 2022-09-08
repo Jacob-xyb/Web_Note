@@ -300,6 +300,8 @@ element1 ~ element2 {
 </body>
 ```
 
+![image-20220908112329502](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220908112329502.png)
+
 ### :valid
 
 ### invalid
@@ -343,6 +345,31 @@ element1 ~ element2 {
 ## 其他伪类选择器
 
 ### :target
+
+:target 选择器可用于选取当前活动的目标元素。
+
+**注意：**URL 带有后面跟有锚名称 #，指向文档内某个具体的元素。这个被链接的元素就是目标元素(target element)。
+
+```css
+<style>
+:target
+{
+    border: 2px solid #D4D4D4;
+    background-color: #e5eecc;
+}
+</style>
+...
+<body>
+   <h1>这是标题</h1>
+   <p><a href="#fishc1">跳转至内容 1</a></p>
+   <p><a href="#fishc2">跳转至内容 2</a></p>
+   <p><a href="#fishc3">跳转至内容 3</a></p>
+   <p>请点击上面的链接，:target 选择器会突出显示当前活动的 HTML 锚。</p>
+   <p id="fishc1"><b>内容 1...</b></p>
+   <p id="fishc2"><b>内容 2...</b></p>
+   <p id="fishc3"><b>内容 3...</b></p>
+</body>
+```
 
 ### :lang
 
@@ -398,32 +425,316 @@ p::after
 
 # 属性选择器
 
-# CSS3 选择器
+## [attribute]
 
-## 儿子选择器
-
-IE7开始兼容
+[attribute] 选择器用于选取带有指定属性的元素。
 
 ```css
-div > p {} 	/*div的子元素*/
+<style>
+a[target]
+{
+    background-color:green;
+}
+</style>
+...
+<body>
+   <p>带有 target 属性的链接会得到绿色背景：</p>
+   <a href="http://www.fishc.com" target="_blank">鱼C工作室</a>
+   <a href="http://bbs.fishc.com/forum.php">鱼C论坛</a>
+</body>
 ```
 
-## 序选择器
+## [attribute=value]
 
-```css
-ul li:first-child{}		/*第一个孩子*/
-ul li:last-child{}		/*最后一个孩子*/
-ul li:nth-child(4)		/*第四个孩子*/
-ul li:nth-child(2n+2)	/*所有的偶数序列*/
-```
-
-## 属性选择器
-
-- **E[attr=val]**
+[attribute=value]选择器用于选择带有指定值属性的元素
 
 ```css
 form input[type='text'] {}
 ```
+
+## [attribute~=value]
+
+[attribute~=value] 选择器用于选取属性值中包含指定词汇的元素。 **`包含不是匹配`**
+
+## [attribute^=value]
+
+[attribute^=value] 选择器匹配属性值中且以value开头的元素
+
+## [attribute$=value]
+
+[attribute$=value] 选择器用于选取属性值中且以value结尾的元素。
+
+## [attribute*=value]
+
+[attribute*=value] 选择器匹配属性值包含指定值的每个元素。
+
+## [attribute|=value]
+
+[attribute|=value] 选择器用于选取带有以指定值开头的属性值的元素。
+
+**注意：**该值必须是整个单词，比如 lang=”en”，或者**后面跟着 `连字符` **，比如 lang=”en-us”。
+
+支持自定义属性
+
+# 颜色
+
+## 前景色
+
+[标准颜色名称查询](https://man.ilovefishc.com/color/index.html)
+
+CSS支持 RGB、 HEX、 HSL、 RGBA、 HSLA 五种方式表示颜色。
+
+### HSL
+
+其中 HSL，分别是 色相（Hue ）、饱和度（Saturation ）、亮度（Lightness）。
+
+## 背景色
+
+### 背景图
+
+浏览器会使用背景图像去覆盖背景颜色
+
+`background-imag:url();`	背景图片自动填充
+
+**多张图片时，左边的会覆盖右边的图像**
+
+`background-repeat: no-repeat;` 不重复填充
+
+`background-repeat: repeat-x;` 只横向重复 （space 也是垂直重复）
+
+`background-repeat: repeat-x;` 只纵向重复
+
+`background-position:` 控制背景图像的绝对位置 
+
+### background-attachment
+
+background-attachment设置背景图像是否固定或者随着页面的其余部分滚动。
+
+`background-attachment:scroll || fixed || inherit || local;`
+
+| 值      | 说明                                            |
+| ------- | ----------------------------------------------- |
+| scroll  | 背景图片随页面的其余部分滚动。这是默认          |
+| fixed   | 背景图像是固定的；此时 size 就无效了            |
+| inherit | 指定background-attachment的设置应该从父元素继承 |
+| local   | 背景图片随滚动元素滚动                          |
+
+### background-origin
+
+background-origin 属性规定 background-position 属性相对于什么位置来定位。
+
+- **如果背景图像的 background-attachment 属性为 “fixed”，则该属性没有效果。**
+
+`background-origin: padding-box|border-box|content-box;`
+
+| 值          | 说明                                   |
+| ----------- | -------------------------------------- |
+| padding-box | 默认值。背景图像相对于内边距框来定位。 |
+| border-box  | 背景图像相对于边框盒来定位。           |
+| content-box | 背景图像相对于内容框来定位。           |
+
+### background-clip
+
+background-clip属性指定背景绘制区域。
+
+`background-clip: border-box|padding-box|content-box;`
+
+| 值          | 说明                                             |
+| ----------- | ------------------------------------------------ |
+| border-box  | 默认值。背景绘制在边框方框内（剪切成边框方框）。 |
+| padding-box | 背景绘制在衬距方框内（剪切成衬距方框）。         |
+| content-box | 背景绘制在内容方框内（剪切成内容方框）。         |
+
+# 边框
+
+`border:border-width|border-style|border-color;`
+
+边框有样式的前提下才会显示 颜色 和 宽度。
+
+## border-style
+
+border-style 属性用于设置元素所有边框的样式，或者单独地为各边设置边框样式。
+
+**注意：**只有当这个值不是 none 时边框才可能出现。
+
+`border-style:none|hidden|A|inherit;`
+
+| 值      | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| none    | 定义无边框。                                                 |
+| hidden  | 与 “none” 相同。不过应用于表时除外，对于表，hidden 用于解决边框冲突。 |
+| dotted  | 定义点状边框。在大多数浏览器中呈现为实线。                   |
+| dashed  | 定义虚线。在大多数浏览器中呈现为实线。                       |
+| solid   | 定义实线。                                                   |
+| double  | 定义双线。双线的宽度等于 [border-width](https://man.ilovefishc.com/pageCSS3/border-width.html) 的值。 |
+| groove  | 定义 3D 凹槽边框。其效果取决于 [border-color](https://man.ilovefishc.com/page/border-color.html) 的值。 |
+| ridge   | 定义 3D 垄状边框。其效果取决于 [border-color](https://man.ilovefishc.com/page/border-color.html) 的值。 |
+| inset   | 定义 3D inset 边框。其效果取决于 [border-color](https://man.ilovefishc.com/page/border-color.html) 的值。 |
+| outset  | 定义 3D outset 边框。其效果取决于 [border-color](https://man.ilovefishc.com/page/border-color.html) 的值。 |
+| inherit | 规定应该从父元素继承边框样式。                               |
+
+## border-width
+
+border-width 简写属性为元素的所有边框设置宽度，或者单独地为各边边框设置宽度。
+
+**注意：**只有当边框样式不是 none 时才起作用。如果边框样式是 none，边框宽度实际上会重置为 0。不允许指定负长度值。
+
+`border-width:medium|thin|thick|length|inherit;`
+
+| 值      | 描述                           |
+| ------- | ------------------------------ |
+| thin    | 定义细的上边框。               |
+| medium  | 默认值。定义中等的上边框。     |
+| thick   | 定义粗的上边框。               |
+| length  | 允许您自定义上边框的宽度。     |
+| inherit | 规定应该从父元素继承边框宽度。 |
+
+## border-color
+
+border-color 属性设置四条边框的颜色。
+
+## border-radius
+
+border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。
+
+迷幻行为： `apx bpx` 时， 显示为 左上和右下为 apx apx 的圆角， 右上和左下为 bpx bpx 的圆角。
+
+只有设置为 `apx / bpx` 时，才会四个角都是 apx bpx。
+
+形如：`a1px b1px c1px d1px / a2px b2px c2px d2px` 时 表示左上、右上、右下、左下 为 (a1px a2px) ... (d1px d2px)
+
+## border-image
+
+border-image属性使用图片作为对象的边界。
+
+**注意：**当table设置border-collapse为collapse无效。
+
+| 值                  | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| border-image-source | 用在边框的图片的路径。                                       |
+| border-image-slice  | 图片边框向内偏移。                                           |
+| border-image-width  | 图片边框的宽度。                                             |
+| border-image-outset | 边框图像区域超出边框的量。                                   |
+| border-image-repeat | 图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched) |
+
+### border-image-source
+
+默认载入，图像只会出现在四个角，可以借助slice来处理
+
+### border-image-slice
+
+border-image-slice属性指定图像的边界向内偏移。
+
+**注意：**此属性指定顶部，右，底部，左边缘的图像向内偏移，分为九个区域：四个角，四边和中间。图像中间部分将被丢弃（完全透明的处理），除非填写关键字。如果省略第四个数字/百分比，它和第二个相同的。如果也省略了第三个，它和第一个是相同的。如果也省略了第二个，它和第一个是相同的。
+
+**注意：这里的单位默认是 px 所以不要写 px，否则造成语法错误**
+
+| 值     | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 数字表示图像的像素（位图图像）或向量的坐标（如果图像是矢量图像） |
+| %      | 百分比图像的大小是相对的：水平偏移图像的宽度，垂直偏移图像的高度 |
+| fill   | 保留图像的中间部分                                           |
+
+### border-image-repeat
+
+border-image-repeat 属性规定图像边框是否应该被重复（repeated）、拉伸（stretched）或铺满（rounded）。
+
+**注意：**该属性规定如何延展和铺排边框图像的**边缘**和**中间部分**。因此，可以规定两个值。如果省略第二个值，则采取与第一个值相同的值。
+
+| 值      | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| stretch | 拉伸图像来填充区域                                           |
+| repeat  | 平铺（重复）图像来填充区域。                                 |
+| round   | 类似 repeat 值。如果无法完整平铺所有图像，则对图像进行缩放以适应区域。 |
+
+### border-image-outset
+
+border-image-outset 属性规定边框图像超出边框盒的量。
+
+**注意：**border-image-outset 属性规定边框图像超出边框盒的量。在上、右、下、左侧。如果忽略第四个值，则与第二个值相同。如果省略第三个值，则与第一个值相同。如果省略第二个值，则与第一个值相同。不允许任何负值作为 border-image-outset 值。
+
+| length | 设置边框图像与边框（[border-image](https://man.ilovefishc.com/page/border-image.html)）的距离，默认为0。 |
+| ------ | ------------------------------------------------------------ |
+| number | 代表相应的 border-width 的倍数                               |
+
+### border-image -width
+
+border-image -width属性指定图像边界的宽度。
+
+| 值     | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 表示相应的border-width 的倍数                                |
+| %      | 边界图像区域的大小：横向偏移的宽度的面积，垂直偏移的高度的面积 |
+| auto   | 如果指定了，宽度是相应的image slice的内在宽度或高度          |
+
+# 边距
+
+## 内边距
+
+## 外边距
+
+`margin: auto` 生效必须是 块级元素，且有宽度。
+
+### margin 塌陷
+
+左右边距取和，上下边距取最大。
+
+**注意：**假如需要并排放置两个带边框的框，可通过将 box-sizing 设置为 “border-box”。这可令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中。
+
+| 属性        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| content-box | 这是CSS2.1指定的宽度和高度的行为。指定元素的宽度和高度（最小/最大属性）适用于box的宽度和高度。元素的填充和边框布局和绘制指定宽度和高度除外 |
+| border-box  | 指定宽度和高度（最小/最大属性）确定元素边框box。也就是说，对元素指定宽度和高度包括padding和border的指定。内容的宽度和高度减去各自双方该边框和填充的宽度从指定的”宽度”和”高度”属性计算 |
+| inherit     | 指定box-sizing属性的值，应该从父元素继承                     |
+
+# 尺寸
+
+## box-sizing
+
+box-sizing 属性允许以某种方式定义某些元素，以适应指定区域。
+
+## 最小最大尺寸
+
+## 溢出
+
+overflow 属性规定当内容溢出元素框时发生的事情。
+
+**注意：**这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。
+
+| 值      | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| visible | 默认值。内容不会被修剪，会呈现在元素框之外。                 |
+| hidden  | 内容会被修剪，并且其余内容是不可见的。                       |
+| scroll  | 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。     |
+| auto    | 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。推荐。 |
+| inherit | 规定应该从父元素继承 overflow 属性的值。                     |
+
+同时提供：`overflow-x`、`overflow-y`
+
+## resize
+
+resize属性指定一个元素是否是由用户调整大小的。
+
+**注意：**resize属性适用于计算其他元素的溢出值是不是”visible”。
+
+也就是说，`overflow: visible` 时，resize 不会生效。
+
+| 属性       | 说明                         |
+| ---------- | ---------------------------- |
+| none       | 用户无法调整元素的尺寸。     |
+| both       | 用户可调整元素的高度和宽度。 |
+| horizontal | 用户可调整元素的宽度。       |
+| vertical   | 用户可调整元素的高度。       |
+
+# 轮廓（outline）
+
+轮廓并不属于元素尺寸的一部分，不会影响到原有的页面布局。
+
+# 阴影
+
+# 显示类型
+
+
 
 # CSS 继承性
 
@@ -526,15 +837,3 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 margin 不适用于表示父子关系，在没有 border
 
 # 超级链接的美化
-
-#  背景
-
-## 背景图片
-
-`background-imag:url();`	背景图片自动填充
-
-`background-repeat: no-repeat;` 不重复填充
-
-`background-repeat: repeat-x;` 只横向重复
-
-`background-repeat: repeat-x;` 只纵向重复

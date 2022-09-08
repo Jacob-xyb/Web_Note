@@ -37,7 +37,8 @@
             console.log(parseFloat('11.11'))
             // Number() 输入参数不是纯数字字符串的话，会返回 NaN
             console.log("转换不是纯数字字符串")
-            console.log(Number("123abc"))
+            console.log(Number("123abc"))       // NaN
+            console.log(Number(null))       // 0
             // 但是 parseFloat 会过滤非数字类型字符串
             console.log(parseFloat("123abc"))
             // 只能过滤数字开头的字符串
