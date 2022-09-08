@@ -241,7 +241,112 @@ element1 ~ element2 {
 
 # 伪类选择器
 
+## 动态伪类选择器
 
+动态选择器的设置是有前后顺序的：link -> visited -> hover -> active
+
+爱恨法则：`l`o`v`e ` ha`te
+
+### :link
+
+:link 选择器用于选取未被访问的链接。
+
+**注意：**:link 选择器不会设置已经访问过的链接的样式。
+
+请使用[`:hover`](https://man.ilovefishc.com/pageCSS3/dothover.html)选择器用于设置鼠标指针浮动到链接上时的样式，[`:visited`](https://man.ilovefishc.com/pageCSS3/dotvisited.html)用于设置指向已访问页面的链接的样式，[`:active `](https://man.ilovefishc.com/pageCSS3/dotActive.html)选择器用于活动链接。
+
+### :visited
+
+### :hover
+
+### :active
+
+判断激活的标准是鼠标点击，p标签也可以被激活
+
+### :focus
+
+:focus 选择器用于选取获得焦点的元素。
+
+## UI伪类选择器
+
+### :enabled
+
+### :disabled
+
+### :checked
+
+### :required
+
+### :optional
+
+### :default
+
+:default选择器用于表示默认状态的按钮（`<input type="button">`），radio(`<input type="radio">`), checkbox (`<input type="checkbox">`) 或select元素中的option HTML元素(“option”)。
+
+```html
+<style>
+    input:default {
+        box-shadow: 0 0 1px 1px green;
+    }
+</style>
+...
+<body>
+<form action="">
+    <input type="radio" value="fake" name="same" /> 小田鱼<br>
+    <input type="radio" value="star" checked="checked" name="same" /> 小甲鱼<br>
+    <input type="checkbox" checked="checked" value="Bike"/> 我爱C语言<br>
+    <input type="checkbox" value="Car"/> 我爱Web
+</form>
+</body>
+```
+
+### :valid
+
+### invalid
+
+### :in-range
+
+### :out-of-range
+
+### :read-only
+
+### :read-write
+
+### :indeterminate
+
+## 结构伪类选择器
+
+### :root
+
+### :nth-child
+
+### :nth-last-child
+
+### :nth-of-type
+
+### :nth-last-of-type
+
+### :first-child
+
+### :last-child
+
+### :first-of-type
+
+### :last-of-type
+
+### :only-child
+
+### only-of-type
+
+### :empty
+
+## 其他伪类选择器
+
+### :target
+
+### :lang
+
+### :not
 
 # 伪元素选择器
 
@@ -284,6 +389,12 @@ p::after
     content:"- emm.";
 }
 ```
+
+## ::selection
+
+::selection 选匹配元素中被用户选中或处于高亮状态的部分。
+
+**注意：**只能向 ::selection 选择器应用少量 CSS 属性：color、background、cursor 以及 outline。
 
 # 属性选择器
 

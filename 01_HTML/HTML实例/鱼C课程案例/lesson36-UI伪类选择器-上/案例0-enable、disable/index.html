@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>设置可用与禁用的样式</title>
+    <style type="text/css">
+        /* 设置表单元素的“可用”与“禁用”这两种状态的CSS样式 */
+        :enabled {
+            outline: 1px solid green;
+        }
+
+        :disabled {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="enabled">可用:</label>
+            <input type="text" name="enabled">
+        </p>
+        <p>
+            <label for="disabled">禁用:</label>
+            <input type="text" name="disabled" disabled>
+        </p>
+        <button type="submit">可用按钮</button>
+        <button type="submit" disabled>不可用按钮</button>
+    </form>
+</body>
+
+</html>

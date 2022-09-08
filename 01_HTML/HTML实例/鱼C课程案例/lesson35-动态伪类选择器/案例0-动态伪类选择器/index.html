@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>善变的a元素</title>
+    <style type="text/css">
+        /* 请在此处定制a元素“4个状态”的不同样式 */
+
+        /* 链接未被访问的时候 */
+        a:link {
+            color: pink;
+        }
+
+        /* 链接被访问过的时候 */
+        a:visited {
+            color: red;
+        }
+
+        /* 鼠标悬停在链接上方的时候 */
+        a:hover {
+            color: black;
+        }
+
+        /* 鼠标摁下链接的那一刻 */
+        a:active {
+            color: green;
+        }
+
+        a:focus {
+            background-color: brown;
+        }
+
+        div {
+            background-color: red;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        div:hover {
+            background-color: green;
+        }
+
+        p:active {
+            background-color: blueviolet;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <a href="https://ilovefishc.com" target="_blank">互联网的广大朋友们大家好，我是小甲鱼^o^</a>
+    <div>鼠标移动到这里</div>
+    <p>段落标签也可以被激活</p>
+    <button>这是一个button</button>
+</body>
+
+</html>

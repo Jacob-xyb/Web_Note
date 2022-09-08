@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>设置必填和可选的样式</title>
+    <style type="text/css">
+        /* 设置必填和可选的样式 */
+        :required {
+            outline: 3px solid red;
+        }
+
+        :optional {
+            outline: 3px solid green;
+        }
+
+        :default {
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="required">必填:</label>
+            <input type="text" name="required" required>
+        </p>
+        <p>
+            <label for="optional">可选:</label>
+            <input type="text" name="optional">
+        </p>
+        <button type="submit">提交</button>
+    </form>
+</body>
+
+</html>
