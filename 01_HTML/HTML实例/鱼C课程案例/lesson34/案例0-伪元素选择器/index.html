@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>使用::first-line选择器</title>
+    <style type="text/css">
+        /* 请设置文本块第一行内容的样式 */
+
+        div::first-letter {
+            color: blueviolet;
+            background-color: green;
+        }
+
+        p::first-line,
+        a::first-line {
+            background-color: red;
+            color: green;
+        }
+
+        a {
+            display: block;
+        }
+
+        h1::before {
+            content: " 随机语句：";
+        }
+
+        h1::after {
+            content: " -> 结束.";
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum hic numquam incidunt maiores cumque soluta alias
+        eveniet obcaecati at, atque quia? Sit, aliquid explicabo? Quaerat, eius laudantium. Ipsam, ea ratione!</h1>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint deserunt, debitis repudiandae facilis nihil
+        cumque ullam aliquid quasi delectus at molestiae, repellendus velit quisquam molestias doloremque sed non
+        perspiciatis labore.</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br> Aliquid, nam, in possimus fugiat eaque incidunt,
+        velit quisquam natus accusantium id obcaecati mollitia est maxime! Earum libero ea ipsum sed tempora.</p>
+    <a href="https://ilovefishc.com" target="_blank">互联网的广大朋友们大家好，我是小甲鱼。</a>
+</body>
+
+</html>

@@ -241,7 +241,49 @@ element1 ~ element2 {
 
 # 伪类选择器
 
+
+
 # 伪元素选择器
+
+## ::first-line
+
+`::first-line` 选择器用于选取指定选择器的首行。
+
+**注意：**以下属性可与 `::first-line` 使用：字体属性、颜色属性、背景属性、word-spacing、letter-spacing、text-decoration、vertical-align、text-transform、line-height、clear
+
+只对块级元素生效，但是例如 a 标签设置为块元素后，就依然生效。
+
+## ::first-letter
+
+::first-letter 选择器用于选取指定选择器的首字母。
+
+**注意：**以下属性可与 `::first-letter` 使用：字体属性、颜色属性、背景属性、外边距属性、内边距属性、边框属性、text-decoration、vertical-align（只有在 float 为 ‘none’ 时）、text-transform、line-height、float、clear
+
+## ::before
+
+::before 选择器在被选元素的内容前面插入内容。
+
+**注意：**请使用 **content** 属性来指定要插入的内容。
+
+```css
+p::before
+{
+    content:"鱼C - ";
+}
+```
+
+## ::after
+
+::after 选择器在被选元素的内容后面插入内容。
+
+**注意：**请使用 **content** 属性来指定要插入的内容。
+
+```css
+p::after
+{
+    content:"- emm.";
+}
+```
 
 # 属性选择器
 

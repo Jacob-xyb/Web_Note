@@ -29,19 +29,3 @@ img {
 #ol {
     color: red;
 }
-
-body > .content {
-    border: 1px black solid;
-}
-
-h2, p, span {
-    font-style: italic;
-}
-
-.slogan + p {
-    color: blueviolet;
-}
-
-p ~ p{
-    color: rgb(124, 28, 44);
-}
