@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 函数声明
+        function sayHi() {
+            alert("Hello");
+        }
+        alert(sayHi); // 显示函数代码
+
+        // 函数表达式
+        //  如果函数名重名，就不会被执行，因为函数表达式 sayHi 目前为被定义
+        let sayHi1 = function () {
+            alert("Hello");
+        };
+    </script>
+</body>
+
+</html>

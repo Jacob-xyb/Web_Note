@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字符串的比较
+        console.log('Z' > 'A');     // true
+        console.log('a' > 'A');     // true
+        console.log('ZZ' > 'Z');    // true
+
+        // 不同类型间的比较
+        //  当对不同类型的值进行比较时，JavaScript 会首先将其转化为数字（number）再判定大小。
+        console.log('2' > 1); // true，字符串 '2' 会被转化为数字 2
+        console.log('01' == 1); // true，字符串 '01' 会被转化为数字 1
+
+        // 严格相等
+        //  普通的相等性检查 == 存在一个问题，它不能区分出 0 和 false：因此都会转换成数字
+        console.log( 0 == false ); // true
+        console.log( '' == false ); // true
+        //  严格相等运算符 === 在进行比较时不会做任何的类型转换。
+        console.log( 0 === false ); // false，因为被比较值的数据类型不同
+        console.log( 0 !== false ); // ture
+        
+    </script>
+</body>
+
+</html>

@@ -942,3 +942,48 @@ column-span 属性指定某个元素应该跨越多少列。
 `column-fill: balance` 文本的填充是均匀分配的
 
  `column-fill: auto` 文本的填充是按顺序分配的
+
+# 弹性布局
+
+`display: flex;` : 此元素将显示为弹性盒容器。
+
+`display: inline-flex;` ：此元素将显示为行内弹性盒容器。
+
+## flex-flow
+
+flex-flow 属性是 [flex-direction](https://man.ilovefishc.com/pageCSS3/flexDirection.html) 和 [flex-wrap](https://man.ilovefishc.com/pageCSS3/flexWrap.html) 属性的复合属性。
+
+- **如果元素不是弹性盒对象的元素，则 flex-flow 属性不起作用。**
+
+语法：`flex-flow:flex-direction flex-wrap|initial|inherit;`
+
+### flex-direction
+
+flex-direction 属性规定灵活项目的方向。
+
+- **如果元素不是弹性盒对象的元素，则 flex-direction 属性不起作用。**
+
+语法：`flex-direction: row|row-reverse|column|column-reverse|initial|inherit;`
+
+| 值             | 描述                                         |
+| -------------- | -------------------------------------------- |
+| `row`          | 默认值，灵活的项目将水平显示，正如一个行一样 |
+| column         | 灵活的项目将垂直显示，正如一个列一样。       |
+| column-reverse | 与 column 相同，但是以相反的顺序。           |
+| initial        | 设置该属性为它的默认值。                     |
+| inherit        | 从父元素继承该属性。                         |
+
+### flex-wrap
+
+flex-wrap 属性规定 flex 容器是单行或者多行，同时横轴的方向决定了新行堆叠的方向。
+
+- **如果元素不是弹性盒对象的元素，则 flex-wrap 属性不起作用。**
+
+| 值           | 描述                                                     |
+| ------------ | -------------------------------------------------------- |
+| nowrap       | 默认值。规定灵活的项目不拆行或不拆列。                   |
+| `wrap`       | 规定灵活的项目在必要的时候拆行或拆列。                   |
+| wrap-reverse | 规定灵活的项目在必要的时候拆行或拆列，但是以相反的顺序。 |
+| initial      | 设置该属性为它的默认值。                                 |
+| inherit      | 从父元素继承该属性。                                     |
+
