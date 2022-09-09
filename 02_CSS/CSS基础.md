@@ -675,6 +675,12 @@ border-image -width属性指定图像边界的宽度。
 
 `margin: auto` 生效必须是 块级元素，且有宽度。
 
+`margin: 0 auto;` auto 代表尽其所能的增加。
+
+只有标准流的盒子，才能使用；浮动，绝对定位，固定定位均不可以使用；
+
+`margin: 0 auto;` 是在居中盒子，而不是文本，文本居中需要使用 `text-align:center;`
+
 ### margin 塌陷
 
 左右边距取和，上下边距取最大。
@@ -820,24 +826,119 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 
 # 定位
 
+## position
 
+position 属性规定元素的定位类型。
 
-# margin 的小知识
+| 值       | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| static   | 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 |
+| absolute | 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| fixed    | 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| relative | 生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 |
+| inherit  | 规定应该从父元素继承 position 属性的值。                     |
 
-## margin 的塌陷现象
+# BFC
 
-竖直方向的 margin 是不叠加的，以最大为标准。
+如果满足下面任意条件，就会自动创建一个新的BFC：
 
-## 左右居中
+- float 属性的值不为 none
+- position 属性的值不为 static 或 relative
+- overflow 属性的值不为 visible
+- display 属性的值为 flex，inline-flex，inline-block，table-cell 或 table-caption
 
-`margin: 0 auto;` auto 代表尽其所能的增加。
+最常见的是用 `overflow: hidden` ，因为可能产生的副作用是最小的。
 
-只有标准流的盒子，才能使用；浮动，绝对定位，固定定位均不可以使用；
+# 多列布局
 
-`margin: 0 auto;` 是在居中盒子，而不是文本，文本居中需要使用 `text-align:center;`
+## columns
 
-## 擅用 padding 来表示父子关系
+columns 属性设置列宽和列数。
 
-margin 不适用于表示父子关系，在没有 border
+语法：`columns: column-width column-count;`
 
-# 超级链接的美化
+| 值                                                           | 说明     |
+| ------------------------------------------------------------ | -------- |
+| [`column-width`](https://man.ilovefishc.com/pageCSS3/column-width.html) | 列的宽度 |
+| [`column-count`](https://man.ilovefishc.com/pageCSS3/column-count.html) | 列数     |
+
+### column-width
+
+column-width 属性指定列的宽度。
+
+语法： `column-width: auto|length;`
+
+其实是指的列最小宽度。
+
+### column-count
+
+column-count 属性指定某个元素应分为的列数。
+
+语法：`column-count: number|auto;`
+
+## column-gap
+
+column-gap 的属性指定的列之间的差距。
+
+语法：`column-gap: length|normal;`
+
+| 值     | 说明                                    |
+| ------ | --------------------------------------- |
+| length | 一个指定的长度，将设置列之间的差距      |
+| normal | 指定一个列之间的普通差距。 W3C建议1EM值 |
+
+## column-rule
+
+column-rule 属性设置列之间的宽度，样式和颜色。
+
+语法：`column-rule: column-rule-width column-rule-style column-rule-color;`
+
+| 值                                                           | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| [`column-rule-width`](https://man.ilovefishc.com/pageCSS3/column-rule-width.html) | 设置列中之间的宽度规则 |
+| [`column-rule-style`](https://man.ilovefishc.com/pageCSS3/column-rule-style.html) | 设置列中之间的样式规则 |
+| [`column-rule-color`](https://man.ilovefishc.com/pageCSS3/column-rule-color.html) | 设置列中之间的颜色规则 |
+
+### column-rule-width
+
+column-rule-width 属性指定列之间的宽度大小。
+
+| 值     | 说明                 |
+| ------ | -------------------- |
+| thin   | 指定一个细边框的规则 |
+| medium | 定义一个中等边框规则 |
+| thick  | 指定一个粗边框的规则 |
+| length | 指定宽度的规则       |
+
+### column-rule-style
+
+column-rule-style 属性指定列之间的样式规则。
+
+| 值     | 说明                                             |
+| ------ | ------------------------------------------------ |
+| none   | 定义没有规则。                                   |
+| hidden | 定义隐藏规则。                                   |
+| dotted | 定义点状规则。                                   |
+| dashed | 定义虚线规则。                                   |
+| solid  | 定义实线规则。                                   |
+| double | 定义双线规则。                                   |
+| groove | 定义 3D grooved 规则。该效果取决于宽度和颜色值。 |
+| ridge  | 定义 3D ridged 规则。该效果取决于宽度和颜色值。  |
+| inset  | 定义 3D inset 规则。该效果取决于宽度和颜色值。   |
+| outset | 定义 3D outset 规则。该效果取决于宽度和颜色值。  |
+
+### column-rule-color
+
+column-rule-color 属性指定列之间的颜色规则。
+
+## column-span
+
+column-span 属性指定某个元素应该跨越多少列。
+
+语法：`column-span: 1|all;`
+
+## column-fill
+
+`column-fill: balance` 文本的填充是均匀分配的
+
+ `column-fill: auto` 文本的填充是按顺序分配的

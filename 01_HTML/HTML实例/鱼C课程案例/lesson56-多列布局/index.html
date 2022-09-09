@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>实现多列布局</title>
+    <style type="text/css">
+        /* 不使用float实现两列布局 */
+        div.two {
+            column-count: 2;
+            /* 设置间隙的宽度 */
+            column-gap: 20px;  
+            /* 设置间隙的风格样式 */
+            column-rule: black solid 5px;
+        }
+
+        div.left {
+            background-color: pink;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        div.right {
+            background-color: lightblue;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        div.columns {
+            columns: 5 200px;
+        }
+
+        h2.columns {
+            column-span: all;
+        }
+
+        .balance {
+            column-count: 3;
+            column-fill: balance;
+            /* 分离文本时，背景色依旧会存在 */
+            column-gap: 20px;  
+            background-color: pink;
+            height: 200px;
+        }
+
+        .auto {
+            column-count: 3;
+            column-fill: auto;
+            background-color: lightblue;
+            column-gap: 20px;  
+            height: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>两列布局演示</h1>
+    <div class="two">
+        <div class="left">
+            <h2>左侧列巴拉巴拉</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est exercitationem sint animi harum minima
+                veritatis itaque asperiores numquam cupiditate, odio ad nobis tempore doloribus facilis. Inventore
+                itaque quis obcaecati adipisci?</p>
+        </div>
+        <div class="right">
+            <h2>右侧列巴拉巴拉</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque natus ducimus, corporis veritatis
+                obcaecati, illo ex nemo corrupti dicta a iusto totam in nostrum. Accusamus fugit ut magnam facilis
+                facere!</p>
+        </div>
+    </div>
+
+    <div class="columns">
+        <h2 class="columns">下面这一大段文本，你想拆分成多少列，就能够拆分成多少列^o^</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam temporibus voluptates laboriosam aut, corrupti magnam aperiam consequuntur totam earum rem reprehenderit ea officia nam natus necessitatibus nulla aliquam! Architecto in, porro soluta illo, ullam recusandae accusantium aliquam non inventore totam optio itaque eum, qui incidunt consectetur iusto? Repellat, natus sint?</p>
+    </div>
+
+    <div>
+        <h2>下面是 column-fill: balance 的演示</h2>
+        <div class="balance">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi labore optio cupiditate, voluptatibus beatae amet iure culpa voluptatem animi quos quo hic, consequuntur eaque aspernatur reprehenderit autem dolor rem. Provident iure sed animi pariatur quasi nemo, rerum mollitia numquam debitis, necessitatibus ducimus distinctio incidunt corrupti excepturi inventore blanditiis, nisi culpa!</p>
+        </div>
+    
+        <h2>下面是 column-fill: auto 的演示</h2>
+        <div class="auto">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, facere natus nisi iure magnam deleniti pariatur ad officia fugit, ut odit quas dolorem. Expedita, soluta. Voluptatibus optio delectus quo saepe consequuntur cumque vitae animi provident ex quod natus quis aspernatur consequatur mollitia nulla temporibus est sequi id ea, quia autem.</p>
+        </div>
+    </div>
+</body>
+
+</html>
