@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="test" something="non-standard">
+
+    <input type="text" name="" id="test_input" value=123>
+    <script>
+        /* DOM 属性 */
+        // DOM 节点是常规的 JavaScript 对象。
+        // 新建属性
+        document.body.myData = {
+            name: 'Caesar',
+            title: 'Imperator'
+        };
+        console.log(document.body.myData.title);
+
+        document.body.sayTagName = function () {
+            console.log(this.tagName);
+        };
+        document.body.sayTagName(); // BODY（这个方法中的 "this" 的值是 document.body）
+
+        // 还可以修改内建属性的原型，例如修改 Element.prototype 为所有元素添加一个新方法：
+        Element.prototype.sayHi = function () {
+            console.log(`Hello, I'm ${this.tagName}`);
+        };
+        document.documentElement.sayHi(); // Hello, I'm HTML
+        document.body.sayHi(); // Hello, I'm BODY
+
+        /* HTML特性 */
+        // 当一个元素有 id 或其他 标准的 特性，那么就会生成对应的 DOM 属性。但是非 标准的 特性则不会。
+        console.log(document.body.id); // test
+        /* 当然。所有特性都可以通过使用以下方法进行访问：
+        elem.hasAttribute(name) — 检查特性是否存在。
+        elem.getAttribute(name) — 获取这个特性值。
+        elem.setAttribute(name, value) — 设置这个特性值。
+        elem.removeAttribute(name) — 移除这个特性。 */
+        // 非标准的特性没有获得对应的属性
+        console.log(document.body.something); // undefined
+        console.log(document.body.getAttribute('something')); // non-standard
+
+
+        /* 属性—特性同步 */
+        // input.value 只能从特性同步到属性，反过来则不行：
+        test_input.value = "text";
+        console.log(test_input.value);      // text; UI 上还是被改了，但是特性没有被改
+        console.log(test_input.getAttribute("value"));
+
+        /* DOM 属性是多类型的 */
+        // DOM 属性不总是字符串类型的。例如，input.checked 属性（对于 checkbox 的）是布尔型的。
+        // 有一种非常少见的情况，即使一个 DOM 属性是字符串类型的，但它可能和 HTML 特性也是不同的。
+        //      例如，href DOM 属性一直是一个 完整的 URL，即使该特性包含一个相对路径或者包含一个 #hash。
+    </script>
+</body>
+
+</html>

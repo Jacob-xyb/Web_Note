@@ -38,32 +38,43 @@
         </table>
 
         <input type="submit" value="Search!">
-
-        <script>
-            // 带有 id="age-table" 的表格。
-            document.getElementById("age-table").style.background = "grey";
-            document.getElementById("age-table").style.color = "white";
-            // 表格内的所有 label 元素（应该有三个）。
-            let tables = document.getElementsByTagName('table');
-            for (let i = 0; i < tables.length; i++) {
-                let labels = tables[i].getElementsByTagName('label');
-                for (let j = 0; j < labels.length; j++) {
-                    labels[j].style.background = "blue";
-                }
-            }
-            // 表格中的第一个 td（带有 “Age” 字段）。
-            for (let i = 0; i < tables.length; i++) {
-                let elm_td = tables[i].getElementsByTagName('td')[0];
-                if (elm_td.innerText.indexOf("Age") != -1) {
-                    elm_td.style.color = "pink";
-                } 
-            }
-            // 带有 name="search" 的 form。
-            
-            // 表单中的第一个 input。
-            // 表单中的最后一个 input。
-        </script>
     </form>
+    <script>
+        // 带有 id="age-table" 的表格。
+        document.getElementById("age-table").style.background = "grey";
+        document.getElementById("age-table").style.color = "white";
+        // 表格内的所有 label 元素（应该有三个）。
+        let tables = document.getElementsByTagName('table');
+        for (let i = 0; i < tables.length; i++) {
+            let labels = tables[i].getElementsByTagName('label');
+            for (let j = 0; j < labels.length; j++) {
+                labels[j].style.background = "blue";
+            }
+        }
+        // 表格中的第一个 td（带有 “Age” 字段）。
+        for (let i = 0; i < tables.length; i++) {
+            let elm_td = tables[i].getElementsByTagName('td')[0];
+            if (elm_td.innerText.indexOf("Age") != -1) {
+                elm_td.style.color = "pink";
+            }
+        }
+        // 带有 name="search" 的 form。
+        let tup1 = document.getElementsByName("search");
+        for (let i = 0; i < tup1.length; i++) {
+            tup1[i].style.border = "1px solid red";
+        }
+        document.querySelector('form[name="search"]')   // 选择器也可以选中
+        // 表单中的第一个 input。
+        let tup2 = document.getElementsByTagName("form");
+        for (let i = 0; i < tup2.length; i++) {
+            tup2[i].getElementsByTagName("input")[0].style.background = "orange";
+
+        }
+        // 表单中的最后一个 input。
+        for (let i = 0; i < tup2.length; i++) {
+            tup2[i].getElementsByTagName("input")[tup2.length - 1].style.background = "yellow";
+        }
+    </script>
 </body>
 
 </html>

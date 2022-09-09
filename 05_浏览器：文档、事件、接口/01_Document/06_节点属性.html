@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+    <!-- comment -->
+    <script>
+        /* 标签：nodeName 和 tagName */
+        console.log(document.body.nodeName); // BODY
+        console.log(document.body.tagName); // BODY
+        // tagName 属性仅适用于 Element 节点。 nodeName 是为任意 Node 定义的
+        console.log(document.body.firstChild.tagName); // undefined（不是一个元素）
+        console.log(document.body.firstChild.nodeName); // #comment
+        console.log(document.tagName); // undefined（不是一个元素）
+        console.log(document.nodeName); // #document  
+
+        /* innerHTML：内容 */
+        // innerHTML 属性允许将元素中的 HTML 获取为字符串形式。 我们也可以修改它。因此，它是更改页面最有效的方法之一。
+        document.body.innerHTML = `<p>A paragraph</p>`; // 替换它
+
+        /* textContent：纯文本 */
+        // textContent 提供了对元素内的 文本 的访问权限：仅文本，去掉所有 <tags>。
+        console.log(document.body.textContent);
+
+        /* “hidden” 属性 */
+        // elem.hidden = true;
+    </script>
+</body>
+
+</html>
