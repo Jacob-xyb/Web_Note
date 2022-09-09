@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>Begin</div>
+    <ul>
+        <li>Information</li>
+    </ul>
+    <div>End</div>
+    <script>
+        /* 子节点：childNodes，firstChild，lastChild */
+        for (let i = 0; i < document.body.childNodes.length; i++) {
+            console.log(document.body.childNodes[i]); // Text, DIV, Text, UL, ..., SCRIPT
+        }
+        // 还有 firstChild 和 lastChild
+        console.log(document.body.hasChildNodes());
+
+        /* DOM 集合 */
+        // 使用 for..of 来迭代
+        for (let node of document.body.childNodes) {
+            console.log(node); // 显示集合中的所有节点
+        }
+        // 用 Array.from 方法来从集合创建一个“真”数组：
+        console.log(Array.from(document.body.childNodes).filter);   // function
+
+        // DOM 集合，甚至可以说本章中列出的 所有 导航（navigation）属性都是只读的。
+        //  不能通过类似 childNodes[i] = ... 的操作来替换一个子节点。
+        // 不要使用 for..in 来遍历集合; 可以使用 for..of 对集合进行迭代。
+        //  因为 for..in 循环遍历的是所有可枚举的（enumerable）属性。
+
+        /* 兄弟节点和父节点 */
+        // 下一个兄弟节点在 nextSibling 属性中，上一个是在 previousSibling 属性中。
+        // 通过 parentNode 来访问父节点。
+
+        /* 纯元素导航 */
+        // children — 仅那些作为元素节点的子代的节点。
+        // firstElementChild，lastElementChild — 第一个和最后一个子元素。
+        // previousElementSibling，nextElementSibling — 兄弟元素。
+        // parentElement — 父元素。
+        for (let node of document.body.children) {
+            console.log(node); // 显示集合中的所有节点
+        }
+    </script>
+</body>
+
+</html>
