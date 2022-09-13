@@ -165,3 +165,31 @@ def create_app(test_config=None):
 > flask --debug run
 ```
 
+# Flask入门
+
+## 最简单的 Flask 应用
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def hello_world():  # put application's code here
+    return 'Hello World!'
+
+
+if __name__ == '__main__':
+    app.run()
+```
+
+**run参数：** 
+
+run(host='ip地址', port='端口号', debug=False/True)
+
+如果需要外网可以访问就将 `host='0.0.0.0'` ，记住 port 不要重复，以免引起意外。
+
+`debug=True` 时开启调试模式，只要代码改变，服务器就会重新加载
+
+**环境：** production、development、testing
