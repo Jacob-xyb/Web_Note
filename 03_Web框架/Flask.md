@@ -317,4 +317,7 @@ response.headers['key'] = 'value'
 
 ## 模板
 
+Jinjia2 模板引擎
+
 `render_template(path)` : 默认去 `templates` 文件夹寻找 html 文件。 其实返回的就是 html 的字符串。
+
