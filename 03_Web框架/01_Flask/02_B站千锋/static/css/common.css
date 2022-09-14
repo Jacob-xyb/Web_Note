@@ -1,0 +1,82 @@
+html,
+body {
+    height: 100%;
+}
+
+html * {
+    box-sizing: border-box;
+    font-family: Microsoft YaHei;
+    margin:0;
+    padding:0;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.max_height {
+    height: 100%;
+}
+
+.max_width {
+    width: 100%;
+}
+
+.main_group_gcolor {
+    background-color: rgba(234, 236, 242, 1);
+}
+
+button {
+    height: 30px;
+    border-radius: 4px;
+    border-color: transparent;
+}
+
+select {
+    height: 30px;
+    border-radius: 4px;
+    appearance: none;
+    background-image: url(../images/cbx.png);
+    background-repeat: no-repeat;
+    background-position: 98% 60%;
+    background-size: 18px 12px;
+    padding-left: 10px;
+}
+
+.win_widget {
+    background-color: rgba(234, 236, 242, 1);
+    border: 1px solid rgba(83, 92, 132, 1);
+    padding: 2px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.btn_transparency {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(1, 79, 209, 1);
+    color: rgba(1, 79, 209, 1);
+}
+
+.btn_solid {
+    background-color: rgba(35, 147, 233, 1);
+    border: 1px solid rgba(35, 147, 233, 1);
+    color: white;
+}
+
+button:hover {
+    font-size: 0.9em;
+}
+
+.h40 {
+    height: 40px;
+}

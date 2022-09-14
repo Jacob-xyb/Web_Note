@@ -193,3 +193,128 @@ run(host='ip地址', port='端口号', debug=False/True)
 `debug=True` 时开启调试模式，只要代码改变，服务器就会重新加载
 
 **环境：** production、development、testing
+
+## 配置文件 settings.py
+
+**以模块对象的形式加载**
+
+`settings.py`
+
+```python
+# 配置文件
+
+ENV = 'development'
+DEBUG = True
+```
+
+```python
+from flask import Flask
+import settings
+
+app = Flask(__name__)
+app.config.from_object(settings)	# 以模块对象载入即可
+
+# 等价于
+app.config.from_pyfile('setting.py')
+```
+
+## 路由
+
+Flask 是自上而下的匹配第一个搜索到的路由
+
+```python
+@app.route('/index')
+def index():
+    pass
+
+# 其实等效于
+
+def index():
+    pass
+app.add_url_rule('/index', view_func=index)
+```
+
+### 路由的变量规则
+
+注意：视图返回值绝对不能是 int 类型。
+
+```python
+form flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'index page'
+
+# 路由变量规则：变量名默认为 str 类型
+data = {'a': 'beijing', 'b': 'shanghai'. 'c': 'shenzhen'}
+@app.route('/getcity/<key>')
+def index(key):
+    return data.get(key)
+
+
+if __name__ == '__main__':
+    app.run()
+```
+
+路由变量规则可传类型:
+
+```python
+@app.route('/<key>')	# 默认为字符串，显示<str:key>会报错
+@app.route('/<int:num>')	# 正整型
+@app.route('/<float:num>')	# 正浮点数，不常使用
+@app.route('/<path:p>')		# 路径，不常使用
+```
+
+### 路由唯一性
+
+路由中定义了 `/`，无论请求的 URL 是否带有 `/` ，都可以执行成功。 
+
+所以以下写法是不被允许的：
+
+```python
+@app.route('/project')
+@app.route('/project/')
+```
+
+并且推荐不带 `/` 的写法，不要产生重定向
+
+```python
+@app.route('/project')
+```
+
+## 请求与响应
+
+**http协议 包含 请求 与 响应**
+
+**request:**
+
+请求行：请求地址：`http://127.0.0.1:5000/`  请求方法：method: GET
+
+请求头：键值对
+
+请求体：GET请求一般没有请求体，POST才有。
+
+**response：**
+
+响应行：状态码  200 OK 、404 not found 、500、302
+
+响应头：键值对
+
+响应体：就是返回的内容
+
+### 响应
+
+`Response()` 和`make_response(content)` 都可以返回一个响应对象，可定制响应头
+
+```python
+response = make_response(content)
+response.headers['key'] = 'value'
+```
+
+### 请求
+
+## 模板
+
+`render_template(path)` : 默认去 `templates` 文件夹寻找 html 文件。 其实返回的就是 html 的字符串。

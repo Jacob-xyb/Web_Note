@@ -1,0 +1,260 @@
+.body_main{
+    /* background-color: #f13; */
+    padding: 20px 40px 20px 40px;
+    height: 100%;
+}
+
+.body_main * {
+    overflow: hidden;
+}
+
+.EometricProWidget{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid rgb(70, 85, 111);
+    height: 100%;
+    box-shadow: 0px 4px 4px 0px rgb(77 84 116 / 30%);
+}
+
+.NavigateGroup {
+    float: left;
+    width: 100px;
+    height: 100%;
+    background-color: rgb(70, 85, 111);
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0 0 0;
+}
+
+.NavigateGroup * {
+    margin: 0 auto;
+}
+
+.Nav_Tab {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.Nav_Tab img {
+    height: 37px;
+}
+
+.Nav_Tab.icon_film {
+    background-color: rgb(85, 93, 99);
+}
+
+.Nav_Tab:hover {
+    background-color: rgb(115, 128, 138);
+}
+
+.Nav_Tab:hover p{
+    color: azure;
+}
+
+.Nav_Tab:hover.icon_film img {
+    content: url('../images/icon_film2.png');
+}
+
+.Nav_Tab:hover.icon_ocd img {
+    content: url('../images/icon_ocd2.png');
+}
+
+.Nav_Tab:hover.icon_wafer img {
+    content: url('../images/icon_wafermap2.png');
+}
+
+.Nav_Tab:hover.icon_map img {
+    content: url('../images/icon_mapping2.png');
+}
+
+.Nav_Tab:hover.icon_hard img {
+    content: url('../images/icon_hardware2.png');
+}
+
+.Nav_Tab:hover.icon_set img {
+    content: url('../images/icon_setting2.png');
+}
+
+.Nav_icon_name {
+    color: rgba(152, 158, 181, 1);
+    margin: 8px auto; 
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.logo_name {
+    color: rgba(152, 158, 181, 1);
+    margin: 8px auto 40px; 
+    font-size: 14px;
+}
+
+.TopGroup{
+    height: 40px;
+    border-bottom: 2px solid rgb(170, 167, 167);
+}
+
+.TopGroup span{
+    margin: auto 8px;
+    color: rgba(38, 61, 92, 1);
+    font-size: 13px;
+    line-height: 100%;
+}
+
+.TopGroup > img {
+    margin: auto 10px auto 0;
+}
+
+.runing_img_list {
+    margin-left: 10px;
+}
+
+.runing_img_list li{
+    margin: auto 2px;
+}
+
+.CenterGroup{
+    padding: 4px;
+}
+
+.CenterLeftGroup {
+    width: 310px;
+}
+
+/* .InformationGroup {
+    height: 400px;
+} */
+
+.info_res_area{
+    resize:none;
+}
+
+.GroupTitle {
+    color: rgba(1, 79, 209, 1);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.OperationGroup *{
+    margin: 2px;
+}
+
+.MeasureDataGroup div.flex-row img {
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    margin-right: 6px;
+    background-position:center;
+}
+
+.FilmGroup, .GraphGroup{
+    padding: 8px;
+}
+
+.cbxProfile {
+    width: 300px;
+    margin: auto auto 14px;
+}
+
+.cbxData {
+    height: 30px;
+    width: 300px;
+    margin: auto 0;
+}
+
+.FilmBtn {
+    margin: 2px 4px 14px;
+    min-width: 100px;
+}
+
+.GraphBtn {
+    margin: 2px 4px;
+    min-width: 100px;
+}
+
+.film_btn_box {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0;
+}
+
+.film_btn_box:hover span{
+    font-size: 13px;
+}
+
+.film_btn_box span {
+    width: 58px;
+    font-size: 12px;
+    margin: auto 6px;
+    flex: 1;
+}
+
+.film_tab_select_color {
+    color: rgba(1, 79, 209, 1);
+}
+
+
+.film_tab_unselect_color {
+    color: rgb(152 158 181);
+}
+
+/* .structureArea {
+    border: 1px solid rgb(114, 114, 114);
+} */
+
+.structureArea .FilmTree {
+    margin: 4px 0;
+    height: 32px;
+    box-shadow: 0px 2px 2px 0px rgb(77 84 116 / 30%);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.structureArea .FilmTree * {
+    margin: auto 0;
+}
+
+.structureArea .FilmTree > .film_icon {
+    width: 25px;
+    padding-left: 6px;
+}
+
+.structureArea .FilmTree > span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.structureArea .FilmTree.Roughness {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.structureArea .FilmTree.Layer3 {
+    background-color: rgb(205 222 248);
+}
+
+.structureArea .FilmTree.Layer2 {
+    background-color: rgba(199, 230, 218, 1);
+}
+
+.structureArea .FilmTree.Layer1 {
+    background-color: rgba(245, 245, 215, 1);
+}
+
+.structureArea .FilmTree.Substruct {
+    background-color: rgba(197, 201, 216, 1);
+}
+
+.GraphSnapName {
+    margin: auto 6px;
+    color: rgba(1, 79, 209, 1);
+    font-weight: bold;
+}
+
+.GraphWaveInfo {
+    font-size: 12px;
+    margin: 2px 12px;
+    color: rgba(1, 79, 209, 1);
+}

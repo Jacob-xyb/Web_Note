@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EometricsWeb</title>
+    <!-- <script src="./flexible.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/common.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}" />
+</head>
+
+<body>
+    <div class="body_main">
+        <div class="EometricProWidget">
+            <div class="NavigateGroup">
+                <img src="{{url_for('static', filename='images/logo.png')}}" alt="">
+                <p class="logo_name">EometricsWeb</p>
+                <a class="Nav_Tab icon_film">
+                    <img src="{{url_for('static', filename='images/icon_film1.png')}}" alt="">
+                    <p class="Nav_icon_name">Film</p>
+                </a>
+                <a class="Nav_Tab icon_ocd">
+                    <img src="{{url_for('static', filename='images/icon_OCD1.png')}}" alt="" class="">
+                    <p class="Nav_icon_name">OCD</p>
+                </a>
+                <!-- <a class="Nav_Tab icon_wafer">
+                    <img src="{{url_for('static', filename='images/icon_wafermap1.png')}}" alt="" class="">
+                    <p class="Nav_icon_name">WaferMap</p>
+                </a> -->
+                <a class="Nav_Tab icon_map">
+                    <img src="{{url_for('static', filename='images/icon_mapping1.png')}}" alt="" class="">
+                    <p class="Nav_icon_name">Mapping</p>
+                </a>
+                <!-- <a class="Nav_Tab icon_hard">
+                    <img src="{{url_for('static', filename='images/icon_hardware1.png')}}" alt="" class="">
+                    <p class="Nav_icon_name">Hardware</p>
+                </a> -->
+                <a class="Nav_Tab icon_set">
+                    <img src="{{url_for('static', filename='images/icon_setting1.png')}}" alt="" class="">
+                    <p class="Nav_icon_name">Setting</p>
+                </a>
+            </div>
+            <div class="flex1 flex-col">
+                <div class="TopGroup main_group_gcolor flex-row">
+                    <span>SE Status</span>
+                    <img src="{{url_for('static', filename='images/run_status1.png')}}" alt="">
+                    <span>DA Status</span>
+                    <img src="{{url_for('static', filename='images/run_status1.png')}}" alt="">
+                    <ul class="runing_img_list flex-row">
+                        <li><img src="{{url_for('static', filename='images/progress2.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress2.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress2.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress2.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress2.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                        <li><img src="{{url_for('static', filename='images/progress1.png')}}" alt=""></li>
+                    </ul>
+                </div>
+                <div class="CenterGroup flex-row flex1">
+                    <div class="CenterLeftGroup flex-col">
+                        <div class="OperationGroup flex-col win_widget">
+                            <span class="GroupTitle">Operation</span>
+                            <!-- <select class="cbxRecipe">
+                                <option>Browse Recipe</option>
+                                <option>Clear Recipe</option>
+                                <option>New Recipe</option>
+                                <option>Edit Recipe</option>
+                            </select> -->
+                            <div class="flex1">
+                                <!-- <div class="flex-row">
+                                    <button class="btn_transparency flex1">Intensity</button>
+                                    <button class="btn_solid flex1">Measure</button>
+                                    <button class="btn_transparency flex1">Cancel</button>
+                                </div> -->
+                                <div class="flex-row">
+                                    <button class="btn_solid flex1">Generate</button>
+                                    <button class="btn_solid flex1">Fit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="InformationGroup flex-row win_widget flex1">
+                            <textarea class="info_res_area" name="" id="" cols="100%" rows="100%"></textarea>
+                        </div>
+                        <div class="MeasureDataGroup flex-col flex1 win_widget">
+                            <div class="flex-row">
+                                <span class="GroupTitle">MeasureData</span>
+                                <div class="flex1"></div>
+                                <img class="MeasureImageAdd" src="{{url_for('static', filename='images/MeasureData_AddFile.png')}}" alt="">
+                                <img class="MeasureImageRefresh" src="{{url_for('static', filename='images/MeasureData_RefreshFile.png')}}" alt="">
+                            </div>
+                            <!-- <ul class="MeasureDataGroup_List">
+                        <li></li>
+                    </ul> -->
+                        </div>
+                    </div>
+                    <div class="CenterRightGroup flex-col flex1">
+                        <div class="FilmGroup flex1 win_widget flex-col">
+                            <div class="flex-row">
+                                <select class="cbxProfile">
+                                    <option value="">Browse</option>
+                                </select>
+                                <div class="flex1"></div>
+                                <button class="FilmBtn btn_transparency">Simulate</button>
+                                <button class="FilmBtn btn_transparency">Profile Menu</button>
+                                <button class="FilmBtn btn_transparency">Open Data</button>
+                                <button class="FilmBtn btn_transparency">Data Menu</button>
+                            </div>
+                            <div class="flex-row flex1">
+                                <div class="flex-col">
+                                    <div class="film_btn_box film_tab_select_color">
+                                        <img src="{{url_for('static', filename='images/stru2.png')}}" alt="">
+                                        <span>Structure</span>
+                                    </div>
+                                    <div class="film_btn_box film_tab_unselect_color">
+                                        <img src="{{url_for('static', filename='images/optings1.png')}}" alt="">
+                                        <span>Options</span>
+                                    </div>
+                                </div>
+                                <div class="structureArea flex1 flex-col">
+                                    <div class="FilmTree Roughness">
+                                        <div class="film_icon"></div>
+                                        <span>Roughness</span>
+                                    </div>
+                                    <div class="FilmTree Layer3">
+                                        <div class="film_icon"><img src="{{url_for('static', filename='images/arrow_right1.png')}}" alt=""></div>
+                                        <span>Layer#3</span>
+                                    </div>
+                                    <div class="FilmTree Layer2">
+                                        <div class="film_icon"><img src="{{url_for('static', filename='images/arrow_right1.png')}}" alt=""></div>
+                                        <span>Layer#2</span>
+                                    </div>
+                                    <div class="FilmTree Layer1">
+                                        <div class="film_icon"><img src="{{url_for('static', filename='images/arrow_right1.png')}}" alt=""></div>
+                                        <span>Layer#1</span>
+                                    </div>
+                                    <div class="FilmTree Substruct">
+                                        <div class="film_icon"></div>
+                                        <span>Substruct</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="GraphGroup flex-col flex1 win_widget">
+                            <div class="flex-row">
+                                <button class="GraphBtn btn_transparency">Graph Menu</button>
+                                <select class="cbxData">
+                                    <option value=""></option>
+                                </select>
+                                <div class="flex1"></div>
+                                <span class="GraphSnapName">SiO2.esnap</span>
+                                <button class="GraphBtn btn_transparency">Open Snap</button>
+                                <button class="GraphBtn btn_transparency">Save Snap</button>
+                            </div>
+                            <div class="flex-col flex1" style="margin: 4px;">
+                                <p class="GraphWaveInfo">Wavelength:</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
