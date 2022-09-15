@@ -311,13 +311,222 @@ if __name__ == '__main__':
 ```python
 response = make_response(content)
 response.headers['key'] = 'value'
+# 还可以一次声明
+response = Response(content, headers={key:value})
+# 类属性
+respones.content_type
+respones.headers
+respones.status_code	# 200
+respones.status			# 200 OK
 ```
 
+**视图函数的返回值：**
+
+- str: 自动转成 response 对象
+- dict: json
+- response：Response 对象
+- make_response(): Response 对象
+- redirect()：重定向 302 状态码
+- render_template()：模板渲染 + 模板
+
 ### 请求
+
+```python
+from flask import request
+
+request.full_path	# /register?username=zhangsan&address=Beijing
+request.path		# /register
+# args 只能获取 GET 请求
+request.args		# 封装的dict (key, value)
+request.args.get('username')	# 'zhangsan'
+# POST 请求的表单内容在 请求体中，用 form 获取
+request.form
+request.form.get('username')
+
+request.method		# 获取请求类型
+```
+
+## 重定向
+
+```python
+from flask import redirect
+
+def redirect(
+    location: str, code: int = 302, Response: t.Optional[t.Type["BaseResponse"]] = None
+) -> "BaseResponse":
+```
 
 ## 模板
 
 Jinjia2 模板引擎
 
 `render_template(path)` : 默认去 `templates` 文件夹寻找 html 文件。 其实返回的就是 html 的字符串。
+
+模板遵守模板的语法，就可以在 html 模板中写 Python 语法，所以 html 不再称之为 `网页`， 而是 `模板`。
+
+### 字符串
+
+```python
+render_template('show.html', name=name)
+
+# html 获取方式
+{{ name }}
+```
+
+### 列表
+
+可以和Python语句相通
+
+```python
+l = ['aa', 'bb', 'cc', 'dd']
+
+# html
+{{ l }}		# 直接输出 l 的字符串
+{{ l[0] }}、 {{ l[:2] }}  # 均支持
+{{ l.0 }}	# 这种获取下标的方式很奇怪
+```
+
+### 字典
+
+```python
+d = {"a": "aaa", "b": "bbb", "c": "ccc"}
+
+# html
+{{ d.a }}  || {{ d.get('a') }}   # 感觉前面的方式会简单许多
+```
+
+### 对象
+
+```python
+class Girl:
+    def __init__(self, name):
+        self.name = name
+
+obj = Girl('mm')
+
+render_template('show.html', obj=obj)
+# html
+{{ obj.name }}
+```
+
+### 控制块
+
+`{%  %}`
+
+### for + loop
+
+for 循环自带 loop 变量:
+
+ `loop.index` 序号从 1 开始；`loop.index0` 序号从 0 开始；
+
+`loop.revindex` 序号倒序，结束是 1；`loop.revindex0` 序号倒序，结束是 0；
+
+`loop.first` 、`loop.last` 返回 True/False，判断
+
+### 过滤器
+
+语法：`{{ 变量名 | 过滤器(*args) }}` 
+
+**常见的过滤器：**
+
+- **字符串操作：**
+
+1. safe: 禁用转义 例如 `<p>hello</p>` 使用过滤器 p标签 就可以生效
+2. capitalize：首字母大写
+3. lower:  全部小写
+4. upper: 全部大写
+5. tltle: 每个单词的首字母大写
+6. reverse: 逆序
+7. format: 格式化输出  `{{ '%s is %d years old' | format('Bob', 18) }}` 
+8. truncate: 截断  `{{ 'hello world' | truncate(5) }}`
+
+- **列表操作：**
+
+1. first 、last 、length
+2. sort:  排序 常用于 整型列表
+
+- **字典操作：**
+
+1. d.values()、d.keys()、d.items()
+
+### 自定义过滤器
+
+第一种方式：
+
+```python
+def replace_hello(value):
+    return value.replace('hello', '').strip()
+
+app.add_template_filter('replace', replace_hello)
+
+# html
+{{ str | replace }}
+```
+
+第二种方式：装饰器
+
+```python
+@app.template_filter('list_reverse')
+def reverse_list(li):
+    temp_li = list(li)
+    temp_li.reverse()
+    return temp_li
+```
+
+### 复用
+
+#### 模板继承 *
+
+需要模板继承的情况：
+
+1. 多个模板具有完全相同的顶部和底部
+2. 多个模板具有相同的模板内容，但是内容中部分不一样
+
+标签：
+
+```python
+# 填坑
+{% block 名字 %}
+
+{% endblock %}
+
+# 继承这个坑 html 文件开头继承模板
+{% extends 'base.html' %}
+# 然后自定义内容
+{% block title %}
+继承模板
+{% endblock %}
+```
+
+#### include
+
+include 路径均基于 `templates`
+
+```python
+{% include 'common/header.html' %}
+```
+
+#### 宏：macro
+
+目的：代码可以复用，避免代码冗余
+
+```python
+# 定义宏
+{% macro form(action, value='登录', method='post') %}
+	<form action="{{ action }}" method="{{ method }}">
+    ...
+    </form>
+{% endmacro %}
+
+# 调用宏
+{{ form('/') }}
+
+# 其他文件调用
+{% import 'macro/macro.html' as f %}
+{{ f.form('/') }}
+```
+
+## 蓝图
+
+
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>演示控制块</title>
+</head>
+<style>
+    .red {
+        color: red;
+    }
+</style>
+<body>
+
+<ul>
+    {% for f in friends %}
+        <li> {{ f }} </li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<ul>
+    {% for f in friends %}
+        {% if f|length >= 3 %}
+            <li class="red"> {{ f }} </li>
+        {% else %}
+            <li> {{ f }} </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+</body>
+</html>

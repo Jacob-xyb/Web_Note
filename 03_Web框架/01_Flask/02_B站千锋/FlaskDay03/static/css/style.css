@@ -1,0 +1,24 @@
+#head {
+    height: 50px;
+    background-color: bisque;
+}
+
+#head ul {
+    list-style: none;
+    height: 50px;
+    display: flex;
+}
+
+#head ul li {
+    width: 100px;
+    text-align: center;
+    margin: auto 4px;
+}
+
+#middle {
+    height: 600px;
+}
+
+#foot {
+    background-color: darkseagreen;
+}

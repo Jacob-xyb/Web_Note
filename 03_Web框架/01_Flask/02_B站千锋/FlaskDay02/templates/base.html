@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block mystyle%}
+    {% endblock %}
+</head>
+<body>
+<div id="head">
+    <ul>
+        <li>首页</li>
+        <li>导航1</li>
+        <li>导航2</li>
+        <li>导航3</li>
+        <li>导航4</li>
+    </ul>
+</div>
+<div id="middle">
+    {% block middle %}
+        中间可见部分
+    {% endblock %}
+</div>
+<div id="foot">底部部分</div>
+{% block myjs %}
+{% endblock %}
+</body>
+</html>

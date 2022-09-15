@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    模板首页
+{% endblock %}
+
+{% block middle %}
+    <button id="btn">Generate</button>
+{% endblock %}
+
+{% block mystyle %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block myjs %}
+    <script>
+        btn = document.getElementById("btn")
+        btn.onclick = function() {
+            alert('触发点击')
+        }
+    </script>
+{% endblock %}
