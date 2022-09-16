@@ -50,9 +50,9 @@ def delete():
     # 根据 username 找到列表中的 user 对象
     for user in users:
         if user.name == name:
+            # 删除对象
             users.remove(user)
             return redirect('/')
     return "删除失败"
-    # 删除对象
 
 

@@ -188,18 +188,14 @@ XHTML 1.0
 <meta http-equiv="refresh" content="5"; https://space.bilibili.com/12502993>
 ```
 
-
-
-
-
 # HTML 基础
 
-## HTML 语法特性
+##  语法特性
 
 1. HTML 对换行不敏感，对 tab 不敏感，只在乎标签的嵌套结构。
 2. 空白折叠现象：HTML中的所有文字之间，如果有空格，换行，tab 都将被折叠为一个空格显示。
 
-## HTML h1-h6
+##  h1-h6 标题
 
 HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的。
 
@@ -270,7 +266,7 @@ hr 元素可用于分隔内容。
 
 ![image-20220811231933054](https://s2.loli.net/2022/08/11/eioMubz6rUOQBfJ.png)
 
-## HTML 段落
+## p 段落
 
 HTML 段落是通过标签 <p> 来定义的。
 
@@ -357,6 +353,8 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 虽然能正常显示网页，但是浏览器处理的源码格式已经乱了：
 
 ![image-20220811201837030](https://s2.loli.net/2022/08/11/Iku1CplfUOnGENY.png)
+
+## hr 水平分隔线
 
 ## HTML 图像
 
