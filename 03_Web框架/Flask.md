@@ -526,7 +526,21 @@ include 路径均基于 `templates`
 {{ f.form('/') }}
 ```
 
+### url_for()
+
 ## 蓝图
 
+### 问题1
 
+**Question：**路由外拆后 `render_template()` 不再默认在 templates 文件夹下寻找文件。 因为会默认去创建 `Flask 对象` 的所在目录寻找 templates 文件夹
+
+**Solution：**
+
+1. 将 `template` 和 `static` 文件夹移动到当前 `__init__.py`  所在文件夹
+
+2. 在创建对象时，进行设置  
+
+    `app = Flask(__name__, template_folder='../templates', static_folder='../static')  # 核心对象`
+
+   
 
