@@ -55,4 +55,3 @@ def delete():
             return redirect('/')
     return "删除失败"
 
-

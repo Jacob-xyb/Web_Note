@@ -11,7 +11,6 @@
                 <td><a href="">修改</a> <a href="javascript:;" onclick="del('{{ user.name }}')">删除</a></td>
             </tr>
         {% endfor %}
-
     </table>
 {% endblock %}
 
@@ -20,7 +19,7 @@
     <script>
         function del(username){
             // console.log(username)
-            location.herf = '/del?username=' + username
+            location.href = '/del?username=' + username
         }
     </script>
 {% endblock %}
