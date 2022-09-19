@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>一号</div>
+    <div class="box"></div>
+    <div class="box content">三号</div>
+    <div class="box" id="container">四号</div>
+    <script>
+        let eles = document.getElementsByClassName('box1');
+        console.log(eles);
+        if (eles.length == 0) {
+            console.log('可以直接判定');
+        }
+    </script>
+</body>
+
+</html>

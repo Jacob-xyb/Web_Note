@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>操作样式</button>
+    <div style="width:100px; height:100px; background-color:pink;">文本内容</div>
+    <script>
+        // 获取元素
+        let box = document.querySelector('div');
+        let btn = document.querySelector('button');
+
+        // 获取样式
+        console.log(box.style.width);
+        console.log(box.style.height);
+        console.log(box.style.backgroundColor);
+
+        // 设置样式
+        btn.onclick = function () {
+            box.style.width = '200px';
+            box.style.height = '200px';
+            box.style.backgroundColor = 'skyblue';
+        }
+    </script>
+</body>
+
+</html>

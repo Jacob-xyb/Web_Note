@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 100px;
+            width: 600px;
+        }
+
+        div.box1 {
+            background-color: red;
+        }
+
+        div.box2 {
+            background-color: green;
+        }
+
+        div.box3 {
+            position: relative;
+            background-color: blue;
+        }
+
+        
+        div.box4 {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            background-color: pink;
+        }
+
+        div.box5 {
+            position: relative;
+            float: left;
+            background-color: red;
+        }
+
+        div.box6 {
+            width: 700px;
+            background-color: green;
+        }
+        span {
+            display: block;
+            background-color: blanchedalmond;
+            position: absolute;
+            left: 40px;
+            top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+    </div>
+    <div class="box2">
+        <span>在static内</span>
+    </div>
+    <div class="box3">
+        <span>在relative内</span>
+    </div>
+    <div class="box4">
+        <span>在flex内必须先relative</span>
+    </div>
+    <div class="box5">
+        <span>在float内也先必须设置positon</span>
+    </div>
+    <div class="box6">
+    </div>
+</body>
+
+</html>

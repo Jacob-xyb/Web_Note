@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 3000px;
+        }
+
+        .header {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: 30px;
+            color: #fff;
+            background-color: skyblue;
+            position: fixed;
+            top: -80px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<!-- 需求：
+    1.滚动条滚动超过临界点，顶部通栏显示，否则隐藏；
+    2.滚动条滚动超过临界点，回到顶部按钮显示，否则隐藏；
+    3.点击回到顶部按钮，滚动条滚动回到顶部。 
+-->
+
+<!-- 布局结构:
+    1.需要一个 顶部通栏 标签和一个 回到顶部按钮 标签；
+    2.让页面 超过 浏览器可视窗口高度；
+    3.设置 顶部通栏 样式，默认是在 超出页面的；
+    4.设置 回到顶部按钮 样式，默认是 隐藏 的。 
+-->
+
+<body>
+    <div class="header">顶部通栏</div>
+    <div class="goTop">回到顶部</div>
+</body>
+
+</html>
