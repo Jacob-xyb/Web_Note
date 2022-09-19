@@ -195,6 +195,97 @@ XHTML 1.0
 1. HTML 对换行不敏感，对 tab 不敏感，只在乎标签的嵌套结构。
 2. 空白折叠现象：HTML中的所有文字之间，如果有空格，换行，tab 都将被折叠为一个空格显示。
 
+## HTML 元素
+
+HTML 文档由 HTML 元素定义。
+
+| 开始标签 *               | 元素内容     | 结束标签 * |
+| :----------------------- | :----------- | :--------- |
+| `<p>`                    | 这是一个段落 | `</p>`     |
+| `<a href="default.htm">` | 这是一个链接 | `</a>`     |
+| `<br>`  [blank row]      | 换行         |            |
+
+**Tips:** 开始标签常被称为**起始标签（opening tag）**，结束标签常称为**闭合标签（closing tag）**。
+
+### HTML 元素语法
+
+- HTML 元素以**开始标签**起始
+- HTML 元素以**结束标签**终止
+- **元素的内容**是开始标签与结束标签之间的内容
+- 某些 HTML 元素具有**空内容（empty content）**
+- 空元素**在开始标签中进行关闭**（以开始标签的结束而结束）
+- 大多数 HTML 元素可拥有**属性**
+
+### 嵌套的 HTML 元素
+
+大多数 HTML 元素可以嵌套（HTML 元素可以包含其他 HTML 元素）。
+
+HTML 文档由相互嵌套的 HTML 元素构成。
+
+### HTML 文档实例解析
+
+```html
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>这是第一个段落。</p>
+</body>
+
+</html>
+```
+
+以上实例包含了三个 HTML 元素。
+
+- `<p>` 元素:
+
+```html
+<p>这是第一个段落。</p>
+```
+
+这个 <p> 元素定义了 HTML 文档中的一个段落。
+这个元素拥有一个开始标签 <p> 以及一个结束标签 </p>.
+元素内容是: 这是第一个段落。
+
+- `<body>` 元素:
+
+```html
+<body>
+<p>这是第一个段落。</p>
+</body>
+```
+
+<body> 元素定义了 HTML 文档的主体。
+这个元素拥有一个开始标签 <body> 以及一个结束标签 </body>。
+元素内容是另一个 HTML 元素（p 元素）。
+
+- `<html>`  元素：
+
+```html
+<html>
+
+<body>
+<p>这是第一个段落。</p>
+</body>
+
+</html>
+```
+
+<html> 元素定义了整个 HTML 文档。
+这个元素拥有一个开始标签 <html> ，以及一个结束标签 </html>.
+元素内容是另一个 HTML 元素（body 元素）。
+
+### 不要忘记结束标签
+
+即使您忘记了使用结束标签，大多数浏览器也会正确地显示 HTML：
+
+<p>这是一个段落<p>这是一个段落
+
+
+以上实例在浏览器中也能正常显示，因为关闭标签是可选的。
+
+但不要依赖这种做法。忘记使用结束标签会产生不可预料的结果或错误。
+
 ##  h1-h6 标题
 
 HTML 标题（Heading）是通过<h1> - <h6> 标签来定义的。
@@ -356,189 +447,6 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 ## hr 水平分隔线
 
-## HTML 图像
-
-HTML 图像是通过标签 <img> 来定义的.
-
-页面上能够插入的图片类型：jpg(jpeg)、gif、png、bmp
-
-不能插入的图片类型：psd、ai
-
-**q1:为什么 img 是单标签而不是标签对？**
-
-因为如果是标签对，里面就包含内容，标签对就是对内容增加语义，而图片就是一个图片。
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<img src="./images/github_logo.png" alt="github logo"/>
-
-</body>
-</html>
-```
-
-**注意：** 图像的名称和尺寸是以属性的形式提供的。
-
-### HTML 图像属性
-
-**src**: 就是图像的来源；
-
-**alt**: [alternate 替代] 当这个图片无法被显示时，出现的替代文字（有的浏览器不支持）
-
-## HTML 元素
-
-HTML 文档由 HTML 元素定义。
-
-| 开始标签 *               | 元素内容     | 结束标签 * |
-| :----------------------- | :----------- | :--------- |
-| `<p>`                    | 这是一个段落 | `</p>`     |
-| `<a href="default.htm">` | 这是一个链接 | `</a>`     |
-| `<br>`  [blank row]      | 换行         |            |
-
-**Tips:** 开始标签常被称为**起始标签（opening tag）**，结束标签常称为**闭合标签（closing tag）**。
-
-### HTML 元素语法
-
-- HTML 元素以**开始标签**起始
-- HTML 元素以**结束标签**终止
-- **元素的内容**是开始标签与结束标签之间的内容
-- 某些 HTML 元素具有**空内容（empty content）**
-- 空元素**在开始标签中进行关闭**（以开始标签的结束而结束）
-- 大多数 HTML 元素可拥有**属性**
-
-### 嵌套的 HTML 元素
-
-大多数 HTML 元素可以嵌套（HTML 元素可以包含其他 HTML 元素）。
-
-HTML 文档由相互嵌套的 HTML 元素构成。
-
-### HTML 文档实例解析
-
-```html
-<!DOCTYPE html>
-<html>
-
-<body>
-<p>这是第一个段落。</p>
-</body>
-
-</html>
-```
-
-以上实例包含了三个 HTML 元素。
-
-- `<p>` 元素:
-
-```html
-<p>这是第一个段落。</p>
-```
-
-这个 <p> 元素定义了 HTML 文档中的一个段落。
-这个元素拥有一个开始标签 <p> 以及一个结束标签 </p>.
-元素内容是: 这是第一个段落。
-
-- `<body>` 元素:
-
-```html
-<body>
-<p>这是第一个段落。</p>
-</body>
-```
-
-<body> 元素定义了 HTML 文档的主体。
-这个元素拥有一个开始标签 <body> 以及一个结束标签 </body>。
-元素内容是另一个 HTML 元素（p 元素）。
-
-- `<html>`  元素：
-
-```html
-<html>
-
-<body>
-<p>这是第一个段落。</p>
-</body>
-
-</html>
-```
-
-<html> 元素定义了整个 HTML 文档。
-这个元素拥有一个开始标签 <html> ，以及一个结束标签 </html>.
-元素内容是另一个 HTML 元素（body 元素）。
-
-### 不要忘记结束标签
-
-即使您忘记了使用结束标签，大多数浏览器也会正确地显示 HTML：
-
-<p>这是一个段落<p>这是一个段落
-
-以上实例在浏览器中也能正常显示，因为关闭标签是可选的。
-
-但不要依赖这种做法。忘记使用结束标签会产生不可预料的结果或错误。
-
-## HTML 超级链接
-
-一个网站，是由很多HTML网页组成的。 HTML 网页之间能够相互跳转，点击超链接，形成“网”。
-
-`<a href="default.htm"> </a>`
-
-**a**: [anchor 锚]
-
-**href**: [hypertext reference 超文本地址] 
-
-**title**: 悬停文本
-
-**target**:  "_blank" 新弹窗；
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<a href="005_HTML图像.html">这是一个超链接</a>
-<br>
-<a href="005_HTML图像.html" title="这也是个超链接" target="_blank"><img src="images/github_logo.png" alt=""></a>
-
-
-</body>
-</html>
-```
-
-## HTML 页面锚点
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<a href="#工作经验">点击我就查看工作经验</a>
-	<a href="#wdzp">点击我就查看我的作品</a>
-
-	<h1>个人简介</h1>
-	<h2>基本信息</h2>
-	<p>基本信息基本信息... 基本信息基本信息</p>
-
-	<h2><a id="工作经验">工作经验</a></h2>
-	<p>工作经验工作经验...工作经验工作经验</p>
-
-	<h2><a name="wdzp">我的作品</a></h2>
-	<p>我的作品我的作品...我的作品我的作品</p>
-</body>
-</html>
-```
-
 ## HTML 样式
 
 style 元素可以出现在 HTML 文档中的各个部分，一个文档可以包含多个 style 元素
@@ -674,7 +582,9 @@ style 属性的作用：
 </ol>
 ```
 
-### 定义列表
+### 自定义列表
+
+注意：`dd` 有一个默认的边距。
 
 自定义列表不仅仅是一列项目，而是项目及其注释的组合。
 
@@ -697,6 +607,45 @@ style 属性的作用：
 
 **注意：** 定义列表的列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
 
+##  img
+
+HTML 图像是通过标签 <img> 来定义的.
+
+页面上能够插入的图片类型：jpg(jpeg)、gif、png、bmp
+
+不能插入的图片类型：psd、ai
+
+| 属性     | 值            | 描述                             |
+| -------- | ------------- | -------------------------------- |
+| `alt`    | text          | 指定图像的替代文本。             |
+| `src`    | URL           | 指定显示图像的 URL。             |
+| `title`  | text          | 鼠标悬停后的提示信息             |
+| width    | px(pixels)、% | 设置图像的宽度（像素或百分比）。 |
+| height   | px(pixels)、% | 定义图像的高度（像素或百分比）。 |
+| ismap    | URL           | 将图像定义为服务器端图像映射。   |
+| longdesc | URL           | 指定包含长的图像描述文档的 URL。 |
+| usemap   | URL           | 将图像定义为客户器端图像映射。   |
+
+**q1:为什么 img 是单标签而不是标签对？**
+
+因为如果是标签对，里面就包含内容，标签对就是对内容增加语义，而图片就是一个图片。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<img src="./images/github_logo.png" alt="github logo"/>
+
+</body>
+</html>
+```
+
+**注意：** 图像的名称和尺寸是以属性的形式提供的。
 
 ## HTML 块 和 内联
 
@@ -718,7 +667,7 @@ style 属性的作用：
 
 例子：<b>, <td>, <a>, <img>
 
-## HTML div 和 span
+## div 和 span
 
 **HTML <div> 元素是块级元素，它是可用于组合其他 HTML 元素的容器。**
 
@@ -733,6 +682,76 @@ style 属性的作用：
 <span> 元素也没有特定的含义。
 
 当与 CSS 一同使用时，<span> 元素可用于为部分文本设置样式属性。
+
+## a 超级链接
+
+一个网站，是由很多HTML网页组成的。 HTML 网页之间能够相互跳转，点击超链接，形成“网”。
+
+| 属性     | 值                                          | 描述                                                         |
+| -------- | ------------------------------------------- | ------------------------------------------------------------ |
+| download | filename                                    | 指定被下载的超链接目标。                                     |
+| href     | URL                                         | 指定链接指向页面的 URL。                                     |
+| hreflang | language_code                               | 指定被链接文档的语言。                                       |
+| media    | media_query                                 | 指定被链接文档是为何种媒介/设备优化的。                      |
+| rel      | text                                        | 规定当前文档与被链接文档之间的关系。                         |
+| target   | `_blank`、_parent、`_self`、_top、framename | 指定在何处打开超链接。 _blank：在新窗口中打开 _parent：在当前的父窗口中打开，如果不存在父窗口，此选项的行为方式与 _self 等同 _self：当前窗口打开（默认） _top：在整个窗口中打开 framename：在指定的框架中打开 |
+| type     | MIME type                                   | 指定被链接文档的的 MIME 类型。                               |
+
+`<a href="default.htm"> </a>`
+
+**a**: [anchor 锚]
+
+**href**: [hypertext reference 超文本地址] 
+
+**title**: 悬停文本
+
+**target**:  "_blank" 新弹窗；
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<a href="005_HTML图像.html">这是一个超链接</a>
+<br>
+<a href="005_HTML图像.html" title="这也是个超链接" target="_blank"><img src="images/github_logo.png" alt=""></a>
+
+
+</body>
+</html>
+```
+
+## HTML 页面锚点
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="#工作经验">点击我就查看工作经验</a>
+	<a href="#wdzp">点击我就查看我的作品</a>
+
+	<h1>个人简介</h1>
+	<h2>基本信息</h2>
+	<p>基本信息基本信息... 基本信息基本信息</p>
+
+	<h2><a id="工作经验">工作经验</a></h2>
+	<p>工作经验工作经验...工作经验工作经验</p>
+
+	<h2><a name="wdzp">我的作品</a></h2>
+	<p>我的作品我的作品...我的作品我的作品</p>
+</body>
+</html>
+```
+
+
 
 ## HTML 类
 
@@ -1248,29 +1267,6 @@ ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素�
 
 `<small>` 标签用于定义更小字体的文本（比如旁注）。
 
-# HTML 链接
-
-## \<a>
-
-HTML 链接是通过标签 <a> 来定义的。
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<a href="https://github.com/Jacob-xyb">这是一个链接使用了 href 属性</a>
-
-</body>
-</html>
-```
-
-**提示:**在 href 属性中指定链接的地址。
-
 ## \<link>
 
 `<link>` 标签用于指定外部资源。
@@ -1305,7 +1301,7 @@ link 元素最常见的用途是链接样式表。
 </html>
 ```
 
-# HTML 表格 \<table>
+#  \<table> 表格
 
 ## table 简介
 
@@ -1353,6 +1349,13 @@ table {
 `<tr>` 标签用于定义 HTML 表格中的行。
 
 tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 元素。
+
+- **tr 属性**
+
+1. 高度：height
+2. 背景颜色：bgcolor
+3. 文字水平对齐：align="left || right || center"
+4. 文字垂直对齐：valign="top || middle || bottom"
 
 ## \<th>
 

@@ -110,6 +110,30 @@
 
 设置浏览器滚动条的位置
 
+## 定时器
+
+### 间隔定时器
+
+按照指定周期（毫秒）去执行代码
+
+`setInterval(函数, 时间)`
+
+```javascript
+setInterval(function(){
+}, 5000);
+```
+
+### 延时定时器
+
+在固定的时间（毫秒）后执行一次代码
+
+`setTimeout(函数, 时间)`
+
+```javascript
+setTimeout(function(){
+}, 5000);
+```
+
 # JavaScript DOM 操作
 
 ## 获取元素

@@ -29,6 +29,21 @@
             top: -80px;
             left: 0px;
         }
+
+        .goTop {
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            font-size: 20px;
+            text-align: center;
+            line-height: 25px;
+            color: #fff;
+
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            display: none;
+        }
     </style>
 </head>
 
@@ -45,9 +60,34 @@
     4.设置 回到顶部按钮 样式，默认是 隐藏 的。 
 -->
 
+<!-- 代码逻辑：
+1.给浏览器绑定滚动事件，实时获取浏览器卷去的高度;
+2.判断卷去的高度决定隐藏还是现实，此处默认 300px;
+3.给回到顶部按钮绑定点击事件。 
+-->
+
 <body>
     <div class="header">顶部通栏</div>
     <div class="goTop">回到顶部</div>
+    <script>
+        // 1.获取元素
+        let header = document.querySelector('.headr');
+        let goTop = document.querySelector('.goTop');
+
+        // 2.绑定点击事件
+        window.onscroll = function () {
+            // 2-1.获取浏览器卷去的高度
+            let height = document.documentElement.scrollTop || document.body.scrollTop
+            // 2-2.判断卷去的高度
+            if (height >= 300) {
+                // 显示
+                
+            }
+            else {
+
+            }
+        }
+    </script>
 </body>
 
 </html>
