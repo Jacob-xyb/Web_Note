@@ -18,30 +18,54 @@
             left: 50%;
             height: 80%;
             width: 80%;
-            transform:translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             background-color: grey;
         }
-        
+
         table {
             width: 100%;
+            border-collapse: collapse;
+            /* border-spacing: 0;  */
+            /* background-color: white; */
+
         }
 
-        tr {
-            height: 30px;
-            width: 100%;
+        table * {
+            /* background-color: white; */
+            padding: 0;
+            margin: 4px;
         }
 
         tr.tree_other {
             background-color: white;
+            height: 30px;
+
         }
 
+        tr.tree_other td {
+            border: 2px solid white;
+        }
     </style>
 </head>
 
 <body>
     <div>
         <table>
-            <tr class="tree_other"></tr>
+            <tbody>
+                <tr class="tree_other">
+                    <td>11</td>
+                    <td>22</td>
+                    <td>33</td>
+                    <td>44</td>
+                </tr>
+                <tr class="tree_other">
+                    <td>111111</td>
+                    <td>22</td>
+                    <td>33</td>
+                    <td>44</td>
+                </tr>
+            </tbody>
+
         </table>
     </div>
 </body>
