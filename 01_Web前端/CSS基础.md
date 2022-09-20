@@ -45,8 +45,22 @@ HTML 标签原本被设计为用于定义文档内容。通过使用 <h1>、<p>�
 ## CSS 显示方式
 
 1. **内联样式（Inline Style）**
+
+   `<div style="width:200px; height:200px;"></div>`
+
 2. **内部样式表（Internal Style Sheet）**
+
 3. **外部样式表（External Style Sheet）**：HTML5 推荐用法
+
+   `<link rel="stylesheet" type="text/css" href="" >` 
+
+## CSS 优先级
+
+外部 < 内部 < 内联；
+
+但是 `!important` 加在样式后可以提高优先级：
+
+语法：`color: red !important;`
 
 # CSS 基础语法
 
