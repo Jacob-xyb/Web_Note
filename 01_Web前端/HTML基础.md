@@ -1344,6 +1344,20 @@ table {
 
 ![image.png](https://s2.loli.net/2022/09/07/LxuqzrsD91dAQbG.png)
 
+- **属性：**
+
+  border="1px" 
+
+  align="center" 
+
+  bordercolor="red"
+
+  bgcolor="whitegrey"
+
+  cellspacing="0px“  -> CSS: `border-spacing: 0;`
+
+  cellpadding="10px"
+
 ## \<tr>
 
 `<tr>` 标签用于定义 HTML 表格中的行。
@@ -1370,6 +1384,24 @@ th 元素内部的文本通常会呈现为居中的粗体文本
 | colspan | number                       | 规定表头单元格可横跨的列数。                   |
 | rowspan | number                       | 规定表头单元格可横跨的行数。                   |
 
+`colspan` 超过单元格后，会往右挤出边界，`rowspan` 同理，也是往右边平移。
+
+![image.png](https://s2.loli.net/2022/09/20/7vabd2Qwtfqskhi.png)
+
+
+
+## \<td>
+
+**\<td>** : table data
+
+- **td 属性**
+
+1. 宽度：width（如果一个单元格设置了宽度，影响一整列）
+2. 高度：height （如果一个单元格设置了高度，影响一整行）
+3. 背景颜色：bgcolor
+4. 文字水平对齐：align="left || right || center"
+5. 文字垂直对齐：valign="top || middle || bottom"
+
 ## table 边界融合(坍塌)
 
 ```css
@@ -1378,7 +1410,7 @@ table {
 }
 ```
 
-# HTML 表单
+# \<form> 表单
 
 ## \<form>
 
@@ -1391,18 +1423,18 @@ table {
 | 属性           | 值                                                           | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | accept-charset | charset_list                                                 | 规定服务器可处理的表单数据字符集。                           |
-| action         | URL                                                          | 规定当提交表单时向何处发送表单数据。                         |
+| `action`       | URL                                                          | 规定当提交表单时向何处发送表单数据。                         |
 | autocomplete   | on、off                                                      | 规定是否启用表单的自动完成功能。                             |
 | enctype        | application/x-www-form-urlencoded、multipart/form-data、text/plain | 规定在发送表单数据之前如何对其进行编码：application/x-www-form-urlencoded在发送前编码所有字符（默认）（空格被编码为“+”，特殊字符被编码为ASCII十六进制字符）multipart/form-data 不对字符编码。在使用包含文件上传控件的表单时，必须使用该值text/plain 空格转换为 “+” 加号，但不对特殊字符编码 |
-| method         | get、post                                                    | 规定用于发送 form-data 的 HTTP 方法。                        |
+| `method`       | get、post                                                    | 规定用于发送 form-data 的 HTTP 方法。                        |
 | name           | form_name                                                    | 规定表单的名称。                                             |
 | novalidate     | novalidate                                                   | 如果使用该属性，则提交表单时不进行验证。                     |
-| target         | _blank、_self、_parent、_top、framename                      | 规定在何处打开 action URL。                                  |
+| `target`       | _blank、_self、_parent、_top、framename                      | 规定在何处打开 action URL。                                  |
 
 HTML <form> 元素，已设置所有可能的属性，是这样的：
 
 ```html
-<form action="action_page.php" method="GET" target="_blank" accept-charset="UTF-8"
+<form action="action_page.php" method="get" target="_blank" accept-charset="UTF-8"
 ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
 .
 form elements
@@ -1419,6 +1451,42 @@ form elements
 ## \<input>
 
 *<input>* 元素是最重要的*表单元素*。
+
+### input 属性
+
+| 属性           | 值                                                           | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| accept         | mime_type                                                    | 指定提交的文件类型（多个类型之间使用英文的逗号隔开，文件类型的几种表述方式请参考 -> [传送门）](https://fishc.com.cn/thread-128222-1-1.html) |
+| alt            | text                                                         | 指定图像的说明文字                                           |
+| autocomplete   | on、off                                                      | 指定是否启用浏览器预测输入                                   |
+| autofocus      | autofocus                                                    | 指定是否自动获得焦点                                         |
+| checked        | checked                                                      | 指定该属性的复选框，默认显示为勾选状态                       |
+| disabled       | disabled                                                     | 指定是否禁用该 input 元素                                    |
+| form           | formname                                                     | 指定其所属的一个或多个表单 id 值（在 HTML5 中，表单允许你将 input 放在文档中的任意位置，当你这么做的时候，可以通过指定该属性来确定元素所关联的表单） |
+| formaction     | URL                                                          | 指定表单提交的位置（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formenctype    | application/x-www-form-urlencoded、multipart/form-data、text/plain | 指定表单提交的编码方式（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formmethod     | get、post                                                    | 指定表单提交的方法（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formnovalidate | formnovalidate                                               | 指定是否重置 form 元素的 novalidate 属性，如果重置，那么当表单提交时 input 元素将不再进行任何验证（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formtarget     | _blank、_self、_parent、_top、framename                      | 指定表单提交后在何处打开 action URL（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| height         | pixels、%                                                    | 指定图像的高度（像素）                                       |
+| list           | datalist-id                                                  | 指定一个数据列表，即 datalist 元素的 id 值                   |
+| max            | number、date                                                 | 指定可接受的最大值，以便进行输入验证                         |
+| maxlength      | number                                                       | 指定用户可以在文本框输入的最大字符数                         |
+| min            | number、date                                                 | 指定可接受的最小值，以便进行输入验证                         |
+| multiple       | multiple                                                     | 指定该属性后可以上传多个文件                                 |
+| `name`         | field_name                                                   | 指定元素的名称，用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据，只有设置了 name 属性的表单才能在提交表单时传递该值 |
+| pattern        | regexp_pattern                                               | 指定一个用于输入验证的正则表达式                             |
+| `placeholder`  | text                                                         | 指定一个占位提示文本                                         |
+| readonly       | readonly                                                     | 将文本框设为只读模式，防止用户编辑其内容                     |
+| required       | required                                                     | 表明用户必须输入一个值，否则无法通过输入验证                 |
+| size           | number_of_char                                               | 指定文本框的宽度                                             |
+| src            | URL                                                          | 指定要显示的图像的 URL                                       |
+| step           | number                                                       | 指定上下调节数值的步长                                       |
+| `type`         | button、checkbox、color、date、datetime-local、email、file、hidden、image、month、number、password、radio、range、reset、search、submit、tel、text、time、url、week | 规定 input 元素的类型                                        |
+| `value`        | text                                                         | 指定输入字段的初始值                                         |
+| width          | pixels、%                                                    | 指定图像的宽度（像素）                                       |
+
+### input 类型
 
 <input> 元素有很多形态，根据不同的 *type* 属性。
 

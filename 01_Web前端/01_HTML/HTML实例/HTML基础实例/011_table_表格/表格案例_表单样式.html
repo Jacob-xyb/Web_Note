@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid palevioletred;
+            color: palevioletred;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid palevioletred;
+            height: 40px;
+            width: 80px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+
+        td.col_blank {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>会员姓名</td>
+            <td class="col_blank"></td>
+            <td>出生日期</td>
+            <td class="col_blank"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td>身份证号</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td>通信地址</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td>会员卡号</td>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
