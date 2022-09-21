@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            margin-left: 50px;
+            list-style-type: none;
+            list-style-image: url('./目录.png');
+        }
+
+        li {
+            border: 1px solid red;
+        }
+
+        ul.out {
+            list-style-position: outside;
+        }
+
+        ul.in {
+            list-style-position: inside;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="out">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <ul class="in">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+</body>
+
+</html>

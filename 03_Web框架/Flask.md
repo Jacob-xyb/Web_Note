@@ -431,7 +431,7 @@ for 循环自带 loop 变量:
 
 - **字符串操作：**
 
-1. safe: 禁用转义 例如 `<p>hello</p>` 使用过滤器 p标签 就可以生效
+1. `safe`: 禁用转义 例如 `<p>hello</p>` 使用过滤器 p标签 就可以生效
 2. capitalize：首字母大写
 3. lower:  全部小写
 4. upper: 全部大写
