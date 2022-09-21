@@ -818,6 +818,316 @@ list-style:list-style-type|list-style-position|list-style-image|initial|inherit;
 | initial             | 将这个属性设置为默认值。                   |
 | inherit             | 规定应该从父元素继承 list-style 属性的值。 |
 
+# 背景属性
+
+## background-color
+
+- 定义
+
+> background-color属性设置一个元素的背景颜色。
+
+**注意：**元素的背景是元素的总大小，包括填充和边界（但不包括边距）。
+
+- 语法
+
+```css
+background-color: color|transparent|inherit;
+```
+
+- 属性值
+
+| 值          | 说明                             |
+| ----------- | -------------------------------- |
+| color       | 指定背景颜色。                   |
+| transparent | 指定背景颜色应该是透明的。(默认) |
+| inherit     | 指定背景颜色。(从父元素继承)     |
+
+**注意：**color有三种表示法，具体使用情况参看下方代码。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+    <style>
+        body
+        {
+            /*命名颜色法*/
+            background-color:red;
+        }
+        h1
+        {
+            /*十六进制颜色法*/
+            background-color:#00ff00;
+        }
+        p
+        {
+            /*RGB颜色法*/
+            background-color:rgb(0,0,255);
+        }
+    </style>
+</head>
+<body>
+   <h1>鱼C工作室</h1>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore eos, explicabo ipsam modi natus quibusdam rem suscipit. Alias architecto ea eius hic illo incidunt iste natus nemo reprehenderit, sint veniam.</p>
+</body>
+</html>
+```
+
+## background-image
+
+- 定义
+
+> background-image 属性为元素设置背景图像。
+
+**注意：**元素的背景占据了元素的全部尺寸，包括内边距和边框，但不包括外边距。
+默认地，背景图像位于元素的左上角，并在水平和垂直方向上重复。
+
+- 语法
+
+```css
+ background-image: url('URL')|none|inherit;
+```
+
+- 属性值
+
+| 值         | 说明                                               |
+| ---------- | -------------------------------------------------- |
+| url(‘URL’) | 指向图像的路径。                                   |
+| none       | 默认值。不显示背景图像。                           |
+| inherit    | 规定应该从父元素继承 background-image 属性的设置。 |
+
+**注意：**`‘URL’`表示目标文件的路径，可以是相对路径或者绝对路径。
+
+## background-repeat
+
+- 定义
+
+> background-repeat 属性设置是否及如何重复背景图像。
+
+**注意：**默认地，背景图像在水平和垂直方向上重复，铺满整个屏幕。背景图像的位置是根据 `background-position` 属性设置的。如果未规定 background-position 属性，图像会被放置在元素的左上角。
+
+- 语法
+
+```css
+ background-repeat:repeat|repeat-x|repeat-y|no-repeat|inherit;
+```
+
+- 属性值
+
+| 值        | 说明                                                |
+| --------- | --------------------------------------------------- |
+| repeat    | 默认。背景图像将在垂直方向和水平方向重复。          |
+| repeat-x  | 背景图像将在水平方向重复。                          |
+| repeat-y  | 背景图像将在垂直方向重复。                          |
+| no-repeat | 背景图像将仅显示一次。                              |
+| inherit   | 规定应该从父元素继承 background-repeat 属性的设置。 |
+
+## background-size
+
+- 定义
+
+> background-size 属性规定背景图像的尺寸。
+
+- 语法
+
+```css
+background-size: length|percentage|cover|contain;
+```
+
+- 属性值
+
+| 值         | 说明                                                         |
+| ---------- | ------------------------------------------------------------ |
+| length     | 设置背景图像的高度和宽度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 “auto”。 |
+| percentage | 以父元素的百分比来设置背景图像的宽度和高度。第一个值设置宽度，第二个值设置高度。如果只设置一个值，则第二个值会被设置为 “auto”。 |
+| cover      | 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。 |
+| no-repeat  | 背景图像将仅显示一次。                                       |
+| contain    | 把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。 |
+
+## background-position
+
+- 定义
+
+> background-position 属性设置背景图像的起始位置。
+
+**注意：**这个属性设置背景原图像（由 `background-image` 定义）的位置，背景图像如果要重复，将从这一点开始。需要把 background-attachment 属性设置为 `"fixed"`，才能保证该属性在 Firefox 中正常工作。
+
+- 语法
+
+```css
+background-position:A|B|C;
+```
+
+- 属性值
+
+| 值                                            | 说明                                                         |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| A（top、left、right、bottom、center）两两组合 | 如果仅规定了一个关键词，那么第二个值将是”center”。默认值：0% 0%。 |
+| B（x% y%）                                    | 第一个值是水平位置，第二个值是垂直位置。左上角是 0% 0%。右下角是 100% 100%。如果仅规定了一个值，另一个值将是 50%。 |
+| C(xpos ypos)                                  | 第一个值是水平位置，第二个值是垂直位置。左上角是 0 0。单位是像素 (0px 0px) 或任何其他的 CSS 单位。如果仅规定了一个值，另一个值将是50%。可以混合使用 % 和 position 值。 |
+
+## background-attachment
+
+- 定义
+
+> background-attachment设置背景图像是否固定或者随着页面的其余部分滚动。
+
+fixed 属性会让默认以浏览器窗口左上角作定位，谨慎使用。
+
+- 语法
+
+```css
+background-attachment:scroll || fixed || inherit || local;
+```
+
+- 属性值
+
+| 值      | 说明                                            |
+| ------- | ----------------------------------------------- |
+| scroll  | 背景图片随页面的其余部分滚动。这是**默认**      |
+| fixed   | 背景图像是固定的                                |
+| inherit | 指定background-attachment的设置应该从父元素继承 |
+| local   | 背景图片随滚动元素滚动                          |
+
+## background-clip
+
+- 定义
+
+> background-clip属性指定背景绘制区域。
+
+- 语法
+
+```css
+background-clip: border-box|padding-box|content-box;
+```
+
+- 属性值
+
+| 值          | 说明                                             |
+| ----------- | ------------------------------------------------ |
+| border-box  | 默认值。背景绘制在边框方框内（剪切成边框方框）。 |
+| padding-box | 背景绘制在衬距方框内（剪切成衬距方框）。         |
+| content-box | 背景绘制在内容方框内（剪切成内容方框）。         |
+
+## background-origin
+
+- 定义
+
+> background-origin 属性规定 background-position 属性相对于什么位置来定位。
+
+**注意：**如果背景图像的 background-attachment 属性为 “fixed”，则该属性没有效果。
+
+- 语法
+
+```css
+background-origin: padding-box|border-box|content-box;
+```
+
+- 属性值
+
+| 值          | 说明                           |
+| ----------- | ------------------------------ |
+| padding-box | 背景图像相对于内边距框来定位。 |
+| border-box  | 背景图像相对于边框盒来定位。   |
+| content-box | 背景图像相对于内容框来定位。   |
+
+## background 复合属性
+
+```css
+background: background-color background-img background-repeat background-position background-attachment;
+```
+
+**background-size 只能单独用**
+
+
+
+# 浮动属性
+
+## 浮动的性质
+
+1. 浮动的元素 **脱离标准版文档流**
+
+2. 一旦一个元素浮动了，那么就能设置宽高，不区分块级元素和行内元素了
+
+3. 浮动的元素互相贴靠
+
+   如果有足够空间，那么就会靠着2哥；如果没有足够空间，那么就会靠着1号大哥。
+
+   如果没有足够的空间靠着1号大哥，就会自己贴左墙。
+
+   ![image-20220821213505903.png](https://s2.loli.net/2022/08/21/29WkdrLUfjvtzGB.png)
+
+   4.浮动元素有自围绕效果
+
+## 浮动的作用
+
+1. 文本环绕显示
+2. 打破 块元素 独占一行的情况
+
+## 浮动清除
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1, .box2 {
+            height: 300px;
+            width: 300px;
+            float: left;
+        }
+
+        .box1 {
+            background-color: yellow;
+        }
+
+        .box2 {
+            background-color: blue;
+        }
+
+        .box3 {
+            width: 400px;
+            height: 400px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <div class="box3"></div>
+</body>
+</html>
+```
+
+![image.png](https://s2.loli.net/2022/09/21/BnmGDK9dgZJwCht.png)
+
+### 清除方法1：给浮动元素的祖先元素加高度
+
+```css
+.container {
+    height: 300px;
+}
+```
+
+增加高度就不会出现高度塌陷的情况
+
+清除方法2：增加属性：`clear: both;` ，如果父元素没有设置高时，margin 会失效
+
+清除方法3：用 `<div>` 建一堵墙
+
+清除方法4：内墙法
+
+清除方法5：`overflow: hidden;`
+
 # 颜色
 
 ## 前景色
@@ -1135,36 +1445,6 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 
 - 与其他行内元素并排
 - 不能设置宽高，默认宽度为文字的宽度
-
-# 浮动
-
-## 浮动的性质
-
-1. 浮动的元素 **脱离标准版文档流**
-
-2. 一旦一个元素浮动了，那么就能设置宽高，不区分块级元素和行内元素了
-
-3. 浮动的元素互相贴靠
-
-   如果有足够空间，那么就会靠着2哥；如果没有足够空间，那么就会靠着1号大哥。
-
-   如果没有足够的空间靠着1号大哥，就会自己贴左墙。
-
-   ![image-20220821213505903.png](https://s2.loli.net/2022/08/21/29WkdrLUfjvtzGB.png)
-
-   4.浮动元素有自围绕效果
-
-## 浮动清除
-
-清除方法1：给浮动元素的祖先元素加高度
-
-清除方法2：增加属性：`clear: both;` ，如果父元素没有设置高时，margin 会失效
-
-清除方法3：用 `<div>` 建一堵墙
-
-清除方法4：内墙法
-
-清除方法5：`overflow: hidden;`
 
 # 定位
 
