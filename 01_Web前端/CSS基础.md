@@ -1120,90 +1120,81 @@ background: background-color background-img background-repeat background-positio
 
 增加高度就不会出现高度塌陷的情况
 
-清除方法2：增加属性：`clear: both;` ，如果父元素没有设置高时，margin 会失效
+### 清除方法2：增加属性：`clear: both;`
 
-清除方法3：用 `<div>` 建一堵墙
+```css
+.box3 {
+    clear: both;
+    margin-top: 50px;	// 此时 margin 失效
+}
+```
 
-清除方法4：内墙法
+如果父元素没有设置高时，margin 会失效。
 
-清除方法5：`overflow: hidden;`
+**这里 '失效' 是指 margin 会以父元素的 div 开始计算， 因为浮动并不会给父元素增加高度。**
 
-# 颜色
+### 清除方法3：内墙法
 
-## 前景色
+```html
+<div class="container">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div style="clear: both;"></div>
+</div>
+```
 
-[标准颜色名称查询](https://man.ilovefishc.com/color/index.html)
+此时父元素 `.container` 就会获得宽高。
 
-CSS支持 RGB、 HEX、 HSL、 RGBA、 HSLA 五种方式表示颜色。
+### 清除方法4：`overflow: hidden;`
 
-### HSL
+```css
+.container {
+    overflow:hidden;
+}
+```
 
-其中 HSL，分别是 色相（Hue ）、饱和度（Saturation ）、亮度（Lightness）。
+`overflow:hidden;` 触发 `BFC` ，让浮动元素计算高度，从而使父元素获得高度。
 
-## 背景色
+# 盒子模型
 
-### 背景图
+所有HTML元素可以看作盒子，在CSS中，"box model"这一术语是用来设计和布局时使用。
 
-浏览器会使用背景图像去覆盖背景颜色
+CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距，边框，填充，和实际内容。
 
-`background-imag:url();`	背景图片自动填充
+盒模型允许我们在其它元素和周围元素边框之间的空间放置元素。
 
-**多张图片时，左边的会覆盖右边的图像**
+下面的图片说明了盒子模型(Box Model)：
 
-`background-repeat: no-repeat;` 不重复填充
+![](https://www.runoob.com/images/box-model.gif)
 
-`background-repeat: repeat-x;` 只横向重复 （space 也是垂直重复）
+不同部分的说明：
 
-`background-repeat: repeat-x;` 只纵向重复
+- **Margin(外边距)** - 清除边框外的区域，外边距是透明的。
+- **Border(边框)** - 围绕在内边距和内容外的边框。
+- **Padding(内边距)** - 清除内容周围的区域，内边距是透明的。
+- **Content(内容)** - 盒子的内容，显示文本和图像。
 
-`background-position:` 控制背景图像的绝对位置 
+为了正确设置元素在所有浏览器中的宽度和高度，你需要知道的盒模型是如何工作的。
 
-### background-attachment
+## 元素的宽度和高度
 
-background-attachment设置背景图像是否固定或者随着页面的其余部分滚动。
+当您指定一个 CSS 元素的宽度和高度属性时，你只是设置内容区域的宽度和高度。要知道，完整大小的元素，你还必须添加内边距，边框和外边距。
 
-`background-attachment:scroll || fixed || inherit || local;`
+## padding
 
-| 值      | 说明                                            |
-| ------- | ----------------------------------------------- |
-| scroll  | 背景图片随页面的其余部分滚动。这是默认          |
-| fixed   | 背景图像是固定的；此时 size 就无效了            |
-| inherit | 指定background-attachment的设置应该从父元素继承 |
-| local   | 背景图片随滚动元素滚动                          |
+背景色会蔓延到内边距，padding不允许为负值。
 
-### background-origin
+## border
 
-background-origin 属性规定 background-position 属性相对于什么位置来定位。
+三个属性：线宽，线型，颜色。
 
-- **如果背景图像的 background-attachment 属性为 “fixed”，则该属性没有效果。**
-
-`background-origin: padding-box|border-box|content-box;`
-
-| 值          | 说明                                   |
-| ----------- | -------------------------------------- |
-| padding-box | 默认值。背景图像相对于内边距框来定位。 |
-| border-box  | 背景图像相对于边框盒来定位。           |
-| content-box | 背景图像相对于内容框来定位。           |
-
-### background-clip
-
-background-clip属性指定背景绘制区域。
-
-`background-clip: border-box|padding-box|content-box;`
-
-| 值          | 说明                                             |
-| ----------- | ------------------------------------------------ |
-| border-box  | 默认值。背景绘制在边框方框内（剪切成边框方框）。 |
-| padding-box | 背景绘制在衬距方框内（剪切成衬距方框）。         |
-| content-box | 背景绘制在内容方框内（剪切成内容方框）。         |
-
-# 边框
+颜色默认为黑色。
 
 `border:border-width|border-style|border-color;`
 
 边框有样式的前提下才会显示 颜色 和 宽度。
 
-## border-style
+### border-style
 
 border-style 属性用于设置元素所有边框的样式，或者单独地为各边设置边框样式。
 
@@ -1225,7 +1216,7 @@ border-style 属性用于设置元素所有边框的样式，或者单独地为�
 | outset  | 定义 3D outset 边框。其效果取决于 [border-color](https://man.ilovefishc.com/page/border-color.html) 的值。 |
 | inherit | 规定应该从父元素继承边框样式。                               |
 
-## border-width
+### border-width
 
 border-width 简写属性为元素的所有边框设置宽度，或者单独地为各边边框设置宽度。
 
@@ -1241,11 +1232,11 @@ border-width 简写属性为元素的所有边框设置宽度，或者单独地�
 | length  | 允许您自定义上边框的宽度。     |
 | inherit | 规定应该从父元素继承边框宽度。 |
 
-## border-color
+### border-color
 
 border-color 属性设置四条边框的颜色。
 
-## border-radius
+### border-radius
 
 border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。
 
@@ -1255,7 +1246,7 @@ border-radius 属性是一个简写属性，用于设置四个 border-*-radius �
 
 形如：`a1px b1px c1px d1px / a2px b2px c2px d2px` 时 表示左上、右上、右下、左下 为 (a1px a2px) ... (d1px d2px)
 
-## border-image
+### border-image
 
 border-image属性使用图片作为对象的边界。
 
@@ -1319,13 +1310,13 @@ border-image -width属性指定图像边界的宽度。
 | %      | 边界图像区域的大小：横向偏移的宽度的面积，垂直偏移的高度的面积 |
 | auto   | 如果指定了，宽度是相应的image slice的内在宽度或高度          |
 
-# 边距
+## margin
 
-## 内边距
-
-## 外边距
+### margin 属性
 
 `margin: auto` 生效必须是 块级元素，且有宽度。
+
+**只有块级元素添加margin:0 auto有效果，行内元素和行内块元素添加margin:0 auto均不起效果。**
 
 `margin: 0 auto;` auto 代表尽其所能的增加。
 
@@ -1337,23 +1328,63 @@ border-image -width属性指定图像边界的宽度。
 
 左右边距取和，上下边距取最大。
 
-**注意：**假如需要并排放置两个带边框的框，可通过将 box-sizing 设置为 “border-box”。这可令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中。
+### margin 父子元素外边距问题
 
-| 属性        | 说明                                                         |
-| ----------- | ------------------------------------------------------------ |
-| content-box | 这是CSS2.1指定的宽度和高度的行为。指定元素的宽度和高度（最小/最大属性）适用于box的宽度和高度。元素的填充和边框布局和绘制指定宽度和高度除外 |
-| border-box  | 指定宽度和高度（最小/最大属性）确定元素边框box。也就是说，对元素指定宽度和高度包括padding和border的指定。内容的宽度和高度减去各自双方该边框和填充的宽度从指定的”宽度”和”高度”属性计算 |
-| inherit     | 指定box-sizing属性的值，应该从父元素继承                     |
+```html
+<!DOCTYPE html>
+<html lang="en">
 
-# 尺寸
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+        }
 
-## box-sizing
+        .child {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-top: 100px;
+        }
+    </style>
+</head>
 
-box-sizing 属性允许以某种方式定义某些元素，以适应指定区域。
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
 
-## 最小最大尺寸
+</html>
+```
 
-## 溢出
+此时元素的上边距会作用在父元素上。
+
+- **解决方法1：父元素加 padding**
+
+  这种方式会增加父元素的宽高，所以加 padding 后还需要调整宽高（除非设置了 `box-sizing: border-box;`）
+
+- **解决方法2：父元素加 border**
+
+  还是会调整父元素的宽高。（颜色 transparent 透明可以隐藏边框显示）
+
+- **解决方法3：加浮动**
+
+  父子元素加浮动均可。
+
+- **解决方法4：overflow: hidden**
+
+  产生 BFC 后，父元素就自成空间，不会再对外界产生任何干扰。
+  
+  overflow: hidden; 后 position: sticky; 就失效了。
+
+# overflow 溢出
 
 overflow 属性规定当内容溢出元素框时发生的事情。
 
@@ -1367,9 +1398,157 @@ overflow 属性规定当内容溢出元素框时发生的事情。
 | auto    | 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。推荐。 |
 | inherit | 规定应该从父元素继承 overflow 属性的值。                     |
 
-同时提供：`overflow-x`、`overflow-y`
+同时提供：`overflow-x`、`overflow-y` 分轴设置属性
 
-## resize
+# white-space
+
+- 定义
+
+> white-space 属性设置如何处理元素内的空白。
+
+- 语法
+
+```css
+ white-space:normal|pre|nowrap|pre-wrap|pre-line|inherit;
+```
+
+- 属性值
+
+| 值       | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| normal   | 默认。空白会被浏览器忽略。                                   |
+| `pre`    | 空白会被浏览器保留。其行为方式类似 HTML 中的 `<pre>` 标签。  |
+| `nowrap` | 文本不会换行，文本会在在同一行上继续，直到遇到 `<br>` 标签为止。 |
+| pre-wrap | 保留空白符序列，但是正常地进行换行。                         |
+| pre-line | 合并空白符序列，但是保留换行符。                             |
+| nherit   | 规定应该从父元素继承 white-space 属性的值。                  |
+
+## 溢出省略号
+
+```css
+div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+```
+
+当单行文本溢出显示省略号需要同时设置以下声明：
+
+1. 容器宽度：width: 200px;
+2. 强制文本在一行内显示：white-space: nowrap;
+3. 溢出内容为隐藏：overflow: hidden;
+4. 溢出文本显示省略号：text-overflow: ellipsis;
+
+# 元素显示类型
+
+- **块元素**
+
+  例如：div p ul li ol li dl dt dd h1-h6等
+
+- **行内（内联）元素**
+
+  例如：a b em i span strong等
+
+- **行内块元素**
+
+  例如：img input 等
+
+p 标签内部只能放 文本，不能放块元素，但是可以放行内块元素。
+
+## 行内元素
+
+**行内元素只能实现左右边距和 padding，无法实现上下边距。**
+
+**其中增加 padding 可以蔓延背景，但是上下 padding 的边距距离是不生效的。**
+
+## 元素类型互相转换
+
+`display: block;`
+
+# 定位
+
+## position
+
+position 属性规定元素的定位类型。
+
+| 值       | 文档流 | 说明                                                         |
+| -------- | ------ | ------------------------------------------------------------ |
+| static   | 默认   | 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 |
+| absolute | 脱离   | 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| fixed    | 脱离   | 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| relative | 不脱离 | 生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 |
+| sticky   | /      | 粘性定位，可以做吸顶效果，css3.0新增                         |
+| inherit  | /      | 规定应该从父元素继承 position 属性的值。                     |
+
+要使用绝对定位时，推荐使用 `子绝父相`
+
+absolute 的绝对定位是相对于第一屏， fixed 是相对于浏览器窗口。
+
+## z-index 层级
+
+- 定义
+
+> z-index 属性设置元素的堆叠顺序。
+
+**注意：**拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。
+
+- 语法
+
+```css
+z-index:auto|number|inherit;
+```
+
+- 属性值
+
+| 值      | 说明                                    |
+| ------- | --------------------------------------- |
+| auto    | 默认。堆叠顺序与父元素相等。            |
+| number  | 设置元素的堆叠顺序。                    |
+| inherit | 规定应该从父元素继承 z-index 属性的值。 |
+
+### 父子层级
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            z-index: 100;
+        }
+
+        .child {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position:absolute;
+            top: 20px;
+            left: 20px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="child"></div>
+    </div>
+</body>
+</html>
+```
+
+此时父子定位只有 child 的 z-index 设置为负值时，才能被父元素覆盖；同时 child position 为 static 时， 无论怎么设置，子元素都不会被覆盖。（因为 static 处于标准文档流中）
+
+但是兄弟关系的绝对定位可以随意覆盖。
+
+# resize
 
 resize属性指定一个元素是否是由用户调整大小的。
 
@@ -1390,46 +1569,31 @@ resize属性指定一个元素是否是由用户调整大小的。
 
 # 阴影
 
-# 显示类型
+# box-sizing
 
+- 定义
 
+> box-sizing 属性允许以某种方式定义某些元素，以适应指定区域。
+
+**注意：**假如需要并排放置两个带边框的框，可通过将 box-sizing 设置为 “border-box”。这可令浏览器呈现出带有指定宽度和高度的框，并把边框和内边距放入框中。
+
+- 语法
+
+```css
+box-sizing: content-box|border-box|inherit;
+```
+
+- 属性值
+
+| 属性        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| content-box | 这是CSS2.1指定的宽度和高度的行为。指定元素的宽度和高度（最小/最大属性）适用于box的宽度和高度。元素的填充和边框布局和绘制指定宽度和高度除外 |
+| border-box  | 指定宽度和高度（最小/最大属性）确定元素边框box。也就是说，对元素指定宽度和高度包括padding和border的指定。内容的宽度和高度减去各自双方该边框和填充的宽度从指定的”宽度”和”高度”属性计算 |
+| inherit     | 指定box-sizing属性的值，应该从父元素继承                     |
 
 # CSS 继承性
 
 能继承的属性：`color`, `text- 开头的`, `line- 开头的`, `font- 开头的` 
-
-# CSS 盒子模型
-
-所有HTML元素可以看作盒子，在CSS中，"box model"这一术语是用来设计和布局时使用。
-
-CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：边距，边框，填充，和实际内容。
-
-盒模型允许我们在其它元素和周围元素边框之间的空间放置元素。
-
-下面的图片说明了盒子模型(Box Model)：
-
-![](https://www.runoob.com/images/box-model.gif)
-
-不同部分的说明：
-
-- **Margin(外边距)** - 清除边框外的区域，外边距是透明的。
-- **Border(边框)** - 围绕在内边距和内容外的边框。
-- **Padding(内边距)** - 清除内容周围的区域，内边距是透明的。
-- **Content(内容)** - 盒子的内容，显示文本和图像。
-
-为了正确设置元素在所有浏览器中的宽度和高度，你需要知道的盒模型是如何工作的。
-
-## 元素的宽度和高度
-
-当您指定一个 CSS 元素的宽度和高度属性时，你只是设置内容区域的宽度和高度。要知道，完整大小的元素，你还必须添加内边距，边框和外边距。
-
-## padding
-
-## border
-
-三个属性：线宽，线型，颜色。
-
-颜色默认为黑色。
 
 # 标准文档流
 
@@ -1445,20 +1609,6 @@ CSS盒模型本质上是一个盒子，封装周围的HTML元素，它包括：�
 
 - 与其他行内元素并排
 - 不能设置宽高，默认宽度为文字的宽度
-
-# 定位
-
-## position
-
-position 属性规定元素的定位类型。
-
-| 值       | 说明                                                         |
-| -------- | ------------------------------------------------------------ |
-| static   | 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 |
-| absolute | 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
-| fixed    | 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
-| relative | 生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 |
-| inherit  | 规定应该从父元素继承 position 属性的值。                     |
 
 # BFC
 
@@ -1609,3 +1759,14 @@ flex-wrap 属性规定 flex 容器是单行或者多行，同时横轴的方向�
 | initial      | 设置该属性为它的默认值。                                 |
 | inherit      | 从父元素继承该属性。                                     |
 
+# 颜色
+
+## 前景色
+
+[标准颜色名称查询](https://man.ilovefishc.com/color/index.html)
+
+CSS支持 RGB、 HEX、 HSL、 RGBA、 HSLA 五种方式表示颜色。
+
+### HSL
+
+其中 HSL，分别是 色相（Hue ）、饱和度（Saturation ）、亮度（Lightness）。

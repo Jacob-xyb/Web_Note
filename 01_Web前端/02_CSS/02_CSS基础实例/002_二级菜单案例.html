@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul.box {
+            width: 400px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        ul.box li {
+            float: left;
+            width: 100px;
+            text-align: center;
+            background-color: pink;
+            border: 1px solid blueviolet;
+        }
+
+        ul.box li.item:hover {
+            background-color: #fad3d9;
+        }
+
+        ul.box li.item:hover ul {
+            display: block;
+        }
+
+        ul.box ul {
+            color: pink;
+            list-style: none;
+            display: none;
+        }
+
+        ul.box ul li {
+            background-color: cadetblue;
+        }
+
+        ul.box ul li:hover {
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="box">
+        <li class="item">菜单1
+            <ul>
+                <li>项目1</li>
+                <li>项目2</li>
+                <li>项目3</li>
+                <li>项目4</li>
+            </ul>
+        </li>
+        <li class="item">菜单2</li>
+        <li class="item">菜单3</li>
+        <li class="item">菜单4</li>
+    </ul>
+</body>
+
+</html>
