@@ -953,6 +953,300 @@ JavaScript 存在一个特殊的规则，会判定它们相等。他们俩就像
 alert( null == undefined ); // true
 ```
 
+当使用数学式或其他比较方法 `< > <= >=` 时：
+
+`null/undefined` 会被转化为数字：`null` 被转化为 `0`，`undefined` 被转化为 `NaN`。
+
+下面让我们看看，这些规则会带来什么有趣的现象。同时更重要的是，我们需要从中学会如何远离这些特性带来的“陷阱”。
+
+#### 奇怪的结果：null vs 0
+
+通过比较 `null` 和 0 可得：
+
+```js
+alert( null > 0 );  // (1) 
+falsealert( null == 0 ); // (2) 
+falsealert( null >= 0 ); // (3) true
+```
+
+是的，上面的结果完全打破了你对数学的认识。在最后一行代码显示“`null` 大于等于 0”的情况下，前两行代码中一定会有一个是正确的，然而事实表明它们的结果都是 false。
+
+为什么会出现这种反常结果，这是因为相等性检查 `==` 和普通比较符 `> < >= <=` 的代码逻辑是相互独立的。进行值的比较时，`null` 会被转化为数字，因此它被转化为了 `0`。这就是为什么（3）中 `null >= 0` 返回值是 true，（1）中 `null > 0` 返回值是 false。
+
+另一方面，`undefined` 和 `null` 在相等性检查 `==` 中不会进行任何的类型转换，它们有自己独立的比较规则，所以除了它们之间互等外，不会等于任何其他的值。这就解释了为什么（2）中 `null == 0` 会返回 false。
+
+#### 特立独行的 undefined
+
+`undefined` 不应该被与其他值进行比较：
+
+```js
+alert( undefined > 0 ); // false (1)
+alert( undefined < 0 ); // false (2)
+alert( undefined == 0 ); // false (3)
+```
+
+为何它看起来如此厌恶 0？返回值都是 false！
+
+原因如下：
+
+- `(1)` 和 `(2)` 都返回 `false` 是因为 `undefined` 在比较中被转换为了 `NaN`，而 `NaN` 是一个特殊的数值型值，它与任何值进行比较都会返回 `false`。
+- `(3)` 返回 `false` 是因为这是一个相等性检查，而 `undefined` 只与 `null` 相等，不会与其他值相等。
+
+#### 规避错误
+
+我们为何要研究上述示例？我们需要时刻记得这些古怪的规则吗？不，其实不需要。虽然随着代码写得越来越多，我们对这些规则也都会烂熟于胸，但是我们需要更为可靠的方法来避免潜在的问题：
+
+除了严格相等 `===` 外，其他凡是有 `undefined/null` 参与的比较，我们都需要额外小心。
+
+除非你非常清楚自己在做什么，否则永远不要使用 `>= > < <=` 去比较一个可能为 `null/undefined` 的变量。对于取值可能是 `null/undefined` 的变量，请按需要分别检查它的取值情况。
+
+## 交互
+
+### alert
+
+语法：
+
+```js
+alert(message);
+```
+
+运行这行代码，浏览器会弹出一个信息弹窗并暂停脚本，直到用户点击了“确定”。
+
+举个例子：
+
+```js
+alert("Hello");
+```
+
+弹出的这个带有信息的小窗口被称为 **模态窗**。“modal” 意味着用户不能与页面的其他部分（例如点击其他按钮等）进行交互，直到他们处理完窗口。在上面示例这种情况下 —— 直到用户点击“确定”按钮。
+
+### prompt
+
+`prompt` 函数接收两个参数：
+
+```js
+result = prompt(title, [default]);
+```
+
+浏览器会显示一个带有文本消息的模态窗口，还有 input 框和确定/取消按钮。
+
+`title`: 显示给用户的文本
+
+`default`: 可选的第二个参数，指定 input 框的初始值。
+
+用户可以在 prompt 对话框的 input 框内输入一些内容，然后点击确定。或者他们可以通过按“取消”按钮或按下键盘的 Esc 键，以取消输入。
+
+`prompt` 将返回用户在 `input` 框内输入的文本，如果用户取消了输入，则返回 `null`。
+
+举个例子：
+
+```js
+let age = prompt('How old are you?', 100);
+alert(`You are ${age} years old!`); // You are 100 years old!
+```
+
+IE 浏览器会提供默认值
+
+第二个参数是可选的。但是如果我们不提供的话，Internet Explorer 会把 `"undefined"` 插入到 prompt。
+
+我们可以在 Internet Explorer 中运行下面这行代码来看看效果：
+
+```js
+let test = prompt("Test");
+```
+
+所以，为了 prompt 在 IE 中有好的效果，我们建议始终提供第二个参数：
+
+```js
+let test = prompt("Test", ''); // <-- for IE
+```
+
+### confirm
+
+语法：
+
+```js
+result = confirm(question);
+```
+
+`confirm` 函数显示一个带有 `question` 以及确定和取消两个按钮的模态窗口。
+
+点击确定返回 `true`，点击取消返回 `false`。
+
+例如：
+
+```js
+let isBoss = confirm("Are you the boss?");
+alert( isBoss ); // 如果“确定”按钮被按下，则显示 true
+```
+
+## 条件运算符
+
+有时我们需要根据不同条件执行不同的操作。
+
+我们可以使用 `if` 语句和条件运算符 `?`（也称为“问号”运算符）来实现。
+
+### if 语句
+
+`if(...)` 语句计算括号里的条件表达式，如果计算结果是 `true`，就会执行对应的代码块。
+
+例如：
+
+```js
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+if (year == 2015) alert( 'You are right!' );
+```
+
+如果有多个语句要执行，我们必须将要执行的代码块封装在大括号内：
+
+```js
+if (year == 2015) {
+  alert( "That's correct!" );
+  alert( "You're so smart!" );
+}
+```
+
+建议每次使用 if 语句都用大括号 `{}` 来包装代码块，即使只有一条语句。这样可以提高代码可读性。
+
+### 布尔转换
+
+`if (…)` 语句会计算圆括号内的表达式，并将计算结果转换为布尔型。
+
+回顾一下转换规则：
+
+- 数字 `0`、空字符串 `""`、`null`、`undefined` 和 `NaN` 都会被转换成 `false`。因为他们被称为 “falsy” 值。
+- 其他值被转换为 `true`，所以它们被称为 “truthy”。
+
+### else 语句
+
+`if` 语句有时会包含一个可选的 “else” 块。如果判断条件不成立，就会执行它内部的代码。
+
+```js
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+if (year == 2015) {
+  alert( 'You guessed it right!' );
+} else {
+  alert( 'How can you be so wrong?' ); // 2015 以外的任何值
+}
+```
+
+### else if 语句
+
+有时我们需要测试一个条件的几个变体。我们可以通过使用 `else if` 子句实现。
+
+```js
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+if (year < 2015) {
+  alert( 'Too early...' );
+} else if (year > 2015) {
+  alert( 'Too late' );
+} else {
+  alert( 'Exactly!' );
+}
+```
+
+### ? 条件运算符 
+
+有时我们需要根据一个条件去赋值一个变量。
+
+```js
+let accessAllowed;
+let age = prompt('How old are you?', '');
+if (age > 18) {
+  accessAllowed = true;
+} else {
+  accessAllowed = false;
+}
+alert(accessAllowed);
+```
+
+所谓的“条件”或“问号”运算符让我们可以更简短地达到目的。
+
+这个运算符通过问号 `?` 表示。有时它被称为三元运算符，被称为“三元”是因为该运算符中有三个操作数。实际上它是 JavaScript 中唯一一个有这么多操作数的运算符。
+
+语法：
+
+```js
+let result = condition ? value1 : value2;
+```
+
+计算条件结果，如果结果为真，则返回 `value1`，否则返回 `value2`。
+
+例如：
+
+```js
+let accessAllowed = (age > 18) ? true : false;
+```
+
+技术上讲，我们可以省略 `age > 18` 外面的括号。问号运算符的优先级较低，所以它会在比较运算符 `>` 后执行。
+
+**但括号可以使代码可读性更强，所以我们建议使用它们。**
+
+请注意：
+
+在上面的例子中，你可以不使用问号运算符，因为比较本身就返回 `true/false`：
+
+```js
+// 下面代码同样可以实现
+let accessAllowed = age > 18;
+```
+
+### 多个 ?
+
+使用一系列问号 `?` 运算符可以返回一个取决于多个条件的值。
+
+```js
+let age = prompt('age?', 18);
+let message = (age < 3) ? 'Hi, baby!' :
+  (age < 18) ? 'Hello!' :
+  (age < 100) ? 'Greetings!' :
+  'What an unusual age!';
+alert( message );
+```
+
+可能很难一下子看出发生了什么。但经过仔细观察，我们可以看到它只是一个普通的检查序列。
+
+1. 第一个问号检查 `age < 3`。
+2. 如果为真 — 返回 `'Hi, baby!'`。否则，会继续执行冒号 `":"` 后的表达式，检查 `age < 18`。
+3. 如果为真 — 返回 `'Hello!'`。否则，会继续执行下一个冒号 `":"` 后的表达式，检查 `age < 100`。
+4. 如果为真 — 返回 `'Greetings!'`。否则，会继续执行最后一个冒号 `":"` 后面的表达式，返回 `'What an unusual age!'`。
+
+**不推荐使用**
+
+### ‘?’ 的非常规使用
+
+有时可以使用问号 `?` 来代替 `if` 语句
+
+```js
+let company = prompt('Which company created JavaScript?', '');
+(company == 'Netscape') ?
+   alert('Right!') : alert('Wrong.');
+```
+
+根据条件 `company =='Netscape'`，要么执行 `?` 后面的第一个表达式并显示对应内容，要么执行第二个表达式并显示对应内容。
+
+在这里我们不是把结果赋值给变量。而是根据条件执行不同的代码。
+
+**不建议这样使用问号运算符。**
+
+这种写法比 `if` 语句更短，对一些程序员很有吸引力。但它的可读性差。
+
+## 逻辑运算符
+
+JavaScript 里有三个逻辑运算符：`&&`（与），`||`（或），`!`（非）
+
+虽然他们被称为“逻辑”运算符，但这些运算符却可以被应用于任意类型的值，而不仅仅是布尔值。他们的结果也同样可以是任意类型。
+
+### &&（与）
+
+两个 & 符号表示 `&&` 与操作：
+
+```js
+result = a && b;
+```
+
+传统的编程中，当两个操作数都是真值，与操作返回 `true`，否则返回 `false`：
+
 # JavaScript BOM 操作
 
 一整套操作浏览器相关内容的属性和方法：
