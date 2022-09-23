@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.number 类型代表整数和浮点数
+        let n1 = 123;
+        document.write(typeof(n1), `<br>`); // number
+        let n2 = 12.345;
+        document.write(typeof(n2), `<br>`); // number
+
+        // 2.number 中的特殊值
+        // Infinity 代表数学概念中的 无穷大 ∞。是一个比任何数字都大的特殊值。
+        let superNum = Infinity;    // 无穷大
+        document.write(superNum, `<br>`); // Infinity
+        document.write(-superNum, `<br>`); // -Infinity
+        document.write(superNum == 1 / 0, `<br>`);  // true
+        // NaN 代表一个计算错误。它是一个不正确的或者一个未定义的数学操作所得到的结果，比如：
+        let errNum = "not a number" / 2;
+        document.write(errNum, `<br>`); // NaN
+
+        // 3.数值的表示方法
+        let n3 = 2e5;
+        document.write(n3, `<br>`); // 200000
+        n3 = 2E5;
+        document.write(n3, `<br>`); // 200000
+        let n5 = 0x100;  // 十六进制
+        document.write(n5, `<br>`); // 256
+        n5 = 0o100;  // 八进制
+        document.write(n5, `<br>`); // 64
+        n5 = 0b100;  // 二进制
+        document.write(n5, `<br>`); // 4
+    </script>
+</body>
+
+</html>

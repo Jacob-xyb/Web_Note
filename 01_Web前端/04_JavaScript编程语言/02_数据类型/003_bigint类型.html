@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 尾部的 "n" 表示这是一个 BigInt 类型
+        const bigInt = 1234567890123456789012345678901234567890n;
+        document.write(typeof(bigInt));  // bigint
+        alert(bigInt);
+        // 尾部不写 "n" 就会转换为 浮点数
+        const Float = 1234567890123456789012345678901234567890;
+        alert(Float);
+    </script>
+</body>
+
+</html>
