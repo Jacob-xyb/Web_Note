@@ -10,15 +10,13 @@
 
 <body>
     <script>
-        // for 循环
-        //  语法：for (begin; condition; step) {
-        // ……循环体……
-        // }
-
-        for (let i = 0; i < 3; i++) { // 结果为 0、1、2
-            alert(i);
+        outer:
+        for (let index = 0; index < 10; index++) {
+            if (index==3) {
+                break outer;
+            }
+            document.write(`${index}<br>`);
         }
-
     </script>
 </body>
 
