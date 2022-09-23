@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function isLeapYear(year) {
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        let year = +prompt('请输入年份', '');
+        let month = +prompt('请输入月份', '');
+        let day = +prompt('请输入日期', '');
+
+        let totalDay = 0;
+        switch (month - 1) {
+            case 11:
+                totalDay += 30;
+            case 10:
+                totalDay += 31;
+            case 9:
+                totalDay += 30;
+            case 8:
+                totalDay += 31;
+            case 7:
+                totalDay += 31;
+            case 6:
+                totalDay += 30;
+            case 5:
+                totalDay += 31;
+            case 4:
+                totalDay += 30;
+            case 3:
+                totalDay += 31;
+            case 2:
+                if (isLeapYear(year)) {
+                    totalDay += 29;
+                }
+                else {
+                    totalDay += 28;
+                }
+            case 1:
+                totalDay += 31;
+            default:
+                totalDay += day;
+                break;
+        }
+
+        alert(`这是今年第 ${totalDay} 天。`);
+
+    </script>
+</body>
+
+</html>
