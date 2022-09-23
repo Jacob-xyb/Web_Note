@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let value1 = 123.38;
+        document.write(parseInt(value1));  // 123
+        document.write(`<br>`);
+        value1 = 1e2;
+        document.write(parseInt(value1));  // 100
+        document.write(`<br>`);
+        value1 = '123';
+        document.write(parseInt(value1));  // 123
+        document.write(`<br>`);
+        value1 = '  123  ';
+        document.write(parseInt(value1));  // 123
+        document.write(`<br>`);
+        value1 = '123+1';
+        document.write(parseInt(value1));  // 123
+        document.write(`<br>`);
+        value1 = '123.1';
+        document.write(parseInt(value1));  // 123
+        document.write(`<br>`);
+        value1 = 'x123.1';
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = true;
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = false;
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = 'undefined';
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = undefined;
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = null;
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+        value1 = NaN;
+        document.write(parseInt(value1));  // NaN
+        document.write(`<br>`);
+    </script>
+</body>
+
+</html>

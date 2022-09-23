@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let value1 = '123';
+        document.write(Number(value1));  // 123
+        document.write(`<br>`);
+        value1 = '  123  ';
+        document.write(Number(value1));  // 123
+        document.write(`<br>`);
+        value1 = '123+1';
+        document.write(Number(value1));  // NaN
+        document.write(`<br>`);
+        value1 = true;
+        document.write(Number(value1));  // 1
+        document.write(`<br>`);
+        value1 = false;
+        document.write(Number(value1));  // 0
+        document.write(`<br>`);
+        value1 = 'undefined';
+        document.write(Number(value1));  // NaN
+        document.write(`<br>`);
+        value1 = undefined;
+        document.write(Number(value1));  // NaN
+        document.write(`<br>`);
+        value1 = null;
+        document.write(Number(value1));  // 0
+        document.write(`<br>`);
+        value1 = NaN;
+        document.write(Number(value1));  // NaN
+        document.write(`<br>`);
+    </script>
+</body>
+
+</html>

@@ -361,7 +361,7 @@ alert( isGreater ); // true（比较的结果是 "yes"）
 
 ```js
 let age = null;
-document.write(typeof(age), `<br>`);    // object
+document.write(typeof(age), `<br>`);    // object // 这是 JavaScript 语言的一个错误
 document.write(age, `<br>`);    // null
 ```
 
@@ -433,8 +433,158 @@ typeof alert // "function"  (3)
 最后三行可能需要额外的说明：
 
 1. `Math` 是一个提供数学运算的内建 `object`。我们会在 [数字类型](https://www.bookstack.cn/read/zh.javascript.info/d4cff18c0c66067a.md) 一节中学习它。此处仅作为一个 `object` 的示例。
-2. `typeof null` 的结果是 `"object"`。这其实是不对的。官方也承认了这是 `typeof` 运算符的问题，现在只是为了兼容性而保留了下来。当然，`null` 不是一个 `object`。`null` 有自己的类型，它是一个特殊值。再次强调，这是 JavaScript 语言的一个错误。
+2. `typeof null` 的结果是 `"object"`。这其实是不对的。官方也承认了这是 `typeof` 运算符的问题，现在只是为了兼容性而保留了下来。当然，`null` 不是一个 `object`。`null` 有自己的类型，它是一个特殊值。**再次强调，这是 JavaScript 语言的一个错误。**
 3. `typeof alert` 的结果是 `"function"`，因为 `alert` 在 JavaScript 语言中是一个函数。我们会在下一章学习函数，那时我们会了解到，在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 `object` 类型。但是 `typeof` 会对函数区分对待。这不是很正确的做法，但在实际编程中非常方便。
+
+## 类型转换
+
+大多数情况下，运算符和函数会自动将赋予他们的值转换为正确的类型。
+
+比如，`alert` 会自动将任何值都转换为字符串以进行显示。算术运算符会将值转换为数字。
+
+在某些情况下，我们需要将值显式地转换为我们期望的类型。
+
+### 转为 字符串
+
+#### String(value)
+
+`String(value)` 显示转换
+
+```js
+let value1 = true;
+document.write(String(value1));
+document.write(`<br>`);
+value1 = null;
+document.write(String(value1));
+document.write(`<br>`);
+```
+
+#### value.toString()
+
+虽然语法类似，但是原理不同
+
+```js
+let value1 = true;
+document.write(String(value1));
+document.write(`<br>`);
+document.write(value1.toString());
+document.write(`<br>`);
+value1 = null;
+document.write(String(value1));
+document.write(`<br>`);
+document.write(value1.toString());  // 报错
+document.write(`<br>`);
+```
+
+### 转为 数字
+
+#### Number()
+
+我们也可以使用 `Number(value)` 显式地将这个 `value` 转换为 number 类型。
+
+**number 类型转换规则：**
+
+| 值              | 变成……                                                       |
+| :-------------- | :----------------------------------------------------------- |
+| `undefined`     | `NaN`                                                        |
+| `null`          | `0`                                                          |
+| `true 和 false` | `1` and `0`                                                  |
+| `string`        | 去掉首尾空格后的纯数字字符串中含有的数字。如果剩余字符串为空，则转换结果为 `0`。否则，将会从剩余字符串中“读取”数字。当类型转换出现 error 时返回 `NaN`。 |
+
+```js
+let value1 = '123';
+document.write(Number(value1));  // 123
+document.write(`<br>`);
+value1 = '  123  ';
+document.write(Number(value1));  // 123
+document.write(`<br>`);
+value1 = '123+1';
+document.write(Number(value1));  // NaN
+document.write(`<br>`);
+value1 = true;
+document.write(Number(value1));  // 1
+document.write(`<br>`);
+value1 = false;
+document.write(Number(value1));  // 0
+document.write(`<br>`);
+value1 = 'undefined';
+document.write(Number(value1));  // NaN
+document.write(`<br>`);
+value1 = undefined;
+document.write(Number(value1));  // NaN
+document.write(`<br>`);
+value1 = null;
+document.write(Number(value1));  // 0
+document.write(`<br>`);
+value1 = NaN;
+document.write(Number(value1));  // NaN
+document.write(`<br>`);
+```
+
+#### parseInt()
+
+`parseInt()` 原理是逐字符转换，只有第一位不是数字的时候返回NaN，否则保留前面的数字位置内容。
+
+```js
+let value1 = 123.38;
+document.write(parseInt(value1));  // 123
+document.write(`<br>`);
+value1 = '123';
+document.write(parseInt(value1));  // 123
+document.write(`<br>`);
+value1 = '  123  ';
+document.write(parseInt(value1));  // 123
+document.write(`<br>`);
+value1 = '123+1';
+document.write(parseInt(value1));  // 123
+document.write(`<br>`);
+value1 = '123.1';
+document.write(parseInt(value1));  // 123
+document.write(`<br>`);
+value1 = 'x123.1';
+document.write(parseInt(value1));  // NaN
+document.write(`<br>`);
+```
+
+对于科学计数法，猜测是先展开再判断
+
+```js
+let value1 = 1e2;
+document.write(parseInt(value1));  // 100
+document.write(`<br>`);
+```
+
+#### parseFloat()
+
+parseFloat() 规则和 parseInt() 类似，只是会解析小数点
+
+#### 自动进行 Number 转换
+
+在算术函数和表达式中，会自动进行 number 类型转换。
+
+比如，当把除法 `/` 用于非 number 类型：
+
+```js
+alert( "6" / "2" ); // 3, string 类型的值被自动转换成 number 类型后进行计算
+```
+
+### 转为 布尔
+
+布尔（boolean）类型转换是最简单的一个。
+
+它发生在逻辑运算中（稍后我们将进行条件判断和其他类似的东西），但是也可以通过调用 `Boolean(value)`显式地进行转换。
+
+转换规则如下：
+
+- 直观上为“空”的值（如 `0`、空字符串、`null`、`undefined` 和 `NaN`）将变为 `false`。
+- 其他值变成 `true`。
+
+| 值                                    | 变成……  |
+| :------------------------------------ | :------ |
+| `0`, `null`, `undefined`, `NaN`, `""` | `false` |
+| 其他值                                | `true`  |
+
+## 运算符
 
 
 
