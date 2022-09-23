@@ -1247,6 +1247,98 @@ result = a && b;
 
 传统的编程中，当两个操作数都是真值，与操作返回 `true`，否则返回 `false`：
 
+```js
+alert( true && true );   // true
+alert( false && true );  // false
+alert( true && false );  // false
+alert( false && false ); // false
+```
+
+使用 if 语句：
+
+```js
+let hour = 12;
+let minute = 30;
+if (hour == 12 && minute == 30) {
+  alert( 'Time is 12:30' );
+}
+```
+
+#### 与运算的原理
+
+```js
+// 与运算会返回第一个假值，否则返回最后一个真值。
+let result;
+result = 1 && 0 && 2;
+document.write(result);     // 0
+document.write(`<br>`);
+result = 1 && 10 && 2;
+document.write(result);     // 2
+document.write(`<br>`);        
+```
+
+与运算 `&&` 做了如下的事：
+
+- 从左到右依次计算操作数。
+- 将处理每一个操作数时，都将其转化为布尔值。如果结果是 `false`，就停止计算，并返回这个操作数的初始值。
+- 如果所有的操作数都被计算过（也就是，转换结果都是 `true`），则返回最后一个操作数。
+
+---
+
+与运算 `&&` 在或运算符 `||` 之前执行
+
+与运算 `&&` 的优先级比或运算 `||` 要高。
+
+所以代码 `a && b || c && d` 完全跟 `&&` 表达式加了括号一样：`(a && b) || (c && d)`。
+
+就像或运算一样，与运算 `&&` 有时候能够代替 `if`。
+
+```js
+let x = 1;
+(x > 0) && alert( 'Greater than zero!' );
+```
+
+`&&` 右边的代码只有运算抵达到那里才能被执行。也就是，当且仅当 `(x > 0)` 返回了真值。
+
+**带 `&&` 的代码变体看上去更短。但是 `if` 的含义更明显，可读性也更高。**
+
+**所以建议是根据目的选择代码的结构。需要条件判断就用 `if`，需要与运算就用 `&&`。**
+
+### ||（或）
+
+两个竖线符号表示了“或”运算：
+
+```js
+result = a || b;
+```
+
+在传统的编程中，逻辑或仅能够操作布尔值。如果参与运算的任意一个参数为 `true`，返回的结果就为 `true`，否则返回 `false`。
+
+在 JavaScript 中，逻辑运算符更加灵活强大。但是首先我们看一下操作数是布尔值的时候发生了什么。
+
+大多数情况，逻辑或 `||` 会被用在 `if` 语句中，用来测试是否有 **任何** 给定的条件为 `true`。
+
+```js
+let hour = 9;
+if (hour < 10 || hour > 18) {
+  alert( 'The office is closed.' );
+}
+```
+
+可以传入更多条件：
+
+```js
+let hour = 12;
+let isWeekend = true;
+if (hour < 10 || hour > 18 || isWeekend) {
+  alert( 'The office is closed.' ); // 是周末
+}
+```
+
+### !（非）
+
+
+
 # JavaScript BOM 操作
 
 一整套操作浏览器相关内容的属性和方法：

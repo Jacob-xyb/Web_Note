@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 与运算会返回第一个假值，否则返回最后一个真值。
+        let result;
+        result = 1 && 0 && 2;
+        document.write(result);     // 0
+        document.write(`<br>`);
+        result = 1 && 10 && 2;
+        document.write(result);     // 2
+        document.write(`<br>`);         
+    </script>
+</body>
+
+</html>
