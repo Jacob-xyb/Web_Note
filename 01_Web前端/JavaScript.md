@@ -220,7 +220,7 @@ const pageLoadTime = /* 网页加载所需的时间 */;
 
 换句话说，大写命名的常量仅用作“硬编码（hard-coded）”值的别名。
 
-## 数据类型
+## 数据类型基础
 
 ### 动态类型语言
 
@@ -1793,7 +1793,7 @@ switch (a) {
 
 **强调一下，这里的相等是严格相等。被比较的值必须是相同的类型才能进行匹配。**
 
-## 函数
+## 函数基础
 
 ### 函数声明
 
@@ -2318,6 +2318,609 @@ function hello(name) {
 ### 书写风格
 
 ![](https://static.sitestack.cn/projects/zh.javascript.info/1c70bb4fa97449266b488163bc47cad9.svg)
+
+## 对象
+
+我们可以通过使用带有可选 **属性列表** 的花括号 `{…}` 来创建对象。一个属性就是一个键值对（“key: value”），其中键（`key`）是一个字符串（也叫做属性名），值（`value`）可以是任何值。
+
+我们可以用下面两种语法中的任一种来创建一个空的对象（“空柜子”）：
+
+```js
+let user = new Object(); // “构造函数” 的语法
+let user = {};  // “字面量” 的语法
+```
+
+### 文本和属性
+
+我们可以在创建对象的时候，立即将一些属性以键值对的形式放到 `{...}` 中。
+
+```js
+let user = {     // 一个对象
+  name: "John",  // 键 "name"，值 "John"
+  age: 30        // 键 "age"，值 30
+};
+```
+
+属性有键（或者也可以叫做“名字”或“标识符”），位于冒号 `":"` 的前面，值在冒号的右边。
+
+在 `user` 对象中，有两个属性：
+
+1. 第一个的键是 `"name"`，值是 `"John"`。
+2. 第二个的键是 `"age"`，值是 `30`。
+
+生成的 `user` 对象可以被想象为一个放置着两个标记有 “name” 和 “age” 的文件的柜子。
+
+我们可以随时添加、删除和读取文件。
+
+可以使用点符号访问属性值：
+
+```js
+// 读取文件的属性：
+alert( user.name ); // John
+alert( user.age ); // 30
+```
+
+属性的值可以是任意类型。
+
+我们可以用 `delete` 操作符移除属性：
+
+```js
+delete user.age;
+```
+
+我们也可以用多字词语来作为属性名，但必须给它们加上引号：
+
+```js
+let user = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // 多词属性名必须加引号
+};
+```
+
+列表中的最后一个属性应以逗号结尾：
+
+```js
+let user = {
+  name: "John",
+  age: 30,
+}
+```
+
+这叫做尾随（trailing）或悬挂（hanging）逗号。这样便于我们添加、删除和移动属性，因为所有的行都是相似的。
+
+### 方括号
+
+对于多词属性，点操作就不能用了：
+
+```js
+// 这将提示有语法错误
+user.likes birds = true
+```
+
+JavaScript 理解不了。它认为我们在处理 `user.likes`，然后在遇到意外的 `birds` 时给出了语法错误。
+
+点符号要求 `key` 是有效的变量标识符。这意味着：不包含空格，不以数字开头，也不包含特殊字符（允许使用 `$` 和 `_`）。
+
+有另一种方法，就是使用方括号，可用于任何字符串：
+
+```js
+let user = {};
+// 设置
+user["likes birds"] = true;
+// 读取
+alert(user["likes birds"]); // true
+// 删除
+delete user["likes birds"];
+```
+
+### 计算属性
+
+我们可以在对象字面量中使用方括号。这叫做 **计算属性**。
+
+例如：
+
+```js
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {
+  [fruit]: 5, // 属性名是从 fruit 变量中得到的
+};
+alert( bag.apple ); // 5 如果 fruit="apple"
+```
+
+计算属性的含义很简单：`[fruit]` 含义是属性名应该从 `fruit` 变量中获取。
+
+所以，如果一个用户输入 `"apple"`，`bag` 将变为 `{apple: 5}`。
+
+本质上，这跟下面的语法效果相同：
+
+```js
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {};
+// 从 fruit 变量中获取值
+bag[fruit] = 5;
+```
+
+……但是看起来更好。
+
+我们可以在方括号中使用更复杂的表达式：
+
+```js
+let fruit = 'apple';
+let bag = {
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+};
+```
+
+方括号比点符号更强大。它允许任何属性名和变量，但写起来也更加麻烦。
+
+所以大部分时间里，当属性名是已知且简单的时候，就是用点符号。如果我们需要一些更复杂的内容，那么就用方括号。
+
+### 属性值简写
+
+在实际开发中，我们通常用已存在的变量当做属性名。
+
+例如：
+
+```js
+function makeUser(name, age) {
+  return {
+    name: name,
+    age: age,
+    // ……其他的属性
+  };
+}
+let user = makeUser("John", 30);
+alert(user.name); // John
+```
+
+在上面的例子中，属性名跟变量名一样。这种通过变量生成属性的应用场景很常见，在这有一种特殊的 **属性值缩写** 方法，使属性名变得更短。
+
+可以用 `name` 来代替 `name:name` 像下面那样：
+
+```js
+function makeUser(name, age) {
+  return {
+    name, // 与 name: name 相同
+    age,  // 与 age: age 相同
+    // ...
+  };
+}
+```
+
+我们可以把属性名简写方式和正常方式混用：
+
+```js
+let user = {
+  name,  // 与 name:name 相同
+  age: 30
+};
+```
+
+### 属性名称限制
+
+属性名（key）必须是字符串或 Symbol（标识符的一种特殊类型，稍后将介绍）。
+
+其它类型将被自动地转化为字符串。
+
+例如当我们使用数字 `0` 作为属性 `key` 时，它将被转化为字符串 `"0"`：
+
+```js
+let obj = {
+  0: "test" // 和 "0": "test" 相同
+};
+// 两个 alert 访问的是同一个属性（数字 `0` 被转化为了字符串 "0"）
+alert( obj["0"] ); // test
+alert( obj[0] ); // test（同一个属性）
+```
+
+**保留字段可以被用作属性名。**
+
+正如我们所知道的，像 “for”、“let” 和 “return” 等保留字段不能用作变量名。
+
+但是对于对象的属性，没有这些限制。任何名字都可以：
+
+```js
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+}
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+我们可以将任意字符串作为属性键（key），只有一个特殊的：`__proto__` 因为历史原因要特别对待。
+
+比如，我们不能把它设置为非对象的值：
+
+```js
+let obj = {};
+obj.__proto__ = 5; // 分配一个数字
+alert(obj.__proto__); // [object Object] — 值为对象，与预期结果不同
+```
+
+### 属性存在性测试，“in” 操作符
+
+对象的一个显著的特点就是其所有的属性都是可访问的。如果某个属性不存在也不会报错！访问一个不存在的属性只是会返回 `undefined`。这提供了一种普遍的用于检查属性是否存在的方法 —— 获取值来与 undefined 比较：
+
+```js
+let user = {};
+alert( user.noSuchProperty === undefined ); // true 意思是没有这个属性
+```
+
+这里同样也有一个特别的操作符 `"in"` 来检查属性是否存在。
+
+语法是：
+
+```js
+"key" in object
+```
+
+请注意，`in` 的左边必须是 **属性名**。通常是一个带引号的字符串。
+
+如果我们省略引号，则意味着将测试包含实际名称的变量。例如：
+
+```js
+let user = { age: 30 };
+let age = "key";
+document.write(age in user); // false，从 age 获取属性名并检查这个属性
+document.write(`<br>`);
+document.write('age' in user); // true
+document.write(`<br>`);
+```
+
+对存储值为 `undefined` 的属性使用 “in”
+
+通常，检查属性是否存在时，使用严格比较 `"=== undefined"` 就够了。但在一种特殊情况下，这种方式会失败，而 `"in"` 却可以正常工作。
+
+那就是属性存在，但是存储值为 `undefined`：
+
+```js
+let obj = {
+  test: undefined
+};
+alert( obj.test ); // 显示 undefined，所以属性不存在？
+alert( "test" in obj ); // true，属性存在！
+```
+
+在上面的代码中，属性 `obj.test` 事实上是存在的，所以 `in` 操作符检查通过。
+
+这种情况很少发生，因为通常情况下是不会给对象赋值 undefined 的，我们经常会用 `null` 来表示未知的或者空的值。
+
+### “for…in” 循环
+
+为了遍历一个对象的所有键（key），可以使用一个特殊形式的循环：`for..in`。这跟我们在前面学到的 `for(;;)` 循环是完全不一样的东西。
+
+语法：
+
+```js
+for (key in object) {
+  // 对此对象属性中的每个键执行的代码
+}
+```
+
+例如，让我们列出 `user` 所有的属性：
+
+```js
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // 属性键的值
+  alert( user[key] ); // John, 30, true
+}
+```
+
+### 复制和合并，Object.assign
+
+复制一个对象变量会创建指向此对象的另一个引用。
+
+那如果我们需要复制一个对象呢？创建一份独立的拷贝，一份克隆？
+
+这也是可行的，但是有一点麻烦，因为 JavaScript 中没有支持这种操作的内置函数。实际上，我们很少这么做。在大多数时候，复制引用都很好用。
+
+但如果我们真想这么做，就需要创建一个新的对象，然后遍历现有对象的属性，在原始级别的状态下复制给新的对象。
+
+```js
+let user = {
+  name: "John",
+  age: 30
+};
+let clone = {}; // 新的空对象
+// 复制所有的属性值
+for (let key in user) {
+  clone[key] = user[key];
+}
+// 现在的复制是独立的了
+clone.name = "Pete"; // 改变它的值
+alert( user.name ); // 原对象属性值不变
+```
+
+也可以用 [Object.assign](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 来实现。
+
+```js
+Object.assign(dest,[ src1, src2, src3...])
+```
+
+- 参数 `dest` 和 `src1, ..., srcN`（你需要多少就可以设置多少，没有限制）是对象。
+- 这个方法将 `src1, ..., srcN` 这些所有的对象复制到 `dest`。换句话说，从第二个参数开始，所有对象的属性都复制给了第一个参数对象，然后返回 `dest`。
+
+例如，我们可以用这个方法来把几个对象合并成一个：
+
+```js
+let user = { name: "John" };
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+// 把 permissions1 和 permissions2 的所有属性都拷贝给 user
+Object.assign(user, permissions1, permissions2);
+// 现在 user = { name: "John", canView: true, canEdit: true }
+```
+
+我们可以用 `Object.assign` 来替代循环赋值进行简单的克隆操作：
+
+```js
+let user = {
+  name: "John",
+  age: 30
+};
+let clone = Object.assign({}, user);
+```
+
+它将对象 `user` 的所有的属性复制给了一个空对象并返回。实际上和循环赋值没什么区别，只是更短了。
+
+---
+
+直到现在，我们都是假设 `user` 的所有属性都是原始值。但是属性也可以是其他对象的引用。这种我们应该怎么操作呢？
+
+```js
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+alert( user.sizes.height ); // 182
+```
+
+现在，仅仅进行 `clone.sizes = user.sizes` 复制是不够的，因为 `user.sizes` 是一个对象，这个操作只能复制这个对象的引用。所以 `clone` 和 `user` 共享了一个对象。
+
+```js
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+let clone = Object.assign({}, user);
+alert( user.sizes === clone.sizes ); // true，同一个对象
+// user 和 clone 共享 sizes 对象
+user.sizes.width++;       // 在这里改变一个属性的值
+alert(clone.sizes.width); // 51，在这里查看属性的值
+```
+
+为了解决这个问题，我们在复制的时候应该检查 `user[key]` 的每一个值，如果它是一个对象，那么把它也复制一遍，这叫做深拷贝（deep cloning）。
+
+有一个标准的深拷贝算法，用于解决上面这种和一些更复杂的情况，叫做 [结构化克隆算法（Structured cloning algorithm）](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data)。为了不重复造轮子，我们可以使用它的一个 JavaScript 实现的库 [lodash](https://lodash.com/)，方法名叫做 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
+
+### Symbol
+
+“Symbol” 值表示唯一的标识符。
+
+可以使用 `Symbol()` 来创建这种类型的值：
+
+```js
+// id 是 symbol 的一个实例化对象
+let id = Symbol();
+```
+
+创建时，我们可以给 Symbol 一个描述（也称为 Symbol 名），这在代码调试时非常有用：
+
+```js
+// id 是描述为 "id" 的 Symbol
+let id = Symbol("id");
+```
+
+Symbol 保证是唯一的。即使我们创建了许多具有相同描述的 Symbol，它们的值也是不同。描述只是一个标签，不影响任何东西。
+
+例如，这里有两个描述相同的 Symbol —— 它们不相等：
+
+```js
+let id1 = Symbol("id");
+let id2 = Symbol("id");
+alert(id1 == id2); // false
+```
+
+JavaScript 中的大多数值都支持字符串的隐式转换。例如，我们可以 `alert` 任何值，都可以生效。Symbol 比较特殊，它不会被自动转换。
+
+例如，这个 `alert` 将会提示出错：
+
+```js
+let id = Symbol("id");
+alert(id); // 类型错误：无法将 Symbol 值转换为字符串。
+```
+
+这是一种防止混乱的“语言保护”，因为字符串和 Symbol 有本质上的不同，不应该意外地将它们转换成另一个。
+
+如果我们真的想显示一个 Symbol，我们需要在它上面调用 `.toString()`，如下所示：
+
+```js
+let id = Symbol("id");
+alert(id.toString()); // Symbol(id)，现在它有效了
+```
+
+或者获取 `symbol.description` 属性，只显示描述（description）：
+
+```js
+let id = Symbol("id");
+alert(id.description); // id
+```
+
+#### “隐藏”属性
+
+Symbol 允许我们创建对象的“隐藏”属性，代码的任何其他部分都不能意外访问或重写这些属性。
+
+例如，如果我们使用的是属于第三方代码的 `user` 对象，我们想要给它们添加一些标识符。
+
+我们可以给它们使用 Symbol 键：
+
+```js
+let user = { // 属于另一个代码
+  name: "John"
+};
+let id = Symbol("id");
+user[id] = 1;
+alert( user[id] ); // 我们可以使用 Symbol 作为键来访问数据
+```
+
+在字符串 `"id"` 上使用 `Symbol("id")` 有什么好处？
+
+因为 `user` 属于另一个代码，另一个代码也使用它执行一些操作，所以我们不应该在它上面加任何字段，这样很不安全。但是 Symbol 不会被意外访问到，所以第三方代码看不到它，所以使用 Symbol 也许不会有什么问题。
+
+另外，假设另一个脚本希望在 `user` 中有自己的标识符，以实现自己的目的。这可能是另一个 JavaScript 库，因此脚本之间完全不了解彼此。
+
+然后该脚本可以创建自己的 `Symbol("id")`，像这样：
+
+```js
+// ...
+let id = Symbol("id");
+user[id] = "Their id value";
+```
+
+我们的标识符和他们的标识符之间不会有冲突，因为 Symbol 总是不同的，即使它们有相同的名字。
+
+……但如果我们处于同样的目的，使用字符串 `"id"` 而不是用 symbol，那么 **就会** 出现冲突：
+
+```js
+let user = { name: "John" };
+// 我们的脚本使用了 "id" 属性。
+user.id = "Our id value";
+// ……另一个脚本也想将 "id" 用于它的目的……
+user.id = "Their id value"
+// 砰！无意中被另一个脚本重写了 id！
+```
+
+### 对象方法，”this”
+
+## 数据类型进阶
+
+原始类型和对象之间的关键区别。
+
+一个原始值：
+
+- 是原始类型中的一种值。
+- 在 JavaScript 中有 7 种原始类型：`string`，`number`，`bigint`，`boolean`，`symbol`，`null` 和 `undefined`。
+
+一个对象：
+
+- 能够存储多个值作为属性。
+- 可以使用大括号 `{}` 创建对象，例如：`{name: "John", age: 30}`。JavaScript 中还有其他种类的对象，例如函数就是对象。
+
+### 数字类型
+
+在现代 JavaScript 中，数字（number）有两种类型：
+
+1. JavaScript 中的常规数字以 64 位的格式 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) 存储，也被称为“双精度浮点数”。这是我们大多数时候所使用的数字，我们将在本章中学习它们。
+2. BigInt 数字，用于表示任意长度的整数。有时会需要它们，因为常规数字不能超过 `253` 或小于 `-253`。由于仅在少数特殊领域才会用到 BigInt，因此我们在特殊的章节 [BigInt](https://www.bookstack.cn/read/zh.javascript.info/3ca2779ed421ba3a.md) 中对其进行了介绍。
+
+#### 十六进制，二进制和八进制数字
+
+**不分大小写**
+
+```js
+document.write(0xff + ' ' + 0xFF + ' ' + 0xFf); // 255
+document.write(`<br>`);
+document.write(0b111 + ' ' + 0o111);    // 7 73
+```
+
+#### toString(base)
+
+方法 `num.toString(base)` 返回在给定 `base` 进制数字系统中 `num` 的字符串表示形式。
+
+```js
+let num = 255;
+document.write(num.toString(16));  // ff
+document.write(`<br>`);
+document.write(num.toString(2));   // 11111111
+document.write(`<br>`);
+```
+
+`base` 的范围可以从 `2` 到 `36`。默认情况下是 `10`。
+
+常见的用例如下：
+
+- **base=16** 用于十六进制颜色，字符编码等，数字可以是 `0..9` 或 `A..F`。
+
+- **base=2** 主要用于调试按位操作，数字可以是 `0` 或 `1`。
+
+- **base=36** 是最大进制，数字可以是 `0..9` 或 `A..Z`。所有拉丁字母都被用于了表示数字。对于 `36` 进制来说，一个有趣且有用的例子是，当我们需要将一个较长的数字标识符转换成较短的时候，例如做一个短的 URL。可以简单地使用基数为 `36` 的数字系统表示：
+
+  ```js
+  alert( 123456..toString(36) ); // 2n9c
+  ```
+
+使用两个点来调用一个方法
+
+请注意 `123456..toString(36)` 中的两个点不是打错了。如果我们想直接在一个数字上调用一个方法，比如上面例子中的 `toString`，那么我们需要在它后面放置两个点 `..`。
+
+如果我们放置一个点：`123456.toString(36)`，那么就会出现一个 error，因为 JavaScript 语法隐含了第一个点之后的部分为小数部分。如果我们再放一个点，那么 JavaScript 就知道小数部分为空，现在使用该方法。
+
+也可以写成 `(123456).toString(36)`。
+
+#### 舍入
+
+
+
+## 函数进阶
+
+## 对象进阶
+
+## 原型，继承
+
+## 类
+
+## 错误处理
+
+## Promise，async/await
+
+## Generator,高级 iteration
+
+## 模块
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

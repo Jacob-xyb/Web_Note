@@ -10,15 +10,13 @@
 
 <body>
     <script>
-        function calcMulti(num) {
-            if (num === 1) {
-                return 1;
-            }
-            return num * calcMulti(num-1);
-        }
-
-        let num = +prompt('请输入一个数字：');
-        alert( calcMulti(num) );
+        let user = {};
+        // 设置
+        user["likes birds"] = true;
+        // 读取
+        alert(user["likes birds"]); // true
+        // 删除
+        delete user["likes birds"];
     </script>
 </body>
 

@@ -10,15 +10,10 @@
 
 <body>
     <script>
-        function calcMulti(num) {
-            if (num === 1) {
-                return 1;
-            }
-            return num * calcMulti(num-1);
-        }
-
-        let num = +prompt('请输入一个数字：');
-        alert( calcMulti(num) );
+        let id = Symbol('id');
+        document.write(id.description);
+        document.write(`<br>`);
+        
     </script>
 </body>
 
