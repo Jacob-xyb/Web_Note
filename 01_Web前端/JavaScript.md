@@ -2984,6 +2984,16 @@ document.write(`<br>`);
 
 设置浏览器滚动条的位置
 
+滚动到：`window.scrollTo()`
+
+参数方式 1： `window.scrollTo( left, top )`
+
+- 此方式只能瞬间定位，不能平滑滚动
+
+参数方式 2：`window.scrollTo( {left:xx, top:yy, behavior: 'smooth' })`
+
+- behavior: 'smooth' 代表平滑滚动
+
 ## 定时器
 
 ### 间隔定时器

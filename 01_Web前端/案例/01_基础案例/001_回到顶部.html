@@ -28,6 +28,8 @@
             position: fixed;
             top: -80px;
             left: 0px;
+
+            transition: top .5s linear;
         }
 
         .goTop {
@@ -71,21 +73,31 @@
     <div class="goTop">回到顶部</div>
     <script>
         // 1.获取元素
-        let header = document.querySelector('.headr');
+        let header = document.querySelector('.header');
         let goTop = document.querySelector('.goTop');
 
         // 2.绑定点击事件
         window.onscroll = function () {
             // 2-1.获取浏览器卷去的高度
-            let height = document.documentElement.scrollTop || document.body.scrollTop
+            let height = document.documentElement.scrollTop || document.body.scrollTop;
             // 2-2.判断卷去的高度
             if (height >= 300) {
                 // 显示
-                
+                header.style.top = '0px';
+                goTop.style.display = 'block';
             }
             else {
-
+                header.style.top = '-80px';
+                goTop.style.display = 'none';
             }
+        }
+
+        // 3. 绑定点击事件
+        goTop.onclick = function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            })
         }
     </script>
 </body>
