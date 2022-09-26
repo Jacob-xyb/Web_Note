@@ -2874,7 +2874,86 @@ document.write(`<br>`);
 
 #### 舍入
 
+舍入（rounding）是使用数字时最常用的操作之一。
 
+这里有几个对数字进行舍入的内建函数：
+
+`Math.floor()`: 向下舍入：`3.1` 变成 `3`，`-1.1` 变成 `-2`。
+
+`Math.ceil()`: 向上舍入：`3.1` 变成 `4`，`-1.1` 变成 `-1`。
+
+`Math.round()`: 向最近的整数舍入：`3.1` 变成 `3`，`3.6` 变成 `4`，`-1.1` 变成 `-1`。（3.5 -> 4）
+
+`Math.trunc()`:移除小数点后的所有内容：`3.1` 变成 `3`，`-1.1` 变成 `-1`。（IE 浏览器不支持这个方法）
+
+这个是总结它们之间差异的表格：
+
+|        | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
+| :----- | :----------- | :---------- | :----------- | :----------- |
+| `3.1`  | `3`          | `4`         | `3`          | `3`          |
+| `3.6`  | `3`          | `4`         | `4`          | `3`          |
+| `-1.1` | `-2`         | `-1`        | `-1`         | `-1`         |
+| `-1.6` | `-2`         | `-1`        | `-2`         | `-1`         |
+
+```js
+// 数字的表示方法
+document.write(0xff + ' ' + 0xFF + ' ' + 0xFf); // 255
+document.write(`<br>`);
+document.write(0b111 + ' ' + 0o111);    // 7 73
+document.write(`<br>`);
+
+// toString(base)
+let num = 255;
+document.write(num.toString(16));  // ff
+document.write(`<br>`);
+document.write(num.toString(2));   // 11111111
+document.write(`<br>`);
+
+// 舍入
+document.write(Math.floor(3.1), " ", Math.floor(-1.1));  // 3 -2
+document.write(`<br>`);
+document.write(Math.ceil(3.1), " ", Math.ceil(-1.1));  // 4 -1
+document.write(`<br>`);
+document.write(Math.round(3.1), " ", Math.round(-1.1), " ", Math.round(3.5));  // 3 -1 4
+document.write(`<br>`);
+```
+
+---
+
+这些函数涵盖了处理数字小数部分的所有可能方法。但是，如果我们想将数字舍入到小数点后 `n` 位，该怎么办？
+
+有两种方式可以实现这个需求：
+
+1. 乘除法
+
+   例如，要将数字舍入到小数点后两位，我们可以将数字乘以 `100`，调用舍入函数，然后再将其除回。
+
+   ```js
+   let num = 1.23456;
+   alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+   ```
+
+2. 函数 [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) 将数字舍入到小数点后 `n` 位，并以字符串形式返回结果。
+
+   ```js
+   let num = 12.34;
+   alert( num.toFixed(1) ); // "12.3"
+   ```
+
+   这会向上或向下舍入到最接近的值，类似于 `Math.round`：
+
+   ```js
+   let num = 12.34;
+   alert( num.toFixed(5) ); // "12.34000"，在结尾添加了 0，以达到小数点后五位
+   ```
+
+   请注意 `toFixed` 的结果是一个字符串。如果小数部分比所需要的短，则在结尾添加零：
+
+   ```
+   let num = 12.34;alert( num.toFixed(5) ); // "12.34000"，在结尾添加了 0，以达到小数点后五位
+   ```
+
+   我们可以使用一元加号或 `Number()` 调用，将其转换为数字：`+ num.toFixed(5)`。
 
 ## 函数进阶
 

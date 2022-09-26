@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 乘除法 取整 保留小数位数
+        document.write(Math.floor(1.23456 * 100) / 100); // 1.23
+        document.write(`<br>`);
+
+        // toFixed(n) -> string
+        document.write((1.23456).toFixed(2));  // '1.23'
+        document.write(`<br>`);
+        document.write((1.23856).toFixed(2));   // '1.24'
+        document.write(`<br>`);
+        document.write((1.23).toFixed(6));   // '1.23000'
+        document.write(`<br>`);
+        // 然后字符串转数字
+        document.write(+(1.23).toFixed(6));   // '1.23'
+        document.write(`<br>`);
+    </script>
+</body>
+
+</html>
