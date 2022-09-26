@@ -68,7 +68,7 @@ HTML 标签原本被设计为用于定义文档内容。通过使用 <h1>、<p>�
 
 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。
 
-```
+```css
 selector {declaration1; declaration2; ... declarationN }
 ```
 
@@ -78,7 +78,7 @@ selector {declaration1; declaration2; ... declarationN }
 
 属性（property）是您希望设置的样式属性（style attribute）。每个属性有一个值。属性和值被冒号分开。
 
-```html
+```css
 selector {property: value}
 ```
 
@@ -86,7 +86,7 @@ selector {property: value}
 
 在这个例子中，h1 是选择器，color 和 font-size 是属性，red 和 14px 是值。
 
-```html
+```css
 h1 {
 	color:red; 
 	font-size:14px;
@@ -337,6 +337,112 @@ element1 ~ element2 {
 ### :root
 
 ### :nth-child
+
+- 定义
+
+> :nth-child(n) 选择器匹配属于其父元素的第 n 个子元素，不论元素的类型。
+
+**注意：**n 可以是数字、关键词或公式。
+
+- 语法
+
+```
+:nth-child(number)
+{
+    CSS 样式
+}
+```
+
+- 基础n
+
+`:nth-child(n)`：选中某个元素，该元素必须是**某个父元素**下的第n个子元素；
+
+`p:nth-child(n)` ：选中p元素，且该p元素必须是某个父元素下的第n个子元素
+
+**注意：**n是从**1**开始的。
+
+如下代码：
+
+```css
+p:nth-child(1)
+```
+
+只会选中第二个div中第一个子元素p，例如：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+    <style>
+        p:nth-child(1)
+        {
+            color:green;
+        }
+    </style>
+</head>
+<body>
+   <div style="border:1px solid;width: 222px">
+       <span>div1 中span</span>
+       <p>div1 中第一个段落。</p>
+       <p>div1 中的最后一个段落。</p>
+   </div><br>
+   <div style="border:1px solid;width: 222px">
+       <p>div2 中第一个段落。</p>
+       <p>div2 中的最后一个段落。</p>
+   </div>
+</body>
+</html>
+```
+
+- 正方向范围
+
+  ```css
+  li:nth-child(n+6)
+  ```
+
+  选中从第6个开始的子元素
+
+- 负方向范围
+
+  ```css
+  :nth-child(-n+9)
+  ```
+
+  选中从第1个到第9个子元素。使用 :nth-child(-n+9) ，就相当让你选中第9个和其之前的所有子元素
+
+- 前后限制范围
+
+  ```css
+  :nth-child(n+4):nth-child(-n+8)
+  ```
+
+- 奇数、偶数位
+
+  ```css
+  /*奇数*/
+  :nth-child(odd)
+  
+  /*偶数*/
+  :nth-child(even)
+  ```
+  
+- 隔选择子元素
+  
+  ```css
+  :nth-child(3n+1)
+  ```
+  
+  选择1,4,7,10
+  
+- 范围法
+  
+  ```css
+  nth-child(n+2):nth-child(odd):nth-child(-n+9)
+  ```
+  
+  使用 nth-child(n+2):nth-child(odd):nth-child(-n+9) ，将会选中的子元素是从第2位到第9位，并且只包含奇数位。
 
 ### :nth-last-child
 

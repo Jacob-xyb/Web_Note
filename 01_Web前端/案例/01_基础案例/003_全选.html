@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +25,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <span>全选 </span><input type="checkbox" name="" id=""><br>
@@ -32,5 +34,33 @@
         <input type="checkbox" name="" id=""><span> 选项二 </span><br>
         <input type="checkbox" name="" id=""><span> 选项三 </span><br>
     </div>
+    <script>
+        let arr_cbxs = document.querySelectorAll('input');
+        arr_cbxs[0].onclick = function () {
+            let status = arr_cbxs[0].checked;
+            for (let i = 1; i < arr_cbxs.length; i++) {
+                arr_cbxs[i].checked = status;
+            }
+        }
+        for (let i = 1; i < arr_cbxs.length; i++) {
+            arr_cbxs[i].onclick = function () {
+                if (!this.checked) {
+                    arr_cbxs[0].checked = false;
+                }
+                else {
+                    let status = true;
+                    for (let i = 1; i < arr_cbxs.length; i++) {
+                        if (!arr_cbxs[i].checked) {
+                            status = false;
+                            break;
+                        }
+                    }
+                    arr_cbxs[0].checked = status;
+                }
+            }
+
+        }
+    </script>
 </body>
+
 </html>

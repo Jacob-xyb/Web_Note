@@ -2955,6 +2955,119 @@ document.write(`<br>`);
 
    我们可以使用一元加号或 `Number()` 调用，将其转换为数字：`+ num.toFixed(5)`。
 
+#### 不精确的计算
+
+```js
+alert( 0.1 + 0.2 == 0.3 ); // false
+```
+
+解决方法：
+
+```js
+let sum = 0.1 + 0.2;
+alert( +sum.toFixed(2) ); // 0.3
+```
+
+#### isFinite 和 isNaN
+
+还记得这两个特殊的数值吗？
+
+- `Infinity`（和 `-Infinity`）是一个特殊的数值，比任何数值都大（小）。
+- `NaN` 代表一个 error。
+
+它们属于 `number` 类型，但不是“普通”数字，因此，这里有用于检查它们的特殊函数：
+
+- `isNaN(value)` 将其参数转换为数字，然后测试它是否为 `NaN`：
+
+  ```js
+  alert( isNaN(NaN) ); // true
+  alert( isNaN("str") ); // true
+  ```
+
+  但是我们需要这个函数吗？我们不能只使用 `=== NaN` 比较吗？不好意思，这不行。值 “NaN” 是独一无二的，它不等于任何东西，包括它自身：
+
+  ```js
+  alert( NaN === NaN ); // false
+  ```
+
+- `isFinite(value)` 将其参数转换为数字，如果是常规数字，则返回 `true`，而不是 `NaN/Infinity/-Infinity`：
+
+  ```js
+  alert( isFinite("15") ); // true
+  alert( isFinite("str") ); // false，因为是一个特殊的值：NaN
+  alert( isFinite(Infinity) ); // false，因为是一个特殊的值：Infinity
+  ```
+
+有时 `isFinite` 被用于验证字符串值是否为常规数字：
+
+```js
+let num = +prompt("Enter a number", '');
+// 结果会是 true，除非你输入的是 Infinity、-Infinity 或不是数字
+alert( isFinite(num) );
+```
+
+请注意，在所有数字函数中，包括 `isFinite`，空字符串或仅有空格的字符串均被视为 `0`。
+
+与 `Object.is` 进行比较
+
+有一个特殊的内建方法 [`Object.is`](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/is)，它类似于 `===` 一样对值进行比较，但它对于两种边缘情况更可靠：
+
+1. 它适用于 `NaN`：`Object.is（NaN，NaN）=== true`，这是件好事。
+2. 值 `0` 和 `-0` 是不同的：`Object.is（0，-0）=== false`，从技术上讲这是对的，因为在内部，数字的符号位可能会不同，即使其他所有位均为零。
+
+在所有其他情况下，`Object.is(a，b)` 与 `a === b` 相同。
+
+这种比较方式经常被用在 JavaScript 规范中。当内部算法需要比较两个值是否完全相同时，它使用 `Object.is`（内部称为 [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)）。
+
+#### parseInt 和 parseFloat
+
+使用加号 `+` 或 `Number()` 的数字转换是严格的。如果一个值不完全是一个数字，就会失败：
+
+```js
+alert( +"100px" ); // NaN
+```
+
+唯一的例外是字符串开头或结尾的空格，因为它们会被忽略。
+
+但在现实生活中，我们经常会有带有单位的值，例如 CSS 中的 `"100px"` 或 `"12pt"`。并且，在很多国家，货币符号是紧随金额之后的，所以我们有 `"19€"`，并希望从中提取出一个数值。
+
+这就是 `parseInt` 和 `parseFloat` 的作用。
+
+它们可以从字符串中“读取”数字，直到无法读取为止。如果发生 error，则返回收集到的数字。函数 `parseInt` 返回一个整数，而 `parseFloat` 返回一个浮点数：
+
+```js
+alert( parseInt('100px') ); // 100
+alert( parseFloat('12.5em') ); // 12.5
+alert( parseInt('12.3') ); // 12，只有整数部分被返回了
+alert( parseFloat('12.3.4') ); // 12.3，在第二个点出停止了读取
+```
+
+某些情况下，`parseInt/parseFloat` 会返回 `NaN`。当没有数字可读时会发生这种情况：
+
+```js
+alert( parseInt('a123') ); // NaN，第一个符号停止了读取
+```
+
+parseInt(str, radix)` 的第二个参数
+
+`parseInt()` 函数具有可选的第二个参数。它指定了数字系统的基数，因此 `parseInt` 还可以解析十六进制数字、二进制数字等的字符串：
+
+```js
+alert( parseInt('0xff', 16) ); // 255
+alert( parseInt('ff', 16) ); // 255，没有 0x 仍然有效
+alert( parseInt('2n9c', 36) ); // 123456
+```
+
+#### 其他数学函数
+
+JavaScript 有一个内建的 [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 对象，它包含了一个小型的数学函数和常量库。
+
+几个例子：
+
+- `Math.random()`
+
+返回一个从 0 到 1 的随机数（不包括 1）
+
 ## 函数进阶
 
 ## 对象进阶
@@ -3272,6 +3385,82 @@ setTimeout(function(){
 获取：`window.getComputedStyle(元素).样式名` （行内样式与非行内样式均可获取）
 
 > JavaScript 不能设置元素的非行内样式
+
+## 节点操作
+
+### 创建节点
+
+语法：`document.creatElement('标签名称')`
+
+作用：创建一个指定标签元素
+
+返回值：一个创建好的元素节点
+
+### 插入节点
+
+- `父节点.appendChild(子节点)`
+
+  把 子节点 放在 父节点 的内部，并且放在最后位置。
+
+- `父节点.insertBefore(要插入的子节点, 哪一个子节点的前面)`
+
+  把 子节点 放在 父节点 的内部，并且放在指定某一个子节点的前面。
+
+### 删除节点
+
+- `父节点.removeChild(子节点)`
+- `节点.remove()`
+
+### 替换节点
+
+`父节点.replaceChild(换上节点, 换下节点)`
+
+### 克隆节点
+
+`节点.cloneNode(是否克隆后代节点)`
+
+## 获取元素尺寸
+
+`元素.offsetHeight` 和 `元素.offsetWidth`: 获取元素 content + padding + border 区域的尺寸
+
+`元素.clientHeight` 和 `元素.clientWidth`: 获取元素 content + padding 区域的尺寸
+
+## 事件
+
+### 事件绑定
+
+事件绑定三要素：
+
+1. 事件源：和 **谁** 最好约定
+2. 事件类型：约定一个什么 **行为**
+3. 事件处理函数： 当用户触发该行为的时候，执行什么代码
+
+语法：`事件源.on事件类型 = 事件处理函数`
+
+### 事件类型
+
+![image.png](https://s2.loli.net/2022/09/26/nkFdT1Cywr7OWBl.png)
+
+### 事件对象
+
+```js
+// 直接在事件处理函数接受形参
+div.onclick = function (e) {
+    console.log(e);
+}
+```
+
+#### 鼠标事件相关信息
+
+**坐标信息**
+
+1. `offsetX` 和 `offsetY`: 相对于元素的坐标
+2. `clientX` 和 `clientY`: 相对于浏览器可视窗口的坐标
+3. `pageX` 和 `pageY`： 相对于页面文档流
+
+#### 键盘事件相关信息
+
+**键盘编码**：`事件对象.keyCode`
 
 # 判断字符串是否包含另一个字符串的方法
 

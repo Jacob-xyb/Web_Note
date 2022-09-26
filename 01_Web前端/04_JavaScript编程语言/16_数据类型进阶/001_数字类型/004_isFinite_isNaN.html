@@ -18,14 +18,11 @@
 
 
         // toFixed(n) -> string
-        document.write((1.23456).toFixed(2));  // '1.23'
+        document.write(isFinite("15"));  // true
         document.write(`<br>`);
-        document.write((1.23856).toFixed(2));   // '1.24'
+        document.write(isFinite("str"));   // false，因为是一个特殊的值：NaN
         document.write(`<br>`);
-        document.write((1.23).toFixed(6));   // '1.23000'
-        document.write(`<br>`);
-        // 然后字符串转数字
-        document.write(+(1.23).toFixed(6));   // '1.23'
+        document.write(isFinite(Infinity));  // false，因为是一个特殊的值：Infinity
         document.write(`<br>`);
     </script>
 </body>
