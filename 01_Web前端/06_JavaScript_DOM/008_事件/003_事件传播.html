@@ -45,15 +45,16 @@
         let center = document.querySelector('.center');
         let inner = document.querySelector('.inner');
 
-        outer.onclick = function () {
+        outer.onclick = function (e) {
             console.log("触发 outer 事件");
         }
 
-        center.onclick = function () {
+        center.onclick = function (e) {
             console.log("触发 center 事件");
         }
 
-        inner.onclick = function () {
+        inner.onclick = function (e) {
+            e.stopPropagation();    // 阻止事件传播
             console.log("触发 inner 事件");
         }
     </script>
