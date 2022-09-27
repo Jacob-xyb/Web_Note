@@ -3066,7 +3066,11 @@ JavaScript 有一个内建的 [Math](https://developer.mozilla.org/en/docs/Web/J
 
 - `Math.random()`
 
-返回一个从 0 到 1 的随机数（不包括 1）
+  返回一个从 0 到 1 的随机数（不包括 1）
+
+- `Math.max(a, b, c...)/ Math.min(a, b, c...)`
+
+  从任意数量的参数中返回最大/最小值。
 
 ## 函数进阶
 
