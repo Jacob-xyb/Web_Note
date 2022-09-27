@@ -10,6 +10,39 @@
 
 <body>
     <script>
+        // 创建一个字面量对象
+        let obj = {
+            name: 'Jx',
+            age: 18,
+            sayHi: function () {console.log('hello world');}
+        }
+
+        // 内置构造函数创建对象
+        let obj2 = new Object();
+
+        // 工厂函数创建对象
+        function creatObj() {
+            let obj = {};
+            obj.name = 'Jx';
+            obj.age = 18;
+            obj.sayHi = function () {console.log('hello world');}
+
+            return obj;
+        }
+
+        // 自定义构造函数创建对象, 规范首字母大写
+        // 构造函数会自动创建对象，自动返回这个对象
+        // 但是需要和 new 搭配使用，不然没有意义
+        function CreatObj() {
+            this.name = 'Jx';
+            this.age = 18;
+            this.sayHi = function () {console.log('hello world');}
+        }
+        let obj3 = new CreatObj();
+        console.log(obj3);
+
+
+        // 创建一个空对象
         let user = {};
         // 设置
         user["likes birds"] = true;

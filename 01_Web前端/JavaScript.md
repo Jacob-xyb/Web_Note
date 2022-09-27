@@ -3140,6 +3140,49 @@ document.write( `My\n`.length );    // 3
 
 请注意 `str.length` 是一个数字属性，而不是函数。后面不需要添加括号。
 
+#### 访问字符
+
+要获取在 `pos` 位置的一个字符，可以使用方括号 `[pos]` 或者调用 [str.charAt(pos)](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/charAt) 方法。第一个字符从零位置开始：
+
+```js
+let str = `Hello`;
+// 第一个字符
+alert( str[0] ); // H
+alert( str.charAt(0) ); // H
+// 最后一个字符
+alert( str[str.length - 1] ); // o
+```
+
+方括号是获取字符的一种现代化方法，而 `charAt` 是历史原因才存在的。
+
+它们之间的唯一区别是，如果没有找到字符，`[]` 返回 `undefined`，而 `charAt` 返回一个空字符串：
+
+我们也可以使用 `for..of` 遍历字符：
+
+```js
+for (let char of "Hello") {
+  alert(char); // H,e,l,l,o（char 变为 "H"，然后是 "e"，然后是 "l" 等）
+}
+```
+
+#### 字符串是不可变的
+
+在 JavaScript 中，字符串不可更改。改变字符是不可能的。
+
+```js
+let str = 'Hi';
+str[0] = 'h'; // error
+alert( str[0] ); // 无法运行
+```
+
+#### 常用函数
+
+- [toLowerCase()](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase) 和 [toUpperCase()](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)
+
+  ```js
+  alert( 'Interface'.toUpperCase() ); // INTERFACE
+  alert( 'Interface'.toLowerCase() ); // interface
+  ```
 
 
 ## 函数进阶
@@ -3147,6 +3190,84 @@ document.write( `My\n`.length );    // 3
 ## 对象进阶
 
 ## 原型，继承
+
+在编程中，我们经常会想获取并扩展一些东西。
+
+例如，我们有一个 `user` 对象及其属性和方法，并希望将 `admin` 和 `guest` 作为基于 `user` 稍加修改的变体。我们想重用 `user` 中的内容，而不是复制/重新实现它的方法，而只是在其至上构建一个新的对象。
+
+**原型继承（Prototypal inheritance）** 这个语言特性能够帮助我们实现这一需求。
+
+### [[Prototype]]
+
+在 JavaScript 中，对象有一个特殊的隐藏属性 `[[Prototype]]`（如规范中所命名的），它要么为 `null`，要么就是对另一个对象的引用。该对象被称为“原型”：
+
+```js
+function Person() {}
+console.log(Person.prototype)   // {constructor: ƒ}
+```
+
+原型有点“神奇”。当我们想要从 `object` 中读取一个缺失的属性时，JavaScript 会自动从原型中获取该属性。在编程中，这种行为被称为“原型继承”。许多炫酷的语言特性和编程技巧都基于此。
+
+属性 `[[Prototype]]` 是内部的而且是隐藏的，但是这儿有很多设置它的方式。
+
+- 构造函数
+
+```js
+function Person() {}
+console.log(Person.prototype)   // {constructor: ƒ}
+
+Person.prototype.sayHi = function () {console.log('hello world')};
+new Person().sayHi();
+```
+
+- 字面量对象
+
+```js
+let animal = {
+  eats: true
+};
+let rabbit = {
+  jumps: true
+};
+rabbit.__proto__ = animal; // (*)
+// 现在这两个属性我们都能在 rabbit 中找到：
+alert( rabbit.eats ); // true (**)
+alert( rabbit.jumps ); // true
+```
+
+`__proto__` 是 `[[Prototype]]` 的因历史原因而留下来的 getter/setter
+
+请注意，`__proto__` 与 `[[Prototype]]` **不一样**。`__proto__` 是 `[[Prototype]]` 的 getter/setter。
+
+`__proto__` 的存在是历史的原因。在现代编程语言中，将其替换为函数 `Object.getPrototypeOf/Object.setPrototypeOf` 也能 get/set 原型。我们稍后将学习造成这种情况的原因以及这些函数。
+
+根据规范，`__proto__` 必须仅在浏览器环境下才能得到支持，但实际上，包括服务端在内的所有环境都支持它。目前，由于 `__proto__` 标记在观感上更加明显，所以我们在后面的示例中将使用它。
+
+这里只有两个限制：
+
+1. 引用不能形成闭环。如果我们试图在一个闭环中分配 `__proto__`，JavaScript 会抛出错误。
+2. `__proto__` 的值可以是对象，也可以是 `null`。而其他的类型都会被忽略。
+
+当然，这可能很显而易见，但是仍然要强调：只能有一个 `[[Prototype]]`。一个对象不能从其他两个对象获得继承。
+
+
+
+### 面向对象中的原型
+
+在构造函数中使用原型创建的对象，每个对象的实例所有用的原型对象空间是共享的
+
+```js
+// 原型对象共享空间
+function Person() { }
+Person.prototype.sayHi = function () { console.log('hello world') };
+
+let p1 = new Person();
+let p2 = new Person();
+
+console.log(p1.sayHi === p2.sayHi);  // true
+```
+
+**属性 写在构造函数体内，方法 写在构造函数的原型上**
 
 ## 类
 
