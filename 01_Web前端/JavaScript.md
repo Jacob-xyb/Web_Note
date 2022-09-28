@@ -2299,6 +2299,12 @@ alert( sum(1, 2) ); // 3
 
 现在，我们已经可以用箭头函数进行单行行为和回调了。
 
+---
+
+**普通函数有 arguments，但箭头函数没有**
+
+**箭头函数没有 this, 也就是说会去外部作用域去寻找 this (通常是 Window)**
+
 ## Chrome 中调试
 
 ### Debugger 命令
@@ -3183,7 +3189,118 @@ alert( str[0] ); // 无法运行
   alert( 'Interface'.toUpperCase() ); // INTERFACE
   alert( 'Interface'.toLowerCase() ); // interface
   ```
+  
+- **查找字符串**
 
+  在字符串中查找子字符串有很多种方法。
+
+  `str.indexOf()` :  [str.indexOf(substr, pos)](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf)
+
+  它从给定位置 `pos` 开始，在 `str` 中查找 `substr`，如果没有找到，则返回 `-1`，否则返回匹配成功的位置。
+
+  可选的第二个参数允许我们从给定的起始位置开始检索。
+
+  `str.lastIndexOf(substr, pos)`: 它从字符串的末尾开始搜索到开头。
+
+  ---
+
+  更现代的方法: `includes`，`startsWith`，`endsWith`
+
+- **获取子字符串**
+
+  JavaScript 中有三种获取字符串的方法：`substring`、`substr` 和 `slice`。
+
+  `str.slice(start [, end])` : 返回字符串从 `start` 到（但不包括）`end` 的部分。如果没有第二个参数，`slice` 会一直运行到字符串末尾：`start/end` 也有可能是负值。它们的意思是起始位置从字符串结尾计算。
+
+  `str.substring(start [, end])` : 返回字符串在 `start` 和 `end` **之间** 的部分。这与 `slice` 几乎相同，但它允许 `start` 大于 `end`。不支持负参数（不像 slice），它们被视为 `0`。
+
+  `str.substr(start [, length])` : 返回字符串从 `start` 开始的给定 `length` 的部分。
+
+  与以前的方法相比，这个允许我们指定 `length` 而不是结束位置：
+
+  ---
+
+  相较于其他两个变体，`slice` 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 `slice` 就足够了。
+
+### 数组
+
+#### 声明
+
+创建一个空数组有两种语法：
+
+```js
+let arr = new Array();
+let arr = [];
+```
+
+数组元素从 0 开始编号。
+
+我们可以通过方括号中的数字获取元素：
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+console.log(fruits[0]);  // "Apple"
+console.log(fruits[1]);  // "Orange"
+console.log(fruits[2]);  // "Plum"
+```
+
+向数组新加一个元素 和 获取长度：
+
+```js
+fruits[3] = 'Lemon'; // 现在变成 ["Apple", "Orange", "Pear", "Lemon"]
+console.log(fruits.length);  // 4
+```
+
+#### 队列方法
+
+**pop/push, shift/unshift 方法**
+
+- `push` 在末端添加一个元素.
+- `shift` 取出队列首端的一个元素，整个队列往前移，这样原先排第二的元素现在排在了第一.
+- `pop` 从末端取出一个元素.
+- `unshift` 在数组的首端添加元素.
+
+#### 内部
+
+数组是一种特殊的对象。使用方括号来访问属性 `arr[0]` 实际上是来自于对象的语法。它其实与 `obj[key]` 相同，其中 `arr` 是对象，而数字用作键（key）。
+
+它们扩展了对象，提供了特殊的方法来处理有序的数据集合以及 `length` 属性。但从本质上讲，它仍然是一个对象。
+
+记住，在 JavaScript 中只有 7 种基本类型。数组是一个对象，因此其行为也像一个对象。
+
+例如，它是通过引用来复制的：
+
+```js
+let fruits = ["Banana"]
+let arr = fruits; // 通过引用复制 (两个变量引用的是相同的数组)
+alert( arr === fruits ); // true
+arr.push("Pear"); // 通过引用修改数组
+alert( fruits ); // Banana, Pear — 现在有 2 项了
+```
+
+……但是数组真正特殊的是它们的内部实现。JavaScript 引擎尝试把这些元素一个接一个地存储在连续的内存区域，就像本章的插图显示的一样，而且还有一些其它的优化，以使数组运行得非常快。
+
+但是，如果我们不像“有序集合”那样使用数组，而是像常规对象那样使用数组，这些就都不生效了。
+
+例如，从技术上讲，我们可以这样做:
+
+```js
+let fruits = []; // 创建一个数组
+fruits[99999] = 5; // 分配索引远大于数组长度的属性
+fruits.age = 25; // 创建一个具有任意名称的属性
+```
+
+这是可以的，因为数组是基于对象的。我们可以给它们添加任何属性。
+
+但是 Javascript 引擎会发现，我们在像使用常规对象一样使用数组，那么针对数组的优化就不再适用了，然后对应的优化就会被关闭，这些优化所带来的优势也就荡然无存了。
+
+数组误用的几种方式:
+
+- 添加一个非数字的属性，比如 `arr.test = 5`。
+- 制造空洞，比如：添加 `arr[0]`，然后添加 `arr[1000]` (它们中间什么都没有)。
+- 以倒序填充数组，比如 `arr[1000]`，`arr[999]` 等等。
+
+请将数组视为作用于 **有序数据** 的特殊结构。它们为此提供了特殊的方法。数组在 JavaScript 引擎内部是经过特殊调整的，使得更好地作用于连续的有序数据，所以请以正确的方式使用数组。如果你需要任意键值，那很有可能实际上你需要的是常规对象 `{}`。
 
 ## 函数进阶
 
@@ -3196,6 +3313,10 @@ alert( str[0] ); // 无法运行
 例如，我们有一个 `user` 对象及其属性和方法，并希望将 `admin` 和 `guest` 作为基于 `user` 稍加修改的变体。我们想重用 `user` 中的内容，而不是复制/重新实现它的方法，而只是在其至上构建一个新的对象。
 
 **原型继承（Prototypal inheritance）** 这个语言特性能够帮助我们实现这一需求。
+
+### 原型链
+
+<img src="https://s2.loli.net/2022/09/28/WqDK49RXCgvoh6I.png" alt="image.png"  />
 
 ### [[Prototype]]
 
@@ -3678,6 +3799,34 @@ div.onclick = function (e) {
   利用冒泡的机制，把自己的事件委托给结构父级中的某一层
 
   `e.target.tagName === 'LI'` 注意标签名是全部大写
+
+# Ajax
+
+## 初识
+
+1. 创建 ajax 对象
+
+   ```js
+   var xhr = new XMLHttpRequest();
+   ```
+
+2. 配置本次请求
+
+   ```js
+   xhr.open(请求方法, 请求地址, 是否异步);
+   ```
+
+3. 注册请求完成事件
+
+   ```js
+   xhr.onload = function () {};
+   ```
+
+4. 发送请求
+
+   ```js
+   xhr.send();
+   ```
 
 # 判断字符串是否包含另一个字符串的方法
 

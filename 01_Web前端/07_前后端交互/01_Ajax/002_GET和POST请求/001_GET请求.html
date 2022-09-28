@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8888/test/first?name=jx&age=18', true);
+        // 请求完整: 本次请求发送出去，服务器收到请求，并且服务器返回的信息已经回到了浏览器
+        xhr.onload = function () {
+            // 解析 json 格式数据
+            let res = JSON.parse(xhr.responseText);
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>
