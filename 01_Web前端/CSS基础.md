@@ -1654,6 +1654,10 @@ z-index:auto|number|inherit;
 
 但是兄弟关系的绝对定位可以随意覆盖。
 
+## 水平垂直居中
+
+
+
 # resize
 
 resize属性指定一个元素是否是由用户调整大小的。
