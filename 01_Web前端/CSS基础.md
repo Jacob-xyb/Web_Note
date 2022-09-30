@@ -1656,7 +1656,20 @@ z-index:auto|number|inherit;
 
 ## 水平垂直居中
 
+```css
+.box1 {
+    width: 600px;
+    height: 600px;
+    background-color: red;
+    margin: 0 auto;
 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -300px;
+}
+```
 
 # resize
 
@@ -1676,6 +1689,30 @@ resize属性指定一个元素是否是由用户调整大小的。
 # 轮廓（outline）
 
 轮廓并不属于元素尺寸的一部分，不会影响到原有的页面布局。
+
+# 表格属性
+
+## border-collapse
+
+- 定义
+
+> border-collapse 属性设置表格的边框是否被合并为一个单一的边框。
+
+**注意：**如果没有指定[!DOCTYPE](http://man.fishc.com/page/!DOCTYPE.html)，可能产生意想不到的效果。
+
+- 语法
+
+```css
+border-collapse:collapse|separate|inherit;
+```
+
+- 属性值
+
+| 值       | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| collapse | 如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性 |
+| separate | 默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性 |
+| inherit  | 规定应该从父元素继承 border-collapse 属性的值                |
 
 # 阴影
 

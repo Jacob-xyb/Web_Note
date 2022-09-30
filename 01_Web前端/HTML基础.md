@@ -1301,6 +1301,19 @@ link 元素最常见的用途是链接样式表。
 </html>
 ```
 
+### shortcut icon和icon 的区别
+
+过去，为保证favicon出现，网站设计者和开发者采用了多种方法。很难明确地保证favicon可以在所有电脑上显示，即使是用同一版本的一种浏览器。
+下列代码另一个局限就是它把favicon关联到了某个特定的HTML或XHTML文档上。为避免这一点，favicon.ico文件应置于根目录下。多数浏览器将自动检测并使用它。
+建议包含以下两行HTML代码:
+
+```html
+<link rel="shortcut icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon">
+<link rel="icon" href="http://example.com/favicon.ico" type="image/vnd.microsoft.icon"> 
+```
+
+然而，只有第一行是必须的，因为“shortcut icon”字符串将被多数遵守标准的浏览器识别为列出可能的关键词（“shortcut”将被忽略，而仅适用“icon”）；而Internet Explorer将会把它作为一个单独的名称（“shortcut icon”）。这样做的结果是所有浏览器都可以理解此代码。只有当希望为新浏览器提供另一种备用图像（例如动画GIF）时，才有必要添加第二行。
+
 #  \<table> 表格
 
 ## table 简介
