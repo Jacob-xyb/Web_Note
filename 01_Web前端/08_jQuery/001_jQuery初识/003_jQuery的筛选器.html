@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li class="a">2</li>
+        <li>3</li>
+        <span>ul内的 span 标签</span>
+        <li class="b">4</li>
+        <li>5</li>
+        <li id="box">6</li>
+    </ul>
+    <script>
+        console.log($('li').first());
+        console.log($('li').last());
+        console.log($('li').eq(3));     // 索引
+        console.log($('span').next());  // span 元素的下一个元素
+        console.log($('span').nextAll());
+        console.log($('span').prev());  // span 元素的上一个元素
+        console.log($('span').prevAll());
+        console.log($('span').parent());
+        console.log($('span').parents());   // 获取到的是该元素的所有父级元素，直到 html 为止
+        console.log($('span').siblings());   // 获取该元素的所有兄弟元素
+        console.log($('ul').find());   // 获取该元素的所有后代元素
+    </script>
+</body>
+
+</html>

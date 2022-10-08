@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 600px;
+            height: 600px;
+            background-color: brown;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <div class="box2" hidden="true"></div>
+    </div>
+    <script>
+        $('.box2').mouseup(() => {
+            console.log('触发');
+            $('.box1').css('background-color', 'yellow');
+        });
+    </script>
+</body>
+
+</html>

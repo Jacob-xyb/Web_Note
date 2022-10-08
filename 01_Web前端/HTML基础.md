@@ -2117,3 +2117,36 @@ TODO
     <iframe src="https://jacob-xyb.github.io/" width="1600px" height="800px" frameborder="0">不支持iframe</iframe>
 </body>
 ```
+
+# 属性
+
+## HTML 提示：使用小写属性
+
+属性和属性值对大小写不敏感。
+
+不过，万维网联盟在其 HTML 4 推荐标准中推荐小写的属性/属性值。
+
+而新版本的 (X)HTML 要求使用小写属性。
+
+**注意：** 大写属性 在JS使用时会在大写前自动添加 `-` 连接符，所以非常在属性中出现大写字母，推荐用 `_` 下划线分割。
+
+## HTML 全局属性
+
+| 属性                                                         | 描述                                                       |
+| ------------------------------------------------------------ | ---------------------------------------------------------- |
+| [accesskey](https://www.runoob.com/tags/att-global-accesskey.html) | 设置访问元素的键盘快捷键。                                 |
+| [class](https://www.runoob.com/tags/att-global-class.html)   | 规定元素的类名（classname）                                |
+| [contenteditable](https://www.runoob.com/tags/att-global-contenteditable.html)**New** | 规定是否可编辑元素的内容。                                 |
+| [contextmenu](https://www.runoob.com/tags/att-global-contextmenu.html)**New** | 指定一个元素的上下文菜单。当用户右击该元素，出现上下文菜单 |
+| [data-*](https://www.runoob.com/tags/att-global-data.html)**New** | 用于存储页面的自定义数据                                   |
+| [dir](https://www.runoob.com/tags/att-global-dir.html)       | 设置元素中内容的文本方向。                                 |
+| [draggable](https://www.runoob.com/tags/att-global-draggable.html)**New** | 指定某个元素是否可以拖动                                   |
+| [dropzone](https://www.runoob.com/tags/att-global-dropzone.html)**New** | 指定是否将数据复制，移动，或链接，或删除                   |
+| [hidden](https://www.runoob.com/tags/att-global-hidden.html)**New** | hidden 属性规定对元素进行隐藏。                            |
+| [id](https://www.runoob.com/tags/att-global-id.html)         | 规定元素的唯一 id                                          |
+| [lang](https://www.runoob.com/tags/att-global-lang.html)     | 设置元素中内容的语言代码。                                 |
+| [spellcheck](https://www.runoob.com/tags/att-global-spellcheck.html)**New** | 检测元素是否拼写错误                                       |
+| [style](https://www.runoob.com/tags/att-global-style.html)   | 规定元素的行内样式（inline style）                         |
+| [tabindex](https://www.runoob.com/tags/att-global-tabindex.html) | 设置元素的 Tab 键控制次序。                                |
+| [title](https://www.runoob.com/tags/att-global-title.html)   | 规定元素的额外信息（可在工具提示中显示）                   |
+| [translate](https://www.runoob.com/tags/att-global-translate.html)**New** | 指定是否一个元素的值在页面载入时是否需要翻译               |
