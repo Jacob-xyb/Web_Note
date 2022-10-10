@@ -447,6 +447,25 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 ## hr 水平分隔线
 
+属性有：color、width、align（对齐的意思）、noshade
+
+```html
+<hr color="pink" width="300px" align="left" noshade>
+```
+
+## HTML字符实体
+
+用常用字符表示这些符号的方式。
+
+| 特殊符号 | 解释                                               |
+| -------- | -------------------------------------------------- |
+| 尖角号   | `&lt;` 左尖角号; `&gt;` 右尖角号                   |
+| 空格     | `&nbsp;` 受字体影响，不推荐                        |
+|          | `&emsp;` 占据宽度为一个中文宽度                    |
+| 版权     | `&copy;` &copy;                                    |
+| 商标     | `&trade;` &trade; 代表已经提供申请，拥有优先使用权 |
+|          | `&reg;` &reg; 代表已经通过，受版权保护             |
+
 ## HTML 样式
 
 style 元素可以出现在 HTML 文档中的各个部分，一个文档可以包含多个 style 元素
@@ -565,6 +584,12 @@ style 属性的作用：
 
 ![image-20220813222246961](https://s2.loli.net/2022/08/13/7aRVnPTHOuvJhbt.png)
 
+**属性**：
+
+```html
+type: disc,circle,square,none
+```
+
 ### 有序列表
 
 同样，有序列表也是一列项目，列表项目使用数字进行标记。
@@ -581,6 +606,15 @@ style 属性的作用：
 <li>Milk</li>
 </ol>
 ```
+
+**属性：**
+
+```html
+type: 1,a,A,i,I;
+start: 取值只能是一个数字
+```
+
+如果 `<ol type="a" start="27">` 那么序列从 `aa` 开始排序。
 
 ### 自定义列表
 
@@ -646,6 +680,12 @@ HTML 图像是通过标签 <img> 来定义的.
 ```
 
 **注意：** 图像的名称和尺寸是以属性的形式提供的。
+
+### 图片的宽高
+
+如果单独设置 width 或者 height，图片会按照比例缩放，长宽比并不会改变；
+
+如果同时设置宽高，图片的长宽比就会改变。
 
 ## HTML 块 和 内联
 
@@ -1021,10 +1061,6 @@ label 可以起到一个绑定的作用
 </html>
 ```
 
-## HTML字符实体
-
-用常用字符表示这些符号的方式。
-
 ## pre
 
 `<pre>` 标签用于定义预格式化的文本。
@@ -1194,7 +1230,7 @@ ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素�
 
 ![image.png](https://s2.loli.net/2022/09/03/NwRtiuxHk5TKLIB.png)
 
-## strong
+## strong 重点
 
 `<strong>` 标签用于定义表示重要的文本。
 
@@ -1202,7 +1238,7 @@ ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素�
 
 提示：如果只是为了达到某种视觉效果而使用这个标签的话，强烈建议使用 CSS 代替，不要用 `b`。
 
-## em
+## em 强调
 
 `<em>` 标签用于定义表示强调的文本。
 
@@ -1237,13 +1273,13 @@ ruby 元素需要与 [rt](https://man.ilovefishc.com/pageHTML5/rt.html) 元素�
 
 ![image.png](https://s2.loli.net/2022/09/04/VPm2Sb5OEqFAGI9.png)
 
-## mark
+## mark 标记文本
 
 `<mark>` 标签用于定义带有标记的文本。
 
 黄底标记
 
-## sub、sup
+## sub、sup 上下标
 
 上下标文本
 
