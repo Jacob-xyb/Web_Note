@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .left, .right {
+            width: 100px;
+            height: 100px;    
+            float: left;
+        }
+
+        .left {
+            background-color: yellow;
+        }
+
+        .right {
+            background-color: red;
+        }
+
+        .content {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+
+        /* 方法一：给父盒子加高度 */
+        /* 缺点：如果浮动元素过多，高度就不好确认 */
+        /* .box {
+            height: 100px;
+        } */
+
+        /* 方法三：父盒子加 overflow:hidden */
+        /* 缺点： 文字等超出边界的内容会被隐藏*/
+
+        /* 方法四：用伪元素清除浮动 */
+        div.box::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+        <!-- 方法二： 添加空元素-->
+        <!-- 缺点：不利于代码可读性，降低了浏览器性能 -->
+        <!-- <div style="clear: both;"></div> -->
+    </div>
+    <div class="content">
+
+    </div>
+</body>
+
+</html>

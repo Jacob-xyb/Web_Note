@@ -1671,6 +1671,38 @@ z-index:auto|number|inherit;
 }
 ```
 
+# CSS 精灵图
+
+## CSS Sprites 的原理（图片整合技术）
+
+有许多图像的网页可能需要很长的时间来加载和生成多个服务器的请求。
+
+使用图像拼合会降低服务器的请求数量，并节省带宽。
+
+将图片有规则的合并成一张背景图，即多张图片合为一张整图，然后用 `background-position` 来实现背景图片的定位技术。
+
+# 宽高自适应
+
+## 宽度自适应
+
+块级元素 width 不设置相当于 auto，默认自适应。注意：auto 与 100% 不一样。
+
+## 高度自适应
+
+`min-height` 最常使用。
+
+## 浮动元素的父元素高度自适应
+
+**父元素不写高度时，子元素浮动后，父元素会发生高度塌陷。**
+
+1. 给父元素添加声明: `overflow:hidden;` （缺点：会隐藏溢出的元素）
+2. 在浮动元素下方添加空的块元素，并给该元素声明: `clear: both; height: 0; overflow: hidden;` （缺点：在结构里增加了空的标签，不利于代码可读性，且降低了浏览器的性能）
+3. 万能清除浮动法: 选择符 `:after{content:" "; clear: both; display: block; height: 0; visibility: hidden;/overflow: hidden;}`
+
+## 窗口自适应
+
+`html, body {height: 100%;}`
+
 # resize
 
 resize属性指定一个元素是否是由用户调整大小的。

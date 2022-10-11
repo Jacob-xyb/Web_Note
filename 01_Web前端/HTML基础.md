@@ -1503,8 +1503,8 @@ form elements
 | alt            | text                                                         | 指定图像的说明文字                                           |
 | autocomplete   | on、off                                                      | 指定是否启用浏览器预测输入                                   |
 | autofocus      | autofocus                                                    | 指定是否自动获得焦点                                         |
-| checked        | checked                                                      | 指定该属性的复选框，默认显示为勾选状态                       |
-| disabled       | disabled                                                     | 指定是否禁用该 input 元素                                    |
+| `checked`      | checked                                                      | 指定该属性的复选框，默认显示为勾选状态                       |
+| `disabled`     | disabled                                                     | 指定是否禁用该 input 元素                                    |
 | form           | formname                                                     | 指定其所属的一个或多个表单 id 值（在 HTML5 中，表单允许你将 input 放在文档中的任意位置，当你这么做的时候，可以通过指定该属性来确定元素所关联的表单） |
 | formaction     | URL                                                          | 指定表单提交的位置（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
 | formenctype    | application/x-www-form-urlencoded、multipart/form-data、text/plain | 指定表单提交的编码方式（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
@@ -1520,7 +1520,7 @@ form elements
 | `name`         | field_name                                                   | 指定元素的名称，用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据，只有设置了 name 属性的表单才能在提交表单时传递该值 |
 | pattern        | regexp_pattern                                               | 指定一个用于输入验证的正则表达式                             |
 | `placeholder`  | text                                                         | 指定一个占位提示文本                                         |
-| readonly       | readonly                                                     | 将文本框设为只读模式，防止用户编辑其内容                     |
+| `readonly`     | readonly                                                     | 将文本框设为只读模式，防止用户编辑其内容                     |
 | required       | required                                                     | 表明用户必须输入一个值，否则无法通过输入验证                 |
 | size           | number_of_char                                               | 指定文本框的宽度                                             |
 | src            | URL                                                          | 指定要显示的图像的 URL                                       |
@@ -1596,6 +1596,18 @@ Last name:<br>
 ```
 
 ![image-20220814153259098](https://s2.loli.net/2022/08/14/wu9d3hT7xV21fPk.png)
+
+- **提交文件**
+
+`<input type="file" name="" id="">`
+
+- **图片按钮**
+
+`<input type="image" src="" alt="">` 图片代替提交按钮
+
+- **隐藏按钮**
+
+`<input type="hidden" name="" id="" value="带给后端的个人信息">`
 
 - **Action 属性**
 
@@ -1687,6 +1699,31 @@ Last name:<br>
 
 ## \<select> 元素（下拉列表）
 
+### 属性
+
+- **select 属性**
+
+| 属性       | 值        | 描述                                 |
+| ---------- | --------- | ------------------------------------ |
+| autofocus  | autofocus | 指定在页面加载后文本区域自动获得焦点 |
+| disabled   | disabled  | 指定该下拉列表被禁用                 |
+| form       | form_id   | 指定所属表单                         |
+| `multiple` | multiple  | 指定该下拉列表支持多个选项           |
+| name       | name      | 指定该下拉列表的名称                 |
+| required   |           | 指定文本区域是必填的                 |
+| `size`     | number    | 指定下拉列表中可见选项的数目         |
+
+- **option 属性**
+
+| 属性       | 值       | 描述                           |
+| ---------- | -------- | ------------------------------ |
+| disabled   | disabled | 指定该选项被禁用               |
+| label      | text     | 指定该选项在列表中所显示的标签 |
+| `selected` | selected | 指定该选项表现为选中状态       |
+| `value`    | text     | 指定发到服务器的选项值         |
+
+### 实例
+
 `<select>` 元素定义*下拉列表*：
 
 ```html
@@ -1710,6 +1747,34 @@ Last name:<br>
 
 ## \<textarea> 元素
 
+### 定义
+
+> `<textarea>` 标签定义多行的文本输入控件。
+
+文本区中可容纳无限数量的字符，其中的文本的默认字体是等宽字体（通常是 Courier）。
+
+可以通过 cols 和 rows 属性来规定 textarea 的尺寸，不过更好的办法是使用 CSS 的 height 和 width 属性。
+
+### 属性
+
+| 属性          | 值               | 描述                                                         |
+| ------------- | ---------------- | ------------------------------------------------------------ |
+| autofocus     | autofocus        | 指定在页面加载后文本区域自动获得焦点                         |
+| cols          | number           | 指定文本区域的可见宽度                                       |
+| disabled      | disabled         | 禁用该文本区域                                               |
+| form          | form_id          | 指定文本区域所属的一个或多个表单                             |
+| maxlength     | number           | 指定文本区域的最大字符数                                     |
+| name          | name_of_textarea | 指定文本区域的名称                                           |
+| `placeholder` | text             | 指定文本区域的占位提示文本                                   |
+| readonly      | readonly         | 指定文本区为只读                                             |
+| required      | required         | 指定文本区域为必填项                                         |
+| rows          | number           | 指定文本区内的可见行数                                       |
+| wrap          | hard、soft、off  | 指定在表单提交时，如何处理文本区域的自动换行：soft 表示在页面渲染中对文本进行自动换行，但换行符（CR + LF）不提交hard 表示在页面渲染中对文本进行自动换行，换行符（CR + LF）也会一并提交。如果元素的该属性设置为 hard，则必须同时指定 cols 属性。off 表示在页面渲染中不对文本进行自动换行。 |
+
+CSS 设置属性：`resize: vertiacl | horizontal | both | none;`
+
+### 实例
+
 `<textarea>` 元素定义多行输入字段（**文本域**）：
 
 ```html
@@ -1719,6 +1784,32 @@ The cat was playing in the garden.
 ```
 
 ![image-20220814160957790](https://s2.loli.net/2022/08/14/IbmJNGH1wj5VcZg.png)
+
+## \<fieldset>字段集
+
+`<fieldset>` 标签将表单内容的一部分打包，生成一组相关表单的字段。
+
+当一组表单元素放到 `<fieldset>` 标签内时，浏览器会以特殊方式来显示它们，它们可能有特殊的边界、3D 效果，或者甚至可创建一个子表单来处理这些元素。
+
+`<legend>` 标签用于为 [fieldset](https://man.ilovefishc.com/pageHTML5/fieldset.html) 元素定义说明文字。
+
+注意：legend 元素必须是 [fieldset](https://man.ilovefishc.com/pageHTML5/fieldset.html) 元素的第一个子元素。
+
+### 属性
+
+| 属性     | 值       | 描述                        |
+| -------- | -------- | --------------------------- |
+| disabled | disabled | 禁用 fieldset               |
+| form     | form_id  | 指定 fieldset 所属的表单 ID |
+| name     | value    | 指定 fieldset 的名称        |
+
+### 实例
+
+```html
+<fieldset>
+    <legend>性别</legend>
+</fieldset>
+```
 
 ## \<button>
 
@@ -1752,9 +1843,13 @@ The cat was playing in the garden.
 
 HTML5 增加了如下表单元素：
 
+```html
 - <datalist> 
+
 - <keygen> 
+
 - <output> 
+```
 
 **注释**：默认地，浏览器不会显示未知元素。新元素不会破坏您的页面。
 
@@ -2125,30 +2220,6 @@ HTML5 增加了多个新的输入类型：
 ## HTML 输入属性
 
 TODO
-
-# CSS 精灵图
-
-## CSS Sprites 的原理（图片整合技术）
-
-有许多图像的网页可能需要很长的时间来加载和生成多个服务器的请求。
-
-使用图像拼合会降低服务器的请求数量，并节省带宽。
-
-将图片有规则的合并成一张背景图，即多张图片合为一张整图，然后用 `background-position` 来实现背景图片的定位技术。
-
-# 宽高自适应
-
-## 宽度自适应
-
-块级元素 width 不设置相当于 auto，默认自适应。注意：auto 与 100% 不一样。
-
-## 高度自适应
-
-`min-height` 最常使用。
-
-## 浮动元素的父元素高度自适应
-
-**父元素不写高度时，子元素浮动后，父元素会发生高度塌陷。**
 
 # Frames
 
