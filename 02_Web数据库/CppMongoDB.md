@@ -2,6 +2,8 @@
 
 # 编译
 
+请先安装boost最新版本。地址: https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/
+
 # 配置环境 32位
 
 ## C/C++ 预处理器
@@ -130,3 +132,6 @@ int main(int argc, char* argv[])
 http://mongoc.org/libmongoc/current/index.html
 
 http://mongoc.org/libbson/current/index.html
+
+https://mongocxx.org/mongocxx-v3/tutorial/
+

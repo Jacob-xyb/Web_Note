@@ -12,6 +12,29 @@
 
 这两个变量是一模一样的。
 
+## jQuery 对象
+
+jQuery对象类似数组，它的每个元素都是一个引用了DOM节点的对象。
+
+总之jQuery的选择器不会返回`undefined`或者`null`，这样的好处是你不必在下一行判断`if (div === undefined)`。
+
+jQuery对象和DOM对象之间可以互相转化：
+
+```js
+var div = $('#abc'); // jQuery对象
+var divDom = div.get(0); // 假设存在div，获取第1个DOM元素
+var another = $(divDom); // 重新把DOM包装为jQuery对象
+```
+
+### jQuery 对象的常用函数
+
+```js
+var ps = $('p'); // 返回所有<p>节点
+ps.length; // 数一数页面有多少个<p>节点
+```
+
+
+
 # jQuery 的选择器
 
 语法：`$('选择器')`
@@ -52,6 +75,7 @@ $("input:enabled") //选取所有启用的表单元素
 $(":disabled")     //所有不可用的元素
 $("input:checked") //获取所有选中的复选框单选按钮等
 $("select option:selected") //获取选中的选项元素
+$('[items="A B"]')  //当属性的值包含空格等特殊字符时，需要用双引号括起来。
 ```
 
 # jQuery 的筛选器
@@ -88,11 +112,15 @@ console.log($('ul').find());   // 获取该元素的所有后代元素
 
 # jQuery 操作类名
 
-`addClass()`
+`addClass()`: 添加类名
 
 `removeClass()`
 
 `toggleClass()`
+
+# jQuery 操作属性
+
+`removeAttr()`: 规定从指定元素中移除的属性。 **removeAttr('id');**
 
 # jQuery 事件
 
