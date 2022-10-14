@@ -6,6 +6,7 @@
 #include <bson/bson.h>
 
 #include "test_insert.h"
+#include "test_find.h"
 
 using namespace std;
 
@@ -87,9 +88,10 @@ int sample_client() {
 int main(int argc, char* argv[])
 {
     mongoc_init();/*初始化*/
-    sample_client();
 
-    //test_insert();
+    //test_insert1();
+    find_a_document();
+
     mongoc_cleanup();
     system("pause");
     return EXIT_SUCCESS;

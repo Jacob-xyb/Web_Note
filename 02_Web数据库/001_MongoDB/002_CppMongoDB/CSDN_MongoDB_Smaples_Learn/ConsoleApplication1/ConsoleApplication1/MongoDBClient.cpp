@@ -3,7 +3,7 @@
 
 MongoDBClient::MongoDBClient() {
 	const char* uristr = "mongodb://localhost:27017"; /*mongodb地址*/
-	const char* collection_name = "test"; /*集合名称test*/
+	const char* collection_name = "col"; /*集合名称test*/
 	client = mongoc_client_new(uristr); /*连线到db */
 	if (!client) {
 		status = false;

@@ -5,6 +5,7 @@
 
 int main()
 {
-    bson_append_();
+    bson_append_arrayString();
+    //creatingANewBSONDocument();
 }
 

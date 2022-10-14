@@ -133,10 +133,12 @@
   <ItemGroup>
     <ClCompile Include="ConsoleApplication1.cpp" />
     <ClCompile Include="MongoDBClient.cpp" />
+    <ClCompile Include="test_find.cpp" />
     <ClCompile Include="test_insert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MongoDBClient.h" />
+    <ClInclude Include="test_find.h" />
     <ClInclude Include="test_insert.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

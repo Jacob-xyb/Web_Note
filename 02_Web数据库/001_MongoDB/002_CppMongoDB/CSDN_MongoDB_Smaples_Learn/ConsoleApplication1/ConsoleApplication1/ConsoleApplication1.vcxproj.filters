@@ -24,12 +24,18 @@
     <ClCompile Include="test_insert.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test_find.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MongoDBClient.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="test_insert.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="test_find.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
