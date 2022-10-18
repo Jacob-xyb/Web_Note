@@ -170,8 +170,10 @@ def create_app(test_config=None):
 ## 最简单的 Flask 应用
 
 ```python
+# 从 flask 包中导入 Flask 对象
 from flask import Flask
 
+# 使用Flask创建一个app对象，并且传递 __name__ 参数
 app = Flask(__name__)
 
 
@@ -194,18 +196,11 @@ run(host='ip地址', port='端口号', debug=False/True)
 
 **环境：** production、development、testing
 
+---
+
+`127.0.0.1` 是默认的本地 IP 地址
+
 ## 配置文件 settings.py
-
-**以模块对象的形式加载**
-
-`settings.py`
-
-```python
-# 配置文件
-
-ENV = 'development'
-DEBUG = True
-```
 
 ```python
 from flask import Flask
@@ -216,7 +211,23 @@ app.config.from_object(settings)	# 以模块对象载入即可
 
 # 等价于
 app.config.from_pyfile('setting.py')
+
+# 等价于（不推荐）
+app.config['参数名'] = 参数值
 ```
+
+- **以模块对象的形式加载**
+
+`settings.py`
+
+```python
+# 配置文件
+
+ENV = 'development'
+DEBUG = True
+```
+
+> 配置文件中的参数所有字母均大写
 
 ## 路由
 
@@ -283,6 +294,41 @@ if __name__ == '__main__':
 ```python
 @app.route('/project')
 ```
+
+## 构造URL (url_for)
+
+一般通过一个 url 就可以执行到某个函数。但是 url 在开发过程中是可能会有所改动的，所以需要以函数名来获取 url。
+
+`url_for()` 就可以实现这个功能，此函数接收两个及以上的参数，接收 **函数名** 作为第一个参数，接收对应 **URL规则的命名参数**， 如果还出现其他的参数，则会添加到 URL 的后面作为 **查询参数**。
+
+```python
+@app.route("/book/<int:num>")
+def book_detail(num):
+    for book in books:
+        if num == book["id"]:
+            return jsonify(book)
+    return f"id为： {num} 的图书没有找到！"
+
+
+@app.route("/book/list")
+def book_list():
+    for book in books:
+        book['url'] = url_for("book_detail", num=book["id"])
+    return jsonify(books)
+```
+
+## 路由中指定HTTP方法
+
+在 `@app.route()` 中可以传入一个关键字参数 `methods` 来指定本方法支持的 `HTTP` 方法，默认情况下，只使用 `GET`。
+
+```py
+@app.route("/login, methods=['GET', 'POST']")
+def login():
+    return "login"
+```
+
+1. 如果只是需要从服务器上获取数据，一般都是用GET请求
+2. 如果前端需要把数据发送给服务器，一般用POST请求
 
 ## 请求与响应
 
