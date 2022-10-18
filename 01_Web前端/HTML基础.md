@@ -1472,7 +1472,7 @@ table {
 | `method`       | get、post                                                    | 规定用于发送 form-data 的 HTTP 方法。                        |
 | name           | form_name                                                    | 规定表单的名称。                                             |
 | novalidate     | novalidate                                                   | 如果使用该属性，则提交表单时不进行验证。                     |
-| `target`       | _blank、_self、_parent、_top、framename                      | 规定在何处打开 action URL。                                  |
+| `target`       | \_blank、\_self、\_parent、\_top、framename                  | 规定在何处打开 action URL。                                  |
 
 HTML <form> 元素，已设置所有可能的属性，是这样的：
 

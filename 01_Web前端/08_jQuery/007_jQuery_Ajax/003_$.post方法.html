@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.请求一个 json 文件，忽略返回值
+        $.get("js/data.json");
+
+        // 2.请求json文件，传递参数，忽略返回值
+        $.get('js/data.json', {name:"jx", age:27});
+
+        // 3.请求json文件，拿到返回值，请求成功后可拿到返回值
+        $.get("js/data.json", function(data){});
+
+        // 4.请求json文件，传递参数，拿到返回值
+        $.get("js/data.json", {name:"jx", age:27}, function(data){});
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="checkbox" name="ch" checked id="aa" abc="aabbcc">aa
+    <input type="checkbox" name="ch" id="bb">bb
+    <script>
+        // 1.设置固有属性
+        $("#aa").attr("value", 1);
+        $("#bb").prop("value", 2);
+
+        // 2.返回值是 boolean 的属性
+        $("#aa").attr("checked", false);
+        $("#bb").prop("checked", true);
+
+        // 3.自定义属性
+        $('#aa').attr("uname", "jx");
+        $("#bb").prop("uname", "jx");   // 不生效
+    </script>
+</body>
+
+</html>

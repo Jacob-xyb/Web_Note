@@ -5,7 +5,11 @@
 ## 引入jQuery
 
 ```html
+// 本地引入
 <script src="./jQuery/jQuery.js"></script>
+
+// 网络引入
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 ```
 
 引入 jQuery 文件后，会在全局暴露两个变量名：`$`，`jQuery`
@@ -22,7 +26,11 @@ jQuery对象和DOM对象之间可以互相转化：
 
 ```js
 var div = $('#abc'); // jQuery对象
+
 var divDom = div.get(0); // 假设存在div，获取第1个DOM元素
+//等效于
+var divDom = div[0];
+
 var another = $(divDom); // 重新把DOM包装为jQuery对象
 ```
 
@@ -32,8 +40,6 @@ var another = $(divDom); // 重新把DOM包装为jQuery对象
 var ps = $('p'); // 返回所有<p>节点
 ps.length; // 数一数页面有多少个<p>节点
 ```
-
-
 
 # jQuery 的选择器
 
@@ -78,6 +84,15 @@ $("select option:selected") //获取选中的选项元素
 $('[items="A B"]')  //当属性的值包含空格等特殊字符时，需要用双引号括起来。
 ```
 
+## 层次选择器
+
+```js
+$("#parent div");		// 选择id为parent的元素下的所有div元素
+$("#parent > div");		// 选择id为parent的直接div子元素
+$("#parent + div");		// 选择id为parent的下一个div同级元素
+$("#parent ~ div");		// 选择id为parent之后的div同级元素
+```
+
 # jQuery 的筛选器
 
 语法：`$('选择器').筛选器名称()`
@@ -94,6 +109,9 @@ console.log($('span').parent());
 console.log($('span').parents());   // 获取到的是该元素的所有父级元素，直到 html 为止
 console.log($('span').siblings());   // 获取该元素的所有兄弟元素
 console.log($('ul').find());   // 获取该元素的所有后代元素
+
+console.log($('ul').find(selector));	// 获取该元素满足筛选条件的所有元素（不包括本身）
+console.log($('ul').filter(selector));	// 获取该元素满足筛选条件的所有元素（包括本身）
 ```
 
 # jQuery 操作文本内容
@@ -110,17 +128,116 @@ console.log($('ul').find());   // 获取该元素的所有后代元素
 
 `val('需要设置的值')`
 
-# jQuery 操作类名
-
-`addClass()`: 添加类名
-
-`removeClass()`
-
-`toggleClass()`
-
 # jQuery 操作属性
 
-`removeAttr()`: 规定从指定元素中移除的属性。 **removeAttr('id');**
+## 属性的分类
+
+1. 固有属性：元素本身就有的属性（id, name, class, style 等）
+2. 返回值是boolean的属性：checked、selected、disabled
+3. 自定义属性: 用户自定义的属性
+
+## 获取属性
+
+`attr('属性名')` | `prop('属性名')`
+
+1. 固有属性，两种方法均可获取
+
+2. prop() 读取不了自定义属性。
+
+3. 返回值是boolean类型的属性，
+
+   设置了属性时：attr() 返回具体的值，prop() 返回 true；
+
+   未设置属性时：attr() 返回 undefined，prop() 返回 false。
+
+## 设置属性
+
+`attr('属性名', '属性值')` | `prop('属性名', '属性值')`
+
+1. prop() 设置不了自定义属性。
+
+**案例：**
+
+```html
+<input type="checkbox" name="ch" checked id="aa" abc="aabbcc">aa
+<input type="checkbox" name="ch" id="bb">bb
+<script>
+    // 1.设置固有属性
+    $("#aa").attr("value", 1);
+    $("#bb").prop("value", 2);
+
+    // 2.返回值是 boolean 的属性
+    $("#aa").attr("checked", false);
+    $("#bb").prop("checked", true);
+
+    // 3.自定义属性
+    $('#aa').attr("uname", "jx");
+    $("#bb").prop("uname", "jx");   // 不生效
+</script>
+```
+
+## 移除属性
+
+`removeAttr('属性名')`: 规定从指定元素中移除的属性。 **removeAttr('id');**
+
+# jQuery 操作样式
+
+| 方法                                                         | 说明                                         |
+| :----------------------------------------------------------- | :------------------------------------------- |
+| attr("class")                                                | 获取class属性的值，即样式名称                |
+| attr("class", "样式名")                                      | 修改class属性的值，修改样式                  |
+| addClass("样式名")                                           | 添加样式名称                                 |
+| css()                                                        | 添加具体的样式                               |
+| removeClass("class")                                         | 移除样式名称                                 |
+| toggleClass(*classname,*function*(index,currentclass),switch*) | 对添加和移除被选元素的一个或多个类进行切换。 |
+
+## css()
+
+1. 单个样式：`css("样式名", "样式值")`
+2. 多个样式：`css({"样式名": “样式值", "样式名2": "样式值2"})`
+
+# 创建元素
+
+只有 jQuery 对象才能使用jQuery方法，因此要经常创建jQuery元素。
+
+```js
+$("元素内容");
+$("<p>this is a paragraph!!!</p>");
+```
+
+# 添加元素
+
+| 方法                | 说明                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| prepend(content)    | 在被选元素内部的**开头**插入元素或内容，被追加的content参数，可以是字符、HTML 元素标记、jQuery对象等等 |
+| prependTo(selector) | 将被选元素或内容插入到 selector 元素开头                     |
+| append(content)     | 在被选元素内部的**结尾**插入元素或内容，被追加的content参数，可以是字符、HTML 元素标记、jQuery对象等等 |
+| appendTo(selector)  | 将被选元素或内容插入到 selector 元素结尾                     |
+| before(content)     | 在被选元素前插入content                                      |
+| after(content)      | 在被选元素后插入content                                      |
+
+**注意：** 在添加已存在的元素时，相当于剪切。
+
+# 删除元素
+
+| 方法     | 说明                                                     |
+| -------- | -------------------------------------------------------- |
+| remove() | 删除所选元素或指定的子元素，包括整个标签和内容一起删除。 |
+| empty()  | 清空所选元素的内容                                       |
+
+# 遍历元素
+
+```js
+$(selector).each(function(index, element){});
+```
+
+**参数：**
+
+- function： 遍历时的回调函数
+- index：遍历元素的序列号，0开始
+- element：当前的元素，为 dom 元素
+
+> 遍历相当于取下标，$(selector)[index] 就是一个 dom 元素
 
 # jQuery 事件
 
@@ -157,4 +274,114 @@ console.log($('ul').find());   // 获取该元素的所有后代元素
   } );
   ```
 
-  
+
+## ready 加载事件
+
+两种写法：
+
+```js
+$(document).ready(function() {
+    alert('hello world')
+});
+$(function() {
+    alert('hello world')
+});
+```
+
+## bind 绑定事件
+
+```js
+$(selector).bind(eventType [, eventData], hander(eventObject));
+```
+
+**参数**:
+
+- eventType: 一个字符串类型的事件类型
+- [, eventData]：传递的参数，格式： {key1: value1, key2: value2}
+- hander(eventObject)：该事件触发执行的函数
+
+## 绑定单个事件
+
+- **bind绑定**
+
+  `$("元素").bind("事件类型", function(){});`
+
+- **直接绑定**
+
+  `$("元素").事件名(function(){});`
+
+## 绑定多个事件
+
+- **bind绑定**
+
+1. 同时为多个事件绑定同一个函数
+
+   `$("元素").bind("事件类型1, 事件类型2, ...", function(){});`
+
+2. 为元素绑定多个事件并设置对应的函数（链接函数形式）
+
+   `$("元素").bind("事件类型1", function(){}).bind("事件类型2", function(){});`
+
+3. 为元素绑定多个事件并设置对应的函数 （参数列表形式）
+
+   `$("元素").bind({"事件类型1": function(){}, "事件类型2": function(){}});`
+
+- **直接绑定**
+
+  `$("元素").事件名(function(){}).事件名(function(){});`
+
+# jQuery Ajax
+
+## $.ajax
+
+调用方法：`$.ajax({});`
+
+**参数：**
+
+- type：请求方式 GET/POST
+- url: 请求地址 url
+- async: 是否异步，默认 true 表示异步
+- data: 发送到服务器的数据
+- dataType: 预期服务器返回的数据类型
+- contentType: 设置请求头
+- success: 请求成功时调用此函数
+- error: 请求失败时调用此函数
+
+### $.ajax - get 请求
+
+```js
+$.ajax({
+    type: "get",    // 请求方式 大小写均可
+    url: "data.txt",    // 请求地址
+    data: {// 如果没有可以不写
+        username: "张三"
+    },
+    dataType: "json",   // 预期返回的数据类型，在返回时会自动转换数据类型
+    success: function(data) { // data 是形参，代表返回的数据，但是是字符串
+        // let json_data = JSON.parse(data);  // 设置 dataType 后就可以不用转换了
+    }
+});
+```
+
+## \$.get、\&.post、\$.getJSON
+
+```js
+// 1.请求一个 json 文件，忽略返回值
+$.get("js/data.json");
+
+// 2.请求json文件，传递参数，忽略返回值
+$.get('js/data.json', {name:"jx", age:27});
+
+// 3.请求json文件，拿到返回值，请求成功后可拿到返回值
+$.get("js/data.json", function(data){});
+
+// 4.请求json文件，传递参数，拿到返回值
+$.get("js/data.json", {name:"jx", age:27}, function(data){});
+```
+
+三个的语法都是类似的。
+
+> getJson() 要求返回的数据格式满足 json 格式 (json字符串)
+
+
+

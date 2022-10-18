@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="checkbox" name="ch" checked id="aa" abc="aabbcc">aa
+    <input type="checkbox" name="ch" id="bb">bb
+    <script>
+        let name = $("#aa").attr("name");
+        console.log(name);  // ch
+        let ck1 = $("#aa").attr("checked");
+        console.log(ck1);   // checked
+        let ck2 = $("#aa").prop("checked");
+        console.log(ck2);   // true
+        let ck3 = $("#bb").attr("checked");
+        console.log(ck3);   // undefined
+        let ck4 = $("#bb").prop("checked");
+        console.log(ck4);   // false
+
+        // 自定义属性
+        let abc = $("#aa").attr("abc");
+        console.log(abc);   // aabbcc
+        abc = $("#aa").prop("abc");
+        console.log(abc);   // undefined
+    </script>
+</body>
+
+</html>

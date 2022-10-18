@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        $.ajax({
+            type: "get",    // 请求方式 大小写均可
+            url: "data.txt",    // 请求地址
+            data: {// 如果没有可以不写
+                username: "张三"
+            },
+            dataType: "json",   // 预期返回的数据类型，在返回时会自动转换数据类型
+            success: function(data) { // data 是形参，代表返回的数据，但是是字符串
+                // let json_data = JSON.parse(data);  // 设置 dataType 后就可以不用转换了
+            }
+        });
+    </script>
+</body>
+</html>
