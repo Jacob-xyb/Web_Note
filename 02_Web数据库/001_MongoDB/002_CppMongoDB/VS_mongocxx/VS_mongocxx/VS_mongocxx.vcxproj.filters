@@ -18,5 +18,19 @@
     <ClCompile Include="VS_mongocxx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Document.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jx_CRDU.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Document.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jx_CRDU.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

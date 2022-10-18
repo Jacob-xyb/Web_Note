@@ -1,12 +1,10 @@
-# 驱动
+# C驱动
 
-# 编译
+## 编译
 
-请先安装boost最新版本。地址: https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/
+## 配置环境 32位
 
-# 配置环境 32位
-
-## C/C++ 预处理器
+### C/C++ 预处理器
 
 设定四个参数
 
@@ -17,14 +15,14 @@ MONGO_USE_INT64
 MONGO_USE_LONG_LONG_INT
 ```
 
-## VC++目录 包含目录
+### VC++目录 包含目录
 
 ```cpp
 ...\mongo-c-driver\include\libbson-1.0
 ...\mongo-c-driver\include\libmongoc-1.0
 ```
 
-## 链接器 输入添加依赖项
+### 链接器 输入添加依赖项
 
 ```cpp
 ...\mongo-c-driver\lib\mongoc-1.0.lib
@@ -33,13 +31,13 @@ MONGO_USE_LONG_LONG_INT
 
 注意：**...\win10x64mongoc\lib\bson-static-1.0.lib**  只有在以静态链接方式时才使用，一般不使用。
 
-## 配置dll
+### 配置dll
 
 **将libbson-1.0.dll 及libmongoc-1.0.dll 复制到工作目录下**
 
-# 配置环境 64位
+## 配置环境 64位
 
-## C/C++ 预处理器
+### C/C++ 预处理器
 
 设定四个参数
 
@@ -50,14 +48,14 @@ MONGO_USE_INT64
 MONGO_USE_LONG_LONG_INT
 ```
 
-## VC++目录 包含目录
+### VC++目录 包含目录
 
 ```cpp
 ...\win10x64mongoc\include\libbson-1.0
 ...\win10x64mongoc\include\libmongoc-1.0
 ```
 
-## 链接器 输入添加依赖项
+### 链接器 输入添加依赖项
 
 ```cpp
 ...\win10x64mongoc\lib\mongoc-1.0.lib
@@ -66,11 +64,11 @@ MONGO_USE_LONG_LONG_INT
 
 注意：**...\win10x64mongoc\lib\bson-static-1.0.lib**  只有在以静态链接方式时才使用，一般不使用。
 
-## 配置dll
+### 配置dll
 
 **将bson-1.0.dll 及mongoc-1.0.dll 复制到工作目录下**
 
-# 测试程序
+## 测试程序
 
 ```cpp
 #include <stdio.h>
@@ -125,6 +123,78 @@ int main(int argc, char* argv[])
     system("pause");
     return EXIT_SUCCESS;
 }
+```
+
+# C++ 驱动
+
+## 编译
+
+请先安装boost最新版本。地址: https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/
+
+## 测试程序
+
+```cpp
+#include <iostream>
+#include <cstdint>
+#include <iostream>
+#include <vector>
+#include <bsoncxx/json.hpp>
+#include <mongocxx/client.hpp>
+#include <mongocxx/stdx.hpp>
+#include <mongocxx/uri.hpp>
+#include <mongocxx/instance.hpp>
+#include <bsoncxx/builder/stream/helpers.hpp>
+#include <bsoncxx/builder/stream/document.hpp>
+#include <bsoncxx/builder/stream/array.hpp>
+
+using bsoncxx::builder::stream::close_array;
+using bsoncxx::builder::stream::close_document;
+using bsoncxx::builder::stream::document;
+using bsoncxx::builder::stream::finalize;
+using bsoncxx::builder::stream::open_array;
+using bsoncxx::builder::stream::open_document;
+
+int main()
+{
+	mongocxx::instance instance{}; // This should be done only once.
+	mongocxx::client client{ mongocxx::uri{"mongodb://localhost:27017"} };
+	mongocxx::database db = client["test"];
+	mongocxx::collection coll = db["col"];
+
+	auto builder = bsoncxx::builder::stream::document{};
+	bsoncxx::document::value doc_value = builder
+		<< "name" << "MongoDB"
+		<< "type" << "database"
+		<< "count" << 1
+		<< "versions" << bsoncxx::builder::stream::open_array
+		<< "v3.2" << "v3.0" << "v2.6"
+		<< close_array
+		<< "info" << bsoncxx::builder::stream::open_document
+		<< "x" << 203
+		<< "y" << 102
+		<< bsoncxx::builder::stream::close_document
+		<< bsoncxx::builder::stream::finalize;
+	coll.insert_one(doc_value.view());
+}
+```
+
+## VC++目录 包含目录
+
+```cpp
+...\mongocxx\include
+```
+
+## 链接器 输入
+
+```cpp
+...\mongocxx\lib\bsoncxx.lib
+...\mongocxx\lib\mongocxx.lib
+```
+
+## 调试 环境
+
+```cpp
+PATH=...\mongocxx\bin
 ```
 
 # API Reference
