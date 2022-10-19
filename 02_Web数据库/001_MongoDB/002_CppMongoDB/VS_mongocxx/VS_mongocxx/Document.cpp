@@ -61,6 +61,16 @@ void creat_a_document_by_basic() {
 	cout << bsoncxx::to_json(builder.view()) << endl;
 }
 
+void creat_a_document_by_basic_OOP() {
+	bsoncxx::builder::basic::document builder{};
+	bsoncxx::builder::basic::document sub{};
+	sub.append(kvp("name", "MongoDB"));  // string literal value will be converted to b_string automatically
+	sub.append(kvp("type", "database"));
+	sub.append(kvp("count", 1));
+	builder.append(kvp("sub_document", sub));
+	cout << bsoncxx::to_json(builder.view()) << endl;
+}
+
 
 void insert_one_document() {
 	MongoDB mgdb;

@@ -37,6 +37,7 @@ public:
 
 void creat_a_document_by_stream();
 void creat_a_document_by_basic();
+void creat_a_document_by_basic_OOP();
 void insert_one_document();
 void query_one_collection();
 void delete_all_document();

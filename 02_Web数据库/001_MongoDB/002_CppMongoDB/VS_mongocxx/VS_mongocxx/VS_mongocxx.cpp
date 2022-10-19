@@ -31,5 +31,5 @@ void sample() {
 int main()
 {
 	//sample();
-	transform_bson_data();
+	creat_a_document_by_basic_OOP();
 }
