@@ -30,8 +30,8 @@ void transform_bson_data() {
 	// 查询数据库 获取结果
 	auto find_res = mgdb.coll.find_one({});
 	auto bs_view = find_res->view();
-	cout << bs_view["string"].get_utf8().value.to_string() << endl;;
-	cout << bs_view["bool"].get_bool().value << endl;;
+	cout << bs_view["string"].get_utf8().value.to_string() << endl;
+	cout << bs_view["bool"].get_bool().value << endl;
 	cout << "判断类型(double)：\t" << (bs_view["double"].type() == bsoncxx::type::k_double) << endl;
 	cout << "判断类型(int)：\t" << (bs_view["double"].type() == bsoncxx::type::k_int64) << endl;
 
