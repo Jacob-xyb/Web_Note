@@ -400,17 +400,32 @@ from flask import redirect
 def redirect(
     location: str, code: int = 302, Response: t.Optional[t.Type["BaseResponse"]] = None
 ) -> "BaseResponse":
+    
+# 用法
+redirect('/')
 ```
 
-## 模板
+# Jinja2 模板
 
-Jinjia2 模板引擎
+## 基本使用
 
-`render_template(path)` : 默认去 `templates` 文件夹寻找 html 文件。 其实返回的就是 html 的字符串。
+- **存放地址**
+
+  模板文件，也就是 html 文件，需要放到 templates 文件夹下。
+
+  可以通过 `Flask(__name__, template_folder="path" )` 来修改模板的地址，但是不推荐。
+
+  如果在**蓝图**中创建的 Flask 对象，就需要主动设置重新定向到 根目录下的 templates 文件夹。
+
+- **使用模板**
+
+  通过 `render_template(path)` 传递模板，默认去 `templates` 文件夹寻找 html 文件，返回的是字符串。
 
 模板遵守模板的语法，就可以在 html 模板中写 Python 语法，所以 html 不再称之为 `网页`， 而是 `模板`。
 
-### 字符串
+## 变量
+
+- **字符串**
 
 ```python
 render_template('show.html', name=name)
@@ -419,7 +434,7 @@ render_template('show.html', name=name)
 {{ name }}
 ```
 
-### 列表
+- **列表**
 
 可以和Python语句相通
 
@@ -432,7 +447,7 @@ l = ['aa', 'bb', 'cc', 'dd']
 {{ l.0 }}	# 这种获取下标的方式很奇怪
 ```
 
-### 字典
+- **字典**
 
 ```python
 d = {"a": "aaa", "b": "bbb", "c": "ccc"}
@@ -441,7 +456,7 @@ d = {"a": "aaa", "b": "bbb", "c": "ccc"}
 {{ d.a }}  || {{ d.get('a') }}   # 感觉前面的方式会简单许多
 ```
 
-### 对象
+- **对象**
 
 ```python
 class Girl:
@@ -455,21 +470,45 @@ render_template('show.html', obj=obj)
 {{ obj.name }}
 ```
 
-### 控制块
+## 控制语句
 
-`{%  %}`
+- **if else**
 
-### for + loop
+  ```jinja2
+  {% if age > 18 %}
+      <p>{{ name }} 的年龄为：{{ age }}, 已成年。</p>
+  {% elif age < 18 %}
+      <p>{{ name }} 的年龄为：{{ age }}, 未成年。</p>
+  {% else %}
+      <p>{{ name }} 的年龄为：{{ age }}, 刚成年。</p>
+  {% endif %}
+  ```
 
-for 循环自带 loop 变量:
+- **for + loop**
 
- `loop.index` 序号从 1 开始；`loop.index0` 序号从 0 开始；
+    ```jinja2
+    {% for book in books %}
+        <li>{{ book.name }}</li>
+    {% endfor %}
+    ```
 
-`loop.revindex` 序号倒序，结束是 1；`loop.revindex0` 序号倒序，结束是 0；
+    如果是遍历一个字典，需要拿到键值对：
+    
+    ```jinja2
+    {% for key, value in book.items() %}
+    {{ key }}: {{ value }}
+    {% endfor %}
+    ```
+    
+    for 循环自带 loop 变量:
+    
+    `loop.index` 序号从 1 开始；`loop.index0` 序号从 0 开始；
+    
+    `loop.revindex` 序号倒序，结束是 1；`loop.revindex0` 序号倒序，结束是 0；
+    
+    `loop.first` 、`loop.last` 返回 True/False，判断
 
-`loop.first` 、`loop.last` 返回 True/False，判断
-
-### 过滤器
+## 过滤器
 
 语法：`{{ 变量名 | 过滤器(*args) }}` 
 
@@ -490,12 +529,13 @@ for 循环自带 loop 变量:
 
 1. first 、last 、length
 2. sort:  排序 常用于 整型列表
+3. join(",")：列表转字符串 `{{ list | join(",")}}`
 
 - **字典操作：**
 
 1. d.values()、d.keys()、d.items()
 
-### 自定义过滤器
+## 自定义过滤器
 
 第一种方式：
 
@@ -519,9 +559,7 @@ def reverse_list(li):
     return temp_li
 ```
 
-### 复用
-
-#### 模板继承 *
+## 模板继承 *
 
 需要模板继承的情况：
 
@@ -544,7 +582,9 @@ def reverse_list(li):
 {% endblock %}
 ```
 
-#### include
+## include
+
+`include`语句可以把一个模板引入到另外一个模板中，类似于把一个模板的代码copy到另外一个模板的指定位置。
 
 include 路径均基于 `templates`
 
@@ -552,7 +592,7 @@ include 路径均基于 `templates`
 {% include 'common/header.html' %}
 ```
 
-#### 宏：macro
+## 宏：macro
 
 目的：代码可以复用，避免代码冗余
 
@@ -572,15 +612,67 @@ include 路径均基于 `templates`
 {{ f.form('/') }}
 ```
 
-### url_for()
+## 模板加载静态文件 
 
-### 声明变量
+```jinja2
+{{ url_for('static', filename='css/index.css') }}
+```
 
-`{% set x = [0, 1, 2] %}`
+## 声明变量
 
-## 蓝图
+- **直接声明全局变量**
 
-### 问题1
+  ```jinja2
+  {% set x = [0, 1, 2] %}
+  {% set navigation = [('index.html', 'Index'), ('about.html', 'About')] %}
+  ```
+
+- **with 声明局部变量**
+
+  如果不想让一个变量污染全局环境，可以使用`with`语句来创建一个内部的作用域，将`set`语句放在其中，这样创建的变量只在`with`代码块中才有效：
+  
+  ```jinja2
+  {% with %}
+      {% set foo = 42 %}
+      {{ foo }}           foo is 42 here
+  {% endwith %}
+  ```
+  
+  也可以在`with`的后面直接添加变量，比如以上的写法可以修改成这样：
+  
+  ```jinja2
+  {% with foo = 42 %}
+      {{ foo }}
+  {% endwith %}
+  ```
+
+## 转义
+
+转义的概念是，在模板渲染字符串的时候，字符串有可能包括一些非常危险的字符比如`<`、`>`等，这些字符会破坏掉原来`HTML`标签的结构，更严重的可能会发生`XSS`跨域脚本攻击，因此如果碰到`<`、`>`这些字符的时候，应该转义成`HTML`能正确表示这些字符的写法，比如`>`在`HTML`中应该用 `&lt;`来表示等。
+
+但是`Flask`中默认没有开启全局自动转义，针对那些以`.html`、`.htm`、`.xml`和`.xhtml`结尾的文件，如果采用`render_template`函数进行渲染的，则会开启自动转义。并且当用`render_template_string`函数的时候，会将所有的字符串进行转义后再渲染。而对于`Jinja2`默认没有开启全局自动转义，作者有自己的原因：
+
+1. 渲染到模板中的字符串并不是所有都是危险的，大部分还是没有问题的，如果开启自动转义，那么将会带来大量的不必要的开销。
+2. `Jinja2`很难获取当前的字符串是否已经被转义过了，因此如果开启自动转义，将对一些已经被转义过的字符串发生二次转义，在渲染后会破坏原来的字符串。
+
+在没有开启自动转义的模式下（比如以`.conf`结尾的文件），对于一些不信任的字符串，可以通过`{{ content_html|e }}`或者是`{{ content_html|escape }}`的方式进行转义。在开启了自动转义的模式下，如果想关闭自动转义，可以通过`{{ content_html|safe }}`的方式关闭自动转义。而`{%autoescape true/false%}...{%endautoescape%}`可以将一段代码块放在中间，来关闭或开启自动转义，例如以下代码关闭了自动转义：
+
+```jinja2
+{% autoescape false %}
+  <p>autoescaping is disabled here</p>
+  <p>{{ will_not_be_escaped }}</p>
+{% endautoescape %}
+```
+
+
+
+# 蓝图
+
+## 简单使用教程
+
+在根目录创建 `apps` python 包
+
+## 问题1
 
 **Question：**路由外拆后 `render_template()` 不再默认在 templates 文件夹下寻找文件。 因为会默认去创建 `Flask 对象` 的所在目录寻找 templates 文件夹
 

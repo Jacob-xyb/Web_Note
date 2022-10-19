@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制语句</title>
+</head>
+<body>
+{% if age > 18 %}
+    <p>{{ name }} 的年龄为：{{ age }}, 已成年。</p>
+{% elif age < 18 %}
+    <p>{{ name }} 的年龄为：{{ age }}, 未成年。</p>
+{% else %}
+    <p>{{ name }} 的年龄为：{{ age }}, 刚成年。</p>
+{% endif %}
+
+<ul>
+    {% for book in books %}
+        <li>
+        {% for key, value in book.items() %}
+            {{ key }}: {{ value }}
+        {% endfor %}
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

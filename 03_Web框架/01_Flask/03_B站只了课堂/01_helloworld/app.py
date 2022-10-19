@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, url_for
+from flask import Flask, jsonify, url_for, request, redirect
 import config
 
 app = Flask(__name__)
@@ -23,6 +23,11 @@ def book_list():
     for book in books:
         book['url'] = url_for("book_detail", num=book["id"])
     return jsonify(books)
+
+
+@app.route("/profile")
+def profile():
+    return redirect(url_for("hello_world"))
 
 
 @app.route('/')
