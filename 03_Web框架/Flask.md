@@ -686,3 +686,121 @@ include 路径均基于 `templates`
 
    
 
+# Flask 中的 cookie 和 session
+
+1. cookies：在`Flask`中操作`cookie`，是通过`response`对象来操作，可以在`response`返回之前，通过`response.set_cookie`来设置，这个方法有以下几个参数需要注意：
+
+- key：设置的cookie的key。
+
+- value：key对应的value。
+- max_age：改cookie的过期时间，如果不设置，则浏览器关闭后就会自动过期。
+- expires：过期时间，应该是一个`datetime`类型。
+- domain：该cookie在哪个域名中有效。一般设置子域名，比如`cms.example.com`。
+- path：该cookie在哪个路径下有效。
+
+2. session：`Flask`中的`session`是通过`from flask import session`。然后添加值key和value进去即可。并且，`Flask`中的`session`机制是将`session`信息加密，然后存储在`cookie`中。专业术语叫做`client side session`。
+
+## Flask cookie 操作
+
+```py
+from flask import Flask, Response, request
+
+app = Flask(__name__)
+
+
+@app.route("/set_cookie")
+def set_cookie():
+    response = Response("cookie 设置")
+    response.set_cookie("user_id", "xxx")
+    return response
+
+
+@app.route("/get_cookie")
+def get_cookie():
+    user_id = request.cookies.get("user_id")
+    return f"获取到的id: {user_id}"
+```
+
+## Flask session 操作
+
+使用 session  之前必须设置 `secret key`，不然会报错
+
+在 Flask 中，session 是先把数据经过加密，然后用 session_id 加密作为key，保存到 cookie 中，获取时 Flask 会在底层进行解密。
+
+```py
+app = Flask(__name__)
+app.config["SECRET_KEY"] = "123"
+
+
+@app.route("/set_session")
+def set_session():
+    session["username"] = "jx"
+    return "session 设置成功"
+
+
+@app.route("/get_session")
+def get_session():
+    username = session.get("username")
+    return f"获取session: {username}"
+
+
+@app.route("/set_cookie")
+def set_cookie():
+    response = Response("cookie 设置")
+    response.set_cookie("user_id", "xxx")
+    return response
+```
+
+# Flask-WTF 表单验证
+
+`Flask-WTF`是简化了`WTForms`操作的一个第三方库。`WTForms`表单的两个主要功能是验证用户提交数据的合法性以及渲染模板。当然还包括一些其他的功能：`CSRF保护`，文件上传等。安装`Flask-WTF`默认也会安装`WTForms`，因此使用以下命令来安装`Flask-WTF`:
+
+```shell
+pip install flask-wtf
+pip install email_validator
+```
+
+```py
+# forms.py
+import wtforms
+from wtforms import validators
+
+
+class LoginForm(wtforms.Form):
+    email = wtforms.StringField(validators=[validators.length(min=5, max=20), validators.email()])
+    password = wtforms.StringField(validators=[validators.length(min=6, max=20)])
+```
+
+```py
+# app.py
+from flask import Flask, request, render_template
+from forms import LoginForm
+
+app = Flask(__name__)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        form = LoginForm(request.form)
+        if form.validate():
+            return "登陆成功"
+        else:
+            return "邮箱或密码错误"
+
+
+@app.route('/')
+def hello_world():  # put application's code here
+    return 'Hello World!'
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+
+
+
+
