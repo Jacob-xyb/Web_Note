@@ -144,7 +144,7 @@ mongod --dbpath E:\MongoDb\data\db --logpath E:\MongoDb\log\mongo.log --port 270
 然后再打开一个 cmd 进入 E:\MongoDB\bin 执行命令 连接 MongoDB
 
 ```powershell
-mongod
+mongo
 ```
 
 如果安装是6.0版本或者某些版本，就会不带MongoDB shell需要自行下载：https://www.mongodb.com/try/download/shell
