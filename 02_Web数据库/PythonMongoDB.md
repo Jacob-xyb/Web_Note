@@ -22,7 +22,7 @@ $ python -m pip install mongoengine -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ```py
 from mongoengine import *
-connect("test")
+connect("test")		# 本地运行 直接提供 MongoDB database 的名字即可
 ```
 
 ### [Defining our documents](http://docs.mongoengine.org/tutorial.html#defining-our-documents)
@@ -43,6 +43,15 @@ ross = User(email='ross@example.com', first_name='Ross', last_name='Lawley').sav
 ```
 
 >  test: database -> user: collection -> ross: document
+
+## Fields
+
+[classmongoengine.base.fields.BaseField(db_field=None, required=False, default=None, unique=False, unique_with=None, primary_key=False, validation=None, choices=None, null=False, sparse=False, **kwargs)](http://docs.mongoengine.org/apireference.html#mongoengine.base.fields.BaseField)
+
+**Parameters:**
+
+- **required** : If the field is required. Whether it has to have a value or not. Defaults to False.
+- **unique** – Is the field value unique or not. Defaults to False.
 
 # Flask MongoDB
 

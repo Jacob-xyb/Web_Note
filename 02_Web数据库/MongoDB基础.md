@@ -557,7 +557,17 @@ db.集合名称.find().sort({key1:1, key2:1})
 
 ## 流程
 
-1. 修改配置信息
+1. 添加用户
+
+   ```py
+   mongo
+   use admin
+   db.createUser({user:“root”,pwd:“123456”,roles:[“userAdminAnyDatabase”]})
+   db.auth(“root”, “123456”)
+   db.grantRolesToUser( "admin" , [ { role: "root", db: "admin" } ])	// 增加 root 权限，不然还是无法执行命令
+   ```
+
+2. 修改配置信息
 
    `bin\mongod.cfg`
 
@@ -576,15 +586,6 @@ db.集合名称.find().sort({key1:1, key2:1})
    $ mongod --config mongodb.conf --install
    ```
 
-2. 添加用户
-
-   ```py
-   mongo
-   use admin
-   db.createUser({user:“root”,pwd:“123456”,roles:[“userAdminAnyDatabase”]})
-   db.auth(“root”, “123456”)
-   db.grantRolesToUser( "admin" , [ { role: "root", db: "admin" } ])	// 增加 root 权限，不然还是无法执行命令
-   ```
 
 3. 启动MongoDB服务即可。
 
