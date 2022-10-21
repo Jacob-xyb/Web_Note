@@ -553,3 +553,110 @@ db.集合名称.find().sort({key1:1, key2:1})
 
 - 1 代表升序，-1 代表降序。
 
+# MongoDB 远程连接
+
+## 流程
+
+1. 修改配置信息
+
+   `bin\mongod.cfg`
+
+   ```yaml
+   # mongodb的配置文件中的bind_ip 默认为127.0.0.1，默认只有本机可以连接。 需要将bind_ip配置为0.0.0.0，表示接受任何IP的连接
+   bind_ip: 0.0.0.0
+   
+   # 如果需要用户验证的话（开启远程的同时建议开启用户验证）
+   security:
+     authorization: enabled
+   ```
+
+   然后执行
+
+   ```py
+   $ mongod --config mongodb.conf --install
+   ```
+
+2. 添加用户
+
+   ```py
+   mongo
+   use admin
+   db.createUser({user:“root”,pwd:“123456”,roles:[“userAdminAnyDatabase”]})
+   db.auth(“root”, “123456”)
+   db.grantRolesToUser( "admin" , [ { role: "root", db: "admin" } ])	// 增加 root 权限，不然还是无法执行命令
+   ```
+
+3. 启动MongoDB服务即可。
+
+   ```py
+   $ mongod --config=D:\MongoDB\bin\mongod.cfg  --dbpath=D:\MongoDB\data --logpath=D:\MongoDB\log\mongod.log --service
+   ```
+
+   **情况1：** 修改配置后，本地启动就无法开启 service 服务了，就很奇怪，进管理器手动开启才行。
+
+   >mongo 局域网ip 测试时:
+   >
+   >若还不行.则关闭防火墙或增加防火墙入站规则开放mongodb 27017端口
+   >
+   >`iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 27017 -j ACCEPT`
+
+   
+
+## 开启权限验证
+
+找到`MongoDB`安装目录下的`bin`目录中的`mongod.cfg`文件，开启权限验证功能：
+
+```py
+security:
+  authorization: enabled
+```
+
+## 有无密码连接方式
+
+```py
+# 1.启动MongoDB：
+
+方法1：若本地配置好了MongoDB为windows服务，在服务里启动MongoDB
+
+方法2：开启一个cmd，执行mongod --dbpath MongoDB的data数据存放地址
+
+如mongod --dbpath D:MongoDBdata
+
+# 2.连接本地MongoDB
+
+无密码：再开启一个cmd，执行 mongo
+
+有密码：再开启一个cmd，执行 mongo -u user -p password
+
+# 3.连接远程服务器MongoDB
+
+无密码：开启一个cmd，执行 mongo 42.114.29.206:27017/log
+
+有密码：开启一个cmd，执行 mongo 42.114.29.206:27017/log  -u user -p password
+```
+
+## 常用命令
+
+```py
+show users  // 查看当前库下的用户
+
+db.dropUser('username')  // 删除用户
+db.removeUser('username') // 删除用户
+
+db.updateUser('admin', {pwd: '654321'})  // 修改用户密码
+
+db.addUser('user','pwd')	// 某个数据库添加访问权限
+db.auth('admin', '654321')  // 密码认证
+```
+
+## 角色权限
+
+| 角色描述       | 角色标识                                                     |
+| -------------- | ------------------------------------------------------------ |
+| 数据库用户角色 | read、readWrite                                              |
+| 数据库管理角色 | dbAdmin、dbOwner、userAdmin                                  |
+| 集群管理角色   | clusterAdmin、clusterManager、clusterMonitor、hostManager    |
+| 备份恢复角色   | backup、restore                                              |
+| 所有数据库角色 | readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、 dbAdminAnyDatabase |
+| 超级用户角色   | root                                                         |
+
