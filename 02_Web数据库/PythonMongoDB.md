@@ -6,6 +6,180 @@
 
    我们可以跟关系型数据库的Python客户端MySQLdb，以及ORM SQLAlchemy/Django ORM比较一下，PyMongo相当于MySQLdb，MongoEngine相当于SQLAlchemy，SQLAlchemy是基于MySQLdb之上的，MongoEngine是基于PyMongo的。
 
+# PyMongo
+
+## Quick Start
+
+### [Making a Connection with MongoClient](https://pymongo.readthedocs.io/en/stable/tutorial.html#making-a-connection-with-mongoclient)
+
+```py
+from pymongo import MongoClient
+
+# 1.connect on the default host and port
+client1 = MongoClient()
+
+# 2.specify the host and port explicitly
+client2 = MongoClient('localhost', 27017)
+
+# 3.use the MongoDB URI format
+client3 = MongoClient('mongodb://localhost:27017/')
+```
+
+### [Getting a Database](https://pymongo.readthedocs.io/en/stable/tutorial.html#making-a-connection-with-mongoclient)
+
+MongoDB的一个实例可以支持多个独立的数据库。
+
+使用PyMongo时，您可以在MongoClient实例上使用属性样式访问数据库:
+
+```py
+from pymongo import MongoClient
+
+client = MongoClient()
+db1 = client.test_database
+# 如果数据库名含有 '-' 连接符，可以采用 dictionary style
+db2 = client["test-database"]
+```
+
+### [Getting a Collection](https://pymongo.readthedocs.io/en/stable/tutorial.html#getting-a-collection)
+
+ Getting a collection in PyMongo works the same as getting a database:
+
+```py
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.test
+
+collection1 = db.test_collection
+
+collection2 = db['test-collection']
+```
+
+An important note about collections (and databases) in MongoDB is that they are created lazily - none of the above commands have actually performed any operations on the MongoDB server. Collections and databases are created when the first document is inserted into them.
+
+### [Documents](https://pymongo.readthedocs.io/en/stable/tutorial.html#documents)
+
+ In PyMongo we use dictionaries to represent documents.
+
+```py
+import datetime
+
+# In PyMongo we use dictionaries to represent documents
+post = {"author": "Mike",
+        "text": "My first blog post!",
+        "tags": ["mongodb", "python", "pymongo"],
+        "date": datetime.datetime.now()}
+```
+
+#### [Inserting a Document](https://pymongo.readthedocs.io/en/stable/tutorial.html#inserting-a-document)
+
+```python
+from pymongo import MongoClient
+import datetime
+
+client = MongoClient()
+db = client.test
+posts = db.posts
+
+post = {"author": "Mike",
+        "text": "My first blog post!",
+        "tags": ["mongodb", "python", "pymongo"],
+        "date": datetime.datetime.now()}
+
+return_post = posts.insert_one(post)
+
+print(return_post.inserted_id)
+print(db.list_collection_names())
+```
+
+#### [Getting a Single Document](https://pymongo.readthedocs.io/en/stable/tutorial.html#getting-a-single-document-with-find-one)
+
+```py
+from pymongo import MongoClient
+import pprint
+
+client = MongoClient()
+db = client.test
+posts = db.posts
+
+pprint.pprint(posts.find_one())
+pprint.pprint(posts.find_one({"title": "xxx"}))  # None
+```
+
+A common task in web applications is to get an ObjectId from the request URL and find the matching document. It’s necessary in this case to **convert the ObjectId from a string** before passing it to `find_one`:
+
+```py
+from bson.objectid import ObjectId
+
+# The web framework gets post_id from the URL and passes it as a string
+def get(post_id):
+    # Convert from string to ObjectId:
+    document = client.db.collection.find_one({'_id': ObjectId(post_id)})
+```
+
+#### [Bulk Inserts](https://pymongo.readthedocs.io/en/stable/tutorial.html#bulk-inserts)
+
+```py
+import datetime
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.test
+posts = db.posts
+
+new_posts = [{"author": "Mike",
+              "text": "Another post!",
+              "tags": ["bulk", "insert"],
+              "date": datetime.datetime(2009, 11, 12, 11, 14)},
+             {"author": "Eliot",
+              "title": "MongoDB is fun",
+              "text": "and pretty easy too!",
+              "date": datetime.datetime(2009, 11, 10, 10, 45)}]
+result = posts.insert_many(new_posts)
+print(result.inserted_ids)
+```
+
+#### [Querying for More Than One Document](https://pymongo.readthedocs.io/en/stable/tutorial.html#querying-for-more-than-one-document)
+
+```py
+import pprint
+from pymongo import MongoClient
+
+client = MongoClient()
+db = client.test
+posts = db.posts
+
+for post in posts.find():
+    pprint.pprint(post)
+
+res = posts.find()  # object of type 'Cursor'  # 是一个迭代类型
+print(len(list(res)))
+print(posts.count_documents({}))    # int
+
+for post in posts.find({'author': 'Eliot'}):
+    pprint.pprint(post)
+```
+
+#### [Range Queries](https://pymongo.readthedocs.io/en/stable/tutorial.html#range-queries)
+
+```py
+import pprint
+from pymongo import MongoClient
+import datetime
+
+client = MongoClient()
+db = client.test
+posts = db.posts
+
+d = datetime.datetime(2009, 11, 12, 12)
+for post in posts.find({"date": {"$lt": d}}).sort("author"):    # 没有 data 属性的会被忽略
+    pprint.pprint(post)
+```
+
+#### [Indexing](https://pymongo.readthedocs.io/en/stable/tutorial.html#indexing)
+
+
+
 # MongoEngine
 
 ## Download
