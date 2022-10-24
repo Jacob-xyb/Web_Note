@@ -1591,6 +1591,17 @@ position 属性规定元素的定位类型。
 
 absolute 的绝对定位是相对于第一屏， fixed 是相对于浏览器窗口。
 
+- **居中：**
+
+  ```css
+  {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  ```
+
 ## z-index 层级
 
 - 定义

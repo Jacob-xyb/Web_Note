@@ -107,12 +107,46 @@ console.log($('span').prev());  // span 元素的上一个元素
 console.log($('span').prevAll());
 console.log($('span').parent());
 console.log($('span').parents());   // 获取到的是该元素的所有父级元素，直到 html 为止
-console.log($('span').siblings());   // 获取该元素的所有兄弟元素
+console.log($('span').siblings());   // 获取该元素的所有兄弟元素,不包含自身
 console.log($('ul').find());   // 获取该元素的所有后代元素
 
 console.log($('ul').find(selector));	// 获取该元素满足筛选条件的所有元素（不包括本身）
 console.log($('ul').filter(selector));	// 获取该元素满足筛选条件的所有元素（包括本身）
 ```
+
+# jQuery 遍历方法
+
+| 方法                                                         | 描述                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [add()](https://www.runoob.com/jquery/traversing-add.html)   | 把元素添加到匹配元素的集合中                                 |
+| addBack()                                                    | 把之前的元素集添加到当前集合中                               |
+| andSelf()                                                    | 在版本 1.8 中被废弃。addBack() 的别名                        |
+| [children()](https://www.runoob.com/jquery/traversing-children.html) | 返回被选元素的所有直接子元素                                 |
+| [closest()](https://www.runoob.com/jquery/traversing-closest.html) | 返回被选元素的第一个祖先元素                                 |
+| [contents()](https://www.runoob.com/jquery/traversing-contents.html) | 返回被选元素的所有直接子元素（包含文本和注释节点）           |
+| [each()](https://www.runoob.com/jquery/traversing-each.html) | 为每个匹配元素执行函数                                       |
+| end()                                                        | 结束当前链中最近的一次筛选操作，并把匹配元素集合返回到前一次的状态 |
+| [eq()](https://www.runoob.com/jquery/traversing-eq.html)     | 返回带有被选元素的指定索引号的元素                           |
+| [filter()](https://www.runoob.com/jquery/traversing-filter.html) | 把匹配元素集合缩减为匹配选择器或匹配函数返回值的新元素       |
+| [find()](https://www.runoob.com/jquery/traversing-find.html) | 返回被选元素的后代元素                                       |
+| [first()](https://www.runoob.com/jquery/traversing-first.html) | 返回被选元素的第一个元素                                     |
+| [has()](https://www.runoob.com/jquery/traversing-has.html)   | 返回拥有一个或多个元素在其内的所有元素                       |
+| [is()](https://www.runoob.com/jquery/traversing-is.html)     | 根据选择器/元素/jQuery 对象检查匹配元素集合，如果存在至少一个匹配元素，则返回 true |
+| [last()](https://www.runoob.com/jquery/traversing-last.html) | 返回被选元素的最后一个元素                                   |
+| map()                                                        | 把当前匹配集合中的每个元素传递给函数，产生包含返回值的新 jQuery 对象 |
+| [next()](https://www.runoob.com/jquery/traversing-next.html) | 返回被选元素的后一个同级元素                                 |
+| [nextAll()](https://www.runoob.com/jquery/traversing-nextall.html) | 返回被选元素之后的所有同级元素                               |
+| [nextUntil()](https://www.runoob.com/jquery/traversing-nextuntil.html) | 返回介于两个给定参数之间的每个元素之后的所有同级元素         |
+| [not()](https://www.runoob.com/jquery/traversing-not.html)   | 从匹配元素集合中移除元素                                     |
+| [offsetParent()](https://www.runoob.com/jquery/traversing-offsetparent.html) | 返回第一个定位的父元素                                       |
+| [parent()](https://www.runoob.com/jquery/traversing-parent.html) | 返回被选元素的直接父元素                                     |
+| [parents()](https://www.runoob.com/jquery/traversing-parents.html) | 返回被选元素的所有祖先元素                                   |
+| [parentsUntil()](https://www.runoob.com/jquery/traversing-parentsuntil.html) | 返回介于两个给定参数之间的所有祖先元素                       |
+| [prev()](https://www.runoob.com/jquery/traversing-prev.html) | 返回被选元素的前一个同级元素                                 |
+| [prevAll()](https://www.runoob.com/jquery/traversing-prevall.html) | 返回被选元素之前的所有同级元素                               |
+| [prevUntil()](https://www.runoob.com/jquery/traversing-prevuntil.html) | 返回介于两个给定参数之间的每个元素之前的所有同级元素         |
+| [siblings()](https://www.runoob.com/jquery/traversing-siblings.html) | 返回被选元素的所有同级元素，不包含自身                       |
+| [slice()](https://www.runoob.com/jquery/traversing-slice.html) | 把匹配元素集合缩减为指定范围的子集                           |
 
 # jQuery 操作文本内容
 
