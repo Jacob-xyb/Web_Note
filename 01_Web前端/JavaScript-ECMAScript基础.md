@@ -861,7 +861,7 @@ document.write(`<br>`);
 
 ## 不同类型间的比较
 
-当对不同类型的值进行比较时，JavaScript 会首先将其转化为数字（number）再判定大小。
+**当对不同类型的值进行比较时，JavaScript 会首先将其转化为数字（number）再判定大小。**
 
 ```js
 document.write(`'2' > 1: ${'2' > 1}`); // true
@@ -1114,7 +1114,7 @@ if (year < 2015) {
 }
 ```
 
-## ? 条件运算符
+## ? 条件运算符 *
 
 有时我们需要根据一个条件去赋值一个变量。
 
@@ -2006,8 +2006,6 @@ return (
 一个单独的函数不仅更容易测试和调试 —— 它的存在本身就是一个很好的注释！
 
 # 函数表达式
-
-https://www.bookstack.cn/read/zh.javascript.info/4afb11cc353d302c.md
 
 在 JavaScript 中，函数不是“神奇的语言结构”，而是一种特殊的值。
 
