@@ -1,3 +1,23 @@
+# 代码质量
+
+## 书写风格
+
+![](https://static.sitestack.cn/projects/zh.javascript.info/1c70bb4fa97449266b488163bc47cad9.svg)
+
+# Chrome 中调试
+
+## Debugger 命令
+
+我们也可以使用 `debugger` 命令来暂停代码，像这样
+
+```js
+function hello(name) {
+  let phrase = `Hello, ${name}!`;
+  debugger;  // <-- 调试器会在这停止
+  say(phrase);
+}
+```
+
 # 基础数据类型进阶
 
 ## 基础数据类型包装器

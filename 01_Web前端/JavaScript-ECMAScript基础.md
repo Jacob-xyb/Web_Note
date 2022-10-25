@@ -354,14 +354,6 @@ alert(x); // "undefined"
 
 `symbol` 类型用于创建对象的唯一标识符。
 
-# 复杂数据类型
-
-## object 类型
-
-`object` 类型是一个特殊的类型。
-
-其他所有的数据类型都被称为“原生类型”，因为它们的值只包含一个单独的内容（字符串、数字或者其他）。相反，`object` 则用于储存数据集合和更复杂的实体。
-
 # typeof 运算符
 
 `typeof` 运算符返回参数的类型。当我们想要分别处理不同类型值的时候，或者想快速进行数据类型检验时，非常有用。
@@ -2183,7 +2175,7 @@ ask(
 
 这对代码可读性也更好，因为在代码中查找 `function f(…) {…}` 比 `let f = function(…) {…}` 更容易。函数声明更“醒目”。
 
-# 函数箭头
+# 箭头函数
 
 创建函数还有另外一种非常简单的语法，并且这种方法通常比函数表达式更好。
 
@@ -2272,25 +2264,6 @@ alert( sum(1, 2) ); // 3
 
 **箭头函数没有 this, 也就是说会去外部作用域去寻找 this (通常是 Window)**
 
-# Chrome 中调试
-
-## Debugger 命令
-
-我们也可以使用 `debugger` 命令来暂停代码，像这样
-
-```js
-function hello(name) {
-  let phrase = `Hello, ${name}!`;
-  debugger;  // <-- 调试器会在这停止
-  say(phrase);
-}
-```
-
-# 代码质量
-
-## 书写风格
-
-![](https://static.sitestack.cn/projects/zh.javascript.info/1c70bb4fa97449266b488163bc47cad9.svg)
 
 # 对象
 
@@ -2780,7 +2753,7 @@ user.id = "Their id value"
 
 ## 对象方法，”this”
 
-# 数据类型进阶
+# 基础数据类型常用方法
 
 ## 数字类型
 

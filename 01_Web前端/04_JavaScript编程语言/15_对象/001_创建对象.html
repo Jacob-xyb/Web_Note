@@ -10,46 +10,23 @@
 
 <body>
     <script>
-        // 创建一个字面量对象
-        let obj = {
+        // 创建一个空对象有两种语法：
+        let user;
+        user = new Object(); // “构造函数” 的语法
+        user = {};  // “字面量” 的语法 || 比较常用
+
+        // 创建一个字面量对象，键在创建时是否用字符串均可
+        let obj1 = {
             name: 'Jx',
             age: 18,
-            sayHi: function () {console.log('hello world');}
+            sayHi: function () { console.log('hello world'); }
         }
-
-        // 内置构造函数创建对象
-        let obj2 = new Object();
-
-        // 工厂函数创建对象
-        function creatObj() {
-            let obj = {};
-            obj.name = 'Jx';
-            obj.age = 18;
-            obj.sayHi = function () {console.log('hello world');}
-
-            return obj;
+        let obj2 = {
+            "name": 'Jx',
+            "age": 18,
+            "sayHi": function () { console.log('hello world'); }
         }
-
-        // 自定义构造函数创建对象, 规范首字母大写
-        // 构造函数会自动创建对象，自动返回这个对象
-        // 但是需要和 new 搭配使用，不然没有意义
-        function CreatObj() {
-            this.name = 'Jx';
-            this.age = 18;
-            this.sayHi = function () {console.log('hello world');}
-        }
-        let obj3 = new CreatObj();
-        console.log(obj3);
-
-
-        // 创建一个空对象
-        let user = {};
-        // 设置
-        user["likes birds"] = true;
-        // 读取
-        alert(user["likes birds"]); // true
-        // 删除
-        delete user["likes birds"];
+        console.log(obj1, obj2);    // 两种是一模一样的，但是JavaScript推荐第一种
     </script>
 </body>
 

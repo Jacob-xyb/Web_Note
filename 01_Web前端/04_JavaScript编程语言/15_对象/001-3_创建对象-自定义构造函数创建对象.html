@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 自定义构造函数创建对象, 规范首字母大写
+        // 构造函数会自动创建对象，自动返回这个对象
+        // 但是需要和 new 搭配使用，不然没有意义
+        function CreatObj() {
+            this.name = 'Jx';
+            this.age = 18;
+            this.sayHi = function () { console.log('hello world'); }
+        }
+        let obj = new CreatObj();
+        console.log(obj);
+
+        let tmp = CreatObj();
+        console.log(tmp);   // undefined || 因为作为一个函数看待的话，没有返回值，的确没有意义。
+    </script>
+</body>
+
+</html>
