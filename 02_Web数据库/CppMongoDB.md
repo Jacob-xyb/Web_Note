@@ -197,6 +197,19 @@ int main()
 PATH=...\mongocxx\bin
 ```
 
+# MongoCxx
+
+## 连接
+
+[MongoDB URI](https://docs.mongodb.com/manual/reference/connection-string/)
+
+```cpp
+// 默认连接本机
+mongocxx::uri uri("mongodb://localhost:27017");
+// 账户密码远程链接
+mongocxx::uri uri("mongodb://username:password@host:27017");
+```
+
 # API Reference
 
 http://mongoc.org/libmongoc/current/index.html

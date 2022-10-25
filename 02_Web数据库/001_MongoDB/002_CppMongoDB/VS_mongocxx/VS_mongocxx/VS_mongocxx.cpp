@@ -6,7 +6,7 @@
 
 void sample() {
 	mongocxx::instance instance{}; // This should be done only once.
-	mongocxx::client client{ mongocxx::uri{"mongodb://localhost:27017"} };
+	mongocxx::client client{ mongocxx::uri{"mongodb://admin:yg0074@10.100.2.50:27017"} };
 	mongocxx::database db = client["test"];
 	mongocxx::collection coll = db["col"];
 
@@ -23,13 +23,13 @@ void sample() {
 		<< "y" << 102
 		<< bsoncxx::builder::stream::close_document
 		<< bsoncxx::builder::stream::finalize;
-	//coll.insert_one(doc_value.view());
+	coll.insert_one(doc_value.view());
 	cout << bsoncxx::to_json(doc_value) << endl;
 }
 
 
 int main()
 {
-	//sample();
-	creat_a_document_by_basic_OOP();
+	sample();
+	//creat_a_document_by_basic_OOP();
 }
