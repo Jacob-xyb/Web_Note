@@ -56,9 +56,7 @@
 
 如果设置了 `src` 特性，`script` 标签内容将会被忽略。
 
-# ECMAScript
-
-## 注释
+# 注释
 
 - **单行注释以两个正斜杠字符 `//` 开始。**
 
@@ -84,9 +82,9 @@
 
   不要在 `/*...*/` 内嵌套另一个 `/*...*/`。
 
-## 现代模式
+# 现代模式
 
-### “use strict”
+## “use strict”
 
 这个指令看上去像一个字符串 `"use strict"` 或者 `'use strict'`。当它处于脚本文件的顶部时，则整个脚本文件都将以“现代”模式进行工作。
 
@@ -119,7 +117,7 @@
 })()
 ```
 
-## 变量
+# 变量
 
 在 JavaScript 中创建一个变量，我们需要用到 `let` 关键字。
 
@@ -149,7 +147,7 @@ alert(message); // Hello!
 let user = 'John', age = 25, message = 'Hello';
 ```
 
-### var 与 let
+## var 与 let
 
 在较旧的脚本中，你也可能发现另一个关键字 `var`，而不是 `let`：
 
@@ -159,7 +157,7 @@ var message = 'Hello';
 
 `var` 关键字与 `let` **大体** 相同，也用来声明变量，但稍微有些不同，也有点“老派”。
 
-### 变量命名
+## 变量命名
 
 JavaScript 的变量命名有两个限制：
 
@@ -184,13 +182,13 @@ alert($ + _); // 3
 >
 > 在现代模式中极其不推荐！
 
-### 保留字
+## 保留字
 
 有一张 [保留字列表](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords)，这张表中的保留字无法用作变量命名，因为它们被用于编程语言本身了。
 
 比如，`let`、`class`、`return`、`function` 都被保留了。
 
-### 常量
+## 常量
 
 声明一个常数（不变）变量，可以使用 `const` 而非 `let`：
 
@@ -220,9 +218,9 @@ const pageLoadTime = /* 网页加载所需的时间 */;
 
 换句话说，大写命名的常量仅用作“硬编码（hard-coded）”值的别名。
 
-## 数据类型基础
+# 基础数据类型
 
-### 动态类型语言
+## 动态类型语言
 
 JavaScript 中的变量可以保存任何数据。变量在前一刻可以是个字符串，下一刻就可以变成 number 类型：
 
@@ -234,9 +232,11 @@ message = 123456;
 
 允许这种操作的编程语言称为“动态类型”（dynamically typed）的编程语言，意思是虽然编程语言中有不同的数据类型，但是你定义的变量并不会在定义后，被限制为某一数据类型。
 
-在 JavaScript 中有八种基本的数据类型。
+在 JavaScript 中有 7 种原始类型：`number`，`bigint`，`string`，`boolean`，`symbol`，`null` 和 `undefined`。
 
-### number 类型
+## number 类型
+
+JavaScript 中的常规数字以 64 位的格式 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) 存储，也被称为“双精度浮点数”
 
 ```js
 let n1 = 123;
@@ -247,68 +247,21 @@ document.write(typeof(n2), `<br>`); // number
 
 *number* 类型代表 **整数** 和 **浮点数**。
 
----
-
-除了常规的数字，还包括所谓的 **“特殊数值（“special numeric values”）”** 也属于这种类型：`Infinity`、`-Infinity` 和 `NaN`。
-
-- `Infinity` 代表数学概念中的 [无穷大](https://en.wikipedia.org/wiki/Infinity) ∞。是一个比任何数字都大的特殊值。
-
-  我们可以通过除以 0 来得到它：
+- **数值的其他表示方法**
 
   ```js
-  alert( 1 / 0 ); // Infinity
+  // 科学计数法
+  document.write(2e5, `<br>`); // 200000
+  document.write(2E5, `<br>`); // 200000
+  // 十六进制，大小写不敏感
+  document.write(0x100, `<br>`); // 256
+  // 八进制
+  document.write(0o100, `<br>`); // 64
+  // 二进制
+  document.write(0b100, `<br>`); // 4
   ```
 
-  或者在代码中直接使用它：
-
-  ```js
-  alert( Infinity ); // Infinity
-  ```
-
-- `NaN` 代表一个计算错误。它是一个不正确的或者一个未定义的数学操作所得到的结果，比如：
-
-  ```js
-  alert( "not a number" / 2 ); // NaN，这样的除法是错误的
-  ```
-
-  `NaN` 是粘性的。任何对 `NaN` 的进一步操作都会返回 `NaN`：
-
-  ```js
-  alert( "not a number" / 2 + 5 ); // NaN
-  ```
-
-  所以，如果在数学表达式中有一个 `NaN`，会被传播到最终结果。
-
-> NaN * Infinity = NaN
-
----
-
-**数学运算是安全的**
-
-在 JavaScript 中做数学运算是安全的。我们可以做任何事：除以 0，将非数字字符串视为数字，等等。
-
-脚本永远不会因为一个致命的错误（“死亡”）而停止。最坏的情况下，我们会得到 `NaN` 的结果。
-
-特殊的数值属于 “number” 类型。当然，对“特殊的数值”这个词的一般认识是，它们并不是数字。
-
----
-
-**数值类型的几种写法：**
-
-```js
-let n3 = 2e5;
-document.write(n3, `<br>`); // 200000
-n3 = 2E5;
-document.write(n3, `<br>`); // 200000
-let n5 = 0x100;  // 十六进制
-document.write(n5, `<br>`); // 256
-n5 = 0o100;  // 八进制
-document.write(n5, `<br>`); // 64
-n5 = 0b100;  // 二进制
-document.write(n5, `<br>`); // 4
-```
-
-### bigint 类型
+## bigint 类型
 
 ```js
 // 尾部的 "n" 表示这是一个 BigInt 类型
@@ -320,7 +273,7 @@ const Float = 1234567890123456789012345678901234567890;
 alert(Float);
 ```
 
-### string 类型
+## string 类型
 
 在 JavaScript 中，有三种包含字符串的方式。
 
@@ -344,7 +297,7 @@ alert( `the result is ${1 + 2}` ); // the result is 3
 
 在 JavaScript 中没有`char`这种类型。只有一种 `string` 类型，一个字符串可以包含一个或多个字符。
 
-### boolean 类型
+## boolean 类型
 
 boolean 类型仅包含两个值：`true` 和 `false`。
 
@@ -355,7 +308,7 @@ let isGreater = 4 > 1;
 alert( isGreater ); // true（比较的结果是 "yes"）
 ```
 
-### null 值
+## null 值
 
 它构成了一个独立的类型，只包含 `null` 值：
 
@@ -371,7 +324,7 @@ JavaScript 中的 `null` 仅仅是一个代表“无”、“空”或“值未�
 
 上面的代码表示，由于某些原因，`age` 是未知或空的。
 
-### undefined 值
+## undefined 值
 
 特殊值 `undefined` 和 `null` 一样自成类型。
 
@@ -395,17 +348,21 @@ x = undefined;
 alert(x); // "undefined"
 ```
 
-但是不建议这样做。通常，使用使用 `null` 将一个“空”或者“未知”的值写入变量中，`undefined` 仅仅用于检验，例如查看变量是否被赋值或者其他类似的操作
+但是不建议这样做。通常，使用使用 `null` 将一个“空”或者“未知”的值写入变量中，`undefined` 仅仅用于检验，例如查看变量是否被赋值或者其他类似的操作。
 
-### object 类型和 symbol 类型
+## symbol 
+
+`symbol` 类型用于创建对象的唯一标识符。
+
+# 复杂数据类型
+
+## object 类型
 
 `object` 类型是一个特殊的类型。
 
 其他所有的数据类型都被称为“原生类型”，因为它们的值只包含一个单独的内容（字符串、数字或者其他）。相反，`object` 则用于储存数据集合和更复杂的实体。
 
-`symbol` 类型用于创建对象的唯一标识符。我们在这里提到 `symbol` 类型是为了学习的完整性，但我们会在学完 `object` 类型后再学习它。
-
-### typeof 运算符
+# typeof 运算符
 
 `typeof` 运算符返回参数的类型。当我们想要分别处理不同类型值的时候，或者想快速进行数据类型检验时，非常有用。
 
@@ -436,7 +393,19 @@ typeof alert // "function"  (3)
 2. `typeof null` 的结果是 `"object"`。这其实是不对的。官方也承认了这是 `typeof` 运算符的问题，现在只是为了兼容性而保留了下来。当然，`null` 不是一个 `object`。`null` 有自己的类型，它是一个特殊值。**再次强调，这是 JavaScript 语言的一个错误。**
 3. `typeof alert` 的结果是 `"function"`，因为 `alert` 在 JavaScript 语言中是一个函数。我们会在下一章学习函数，那时我们会了解到，在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 `object` 类型。但是 `typeof` 会对函数区分对待。这不是很正确的做法，但在实际编程中非常方便。
 
-## 类型转换
+# constructor 属性
+
+```js
+"John".constructor                 // 返回函数 String()  { [native code] }
+(3.14).constructor                 // 返回函数 Number()  { [native code] }
+false.constructor                  // 返回函数 Boolean() { [native code] }
+[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+new Date().constructor             // 返回函数 Date()    { [native code] }
+function () {}.constructor         // 返回函数 Function(){ [native code] }
+```
+
+# 类型转换
 
 大多数情况下，运算符和函数会自动将赋予他们的值转换为正确的类型。
 
@@ -444,9 +413,9 @@ typeof alert // "function"  (3)
 
 在某些情况下，我们需要将值显式地转换为我们期望的类型。
 
-### 转为 字符串
+## 转为 字符串
 
-#### String(value)
+### String(value)
 
 `String(value)` 显示转换
 
@@ -459,7 +428,7 @@ document.write(String(value1));
 document.write(`<br>`);
 ```
 
-#### value.toString()
+### value.toString()
 
 虽然语法类似，但是原理不同
 
@@ -491,9 +460,9 @@ document.write(value.toString(16));  // 64
 document.write(`<br>`);
 ```
 
-### 转为 数字
+## 转为 数字
 
-#### Number()
+### Number()
 
 我们也可以使用 `Number(value)` 显式地将这个 `value` 转换为 number 类型。
 
@@ -536,7 +505,7 @@ document.write(Number(value1));  // NaN
 document.write(`<br>`);
 ```
 
-#### parseInt()
+### parseInt()
 
 `parseInt()` 原理是逐字符转换，只有第一位不是数字的时候返回NaN，否则保留前面的数字位置内容。
 
@@ -569,11 +538,11 @@ document.write(parseInt(value1));  // 100
 document.write(`<br>`);
 ```
 
-#### parseFloat()
+### parseFloat()
 
 parseFloat() 规则和 parseInt() 类似，只是会解析小数点
 
-#### 自动进行 Number 转换
+### 自动进行 Number 转换
 
 在算术函数和表达式中，会自动进行 number 类型转换。
 
@@ -583,7 +552,7 @@ parseFloat() 规则和 parseInt() 类似，只是会解析小数点
 alert( "6" / "2" ); // 3, string 类型的值被自动转换成 number 类型后进行计算
 ```
 
-### 转为 布尔
+## 转为 布尔
 
 布尔（boolean）类型转换是最简单的一个。
 
@@ -599,9 +568,9 @@ alert( "6" / "2" ); // 3, string 类型的值被自动转换成 number 类型后
 | `0`, `null`, `undefined`, `NaN`, `""` | `false` |
 | 其他值                                | `true`  |
 
-## 运算符
+# 运算符
 
-### 运算符相关术语
+## 运算符相关术语
 
 - **运算元** —— 运算符应用的对象。比如说乘法运算 `5 * 2`，有两个运算元：左运算元 `5` 和右运算元 `2`。有时候人们也称其为“参数”而不是“运算元”。
 
@@ -620,9 +589,9 @@ alert( "6" / "2" ); // 3, string 类型的值被自动转换成 number 类型后
   alert( y - x ); // 2，二元运算符减号做减运算
   ```
 
-###  + 运算符
+##  + 运算符
 
-#### + 一元运算符
+### + 一元运算符
 
 一元运算符加号，或者说，加号 `+` 应用于单个值，对数字没有任何作用。但是如果运算元不是数字，加号 `+` 则会将其转化为数字。
 
@@ -641,7 +610,7 @@ alert( +"" );   // 0
 
 它的效果和 `Number(...)` 相同，但是更加简短。
 
-#### + 二元运算符
+### + 二元运算符
 
 进行加法运算：
 
@@ -673,11 +642,11 @@ alert( +apples + +oranges ); // 5
 // alert( Number(apples) + Number(oranges) ); // 5
 ```
 
-### 其他数学运算符
+## 其他数学运算符
 
 `-` 、`*` 、`/` 、`%` 只能进行数学运算
 
-### 运算符优先级
+## 运算符优先级
 
 如果一个表达式拥有超过一个运算符，执行的顺序则由 **优先级** 决定。换句话说，所有的运算符中都隐含着优先级顺序。
 
@@ -700,7 +669,7 @@ alert( +apples + +oranges ); // 5
 | 3      | 赋值符   | `=`  |
 | …      | …        | …    |
 
-### = 赋值运算符
+## = 赋值运算符
 
 我们知道赋值符号 `=` 也是一个运算符。从优先级表中可以看到它的优先级非常低，只有 `3`。
 
@@ -745,7 +714,7 @@ alert( c ); // 0
 
 也不推荐。
 
-### ** 幂运算符
+## ** 幂运算符
 
 幂运算符 `**` 是最近被加入到 JavaScript 中的。
 
@@ -758,7 +727,7 @@ document.write(`2 ** 0.5 = ${2 ** 0.5}`);  // 1.4142135623730951
 document.write(`<br>`);
 ```
 
-### 自增/自减
+## 自增/自减
 
 - **自增** `++` 将变量与 1 相加：
 
@@ -804,7 +773,7 @@ let counter = 1;
 alert( 2 * ++counter ); // 4
 ```
 
-### 位运算符
+## 位运算符
 
 位运算符把运算元当做 32 位整数，并在它们的二进制表现形式上操作。
 
@@ -822,7 +791,7 @@ alert( 2 * ++counter ); // 4
 
 这些操作使用得非常少。为了理解它们，我们需要探讨底层的数字表达形式，现在不是做这个的最好时机。尤其是我们现在不会立刻使用它。如果你感兴趣，可以阅读 MDN 中的 [位运算符](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) 相关文章。当有相关实际需求的时候再去阅读是更明智的选择。
 
-### ，逗号运算符
+## ，逗号运算符
 
 逗号运算符 `,` 是最少见最不常使用的运算符之一。有时候它会被用来写更简短的代码，因此为了能够理解代码，我们需要了解它。
 
@@ -854,7 +823,7 @@ let a = (1 + 2, 3 + 4);alert( a ); // 7（3 + 4 的结果）
 
 这样的技巧在许多 JavaScript 框架中都有使用，这也是为什么我们提到它。但是通常它并不能提升代码的可读性，使用它之前，我们要想清楚。
 
-## 值的比较
+# 值的比较
 
 **比较结果为 Boolean 类型**、
 
@@ -865,7 +834,7 @@ let a = (1 + 2, 3 + 4);alert( a ); // 7（3 + 4 的结果）
 - 检查两个值的相等：`a == b`（注意表达式中是两个等号 `=`，若写为单个等号 `a = b` 则表示赋值）。
 - 检查两个值不相等，在数学中使用 `≠` 符号，而在 JavaScript 中则通过在赋值符号前加叹号表示：`a != b`。
 
-### 字符串比较
+## 字符串比较
 
 在比较字符串的大小时，JavaScript 会使用“字典（dictionary）”或“词典（lexicographical）”顺序进行判定。
 
@@ -890,7 +859,7 @@ document.write(`'Bee' > 'Be': ${'Bee' > 'Be'}`); // true
 document.write(`<br>`);
 ```
 
-### 不同类型间的比较
+## 不同类型间的比较
 
 当对不同类型的值进行比较时，JavaScript 会首先将其转化为数字（number）再判定大小。
 
@@ -903,7 +872,7 @@ document.write(`<br>`);
 
 对于布尔类型值，`true` 会被转化为 `1`、`false` 转化为 `0`。
 
-### 严格相等
+## 严格相等
 
 普通的相等性检查 `==` 存在一个问题，它不能区分出 `0` 和 `false`：
 
@@ -933,7 +902,7 @@ alert( 0 === false ); // false，因为被比较值的数据类型不同
 
 严格相等的运算符虽然写起来稍微长一些，但是它能够很清楚地显示代码意图，降低你犯错的可能性。
 
-### 对 null 和 undefined 进行比较
+## 对 null 和 undefined 进行比较
 
 当使用 `null` 或 `undefined` 与其他值进行比较时，其返回结果常常出乎你的意料。
 
@@ -959,7 +928,7 @@ alert( null == undefined ); // true
 
 下面让我们看看，这些规则会带来什么有趣的现象。同时更重要的是，我们需要从中学会如何远离这些特性带来的“陷阱”。
 
-#### 奇怪的结果：null vs 0
+### 奇怪的结果：null vs 0
 
 通过比较 `null` 和 0 可得：
 
@@ -975,7 +944,7 @@ falsealert( null >= 0 ); // (3) true
 
 另一方面，`undefined` 和 `null` 在相等性检查 `==` 中不会进行任何的类型转换，它们有自己独立的比较规则，所以除了它们之间互等外，不会等于任何其他的值。这就解释了为什么（2）中 `null == 0` 会返回 false。
 
-#### 特立独行的 undefined
+### 特立独行的 undefined
 
 `undefined` 不应该被与其他值进行比较：
 
@@ -992,7 +961,7 @@ alert( undefined == 0 ); // false (3)
 - `(1)` 和 `(2)` 都返回 `false` 是因为 `undefined` 在比较中被转换为了 `NaN`，而 `NaN` 是一个特殊的数值型值，它与任何值进行比较都会返回 `false`。
 - `(3)` 返回 `false` 是因为这是一个相等性检查，而 `undefined` 只与 `null` 相等，不会与其他值相等。
 
-#### 规避错误
+### 规避错误
 
 我们为何要研究上述示例？我们需要时刻记得这些古怪的规则吗？不，其实不需要。虽然随着代码写得越来越多，我们对这些规则也都会烂熟于胸，但是我们需要更为可靠的方法来避免潜在的问题：
 
@@ -1000,9 +969,9 @@ alert( undefined == 0 ); // false (3)
 
 除非你非常清楚自己在做什么，否则永远不要使用 `>= > < <=` 去比较一个可能为 `null/undefined` 的变量。对于取值可能是 `null/undefined` 的变量，请按需要分别检查它的取值情况。
 
-## 交互
+# 交互
 
-### alert
+## alert
 
 语法：
 
@@ -1020,7 +989,7 @@ alert("Hello");
 
 弹出的这个带有信息的小窗口被称为 **模态窗**。“modal” 意味着用户不能与页面的其他部分（例如点击其他按钮等）进行交互，直到他们处理完窗口。在上面示例这种情况下 —— 直到用户点击“确定”按钮。
 
-### prompt
+## prompt
 
 `prompt` 函数接收两个参数：
 
@@ -1061,7 +1030,7 @@ let test = prompt("Test");
 let test = prompt("Test", ''); // <-- for IE
 ```
 
-### confirm
+## confirm
 
 语法：
 
@@ -1080,13 +1049,13 @@ let isBoss = confirm("Are you the boss?");
 alert( isBoss ); // 如果“确定”按钮被按下，则显示 true
 ```
 
-## 条件运算符
+# 条件运算符
 
 有时我们需要根据不同条件执行不同的操作。
 
 我们可以使用 `if` 语句和条件运算符 `?`（也称为“问号”运算符）来实现。
 
-### if 语句
+## if 语句
 
 `if(...)` 语句计算括号里的条件表达式，如果计算结果是 `true`，就会执行对应的代码块。
 
@@ -1108,7 +1077,7 @@ if (year == 2015) {
 
 建议每次使用 if 语句都用大括号 `{}` 来包装代码块，即使只有一条语句。这样可以提高代码可读性。
 
-### 布尔转换
+## 布尔转换
 
 `if (…)` 语句会计算圆括号内的表达式，并将计算结果转换为布尔型。
 
@@ -1117,7 +1086,7 @@ if (year == 2015) {
 - 数字 `0`、空字符串 `""`、`null`、`undefined` 和 `NaN` 都会被转换成 `false`。因为他们被称为 “falsy” 值。
 - 其他值被转换为 `true`，所以它们被称为 “truthy”。
 
-### else 语句
+## else 语句
 
 `if` 语句有时会包含一个可选的 “else” 块。如果判断条件不成立，就会执行它内部的代码。
 
@@ -1130,7 +1099,7 @@ if (year == 2015) {
 }
 ```
 
-### else if 语句
+## else if 语句
 
 有时我们需要测试一个条件的几个变体。我们可以通过使用 `else if` 子句实现。
 
@@ -1145,7 +1114,7 @@ if (year < 2015) {
 }
 ```
 
-### ? 条件运算符 
+## ? 条件运算符
 
 有时我们需要根据一个条件去赋值一个变量。
 
@@ -1191,7 +1160,7 @@ let accessAllowed = (age > 18) ? true : false;
 let accessAllowed = age > 18;
 ```
 
-### 多个 ?
+## 多个 ?
 
 使用一系列问号 `?` 运算符可以返回一个取决于多个条件的值。
 
@@ -1213,7 +1182,7 @@ alert( message );
 
 **不推荐使用**
 
-### ‘?’ 的非常规使用
+## ‘?’ 的非常规使用
 
 有时可以使用问号 `?` 来代替 `if` 语句
 
@@ -1231,13 +1200,13 @@ let company = prompt('Which company created JavaScript?', '');
 
 这种写法比 `if` 语句更短，对一些程序员很有吸引力。但它的可读性差。
 
-## 逻辑运算符
+# 逻辑运算符
 
 JavaScript 里有三个逻辑运算符：`&&`（与），`||`（或），`!`（非）
 
 虽然他们被称为“逻辑”运算符，但这些运算符却可以被应用于任意类型的值，而不仅仅是布尔值。他们的结果也同样可以是任意类型。
 
-### &&（与）
+## &&（与）
 
 两个 & 符号表示 `&&` 与操作：
 
@@ -1264,7 +1233,7 @@ if (hour == 12 && minute == 30) {
 }
 ```
 
-#### 与运算的原理
+### 与运算的原理
 
 ```js
 // 与运算会返回第一个假值，否则返回最后一个真值。
@@ -1304,7 +1273,7 @@ let x = 1;
 
 **所以建议是根据目的选择代码的结构。需要条件判断就用 `if`，需要与运算就用 `&&`。**
 
-### ||（或）
+## ||（或）
 
 两个竖线符号表示了“或”运算：
 
@@ -1335,7 +1304,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-### !（非）
+## !（非）
 
 感叹符号 `!` 表示布尔非运算。
 
@@ -1374,9 +1343,9 @@ alert( Boolean("non-empty string") ); // truealert( Boolean(null) ); // false
 
 非运算符 `!` 的优先级在所有逻辑运算符里面最高，所以它总是在 `&&` 和 `||` 前执行。
 
-## 循环
+# 循环
 
-### while 循环
+## while 循环
 
 `while` 循环的语法如下：
 
@@ -1424,7 +1393,7 @@ let i = 3;
 while (i) alert(i--);
 ```
 
-### do…while 循环
+## do…while 循环
 
 使用 `do..while` 语法可以将条件检查移至循环体 **下面**：
 
@@ -1436,7 +1405,7 @@ do {
 
 循环首先执行循环体，然后检查条件，当条件为真时，重复执行循环体。
 
-### for 循环
+## for 循环
 
 `for` 循环更加复杂，但它是最常使用的循环形式。
 
@@ -1514,7 +1483,7 @@ for (;;) {
 
 请注意 `for` 的两个 `;` 必须存在，否则会出现语法错误。
 
-### break 跳出循环
+## break 跳出循环
 
 通常条件为假时，循环会终止。
 
@@ -1536,7 +1505,7 @@ alert( 'Sum: ' + sum );
 
 根据需要，”无限循环 + `break`“ 的组合非常适用于不必在循环开始/结束时检查条件，但需要在中间甚至是主体的多个位置进行条件检查的情况。
 
-### continue 继续下一次迭代
+## continue 继续下一次迭代
 
 `continue` 指令是 `break` 的“轻量版”。它不会停掉整个循环。而是停止当前这一次迭代，并强制启动新一轮循环（如果条件允许的话）。
 
@@ -1594,7 +1563,7 @@ if (i > 5) {
 
 这是不（建议）使用问号 `?` 运算符替代 `if` 语句的另一个原因。
 
-### break/continue 标签
+## break/continue 标签
 
 有时候我们需要从一次从多层嵌套的循环中跳出来。
 
@@ -1662,13 +1631,13 @@ label: for (...)
 
 只有在循环内部才能调用 `break/continue`，并且标签必须位于指令上方的某个位置。
 
-## switch 语句
+# switch 语句
 
 `switch` 语句可以替代多个 `if` 判断。
 
 `switch` 语句为多分支选择的情况提供了一个更具描述性的方式。
 
-### 语法
+## 语法
 
 `switch` 语句有至少一个 `case` 代码块和一个可选的 `default` 代码块。
 
@@ -1763,7 +1732,7 @@ switch (+a) {
 
 这里 `+a` 返回 `1`，这个值跟 `case` 中 `b + 1` 相比较，然后执行对应的代码。
 
-### case 分组
+## case 分组
 
 共享同一段代码的几个 `case` 分支可以被分为一组：
 
@@ -1789,13 +1758,13 @@ switch (a) {
 
 `switch/case` 有通过 case 进行“分组”的能力，其实是 switch 语句没有 `break` 时的副作用。因为没有 `break`，`case 3` 会从 `(*)` 行执行到 `case 5`。
 
-### 注意事项
+## 注意事项
 
 **强调一下，这里的相等是严格相等。被比较的值必须是相同的类型才能进行匹配。**
 
-## 函数基础
+# 函数基础
 
-### 函数声明
+## 函数声明
 
 ```js
 function showMessage() {
@@ -1813,7 +1782,7 @@ function name(parameters) {
 
 我们的新函数可以通过名称调用：`showMessage()`。
 
-### 局部变量
+## 局部变量
 
 在函数中声明的变量只在该函数内部可见。
 
@@ -1826,7 +1795,7 @@ showMessage(); // Hello, I'm JavaScript!
 alert( message ); // <-- 错误！变量是函数的局部变量
 ```
 
-### 外部变量
+## 外部变量
 
 函数也可以访问外部变量，例如：
 
@@ -1857,7 +1826,7 @@ showMessage();
 alert( userName ); // John，未被更改，函数没有访问外部变量。
 ```
 
-### 函数的全局变量
+## 函数的全局变量
 
 任何函数之外声明的变量，例如上述代码中的外部变量 `userName`，都被称为 **全局** 变量。
 
@@ -1865,7 +1834,7 @@ alert( userName ); // John，未被更改，函数没有访问外部变量。
 
 减少全局变量的使用是一种很好的做法。现代的代码有很少甚至没有全局变量。大多数变量存在于它们的函数中。但是有时候，全局变量能够用于存储项目级别的数据。
 
-### 参数
+## 参数
 
 我们可以使用参数（也称“函数参数”）来将任意数据传递给函数。
 
@@ -1894,7 +1863,7 @@ showMessage(from, "Hello"); // *Ann*: Hello
 alert( from ); // Ann
 ```
 
-### 默认值
+## 默认值
 
 如果未提供参数，那么其默认值则是 `undefined`。
 
@@ -1951,7 +1920,7 @@ function showMessage(from, text) {
 }
 ```
 
-### 返回值
+## 返回值
 
 函数可以将一个值返回到调用代码中作为结果。
 
@@ -2015,7 +1984,7 @@ return (
 
 然后它就能像我们预想的那样正常运行了。
 
-### 函数命名
+## 函数命名
 
 函数就是行为（action）。所以它们的名字通常是动词。它应该简短且尽可能准确地描述函数的作用。这样读代码的人就能清楚地知道这个函数的功能。
 
@@ -2030,13 +1999,13 @@ return (
 - `"create…"` —— 创建某些内容，
 - `"check…"` —— 检查某些内容并返回 boolean 值，等。
 
-### 函数 == 注释
+## 函数 == 注释
 
 函数应该简短且只有一个功能。如果这个函数功能复杂，那么把该函数拆分成几个小的函数是值得的。有时候遵循这个规则并不是那么容易，但这绝对是件好事。
 
 一个单独的函数不仅更容易测试和调试 —— 它的存在本身就是一个很好的注释！
 
-## 函数表达式
+# 函数表达式
 
 https://www.bookstack.cn/read/zh.javascript.info/4afb11cc353d302c.md
 
@@ -2099,7 +2068,7 @@ let sayHi = function() {
 - 在代码块的结尾不需要加分号 `;`，像 `if { ... }`，`for { }`，`function f { }` 等语法结构后面都不用加。
 - 函数表达式是在语句内部的：`let sayHi = ...;`，作为一个值。它不是代码块而是一个赋值语句。不管值是什么，都建议在语句末尾添加分号 `;`。所以这里的分号与函数表达式本身没有任何关系，它只是用于终止语句。'
 
-### 回调函数
+## 回调函数
 
 让我们多举几个例子，看看如何将函数作为值来传递以及如何使用函数表达式。
 
@@ -2162,7 +2131,7 @@ ask(
 
 我们可以在变量之间传递它们，并在需要时运行。
 
-### 函数表达式 vs 函数声明
+## 函数表达式 vs 函数声明
 
 函数声明和函数表达式之间的主要区别:
 
@@ -2216,7 +2185,7 @@ ask(
 
 这对代码可读性也更好，因为在代码中查找 `function f(…) {…}` 比 `let f = function(…) {…}` 更容易。函数声明更“醒目”。
 
-## 函数箭头
+# 函数箭头
 
 创建函数还有另外一种非常简单的语法，并且这种方法通常比函数表达式更好。
 
@@ -2305,9 +2274,9 @@ alert( sum(1, 2) ); // 3
 
 **箭头函数没有 this, 也就是说会去外部作用域去寻找 this (通常是 Window)**
 
-## Chrome 中调试
+# Chrome 中调试
 
-### Debugger 命令
+## Debugger 命令
 
 我们也可以使用 `debugger` 命令来暂停代码，像这样
 
@@ -2319,13 +2288,13 @@ function hello(name) {
 }
 ```
 
-## 代码质量
+# 代码质量
 
-### 书写风格
+## 书写风格
 
 ![](https://static.sitestack.cn/projects/zh.javascript.info/1c70bb4fa97449266b488163bc47cad9.svg)
 
-## 对象
+# 对象
 
 我们可以通过使用带有可选 **属性列表** 的花括号 `{…}` 来创建对象。一个属性就是一个键值对（“key: value”），其中键（`key`）是一个字符串（也叫做属性名），值（`value`）可以是任何值。
 
@@ -2336,7 +2305,7 @@ let user = new Object(); // “构造函数” 的语法
 let user = {};  // “字面量” 的语法
 ```
 
-### 文本和属性
+## 文本和属性
 
 我们可以在创建对象的时候，立即将一些属性以键值对的形式放到 `{...}` 中。
 
@@ -2395,7 +2364,7 @@ let user = {
 
 这叫做尾随（trailing）或悬挂（hanging）逗号。这样便于我们添加、删除和移动属性，因为所有的行都是相似的。
 
-### 方括号
+## 方括号
 
 对于多词属性，点操作就不能用了：
 
@@ -2420,7 +2389,7 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-### 计算属性
+## 计算属性
 
 我们可以在对象字面量中使用方括号。这叫做 **计算属性**。
 
@@ -2462,7 +2431,7 @@ let bag = {
 
 所以大部分时间里，当属性名是已知且简单的时候，就是用点符号。如果我们需要一些更复杂的内容，那么就用方括号。
 
-### 属性值简写
+## 属性值简写
 
 在实际开发中，我们通常用已存在的变量当做属性名。
 
@@ -2503,7 +2472,7 @@ let user = {
 };
 ```
 
-### 属性名称限制
+## 属性名称限制
 
 属性名（key）必须是字符串或 Symbol（标识符的一种特殊类型，稍后将介绍）。
 
@@ -2545,7 +2514,7 @@ obj.__proto__ = 5; // 分配一个数字
 alert(obj.__proto__); // [object Object] — 值为对象，与预期结果不同
 ```
 
-### 属性存在性测试，“in” 操作符
+## 属性存在性测试，“in” 操作符
 
 对象的一个显著的特点就是其所有的属性都是可访问的。如果某个属性不存在也不会报错！访问一个不存在的属性只是会返回 `undefined`。这提供了一种普遍的用于检查属性是否存在的方法 —— 获取值来与 undefined 比较：
 
@@ -2593,7 +2562,7 @@ alert( "test" in obj ); // true，属性存在！
 
 这种情况很少发生，因为通常情况下是不会给对象赋值 undefined 的，我们经常会用 `null` 来表示未知的或者空的值。
 
-### “for…in” 循环
+## “for…in” 循环
 
 为了遍历一个对象的所有键（key），可以使用一个特殊形式的循环：`for..in`。这跟我们在前面学到的 `for(;;)` 循环是完全不一样的东西。
 
@@ -2621,7 +2590,7 @@ for (let key in user) {
 }
 ```
 
-### 复制和合并，Object.assign
+## 复制和合并，Object.assign
 
 复制一个对象变量会创建指向此对象的另一个引用。
 
@@ -2714,7 +2683,7 @@ alert(clone.sizes.width); // 51，在这里查看属性的值
 
 有一个标准的深拷贝算法，用于解决上面这种和一些更复杂的情况，叫做 [结构化克隆算法（Structured cloning algorithm）](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data)。为了不重复造轮子，我们可以使用它的一个 JavaScript 实现的库 [lodash](https://lodash.com/)，方法名叫做 [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep)。
 
-### Symbol
+## Symbol
 
 “Symbol” 值表示唯一的标识符。
 
@@ -2767,7 +2736,7 @@ let id = Symbol("id");
 alert(id.description); // id
 ```
 
-#### “隐藏”属性
+### “隐藏”属性
 
 Symbol 允许我们创建对象的“隐藏”属性，代码的任何其他部分都不能意外访问或重写这些属性。
 
@@ -2811,40 +2780,13 @@ user.id = "Their id value"
 // 砰！无意中被另一个脚本重写了 id！
 ```
 
-### 对象方法，”this”
+## 对象方法，”this”
 
-## 数据类型进阶
+# 数据类型进阶
 
-原始类型和对象之间的关键区别。
+## 数字类型
 
-一个原始值：
-
-- 是原始类型中的一种值。
-- 在 JavaScript 中有 7 种原始类型：`string`，`number`，`bigint`，`boolean`，`symbol`，`null` 和 `undefined`。
-
-一个对象：
-
-- 能够存储多个值作为属性。
-- 可以使用大括号 `{}` 创建对象，例如：`{name: "John", age: 30}`。JavaScript 中还有其他种类的对象，例如函数就是对象。
-
-### 数字类型
-
-在现代 JavaScript 中，数字（number）有两种类型：
-
-1. JavaScript 中的常规数字以 64 位的格式 [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) 存储，也被称为“双精度浮点数”。这是我们大多数时候所使用的数字，我们将在本章中学习它们。
-2. BigInt 数字，用于表示任意长度的整数。有时会需要它们，因为常规数字不能超过 `253` 或小于 `-253`。由于仅在少数特殊领域才会用到 BigInt，因此我们在特殊的章节 [BigInt](https://www.bookstack.cn/read/zh.javascript.info/3ca2779ed421ba3a.md) 中对其进行了介绍。
-
-#### 十六进制，二进制和八进制数字
-
-**不分大小写**
-
-```js
-document.write(0xff + ' ' + 0xFF + ' ' + 0xFf); // 255
-document.write(`<br>`);
-document.write(0b111 + ' ' + 0o111);    // 7 73
-```
-
-#### toString(base)
+### toString(base)
 
 方法 `num.toString(base)` 返回在给定 `base` 进制数字系统中 `num` 的字符串表示形式。
 
@@ -2878,7 +2820,7 @@ document.write(`<br>`);
 
 也可以写成 `(123456).toString(36)`。
 
-#### 舍入
+### 舍入
 
 舍入（rounding）是使用数字时最常用的操作之一。
 
@@ -2961,7 +2903,7 @@ document.write(`<br>`);
 
    我们可以使用一元加号或 `Number()` 调用，将其转换为数字：`+ num.toFixed(5)`。
 
-#### 不精确的计算
+### 不精确的计算
 
 ```js
 alert( 0.1 + 0.2 == 0.3 ); // false
@@ -2974,7 +2916,7 @@ let sum = 0.1 + 0.2;
 alert( +sum.toFixed(2) ); // 0.3
 ```
 
-#### isFinite 和 isNaN
+### isFinite 和 isNaN
 
 还记得这两个特殊的数值吗？
 
@@ -3025,7 +2967,7 @@ alert( isFinite(num) );
 
 这种比较方式经常被用在 JavaScript 规范中。当内部算法需要比较两个值是否完全相同时，它使用 `Object.is`（内部称为 [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)）。
 
-#### parseInt 和 parseFloat
+### parseInt 和 parseFloat
 
 使用加号 `+` 或 `Number()` 的数字转换是严格的。如果一个值不完全是一个数字，就会失败：
 
@@ -3064,7 +3006,7 @@ alert( parseInt('ff', 16) ); // 255，没有 0x 仍然有效
 alert( parseInt('2n9c', 36) ); // 123456
 ```
 
-#### 其他数学函数
+### 其他数学函数
 
 JavaScript 有一个内建的 [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 对象，它包含了一个小型的数学函数和常量库。
 
@@ -3082,13 +3024,13 @@ JavaScript 有一个内建的 [Math](https://developer.mozilla.org/en/docs/Web/J
 
   返回 `n` 的给定（power）次幂
 
-### 字符串
+## 字符串
 
 在 JavaScript 中，文本数据被以字符串形式存储，单个字符没有单独的类型。
 
 字符串的内部格式始终是 [UTF-16](https://en.wikipedia.org/wiki/UTF-16)，它不依赖于页面编码。
 
-#### 引号（Quotes）
+### 引号（Quotes）
 
 **字符串可以包含在单引号、双引号或反引号中**
 
@@ -3105,7 +3047,7 @@ alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 
 反引号还允许我们在第一个反引号之前指定一个“模版函数”。语法是：`func`string` `。函数 `func` 被自动调用，接收字符串和嵌入式表达式，并处理它们。你可以在 [docs](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals) 中阅读更多关于它们的信息。这叫做 “tagged templates”。此功能可以更轻松地将字符串包装到自定义模版或其他函数中，但这很少使用。
 
-#### 特殊字符
+### 特殊字符
 
 我们仍然可以通过使用“换行符（newline character）”，以支持使用单引号和双引号来创建跨行字符串。换行符写作 `\n`，用来表示换行：
 
@@ -3130,7 +3072,7 @@ alert(guestList); // 一个多行的客人列表
 
 所有的特殊字符都以反斜杠字符 `\` 开始。它也被称为“转义字符”。
 
-#### 字符串长度
+### 字符串长度
 
 `length` 属性表示字符串长度
 
@@ -3146,7 +3088,7 @@ document.write( `My\n`.length );    // 3
 
 请注意 `str.length` 是一个数字属性，而不是函数。后面不需要添加括号。
 
-#### 访问字符
+### 访问字符
 
 要获取在 `pos` 位置的一个字符，可以使用方括号 `[pos]` 或者调用 [str.charAt(pos)](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/charAt) 方法。第一个字符从零位置开始：
 
@@ -3171,7 +3113,7 @@ for (let char of "Hello") {
 }
 ```
 
-#### 字符串是不可变的
+### 字符串是不可变的
 
 在 JavaScript 中，字符串不可更改。改变字符是不可能的。
 
@@ -3181,7 +3123,7 @@ str[0] = 'h'; // error
 alert( str[0] ); // 无法运行
 ```
 
-#### 常用函数
+### 常用函数
 
 - [toLowerCase()](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase) 和 [toUpperCase()](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)
 
@@ -3222,9 +3164,9 @@ alert( str[0] ); // 无法运行
 
   相较于其他两个变体，`slice` 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 `slice` 就足够了。
 
-### 数组
+## 数组
 
-#### 声明
+### 声明
 
 创建一个空数组有两种语法：
 
@@ -3251,7 +3193,7 @@ fruits[3] = 'Lemon'; // 现在变成 ["Apple", "Orange", "Pear", "Lemon"]
 console.log(fruits.length);  // 4
 ```
 
-#### 队列方法
+### 队列方法
 
 **pop/push, shift/unshift 方法**
 
@@ -3260,7 +3202,7 @@ console.log(fruits.length);  // 4
 - `pop` 从末端取出一个元素.
 - `unshift` 在数组的首端添加元素.
 
-#### 内部
+### 内部
 
 数组是一种特殊的对象。使用方括号来访问属性 `arr[0]` 实际上是来自于对象的语法。它其实与 `obj[key]` 相同，其中 `arr` 是对象，而数字用作键（key）。
 
@@ -3302,11 +3244,11 @@ fruits.age = 25; // 创建一个具有任意名称的属性
 
 请将数组视为作用于 **有序数据** 的特殊结构。它们为此提供了特殊的方法。数组在 JavaScript 引擎内部是经过特殊调整的，使得更好地作用于连续的有序数据，所以请以正确的方式使用数组。如果你需要任意键值，那很有可能实际上你需要的是常规对象 `{}`。
 
-## 函数进阶
+# 函数进阶
 
-## 对象进阶
+# 对象进阶
 
-## 原型，继承
+# 原型，继承
 
 在编程中，我们经常会想获取并扩展一些东西。
 
@@ -3314,11 +3256,11 @@ fruits.age = 25; // 创建一个具有任意名称的属性
 
 **原型继承（Prototypal inheritance）** 这个语言特性能够帮助我们实现这一需求。
 
-### 原型链
+## 原型链
 
 <img src="https://s2.loli.net/2022/09/28/WqDK49RXCgvoh6I.png" alt="image.png"  />
 
-### [[Prototype]]
+## [[Prototype]]
 
 在 JavaScript 中，对象有一个特殊的隐藏属性 `[[Prototype]]`（如规范中所命名的），它要么为 `null`，要么就是对另一个对象的引用。该对象被称为“原型”：
 
@@ -3371,9 +3313,7 @@ alert( rabbit.jumps ); // true
 
 当然，这可能很显而易见，但是仍然要强调：只能有一个 `[[Prototype]]`。一个对象不能从其他两个对象获得继承。
 
-
-
-### 面向对象中的原型
+## 面向对象中的原型
 
 在构造函数中使用原型创建的对象，每个对象的实例所有用的原型对象空间是共享的
 
@@ -3390,15 +3330,10 @@ console.log(p1.sayHi === p2.sayHi);  // true
 
 **属性 写在构造函数体内，方法 写在构造函数的原型上**
 
-## 类
 
-## 错误处理
 
-## Promise，async/await
 
-## Generator,高级 iteration
 
-## 模块
 
 
 
@@ -3415,493 +3350,3 @@ console.log(p1.sayHi === p2.sayHi);  // true
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# JavaScript BOM 操作
-
-一整套操作浏览器相关内容的属性和方法：
-
-- 操作浏览器历史记录
-- 操作浏览器滚动条
-- 操作浏览器页面跳转
-- 操作浏览器标签页的开启和关闭
-- ···
-
-## 可视化窗口尺寸
-
-获取可视窗口宽度：`console.log(window.innerWidth)`
-
-获取可视窗口高度：`console.log(window.innerHeight)`
-
-## 浏览器弹出层
-
-```html
-<script>
-    window.alert('提示框');
-    window.confirm('询问框');
-    window.prompt('输入框');
-</script>
-```
-
-### 输入框的返回值
-
-点击取消：返回 `null`；其余均返回字符串
-
-## 开启/关闭 标签页
-
-`window.open(url) ` : 开启新的标签页
-
-`window.close()` : 关闭当前标签页
-
-## 浏览器常见事件
-
-`window.onload = function() {}` : 资源加载完毕
-
-`window.onresize = function() {}` : 可视尺寸改变
-
-`window.onscroll = function() {}` : 滚动条位置改变
-
-## 浏览器的历史操作记录
-
-`window.history.back()` : 回退页面
-
-`window.history.forward()` : 前进页面
-
-## 浏览器卷去的尺寸
-
-卷去的高度: `document.documentElement.scrollTop || document.body.scrollTop`
-
-卷去的宽度: `document.documentElement.scrollLeft || document.body.scrollLeft`
-
-## 浏览器滚动到
-
-设置浏览器滚动条的位置
-
-滚动到：`window.scrollTo()`
-
-参数方式 1： `window.scrollTo( left, top )`
-
-- 此方式只能瞬间定位，不能平滑滚动
-
-参数方式 2：`window.scrollTo( {left:xx, top:yy, behavior: 'smooth' })`
-
-- behavior: 'smooth' 代表平滑滚动
-
-## 定时器
-
-### 间隔定时器
-
-按照指定周期（毫秒）去执行代码
-
-`setInterval(函数, 时间)`
-
-```javascript
-setInterval(function(){
-}, 5000);
-```
-
-### 延时定时器
-
-在固定的时间（毫秒）后执行一次代码
-
-`setTimeout(函数, 时间)`
-
-```javascript
-setTimeout(function(){
-}, 5000);
-```
-
-# JavaScript DOM 操作
-
-## DOM 结构
-
-HTML 文档的主干是标签（tag）。
-
-根据文档对象模型（DOM），每个 HTML 标签都是一个对象。嵌套的标签是闭合标签的“子标签（children）”。标签内的文本也是一个对象。
-
-所有这些对象都可以通过 JavaScript 来访问，我们可以使用它们来修改页面。
-
-例如，`document.body` 是表示 `<body>` 标签的对象。
-
-运行这段代码会使 `<body>` 保持 3 秒红色状态:
-
-```js
-document.body.style.background = 'red'; // 将背景设置为红色
-setTimeout(() => document.body.style.background = '', 3000); // 恢复回去
-```
-
-### DOM 的例子
-
-以下是一个简单的文档（document）：
-
-```html
-<!DOCTYPE HTML>
-<html>
-<head>
-  <title>About elk</title>
-</head>
-<body>
-  The truth about elk.
-</body>
-</html>
-```
-
-DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：
-
-在上面的图片中，你可以点击元素（element）节点，它们的子节点会打开/折叠。
-
-**每个树的节点都是一个对象。**
-
-标签被称为 **元素节点**（或者仅仅是元素），并形成了树状结构：`<html>` 在根节点，`<head>` 和 `<body>` 是其子项，等。
-
-元素内的文本形成 **文本节点**，被标记为 `＃text`。一个文本节点只包含一个字符串。它没有子项，并且总是树的叶子。
-
-例如，`<title>` 标签里面有文本 `"About elk"`。
-
-请注意文本节点中的特殊字符：
-
-- 换行符：`↵`（在 JavaScript 中为 `\n`）
-- 空格：`␣`
-
-空格和换行符都是完全有效的字符，就像字母和数字。它们形成文本节点并成为 DOM 的一部分。所以，例如，在上面的示例中，`<head>` 标签中的 `<title>` 标签前面包含了一些空格，并且该文本变成了一个 `#text` 节点（它只包含一个换行符和一些空格）。
-
-只有两个顶级排除项：
-
-1. 由于历史原因，`<head>` 之前的空格和换行符均被忽略。
-2. 如果我们在 `</body>` 之后放置一些东西，那么它会被自动移动到 `body` 内，并处于 `body` 中的最下方，因为 HTML 规范要求所有内容必须位于 `<body>` 内。所以 `</body>` 之后不能有空格。
-
-在其他情况下，一切都很简单 — 如果文档中有空格（就像任何字符一样），那么它们将成为 DOM 中的文本节点，而如果我们删除它们，则不会有任何空格。
-
-这是没有空格的文本节点：
-
-## 获取元素
-
-- **根据 id 名称获取**
-
-  `document.getElementById('id名称');`
-
-  返回值：如果有，就返回这个元素；没有则返回 null。
-
-  ```javascript
-  ele = document.getElementById('id名称');
-  // ele 为 null 时;
-  if (!ele) {  // 判定为真
-      ... 
-  }
-  if (ele==null) { // 判定为真
-      ... 
-  }
-  ```
-
-- **根据元素 类名 获取**
-
-  `document.getElementsByClassName('类名');`
-
-  获取一个伪数组
-
-  ```javascript
-  let eles = document.getElementsByClassName('box1');
-  // eles 为空的伪数组时
-  if (eles.length == 0) { // 判定为真
-      ... 
-  }
-
-- **根据元素 标签名 获取**
-
-  `document.getElementsByTagName('类名');`
-
-- **根据 选择器 获取一个**
-
-  `documnet.querySelector('选择器');`
-
-  返回值：如果有，只返回第一个匹配的；没有则返回 null。
-
-- **根据 选择器 获取一组**
-
-  `documnet.querySelectorAll('选择器');`
-
-## 操作元素内容
-
-### 操作元素文本内容
-
-获取：`元素.innerText`
-
-设置：`元素.innerText = '新内容'`
-
-案例：
-
-```html
-<body>
-    <button>操作内容</button>
-    <div>
-        <p>文本内容</p>
-    </div>
-    <script>
-        // 获取元素
-        let ele = document.querySelector('div');
-        let btn = document.querySelector('button');
-        
-        // 获取元素的文本内容
-        console.log(ele.innerText);
-
-        // 给按钮绑定点击事件
-        btn.onclick = function () {
-            // 设置 div 内的文本内容
-            ele.innerText = '<span>新内容</span>';
-        }
-    </script>
-</body>
-```
-
-点击 button 后，div 内的内容会被完全覆盖，标签会被解析为本文，不会被渲染。
-
-### 操作元素超文本内容
-
-获取：`元素.innerHTML`
-
-设置：`元素.innerHTML = '新内容'`
-
-```html
-<body>
-    <button>操作内容</button>
-    <div>
-        <p>文本内容</p>
-    </div>
-    <script>
-        // 获取元素
-        let ele = document.querySelector('div');
-        let btn = document.querySelector('button');
-        
-        // 获取元素的超文本内容
-        console.log(ele.innerHTML);
-
-        // 给按钮绑定点击事件
-        btn.onclick = function () {
-            // 设置 div 内的文本内容
-            ele.innerHTML = '<span>新内容</span>';
-        }
-    </script>
-</body>
-```
-
-这个案例就会将标签渲染出来
-
-## 操作元素属性
-
-以下方法均不用来操作 元素类名 和 样式。
-
-### 原生属性
-
-获取：`元素.属性名`
-
-设置：`元素.属性名 = '属性值'`
-
-### 自定义属性
-
-获取：`元素.getAttribute('属性名')`
-
-设置：`元素.setAttribute('属性名', '属性值')`
-
-删除：`元素.removeAttribute('属性名')`
-
-## 操作元素类名
-
-获取：`元素.className`
-
-设置：`元素.className = '新类名'`
-
-## 操作元素行内样式
-
-获取：`元素.style.样式名`
-
-设置：`元素.style.样式名 = '样式值'`
-
-当遇到带连接符的样式属性时( `background-color`)， JavaScript 中的 样式名 就要更换成 驼峰命名法（`backgroundColor`）。
-
-```html
-<body>
-    <button>操作样式</button>
-    <div style="width:100px; height:100px; background-color:pink;">文本内容</div>
-    <script>
-        // 获取元素
-        let box = document.querySelector('div');
-        let btn = document.querySelector('button');
-
-        // 获取样式
-        console.log(box.style.width);
-        console.log(box.style.height);
-        console.log(box.style.backgroundColor);
-
-        // 设置样式
-        btn.onclick = function () {
-            box.style.width = '200px';
-            box.style.height = '200px';
-            box.style.backgroundColor = 'skyblue';
-        }
-    </script>
-</body>
-```
-
-## 获取元素非行内样式
-
-获取：`window.getComputedStyle(元素).样式名` （行内样式与非行内样式均可获取）
-
-> JavaScript 不能设置元素的非行内样式
-
-## 节点操作
-
-### 创建节点
-
-语法：`document.creatElement('标签名称')`
-
-作用：创建一个指定标签元素
-
-返回值：一个创建好的元素节点
-
-### 插入节点
-
-- `父节点.appendChild(子节点)`
-
-  把 子节点 放在 父节点 的内部，并且放在最后位置。
-
-- `父节点.insertBefore(要插入的子节点, 哪一个子节点的前面)`
-
-  把 子节点 放在 父节点 的内部，并且放在指定某一个子节点的前面。
-
-### 删除节点
-
-- `父节点.removeChild(子节点)`
-- `节点.remove()`
-
-### 替换节点
-
-`父节点.replaceChild(换上节点, 换下节点)`
-
-### 克隆节点
-
-`节点.cloneNode(是否克隆后代节点)`
-
-## 获取元素尺寸
-
-`元素.offsetHeight` 和 `元素.offsetWidth`: 获取元素 content + padding + border 区域的尺寸
-
-`元素.clientHeight` 和 `元素.clientWidth`: 获取元素 content + padding 区域的尺寸
-
-## 事件
-
-### 事件绑定
-
-事件绑定三要素：
-
-1. 事件源：和 **谁** 最好约定
-2. 事件类型：约定一个什么 **行为**
-3. 事件处理函数： 当用户触发该行为的时候，执行什么代码
-
-语法：`事件源.on事件类型 = 事件处理函数`
-
-### 事件类型
-
-![image.png](https://s2.loli.net/2022/09/26/nkFdT1Cywr7OWBl.png)
-
-### 事件对象
-
-```js
-// 直接在事件处理函数接受形参
-div.onclick = function (e) {
-    console.log(e);
-}
-```
-
-#### 鼠标事件相关信息
-
-**坐标信息**
-
-1. `offsetX` 和 `offsetY`: 相对于元素的坐标
-2. `clientX` 和 `clientY`: 相对于浏览器可视窗口的坐标
-3. `pageX` 和 `pageY`： 相对于页面文档流
-
-#### 键盘事件相关信息
-
-**键盘编码**：`事件对象.keyCode`
-
-### 事件传播
-
-- **浏览器响应事件的机制**
-
-  浏览器窗口最先知道事件的发生
-
-  **捕获阶段**：从 window 按照结构子级的顺序传递到目标
-
-  **目标阶段**：准确触发事件的元素接收到行为
-
-  **冒泡阶段**：从 目标 按照结构父级的顺序传递到 window
-
-- **阻止事件传播**
-
-  语法：`事件对象.stopPropagation()`
-  
-- **事件委托**
-
-  利用冒泡的机制，把自己的事件委托给结构父级中的某一层
-
-  `e.target.tagName === 'LI'` 注意标签名是全部大写
-
-# Ajax
-
-## 初识
-
-1. 创建 ajax 对象
-
-   ```js
-   var xhr = new XMLHttpRequest();
-   ```
-
-2. 配置本次请求
-
-   ```js
-   xhr.open(请求方法, 请求地址, 是否异步);
-   ```
-
-3. 注册请求完成事件
-
-   ```js
-   xhr.onload = function () {};
-   ```
-
-4. 发送请求
-
-   ```js
-   xhr.send();
-   ```
-
-# 判断字符串是否包含另一个字符串的方法
-
-- **str1.indexOf(str2)**
-
-```javascript
-let str = "123";
-console.log(str.indexOf("2") != -1); // true
-```
-
-indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。如果要检索的字符串值没有出现，则该方法返回 -1。
-
-- **str1.match(str2)**
-
-- **str1.search(str2)**
-
-search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。如果没有找到任何匹配的子串，则返回 -1。
