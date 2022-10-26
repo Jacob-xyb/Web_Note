@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 2, 3, 4, 5, "xx"];
+        let res;
+        // every()
+        // ++ arr.every(function(item, index, array){});
+        // ++ 作用：判断数组是不是 每一项 都满足条件
+        // ++ 返回值：一个 布尔值
+        console.log("every() =======");
+        res = arr.every(item => ["number", "string"].indexOf(typeof item) !== -1); 
+        console.log(res);   // true
+        res = arr.every(item => item < 6); 
+        console.log(res);   // false
+        
+        // some()
+        // ++ arr.some(function(item, index, array){});
+        // ++ 作用：判断数组是不是有 某一项 满足条件
+        // ++ 返回值：一个 布尔值
+        console.log("some() =======");
+        res = arr.some(item => typeof item === "string"); 
+        console.log(res);   // true
+        res = arr.some(item => item === 6); 
+        console.log(res);   // false
+    </script>
+</body>
+
+</html>

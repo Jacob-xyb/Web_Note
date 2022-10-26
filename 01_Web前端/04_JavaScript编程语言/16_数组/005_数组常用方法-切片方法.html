@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [9, 2, 3, 1, 4, 6, 7, 5, 8];
+        let tmp;
+        let res;
+
+        // splice
+        // ++ arr.splice(start_index=0, num=0, (value||arr)=null)
+        // ++ 作用：删除 数组中若干数据，并选择是否 插入 新的数据
+        // ++ 返回值：以新数组的形式返回被删除的数据
+        console.log("splice =======");
+        // >> 用法1.删除数据
+        tmp = arr.concat();
+        res = tmp.splice(0, 1); 
+        console.log(tmp, res);  // res: [9]
+        // >> 用法2.插入数据
+        tmp = arr.concat();
+        res = tmp.splice(0, 0, "xx", "xx");
+        console.log(tmp, res);  // res: [], 因为没有删除数据
+        // ++ 小结：arr.splice() 用法多样
+
+        // slice
+        // ++ arr.slice([start=0], [end=arr.length])
+        // ++ 作用：切片，[start, end)
+        // ++ 返回值：返回数组的深拷贝，仅限一维上的
+        console.log("slice =======");
+        tmp = arr.concat();
+        res = tmp.slice(1, 4);
+        console.log(tmp, res);  // [2, 3, 1]
+
+        // concat
+        // ++ arr.concat(arg1, arg2...)
+        // ++ 作用：创建一个新数组，其中包含来自于其他数组和其他项的值
+        // ++ 参数：接受任意数量的参数 — 数组或值都可以。
+        // ++ 返回值：结果是一个包含来自于 arr，然后是 arg1，arg2 ... 的元素的新数组。
+        // +++ 如果参数 argN 是一个数组，那么其中的所有元素都会被复制。否则，将复制参数本身。
+        // +++ 返回的数组仅限一维上的深拷贝
+        console.log("concat =======");
+        tmp = arr.concat();
+        res = tmp.concat("aa", "bb");
+        console.log(tmp, res);
+        tmp = arr.concat();
+        res = tmp.concat(["aa", "bb"], ["xx", "yy"]);
+        console.log(tmp, res);
+    </script>
+</body>
+
+</html>

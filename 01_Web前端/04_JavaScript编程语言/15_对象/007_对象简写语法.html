@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 场景1：工厂函数传参作为键值对时
+        function makeUser1(name, age) {
+            return {
+                name: name,
+                age: age,
+                // ……其他的属性
+            };
+        }
+        // ++ 简写属性
+        function makeUser2(name, age) {
+            return {
+                name,
+                age,
+                // ……其他的属性
+            };
+        }
+
+        // 场景2：对象内的函数方法可以简写
+        let user1 = {
+            sayHi: function () {
+                alert("Hello");
+            }
+        };
+
+        let user2 = {
+            sayHi() {
+                alert("Hello");
+            }
+        };
+
+        // 场景3，前面已有创建的变量时，简写依然生效
+        let name = "jx";
+        let test = {
+            name,   // 默认为 ""
+        };
+        console.log(test);
+    </script>
+</body>
+
+</html>

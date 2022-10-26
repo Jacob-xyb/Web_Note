@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 0, false];
+        let res;
+        // indexOf()
+        // ++ arr.indexOf(item)
+        // ++ 作用：查找 item 在 arr 中的 索引
+        // ++ 返回值：返回 第一次 的 索引，没找到则返回 -1。
+        // >> 注意：查找时，内部使用的判断为 严格相等 "==="
+        console.log("indexOf() =======");
+        res = arr.indexOf(false); // 使用分号 ; 将数组粘合成字符串
+        console.log(res); // 2
+
+        // filter()
+        // ++ arr.filter(function(item, index, array){});
+        // ++ 作用：过滤 数组
+        // ++ 返回值：所有匹配元素组成的 数组
+        console.log("filter() =======");
+        let users = [
+            { id: 1, name: "John" },
+            { id: 2, name: "Pete" },
+            { id: 3, name: "Mary" }
+        ];
+        let someUsers = users.filter(item => item.id < 3);
+        console.log(someUsers, someUsers.length); // 2
+
+    </script>
+</body>
+
+</html>

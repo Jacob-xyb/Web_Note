@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let fruits = ["Apple", "Orange", "Plum"];
+
+        // 获取数组长度
+        console.log(fruits.length);
+
+        for (let index = 0; index < fruits.length; index++) {
+            const element = fruits[index];  // 根据索引获取数据
+            console.log(element);
+        }
+
+        // 设置数组长度
+        fruits.length = 10;     
+        console.log(fruits.length);     // 10
+        console.log(fruits);        // 未被定义的属性为 undefined
+        // ++ 小结：arr.length = num 时
+        // ++ 1.num 小于 原有长度，数组将被裁剪，只保留 num 个数据；
+        // ++ 2.num 大于 原有长度，数据将被扩充，被扩充的数据为 undefined.
+
+        // 设置数据
+        fruits.length = 3;
+        fruits[3] = "Banana";
+        console.log(fruits);
+        fruits[5] = "Peach";
+        console.log(fruits);
+        console.log(fruits[4]);     // undefined
+        // ++ 小结：当 index 大于 length 时，会在后面新增数据
+        // ++  如果中间有间隙，则以 undefined 填充
+
+        // 负索引
+        console.log("负索引 =======");
+        console.log(fruits[-1], fruits[-2], fruits[-3]);    // 全是 undefined
+        console.log(fruits[1], fruits[2], fruits[3]);
+        // ++ 小结：数组中的负索引是不被允许的，但是在函数参数中普遍可以使用。
+    </script>
+</body>
+
+</html>

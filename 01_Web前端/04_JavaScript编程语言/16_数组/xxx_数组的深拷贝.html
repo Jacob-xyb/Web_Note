@@ -10,13 +10,17 @@
 
 <body>
     <script>
-        // 创建一个空数组
-        let empty_arr;
-        empty_arr = new Array();
-        empty_arr = [];     // 推荐这种方式
+        let arr = [1, 2, 3, 4, 5];
+        let tmp;
 
-        // 初始化一个数组
-        let fruits = ["Apple", "Orange", "Plum"];
+        // 1.slice()
+        console.log("slice =======");
+        tmp = arr.slice();
+        tmp[0] = "xx";
+        console.log(arr, tmp);
+        
+        // 2.concat();
+        console.log(...arr);
     </script>
 </body>
 

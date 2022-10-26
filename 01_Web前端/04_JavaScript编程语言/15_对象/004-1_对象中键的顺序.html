@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let codes = {
+            "49": "Germany",
+            "41": "Switzerland",
+            "44": "Great Britain",
+            // ..,
+            "1": "USA"
+        };
+        for (let key in codes) {
+            document.write(key + ' ');  // 1, 41, 44, 49
+        }
+
+        // 如果整数和非整数混用
+        let user = {
+            name: "jx",
+            age: "27",
+            1: "bb",
+            0: "aa",
+        }
+        document.write(`<br>`);
+        for (let key in user) {
+            document.write(key + ' ');  // 0 1 name age
+        }
+        // ++ 结论：整数属性优先排序，优先级别最高
+
+    </script>
+</body>
+
+</html>

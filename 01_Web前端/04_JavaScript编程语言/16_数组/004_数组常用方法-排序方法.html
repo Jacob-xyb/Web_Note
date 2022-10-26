@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [9, 2, 3, 1, 4];
+        let tmp;
+        let res;
+
+        // reverse
+        // ++ arr.reverse()
+        // ++ 作用：反转数组
+        // ++ 返回值：反转后的数组
+        console.log("reverse =======");
+        tmp = arr.concat();
+        res = tmp.reverse();
+        console.log(tmp, res);  // tmp 也被反转了
+        res[0] = "xx";
+        console.log(tmp, res);  // tmp 也被改变了
+        // ++ 小结：arr.reverse() 直接改变 arr，返回是arr的引用
+
+        // sort
+        // ** 1. arr.sort()
+        // ++++ 这些元素默认情况下被按字符串进行排序。
+        let sort_arr = [1, 2, 15];
+        console.log("sort() =======");
+        sort_arr.sort();
+        console.log(sort_arr);  //  [1, 15, 2]
+        // ** 2. arr.sort(fn)
+        // ++++ 使用 排序函数 来确认如何比较这些元素
+        // +++++ 比较函数可以返回任何数字
+        // +++++ 实际上，比较函数只需要返回一个正数表示“大于”，一个负数表示“小于”。
+        console.log("sort(fn) =======");
+        // ++++ 升序 arr.sort( (a, b) => a - b );
+        sort_arr.sort((a, b) => a - b);
+        console.log(sort_arr);  //  [1, 2, 15]
+        // ++++ 降序 arr.sort( (a, b) => b - a );
+        sort_arr.sort((a, b) => b - a);
+        console.log(sort_arr);  //  [15, 2, 1]
+        // 对于特殊字符串，应该使用特殊的函数来返回
+        let countries = ['Österreich', 'Andorra', 'Vietnam'];   // 德语
+        console.log(countries.sort((a, b) => a > b ? 1 : -1)); // Andorra, Vietnam, Österreich（错的）
+        console.log(countries.sort((a, b) => a.localeCompare(b))); // Andorra,Österreich,Vietnam（对的！）
+    </script>
+</body>
+
+</html>

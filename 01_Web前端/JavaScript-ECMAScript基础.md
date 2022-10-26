@@ -2400,9 +2400,9 @@ let bag = {
 
 方括号比点符号更强大。它允许任何属性名和变量，但写起来也更加麻烦。
 
-所以大部分时间里，当属性名是已知且简单的时候，就是用点符号。如果我们需要一些更复杂的内容，那么就用方括号。
+**所以大部分时间里，当属性名是已知且简单的时候，就是用点符号。如果我们需要一些更复杂的内容，那么就用方括号。**
 
-## 属性值简写
+## **属性值简写**
 
 在实际开发中，我们通常用已存在的变量当做属性名。
 
@@ -2443,9 +2443,32 @@ let user = {
 };
 ```
 
+## 方法简写
+
+在对象字面量中，有一种更短的（声明）方法的语法：
+
+```js
+// 这些对象作用一样
+user = {
+  sayHi: function() {
+    alert("Hello");
+  }
+};
+// 方法简写看起来更好，对吧？
+let user = {
+  sayHi() { // 与 "sayHi: function()" 一样
+    alert("Hello");
+  }
+};
+```
+
+如上所示，我们可以省略 `"function"`，只写 `sayHi()`。
+
+说实话，这种表示法还是有些不同。在对象继承方面有一些细微的差别（稍后将会介绍），但目前它们并不重要。在几乎所有的情况下，较短的语法是首选的。
+
 ## 属性名称限制
 
-属性名（key）必须是字符串或 Symbol（标识符的一种特殊类型，稍后将介绍）。
+**属性名（key）必须是字符串或 Symbol（标识符的一种特殊类型，稍后将介绍）。**
 
 其它类型将被自动地转化为字符串。
 
@@ -2502,7 +2525,7 @@ alert( user.noSuchProperty === undefined ); // true 意思是没有这个属性
 "key" in object
 ```
 
-请注意，`in` 的左边必须是 **属性名**。通常是一个带引号的字符串。
+请注意，`in` 的左边必须是 **属性名**。通常是一个**带引号的字符串**。
 
 如果我们省略引号，则意味着将测试包含实际名称的变量。例如：
 
@@ -2560,6 +2583,74 @@ for (let key in user) {
   alert( user[key] ); // John, 30, true
 }
 ```
+
+## 对象中键的排序
+
+对象有顺序吗？换句话说，如果我们遍历一个对象，我们获取属性的顺序是和属性添加时的顺序相同吗？
+
+简短的回答是：“有特别的顺序”：整数属性会被进行排序，其他属性则按照创建的顺序显示。
+
+```js
+let codes = {
+    "49": "Germany",
+    "41": "Switzerland",
+    "44": "Great Britain",
+    // ..,
+    "1": "USA"
+};
+for (let key in codes) {
+    document.write(key + ' ');  // 1, 41, 44, 49
+}
+```
+
+因为这些电话号码是整数，所以它们以升序排列。所以我们看到的是 `1, 41, 44, 49`。
+
+整数属性？那是什么？
+
+这里的“整数属性”指的是一个可以在不作任何更改的情况下转换为整数的字符串（包括整数到整数）。
+
+所以，“49” 是一个整数属性名，因为我们把它转换成整数，再转换回来，它还是一样。但是 “+49” 和 “1.2” 就不行了：
+
+```js
+// Math.trunc 是内置的去除小数部分的方法。
+alert( String(Math.trunc(Number("49"))) ); // "49"，相同，整数属性
+alert( String(Math.trunc(Number("+49"))) ); // "49"，不同于 "+49" ⇒ 不是整数属性
+alert( String(Math.trunc(Number("1.2"))) ); // "1"，不同于 "1.2" ⇒ 不是整数属性
+```
+
+……此外，如果属性名不是整数，那它们就按照创建时候的顺序来排序。
+
+如果想强行按照创建顺序来，可以 **欺骗** 程序：
+
+```js
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}
+```
+
+- **整数和其他属性混用时的顺序**
+
+  整数优先级别最高
+
+  ```js
+  let user = {
+      name: "jx",
+      age: "27",
+      1: "bb",
+      0: "aa",
+  }
+  document.write(`<br>`);
+  for (let key in user) {
+      document.write(key + ' ');  // 0 1 name age
+  }
+  ```
 
 ## 复制和合并，Object.assign
 
@@ -2752,6 +2843,359 @@ user.id = "Their id value"
 ```
 
 ## 对象方法，”this”
+
+# 数组
+
+一个特殊的数据结构，能存储有序的集合。
+
+## 声明
+
+- **创建一个空数组**
+
+  ```js
+  let arr = new Array();
+  let arr = [];
+  ```
+
+  > 绝大多数情况下使用的都是第二种语法
+
+- **初始化一个数组**
+
+  ```js
+  let fruits = ["Apple", "Orange", "Plum"];
+  ```
+
+## 基本操作
+
+```js
+arr[index]		// 索引获取数据
+arr.length		// 获取长度
+
+
+arr.length = num	// 设置长度
+// ++ 小结：arr.length = num 时
+// ++ 1.num 小于 原有长度，数组将被裁剪，只保留 num 个数据；
+// ++ 2.num 大于 原有长度，数据将被扩充，被扩充的数据为 undefined.
+
+arr[index] = value	// 设置数组中的数据
+// ++ 小结：当 index 大于 length 时，会在后面新增数据
+// ++  如果中间有间隙，则以 undefined 填充
+
+// 负索引
+console.log("负索引 =======");
+console.log(fruits[-1], fruits[-2], fruits[-3]);    // 全是 undefined
+console.log(fruits[1], fruits[2], fruits[3]);
+// ++ 小结：数组中的负索引是不被允许的，但是在函数参数中普遍可以使用。
+```
+
+## 常用方法
+
+![image.png](https://s2.loli.net/2022/10/26/SnLoT5UVEYXC7e6.png)
+
+左侧的方法改变自身， 右侧的方法不改变自身。
+
+### 队列方法
+
+**pop/push, shift/unshift 方法**
+
+```js
+let fruits = ["Apple", "Orange", "Plum"];
+let tmp;
+let res;
+```
+
+- **push**
+
+  `arr.push(value)`
+  作用：将数据 **追加** 到数组的 **末尾**
+  返回值：追加数据后数组 **最新的长度**
+
+  ```js
+  // push
+  console.log("push =======");
+  tmp = fruits.concat();
+  res = tmp.push("Peach");    //  4
+  console.log(tmp, res);
+  // >> push 多个？ >> 可
+  tmp = fruits.concat();
+  res = tmp.push("Watermelon", "Banana");    // 5
+  console.log(tmp, res);
+  // >> push 嵌套？ >> 可
+  tmp = fruits.concat();
+  res = tmp.push(["Watermelon", "Banana"]);    // 4
+  console.log(tmp, res);
+  ```
+
+- **pop**
+
+  `arr.pop()`
+
+  作用：删除数组 **最后一个** 数据
+
+  返回值：被删除的数据
+
+  ```js
+  // pop
+  console.log("pop =======");
+  tmp = fruits.concat();
+  res = tmp.pop();   //  "Plum"
+  console.log(tmp, res);
+  ```
+
+- **unshift**
+
+  语法类似于 push，向前添加
+
+  ```js
+  // unshift: 语法类似于 push，向前添加
+  console.log("unshift =======");
+  tmp = fruits.concat();
+  res = tmp.unshift("Peach");    //  4
+  console.log(tmp, res);
+  ```
+
+- **shift** 
+
+  语法类似于 pop, 删除第一个数据
+
+  ```js
+  // shift: 语法类似于 pop, 删除第一个数据
+  console.log("shift =======");
+  tmp = fruits.concat();
+  res = tmp.shift();   //  "Apple"
+  console.log(tmp, res);
+  ```
+
+### 排序方法
+
+```js
+let arr = [9, 2, 3, 1, 4];
+let tmp;
+let res;
+```
+
+- **reverse()**
+
+  ```js
+  // reverse
+  // ++ arr.reverse()
+  // ++ 作用：反转数组
+  // ++ 返回值：反转后的数组
+  console.log("reverse =======");
+  tmp = arr.concat();
+  res = tmp.reverse();
+  console.log(tmp, res);  // tmp 也被反转了
+  res[0] = "xx";
+  console.log(tmp, res);  // tmp 也被改变了
+  // ++ 小结：arr.reverse() 直接改变 arr，返回是arr的引用
+  ```
+
+- **sort()**
+
+  ```js
+  // sort
+  // ** 1. arr.sort()
+  // ++++ 这些元素默认情况下被按字符串进行排序。
+  let sort_arr = [1, 2, 15];
+  console.log("sort() =======");
+  sort_arr.sort();
+  console.log(sort_arr);  //  [1, 15, 2]
+  // ** 2. arr.sort(fn)
+  // ++++ 使用 排序函数 来确认如何比较这些元素
+  // +++++ 比较函数可以返回任何数字
+  // +++++ 实际上，比较函数只需要返回一个正数表示“大于”，一个负数表示“小于”。
+  console.log("sort(fn) =======");
+  // ++++ 升序 arr.sort( (a, b) => a - b );
+  sort_arr.sort((a, b) => a - b);
+  console.log(sort_arr);  //  [1, 2, 15]
+  // ++++ 降序 arr.sort( (a, b) => b - a );
+  sort_arr.sort((a, b) => b - a);
+  console.log(sort_arr);  //  [15, 2, 1]
+  // 对于特殊字符串，应该使用特殊的函数来返回
+  let countries = ['Österreich', 'Andorra', 'Vietnam'];   // 德语
+  console.log(countries.sort((a, b) => a > b ? 1 : -1)); // Andorra, Vietnam, Österreich（错的）
+  console.log(countries.sort((a, b) => a.localeCompare(b))); // Andorra,Österreich,Vietnam（对的！）
+  ```
+
+### 切片方法
+
+```js
+let arr = [9, 2, 3, 1, 4, 6, 7, 5, 8];
+let tmp;
+let res;
+```
+
+- **splice**
+
+  ```js
+  // splice
+  // ++ arr.splice(start_index=0, num=0, (value||arr)=null)
+  // ++ 作用：删除 数组中若干数据，并选择是否 插入 新的数据
+  // ++ 返回值：以新数组的形式返回被删除的数据
+  console.log("splice =======");
+  // >> 用法1.删除数据
+  tmp = arr.concat();
+  res = tmp.splice(0, 1); 
+  console.log(tmp, res);  // res: [9]
+  // >> 用法2.插入数据
+  tmp = arr.concat();
+  res = tmp.splice(0, 0, "xx", "xx");
+  console.log(tmp, res);  // res: [], 因为没有删除数据
+  // ++ 小结：arr.splice() 用法多样
+  ```
+
+- **slice**
+
+  ```js
+  // slice
+  // ++ arr.slice([start=0], [end=arr.length])
+  // ++ 作用：切片，[start, end)
+  // ++ 返回值：返回数组的深拷贝，仅限一维上的
+  console.log("slice =======");
+  tmp = arr.concat();
+  res = tmp.slice(1, 4);
+  console.log(tmp, res);  // [2, 3, 1]
+  ```
+
+- **concat**
+
+  ```js
+  // concat
+  // ++ arr.concat(arg1, arg2...)
+  // ++ 作用：创建一个新数组，其中包含来自于其他数组和其他项的值
+  // ++ 参数：接受任意数量的参数 — 数组或值都可以。
+  // ++ 返回值：结果是一个包含来自于 arr，然后是 arg1，arg2 ... 的元素的新数组。
+  // +++ 如果参数 argN 是一个数组，那么其中的所有元素都会被复制。否则，将复制参数本身。
+  // +++ 返回的数组仅限一维上的深拷贝
+  console.log("concat =======");
+  tmp = arr.concat();
+  res = tmp.concat("aa", "bb");
+  console.log(tmp, res);
+  tmp = arr.concat();
+  res = tmp.concat(["aa", "bb"], ["xx", "yy"]);
+  console.log(tmp, res);
+  ```
+
+### 转换方法
+
+- **join()**
+
+  ```js
+  // join()
+  // ++ arr.join(连接符)
+  // ++ 作用：将数组的内容以 连接符 拼接成一个 字符串
+  // ++ 返回值：拼接好的 字符串
+  console.log("join() =======");
+  let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+  let str = arr.join(';'); // 使用分号 ; 将数组粘合成字符串
+  console.log(str); // "Bilbo;Gandalf;Nazgul"
+  ```
+
+- **map()**
+
+  ```js
+  // map()
+  // ++ arr.map(function(item, index, array) {});
+  // ++ 作用: 它对数组的每个元素都调用函数
+  // ++ 返回值：返回一个新的数组
+  console.log("map() =======");
+  let map_arr = ['Bilbo', 'Gandalf', 'Nazgul'].map(item => item.length);
+  console.log(map_arr);    // [5, 7, 6]
+  let map_arr1 = [1, 2, 3].map(item => item ** 2);
+  console.log(map_arr1);   // [1, 4, 9]
+  ```
+
+### 查找方法
+
+```js
+let arr = [1, 0, false];
+let res;
+```
+
+- **indexOf()**
+
+  ```js
+  let arr = [1, 0, false];
+  let res;
+  // indexOf()
+  // ++ arr.indexOf(item)
+  // ++ 作用：查找 item 在 arr 中的 索引
+  // ++ 返回值：返回 第一次 的 索引，没找到则返回 -1。
+  // >> 注意：查找时，内部使用的判断为 严格相等 "==="
+  console.log("indexOf() =======");
+  res = arr.indexOf(false); // 使用分号 ; 将数组粘合成字符串
+  console.log(res); // 2
+  ```
+
+- **filter()**
+
+  ```js
+  // filter()
+  // ++ arr.filter(function(item, index, array){});
+  // ++ 作用：过滤 数组
+  // ++ 返回值：所有匹配元素组成的 数组
+  console.log("filter() =======");
+  let users = [
+      { id: 1, name: "John" },
+      { id: 2, name: "Pete" },
+      { id: 3, name: "Mary" }
+  ];
+  let someUsers = users.filter(item => item.id < 3);
+  console.log(someUsers, someUsers.length); // 2
+  ```
+
+### 遍历方法
+
+- **forEach()**
+
+  ```js
+  let arr = ["Bilbo", "Gandalf", "Nazgul"];
+  
+  // forEach()
+  // ++ arr.forEach(function(item, index, array){});
+  // ++ 作用：查找 item 在 arr 中的 索引
+  // ++ 返回值：返回 第一次 的 索引，没找到则返回 -1。
+  // >> 注意：查找时，内部使用的判断为 严格相等 "==="
+  console.log("forEach() =======");
+  arr.forEach(function (item, index, array) {
+      console.log(`${item} is at index ${index} in ${array}`);
+  });
+  ```
+
+### 判断方法
+
+```js
+let arr = [1, 2, 3, 4, 5, "xx"];
+let res;
+```
+
+- **every()**
+
+  ```js
+  // every()
+  // ++ arr.every(function(item, index, array){});
+  // ++ 作用：判断数组是不是 每一项 都满足条件
+  // ++ 返回值：一个 布尔值
+  console.log("every() =======");
+  res = arr.every(item => ["number", "string"].indexOf(typeof item) !== -1); 
+  console.log(res);   // true
+  res = arr.every(item => item < 6); 
+  console.log(res);   // false
+  ```
+
+- **some()**
+
+  ```js
+  // some()
+  // ++ arr.some(function(item, index, array){});
+  // ++ 作用：判断数组是不是有 某一项 满足条件
+  // ++ 返回值：一个 布尔值
+  console.log("some() =======");
+  res = arr.some(item => typeof item === "string"); 
+  console.log(res);   // true
+  res = arr.some(item => item === 6); 
+  console.log(res);   // false
+  ```
 
 # 基础数据类型常用方法
 
@@ -3134,86 +3578,6 @@ alert( str[0] ); // 无法运行
   ---
 
   相较于其他两个变体，`slice` 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 `slice` 就足够了。
-
-## 数组
-
-### 声明
-
-创建一个空数组有两种语法：
-
-```js
-let arr = new Array();
-let arr = [];
-```
-
-数组元素从 0 开始编号。
-
-我们可以通过方括号中的数字获取元素：
-
-```js
-let fruits = ["Apple", "Orange", "Plum"];
-console.log(fruits[0]);  // "Apple"
-console.log(fruits[1]);  // "Orange"
-console.log(fruits[2]);  // "Plum"
-```
-
-向数组新加一个元素 和 获取长度：
-
-```js
-fruits[3] = 'Lemon'; // 现在变成 ["Apple", "Orange", "Pear", "Lemon"]
-console.log(fruits.length);  // 4
-```
-
-### 队列方法
-
-**pop/push, shift/unshift 方法**
-
-- `push` 在末端添加一个元素.
-- `shift` 取出队列首端的一个元素，整个队列往前移，这样原先排第二的元素现在排在了第一.
-- `pop` 从末端取出一个元素.
-- `unshift` 在数组的首端添加元素.
-
-### 内部
-
-数组是一种特殊的对象。使用方括号来访问属性 `arr[0]` 实际上是来自于对象的语法。它其实与 `obj[key]` 相同，其中 `arr` 是对象，而数字用作键（key）。
-
-它们扩展了对象，提供了特殊的方法来处理有序的数据集合以及 `length` 属性。但从本质上讲，它仍然是一个对象。
-
-记住，在 JavaScript 中只有 7 种基本类型。数组是一个对象，因此其行为也像一个对象。
-
-例如，它是通过引用来复制的：
-
-```js
-let fruits = ["Banana"]
-let arr = fruits; // 通过引用复制 (两个变量引用的是相同的数组)
-alert( arr === fruits ); // true
-arr.push("Pear"); // 通过引用修改数组
-alert( fruits ); // Banana, Pear — 现在有 2 项了
-```
-
-……但是数组真正特殊的是它们的内部实现。JavaScript 引擎尝试把这些元素一个接一个地存储在连续的内存区域，就像本章的插图显示的一样，而且还有一些其它的优化，以使数组运行得非常快。
-
-但是，如果我们不像“有序集合”那样使用数组，而是像常规对象那样使用数组，这些就都不生效了。
-
-例如，从技术上讲，我们可以这样做:
-
-```js
-let fruits = []; // 创建一个数组
-fruits[99999] = 5; // 分配索引远大于数组长度的属性
-fruits.age = 25; // 创建一个具有任意名称的属性
-```
-
-这是可以的，因为数组是基于对象的。我们可以给它们添加任何属性。
-
-但是 Javascript 引擎会发现，我们在像使用常规对象一样使用数组，那么针对数组的优化就不再适用了，然后对应的优化就会被关闭，这些优化所带来的优势也就荡然无存了。
-
-数组误用的几种方式:
-
-- 添加一个非数字的属性，比如 `arr.test = 5`。
-- 制造空洞，比如：添加 `arr[0]`，然后添加 `arr[1000]` (它们中间什么都没有)。
-- 以倒序填充数组，比如 `arr[1000]`，`arr[999]` 等等。
-
-请将数组视为作用于 **有序数据** 的特殊结构。它们为此提供了特殊的方法。数组在 JavaScript 引擎内部是经过特殊调整的，使得更好地作用于连续的有序数据，所以请以正确的方式使用数组。如果你需要任意键值，那很有可能实际上你需要的是常规对象 `{}`。
 
 # 函数进阶
 

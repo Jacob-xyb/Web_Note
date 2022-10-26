@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // join()
+        // ++ arr.join(连接符)
+        // ++ 作用：将数组的内容以 连接符 拼接成一个 字符串
+        // ++ 返回值：拼接好的 字符串
+        console.log("join() =======");
+        let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+        let str = arr.join(';'); // 使用分号 ; 将数组粘合成字符串
+        console.log(str); // "Bilbo;Gandalf;Nazgul"
+
+        // map()
+        // ++ arr.map(function(item, index, array) {});
+        // ++ 作用: 它对数组的每个元素都调用函数
+        // ++ 返回值：返回一个新的数组
+        console.log("map() =======");
+        let map_arr = ['Bilbo', 'Gandalf', 'Nazgul'].map(item => item.length);
+        console.log(map_arr);    // [5, 7, 6]
+        let map_arr1 = [1, 2, 3].map(item => item ** 2);
+        console.log(map_arr1);   // [1, 4, 9]
+
+    </script>
+</body>
+
+</html>
