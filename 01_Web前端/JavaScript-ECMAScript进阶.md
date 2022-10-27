@@ -179,6 +179,26 @@ let arrayLike = {
 alert( arr.concat(arrayLike) ); // 1,2,something,else
 ```
 
+## 数组的清空
+
+```js
+let arr;
+arr = [[1, 2, 3], [2, 3, 4]];
+
+arr = [[]];
+console.log(arr);   // [[]]
+arr = [];
+console.log(arr);   // []
+console.log([] === [[]]);   // false
+// ++ 在 JavaScript 中，[] 和 [[]] 是真实存在且不一样的
+
+// arr[0].push([1, 2, 3]);     // error
+arr.push([1, 2, 3]);
+console.log(arr);   // [[1, 2, 3]]
+arr[0].push(1, 2);  // 真实存在的属性才可以调用方法
+console.log(arr);   // [[1, 2, 3, 1, 2]]
+```
+
 # JavaScript中的深拷贝
 
 ## 数组的深拷贝

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr;
+        arr = [[1, 2, 3], [2, 3, 4]];
+
+        arr = [[]];
+        console.log(arr);   // [[]]
+        arr = [];
+        console.log(arr);   // []
+        console.log([] === [[]]);   // false
+        // ++ 在 JavaScript 中，[] 和 [[]] 是真实存在且不一样的
+
+        // arr[0].push([1, 2, 3]);     // error
+        arr.push([1, 2, 3]);
+        console.log(arr);   // [[1, 2, 3]]
+        arr[0].push(1, 2);  // 真实存在的属性才可以调用方法
+        console.log(arr);   // [[1, 2, 3, 1, 2]]
+    </script>
+</body>
+
+</html>
