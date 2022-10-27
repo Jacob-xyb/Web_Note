@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 600px;
+            height: 400px;
+            background-color: aquamarine;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            background-color: pink;
+            /* 强制不换行 */
+            white-space: nowrap;   
+        }
+
+        li span {
+            display: inline-block;
+            width: 200px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><span>Layer# 1</span><span>Material# 1</span><span>Parameter# 1</span><span>Comment# 1</span></li>
+            <li><span>Layer# 2</span></li>
+        </ul>
+    </div>
+</body>
+
+</html>
