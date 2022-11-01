@@ -1594,11 +1594,11 @@ HTML4：是使用 `<a name="锚点"></a>` 进行跳转的。注意：这里的na
 
 HTML5：支持使用 任意属性的 `id` 进行跳转，也就是说，并不需要依赖内嵌 a 标签了。
 
-#  \<table> 表格
+#  表格标签
 
-## table 简介
+## \<table> 标签
 
-`<table>` 标签用于定义 HTML 表格。
+> `<table>` 标签用于定义 HTML 表格。
 
 简单的 HTML 表格由 table 元素以及一个或多个 [`tr`](https://man.ilovefishc.com/pageHTML5/tr.html) 、[`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 标签组成。
 
@@ -1637,19 +1637,16 @@ table {
 
 ![image.png](https://s2.loli.net/2022/09/07/LxuqzrsD91dAQbG.png)
 
-- **属性：**
+### 属性
 
-  border="1px" 
-
-  align="center" 
-
-  bordercolor="red"
-
-  bgcolor="whitegrey"
-
-  cellspacing="0px“  -> CSS: `border-spacing: 0;`
-
-  cellpadding="10px"
+| 属性                     | 值                  | 描述                                                         |
+| ------------------------ | ------------------- | ------------------------------------------------------------ |
+| align (不推荐使用)       | left、center、right | 文档中的**表格对齐方式**，应该使用 `margin: 0 auto;` 替代    |
+| bgcolor (不推荐使用)     | color               | 表格的背景颜色，应该使用 `background-color` 替代             |
+| border (不推荐使用)      | int                 | 表格边框的大小，应该使用 `border` 替代                       |
+| bordercolor (不推荐使用) | color               | 表格边框的颜色，应该使用 `border-color` 替代                 |
+| cellpadding (不推荐使用) | pixel\| %           | 这个属性定义了表格单元的内容和边框之间的空间。如果它是一个像素长度单位，这个像素将被应用到所有的四个侧边；如果它是一个百分比的长度单位，内容将被作为中心，总的垂直（上和下）长度将代表这个百分比。这同样适用于总的水平（左和右）空间。<br/>应该使用 `table {border-collapse: collapse} td {padding: pixel}` 替代 |
+| cellspacing (不推荐使用) | pixel\| %           | 定义了两个单元格之间空间的大小（从水平和垂直方向上），应该使用`border-spacing` 替代 |
 
 ## \<tr>
 
@@ -1657,12 +1654,12 @@ table {
 
 tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 元素。
 
-- **tr 属性**
+### 属性
 
-1. 高度：height
-2. 背景颜色：bgcolor
-3. 文字水平对齐：align="left || right || center"
-4. 文字垂直对齐：valign="top || middle || bottom"
+| 属性                | 值                  | 描述                                                         |
+| ------------------- | ------------------- | ------------------------------------------------------------ |
+| align (不推荐使用)  | left、center、right | 每个单元格中内容的水平对齐方式，应该使用 `text-align` 替代   |
+| valign (不推荐使用) | top、middle、bottom | 每个单元格中内容的垂直对齐方式，应该使用 `vertical-align` 替代 |
 
 ## \<th>
 
@@ -1670,40 +1667,31 @@ tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.ht
 
 th 元素内部的文本通常会呈现为居中的粗体文本
 
-| 属性    | 值                           | 描述                                           |
-| ------- | ---------------------------- | ---------------------------------------------- |
-| scope   | col、colgroup、row、rowgroup | 规定表头单元格是否是行、列、行组或列组的头部。 |
-| headers | header_id                    | 规定与表头单元格相关联的一个或多个表头单元格。 |
-| colspan | number                       | 规定表头单元格可横跨的列数。                   |
-| rowspan | number                       | 规定表头单元格可横跨的行数。                   |
+### 属性
+
+| 属性    | 值                           | 描述                                                         |
+| ------- | ---------------------------- | ------------------------------------------------------------ |
+| scope   | col、colgroup、row、rowgroup | 规定表头单元格是否是行、列、行组或列组的头部。               |
+| headers | header_id                    | 规定与表头单元格相关联的一个或多个表头单元格。               |
+| colspan | number                       | 这个属性包含一个正整数表示了每单元格中**扩展列的数量**。默认值为`1` 。超过 1000 的值被视作 1000。 |
+| rowspan | number                       | 这个属性包含一个正整数表示了每单元格中扩展列的数量。默认值为`1.` 如果该值被设置为 `0`, 这个单元格就被扩展为 (thead，tbody 或 tfoot ) 中表格部分的最后一个元素。比 65534 大的值被视作 65534 |
 
 `colspan` 超过单元格后，会往右挤出边界，`rowspan` 同理，也是往右边平移。
 
 ![image.png](https://s2.loli.net/2022/09/20/7vabd2Qwtfqskhi.png)
 
-
-
 ## \<td>
 
 **\<td>** : table data
 
-- **td 属性**
+### 属性
 
-1. 宽度：width（如果一个单元格设置了宽度，影响一整列）
-
-2. 高度：height （如果一个单元格设置了高度，影响一整行）
-
-3. 背景颜色：bgcolor
-
-4. 文字水平对齐：align="left || right || center"
-
-5. 文字垂直对齐：valign="top || middle || bottom"
-
-6. | 属性    | 值        | 描述                                       |
-   | ------- | --------- | ------------------------------------------ |
-   | headers | header_id | 规定与单元格相关联的一个或多个表头单元格。 |
-   | colspan | number    | 规定单元格可横跨的列数。                   |
-   | rowspan | number    | 设置单元格可横跨的行数。                   |
+| 属性    | 值                           | 描述                                                         |
+| ------- | ---------------------------- | ------------------------------------------------------------ |
+| scope   | col、colgroup、row、rowgroup | 规定表头单元格是否是行、列、行组或列组的头部。               |
+| headers | header_id                    | 规定与表头单元格相关联的一个或多个表头单元格。               |
+| colspan | number                       | 这个属性包含一个正整数表示了每单元格中**扩展列的数量**。默认值为`1` 。超过 1000 的值被视作 1000。 |
+| rowspan | number                       | 这个属性包含一个正整数表示了每单元格中扩展列的数量。默认值为`1.` 如果该值被设置为 `0`, 这个单元格就被扩展为 (thead，tbody 或 tfoot ) 中表格部分的最后一个元素。比 65534 大的值被视作 65534 |
 
 ## table 边界融合(坍塌)
 

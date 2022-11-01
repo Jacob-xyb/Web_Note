@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- colspan="0"是不生效的 -->
+    <table border="1px" align="center" width="300px">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td colspan="0">2</td>
+        </tr>
+    </table>
+    <br>
+    <!-- 最后一个 td 为 colspan="999" 既可以自动填充 -->
+    <table border="1px" align="center" width="300px">
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td colspan="999"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+    </table>
+</body>
+
+</html>
