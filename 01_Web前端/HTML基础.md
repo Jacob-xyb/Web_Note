@@ -451,6 +451,10 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 属性有：color、width、align（对齐的意思）、noshade
 
+- width: 默认 100%，
+
+- align: 默认 center 
+
 ```html
 <hr color="pink" width="300px" align="left" noshade>
 ```
@@ -543,24 +547,141 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 >
 > `<sup>` 标签用于定义上标文本。
 
-## HTML字符实体
+# HTML字符实体
 
-用常用字符表示这些符号的方式。
+在 HTML 中，某些字符是预留的。不能使用包含这些字符的文本。
 
-| 特殊符号 | 解释                                               |
-| -------- | -------------------------------------------------- |
-| 尖角号   | `&lt;` 左尖角号; `&gt;` 右尖角号                   |
-| 空格     | `&nbsp;` 受字体影响，不推荐                        |
-|          | `&emsp;` 占据宽度为一个中文宽度                    |
-| 版权     | `&copy;` &copy;                                    |
-| 商标     | `&trade;` &trade; 代表已经提供申请，拥有优先使用权 |
-|          | `&reg;` &reg; 代表已经通过，受版权保护             |
+在 HTML 中**不能**使用小于号`（<）`和大于号`（>）`，这是因为浏览器会误认为它们是标签。
 
-## HTML 样式
+如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用**字符实体（character entities）**。
+
+## HTML 预留字符
+
+| 字符 | 实体编号 | 实体名称     | 描述         |
+| ---- | -------- | ------------ | ------------ |
+| "    | `&#34;`  | `&quot;`     | quotation    |
+| '    | `&#39;`  | `	&apos;` | apostrophe   |
+| &    | `&#38;`  | `&amp;`      | ampersand    |
+| <    | `&#60;`  | `$lt;`       | less-than    |
+| >    | `&#62;`  | `$gt;`       | greater-than |
+
+## ISO 8859-1 符号实体
+
+[查表地址](https://man.ilovefishc.com/pageHTML5/ISO.html)
+
+| 字符 | 实体编号 | 实体名称 | 描述                        |
+| ---- | -------- | -------- | --------------------------- |
+|      | `&#160;`      | `&nbsp;`      | non-breaking space  |
+| 		|  				| `&ensp;` | En Space 半角空格|
+| 		|  				| `&emsp;` | Em Space 全角空格|
+| ¡    | `&#161;` | `&iexcl;` | inverted exclamation mark   |
+| ¢    | `¢`      | `¢`      | cent                        |
+| £    | `£`      | `£`      | pound                       |
+| ¤    | `¤`      | `¤`      | currency                    |
+| ¥    | `¥`      | `¥`      | yen                         |
+| ¦    | `¦`      | `¦`      | broken vertical bar         |
+| §    | `§`      | `§`      | section                     |
+| ¨    | `¨`      | `¨`      | spacing diaeresis           |
+| ©    | `&#169;` | `&copy;` | copyright                   |
+| ª    | `ª`      | `ª`      | feminine ordinal indicator  |
+| «    | `«`      | `«`      | angle quotation mark (left) |
+| ¬    | `¬`      | `¬`      | negation                    |
+|      | `­`      | `­`      | soft hyphen                 |
+| ®    | `&#174;` | `&reg;` | registered trademark        |
+| ¯    | `¯`      | `¯`      | spacing macron              |
+| °    | `°`      | `°`      | degree                      |
+| ±    | `±`      | `±`      | plus-or-minus               |
+| ²    | `²`      | `²`      | superscript 2               |
+| ³    | `³`      | `³`      | superscript 3               |
+| ´    | `´`      | `´`      | spacing acute               |
+| µ    | `µ`      | `µ`      | micro                       |
+| ¶    | `¶`      | `¶`      | paragraph                   |
+| ·    | `·`      | `·`      | middle dot                  |
+| ¸    | `¸`      | `¸`      | spacing cedilla             |
+| ¹    | `¹`      | `¹`      | superscript 1               |
+| º    | `º`      | `º`      | masculine ordinal indicato  |
+| »    | `»`      | `»`      | angle quotation mark (righ  |
+| ¼    | `¼`      | `¼`      | fraction 1/4                |
+| ½    | `½`      | `½`      | fraction 1/2                |
+| ¾    | `¾`      | `¾`      | fraction 3/4                |
+| ¿    | `¿`      | `¿`      | inverted question mark      |
+| ×    | `×`      | `×`      | multiplication              |
+| ÷    | `÷`      | `÷`      | division                    |
+
+## ISO 8859-1 字符实体
+
+[查表地址](https://man.ilovefishc.com/pageHTML5/ISO.html#iso-8859-1-%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93)
+
+| 字符 | 实体编号 | 实体名称 | 描述                         |
+| ---- | -------- | -------- | ---------------------------- |
+| À    | `À`      | `À`      | capital a, grave accent      |
+| Á    | `Á`      | `Á`      | capital a, acute accent      |
+| Â    | `Â`      | `Â`      | capital a, circumflex accent |
+| Ã    | `Ã`      | `Ã`      | capital a, tilde             |
+| Ä    | `Ä`      | `Ä`      | capital a, umlaut mark       |
+| Å    | `Å`      | `Å`      | capital a, ring              |
+| Æ    | `Æ`      | `Æ`      | capital ae                   |
+| Ç    | `Ç`      | `Ç`      | capital c, cedilla           |
+| È    | `È`      | `È`      | capital e, grave accent      |
+| É    | `É`      | `É`      | capital e, acute accent      |
+| Ê    | `Ê`      | `Ê`      | capital e, circumflex accent |
+| Ë    | `Ë`      | `Ë`      | capital e, umlaut mark       |
+| Ì    | `Ì`      | `Ì`      | capital i, grave accent      |
+| Í    | `Í`      | `Í`      | capital i, acute accent      |
+| Î    | `Î`      | `Î`      | capital i, circumflex accent |
+| Ï    | `Ï`      | `Ï`      | capital i, umlaut mark       |
+| Ð    | `Ð`      | `Ð`      | capital eth, Icelandic       |
+| Ñ    | `Ñ`      | `Ñ`      | capital n, tilde             |
+| Ò    | `Ò`      | `Ò`      | capital o, grave accent      |
+| Ó    | `Ó`      | `Ó`      | capital o, acute accent      |
+| Ô    | `Ô`      | `Ô`      | capital o, circumflex acc    |
+| Õ    | `Õ`      | `Õ`      | capital o, tilde             |
+| Ö    | `Ö`      | `Ö`      | capital o, umlaut mark       |
+| Ø    | `Ø`      | `Ø`      | capital o, slash             |
+| Ù    | `Ù`      | `Ù`      | capital u, grave accent      |
+| Ú    | `Ú`      | `Ú`      | capital u, acute accent      |
+| Û    | `Û`      | `Û`      | capital u, circumflex accen  |
+| Ü    | `Ü`      | `Ü`      | capital u, umlaut mark       |
+| Ý    | `Ý`      | `Ý`      | capital y, acute accent      |
+| Þ    | `Þ`      | `Þ`      | capital THORN, Icelandic     |
+| ß    | `ß`      | `ß`      | small sharp s, German        |
+| à    | `à`      | `à`      | small a, grave accent        |
+| á    | `á`      | `á`      | small a, acute accent        |
+| â    | `â`      | `â`      | small a, circumflex accent   |
+| ã    | `ã`      | `ã`      | small a, tilde               |
+| ä    | `ä`      | `ä`      | small a, umlaut mark         |
+| å    | `å`      | `å`      | small a, ring                |
+| æ    | `æ`      | `æ`      | small ae                     |
+| ç    | `ç`      | `ç`      | small c, cedilla             |
+| è    | `è`      | `è`      | small e, grave accent        |
+| é    | `é`      | `é`      | small e, acute accent        |
+| ê    | `ê`      | `ê`      | small e, circumflex accent   |
+| ë    | `ë`      | `ë`      | small e, umlaut mark         |
+| ì    | `ì`      | `ì`      | small i, grave accent        |
+| í    | `í`      | `í`      | small i, acute accent        |
+| î    | `î`      | `î`      | small i, circumflex accent   |
+| ï    | `ï`      | `ï`      | small i, umlaut mark         |
+| ð    | `ð`      | `ð`      | small eth, Icelandic         |
+| ñ    | `ñ`      | `ñ`      | small n, tilde               |
+| ò    | `ò`      | `ò`      | small o, grave accent        |
+| ó    | `ó`      | `ó`      | small o, acute accent        |
+| ô    | `ô`      | `ô`      | small o, circumflex accent   |
+| õ    | `õ`      | `õ`      | small o, tilde               |
+| ö    | `ö`      | `ö`      | small o, umlaut mark         |
+| ø    | `ø`      | `ø`      | small o, slash               |
+| ù    | `ù`      | `ù`      | small u, grave accent        |
+| ú    | `ú`      | `ú`      | small u, acute accent        |
+| û    | `û`      | `û`      | small u, circumflex acc      |
+| ü    | `ü`      | `ü`      | small u, umlaut mark         |
+| ý    | `ý`      | `ý`      | small y, acute accent        |
+| þ    | `þ`      | `þ`      | small thorn, Icelandic       |
+| ÿ    | `ÿ`      | `ÿ`      | small y, umlaut mark         |
+
+# HTML 样式
 
 style 元素可以出现在 HTML 文档中的各个部分，一个文档可以包含多个 style 元素
 
-### HTML 的 style 属性
+## HTML 的 style 属性
 
 style 属性的作用：
 
@@ -613,169 +734,13 @@ style 属性的作用：
 
 ![image-20220813172238083](https://s2.loli.net/2022/08/13/ZA6jGepTPLB4wfC.png)
 
-### HTML5 的 style 属性
+## HTML5 的 style 属性
 
 | 属性   | 值                                                           | 描述                                                         |
 | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | media  | screen、tty、tv、projection、handheld、print、braille、aural、all | 指定样式适用的，媒体                                         |
 | scoped | scoped                                                       | 指定样式的作用范围(如果使用该属性，则样式仅仅应用到 style 元素的父元素及其子元素) |
 | type   | text/css                                                     | 指定样式的类型                                               |
-
-## HTML 列表
-
-### 无序列表
-
-无序列表是一个项目的列表，此列项目使用粗体圆点（典型的小黑圆圈）进行标记。
-
-无序列表始于 <ul> 标签。每个列表项始于 <li>。
-
-**ul**: [unordered list 无序列表]
-
-**li**: [list item 列表项]
-
-```html
-<ul>
-<li>Coffee</li>
-<li>Milk</li>
-</ul>
-```
-
-实例：
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-	<title>Document</title>
-</head>
-<body>
-	<h3>习大大专著</h3>
-	<ul>
-		<li>
-			<h4>习近平谈治国理政</h4>
-			<p>¥49.00</p>
-			<p>《习近平谈治国理政》谈中国、论世界，为各国读者开启了一扇观察和感知中国的窗口。阅读这本书，可以了解以习近平同志为总书记的党中央治国理念和执政方略，品味悠长醇厚的中国历史文化，感受当</p>
-		</li>
-		<li>
-			<h4>习近平用典</h4>
-			<p>¥23.60</p>
-			<p>人民日报社社长杨振武主持编写并作序，人民日报社副总编辑卢新宁组织撰写解读文字，旨在对习近平总书记重要讲话（文章）引用典故的现实意义进行解读，对典故的背景义</p>
-		</li>
-		<li>
-			<h4>摆脱贫困</h4>
-			<p>26.00</p>
-			<p>追本溯源 融会贯通	深入学习贯彻习近平总书记系列重要讲话精神	推动学习贯彻向广度深度拓展	习近平总书记**部个人专著	时隔22年后重印发行</p>
-		</li>
-	</ul>
-</body>
-</html>
-```
-
-![image-20220813222246961](https://s2.loli.net/2022/08/13/7aRVnPTHOuvJhbt.png)
-
-**属性**：
-
-```html
-type: disc,circle,square,none
-```
-
-### 有序列表
-
-同样，有序列表也是一列项目，列表项目使用数字进行标记。
-
-有序列表始于 <ol> 标签。每个列表项始于 <li> 标签。
-
-**ol**: [ordered list 有序列表]
-
-**li**: [list item 列表项]
-
-```html
-<ol>
-<li>Coffee</li>
-<li>Milk</li>
-</ol>
-```
-
-**属性：**
-
-```html
-type: 1,a,A,i,I;
-start: 取值只能是一个数字
-```
-
-如果 `<ol type="a" start="27">` 那么序列从 `aa` 开始排序。
-
-### 自定义列表
-
-注意：`dd` 有一个默认的边距。
-
-自定义列表不仅仅是一列项目，而是项目及其注释的组合。
-
-自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd>  开始。
-
-**dl**: [definition list 定义列表] 
-
-**dt**: [definition title 定义标题]
-
-**dd**: [definition description 定义表述词]
-
-```html
-<dl>
-<dt>Coffee</dt>
-<dd>Black hot drink</dd>
-<dt>Milk</dt>
-<dd>White cold drink</dd>
-</dl>
-```
-
-**注意：** 定义列表的列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
-
-##  img
-
-HTML 图像是通过标签 <img> 来定义的.
-
-页面上能够插入的图片类型：jpg(jpeg)、gif、png、bmp
-
-不能插入的图片类型：psd、ai
-
-| 属性     | 值            | 描述                             |
-| -------- | ------------- | -------------------------------- |
-| `alt`    | text          | 指定图像的替代文本。             |
-| `src`    | URL           | 指定显示图像的 URL。             |
-| `title`  | text          | 鼠标悬停后的提示信息             |
-| width    | px(pixels)、% | 设置图像的宽度（像素或百分比）。 |
-| height   | px(pixels)、% | 定义图像的高度（像素或百分比）。 |
-| ismap    | URL           | 将图像定义为服务器端图像映射。   |
-| longdesc | URL           | 指定包含长的图像描述文档的 URL。 |
-| usemap   | URL           | 将图像定义为客户器端图像映射。   |
-
-**q1:为什么 img 是单标签而不是标签对？**
-
-因为如果是标签对，里面就包含内容，标签对就是对内容增加语义，而图片就是一个图片。
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<img src="./images/github_logo.png" alt="github logo"/>
-
-</body>
-</html>
-```
-
-**注意：** 图像的名称和尺寸是以属性的形式提供的。
-
-### 图片的宽高
-
-如果单独设置 width 或者 height，图片会按照比例缩放，长宽比并不会改变；
-
-如果同时设置宽高，图片的长宽比就会改变。
 
 ## HTML 块 和 内联
 
@@ -796,86 +761,6 @@ HTML 图像是通过标签 <img> 来定义的.
 内联元素在显示时通常不会以新行开始。
 
 例子：<b>, <td>, <a>, <img>
-
-## div 和 span
-
-**HTML <div> 元素是块级元素，它是可用于组合其他 HTML 元素的容器。**
-
-<div> 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。
-
-如果与 CSS 一同使用，<div> 元素可用于对大的内容块设置样式属性。
-
-`<div>` 元素的另一个常见的用途是文档布局。它取代了使用表格定义布局的老式方法。使用 <table>  元素进行文档布局不是表格的正确用法。<table> 元素的作用是显示表格化的数据。
-
-**HTML <span> 元素是内联元素，可用作文本的容器。**
-
-<span> 元素也没有特定的含义。
-
-当与 CSS 一同使用时，<span> 元素可用于为部分文本设置样式属性。
-
-## a 超级链接
-
-一个网站，是由很多HTML网页组成的。 HTML 网页之间能够相互跳转，点击超链接，形成“网”。
-
-| 属性     | 值                                          | 描述                                                         |
-| -------- | ------------------------------------------- | ------------------------------------------------------------ |
-| download | filename                                    | 指定被下载的超链接目标。                                     |
-| href     | URL                                         | 指定链接指向页面的 URL。                                     |
-| hreflang | language_code                               | 指定被链接文档的语言。                                       |
-| media    | media_query                                 | 指定被链接文档是为何种媒介/设备优化的。                      |
-| rel      | text                                        | 规定当前文档与被链接文档之间的关系。                         |
-| target   | `_blank`、_parent、`_self`、_top、framename | 指定在何处打开超链接。 _blank：在新窗口中打开 _parent：在当前的父窗口中打开，如果不存在父窗口，此选项的行为方式与 _self 等同 _self：当前窗口打开（默认） _top：在整个窗口中打开 framename：在指定的框架中打开 |
-| type     | MIME type                                   | 指定被链接文档的的 MIME 类型。                               |
-
-`<a href="default.htm"> </a>`
-
-**a**: [anchor 锚]
-
-**href**: [hypertext reference 超文本地址] 
-
-**title**: 悬停文本
-
-**target**:  "_blank" 新弹窗；
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Jacob-xyb</title>
-</head>
-<body>
-
-<a href="005_HTML图像.html">这是一个超链接</a>
-<br>
-<a href="005_HTML图像.html" title="这也是个超链接" target="_blank"><img src="images/github_logo.png" alt=""></a>
-
-
-</body>
-</html>
-```
-
-## HTML 页面锚点
-
-```html
-<a href="#工作经验">点击我就查看工作经验</a>
-<a href="#wdzp">点击我就查看我的作品</a>
-
-<h1>个人简介</h1>
-<h2>基本信息</h2>
-<p>基本信息基本信息... 基本信息基本信息</p>
-<!-- HTML4 -->
-<h2><a name="wdzp">我的作品</a></h2>
-<p>我的作品我的作品...我的作品我的作品</p>
-<div style="height: 800px;"></div>
-<!-- HTML 5 -->
-<h2 id="工作经验">工作经验</h2>
-<p>工作经验工作经验...工作经验工作经验</p>
-```
-
-HTML4：是使用 `<a name="锚点"></a>` 进行跳转的。注意：这里的name属性只是针对a标签，其他标签不可随意添加name属性。
-
-HTML5：支持使用 任意属性的 `id` 进行跳转，也就是说，并不需要依赖内嵌 a 标签了。
 
 ## HTML 类
 
@@ -1433,6 +1318,281 @@ link 元素最常见的用途是链接样式表。
 ```
 
 然而，只有第一行是必须的，因为“shortcut icon”字符串将被多数遵守标准的浏览器识别为列出可能的关键词（“shortcut”将被忽略，而仅适用“icon”）；而Internet Explorer将会把它作为一个单独的名称（“shortcut icon”）。这样做的结果是所有浏览器都可以理解此代码。只有当希望为新浏览器提供另一种备用图像（例如动画GIF）时，才有必要添加第二行。
+
+# 结构化标签
+
+## div
+
+> `<div>` 标签定义 HTML 文档中的一个分隔区块或者一个区域部分。
+
+**HTML <div> 元素是块级元素，它是可用于组合其他 HTML 元素的容器。**
+
+`<div>` 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。
+
+
+如果与 CSS 一同使用，<div> 元素可用于对大的内容块设置样式属性。
+
+`<div>` 元素的另一个常见的用途是文档布局。它取代了使用表格定义布局的老式方法。使用 <table>  元素进行文档布局不是表格的正确用法。<table> 元素的作用是显示表格化的数据。
+
+## span
+
+> `<span>` 标签用于组合文档中的行内元素。
+
+**HTML <span> 元素是内联元素，可用作文本的容器。**
+
+<span> 元素也没有特定的含义。
+
+当与 CSS 一同使用时，<span> 元素可用于为部分文本设置样式属性。
+
+# 列表标签
+
+## \<ul> 无序列表
+
+>  `<ul>` 标签用于定义无序列表。
+
+无序列表是一个项目的列表，此列项目使用粗体圆点（典型的小黑圆圈）进行标记。
+
+无序列表始于 <ul> 标签。每个列表项始于 <li>。
+
+**ul**: [unordered list 无序列表]
+
+**li**: [list item 列表项]
+
+```html
+<ul>
+<li>Coffee</li>
+<li>Milk</li>
+</ul>
+```
+
+实例：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Document</title>
+</head>
+<body>
+	<h3>习大大专著</h3>
+	<ul>
+		<li>
+			<h4>习近平谈治国理政</h4>
+			<p>¥49.00</p>
+			<p>《习近平谈治国理政》谈中国、论世界，为各国读者开启了一扇观察和感知中国的窗口。阅读这本书，可以了解以习近平同志为总书记的党中央治国理念和执政方略，品味悠长醇厚的中国历史文化，感受当</p>
+		</li>
+		<li>
+			<h4>习近平用典</h4>
+			<p>¥23.60</p>
+			<p>人民日报社社长杨振武主持编写并作序，人民日报社副总编辑卢新宁组织撰写解读文字，旨在对习近平总书记重要讲话（文章）引用典故的现实意义进行解读，对典故的背景义</p>
+		</li>
+		<li>
+			<h4>摆脱贫困</h4>
+			<p>26.00</p>
+			<p>追本溯源 融会贯通	深入学习贯彻习近平总书记系列重要讲话精神	推动学习贯彻向广度深度拓展	习近平总书记**部个人专著	时隔22年后重印发行</p>
+		</li>
+	</ul>
+</body>
+</html>
+```
+
+![image-20220813222246961](https://s2.loli.net/2022/08/13/7aRVnPTHOuvJhbt.png)
+
+### 属性
+
+- type: 列表显示的类型
+
+  - disc: 实心圆 (默认)
+  - circle: 空心圆
+  - square: 实心方块
+  - none: 无样式
+
+  > type 属性对应 css 的 [list-style-type](https://man.ilovefishc.com/pageCSS3/list-style-type.html)
+
+## \<ol> 有序列表
+
+> `<ol>` 标签用于定义有序列表。
+
+同样，有序列表也是一列项目，列表项目使用数字进行标记。
+
+有序列表始于 <ol> 标签。每个列表项始于 <li> 标签。
+
+**ol**: [ordered list 有序列表]
+
+**li**: [list item 列表项]
+
+```html
+<ol>
+<li>Coffee</li>
+<li>Milk</li>
+</ol>
+```
+
+### 属性
+
+| 属性     | 值            | 描述                             |
+| -------- | ------------- | -------------------------------- |
+| reversed | reversed      | 规定列表顺序为降序。(9, 8, 7, …) |
+| start    | number        | 规定有序列表的起始值。           |
+| type     | 1、A、a、I、i | 规定在列表中使用的标记类型。     |
+
+如果 `<ol type="a" start="27">` 那么序列从 `aa` 开始排序。
+
+> 有序列表 css 的  [list-style-type](https://man.ilovefishc.com/pageCSS3/list-style-type.html) 支持更多样式
+
+## \<dl> 自定义列表
+
+> `<dl>` 标签定义了一个包含术语定义以及描述的列表。
+>
+> `<dt>` 标签用于定义列表中的项目（即术语部分）。
+>
+> `<dd>` 标签用于定义列表中项目的描述部分。
+
+注意：`dd` 有一个默认的边距。
+
+自定义列表不仅仅是一列项目，而是项目及其注释的组合。
+
+自定义列表以 <dl> 标签开始。每个自定义列表项以 <dt> 开始。每个自定义列表项的定义以 <dd>  开始。
+
+**dl**: [definition list 定义列表] 
+
+**dt**: [definition title 定义标题]
+
+**dd**: [definition description 定义表述词]
+
+> **Tips: 一个 dl 一般设置为一个样式，一个 dl 只包含一个 dt 和 一个 dd**
+
+```html
+<!-- dl 一般是一个样式 -->
+<dl>
+    <dt>我是图片</dt>
+    <dd>我是文字</dd>
+</dl>
+<dl>
+    <dt>我是图片</dt>
+    <dd>我是文字</dd>
+</dl>
+```
+
+**注意：** 定义列表的列表项内部可以使用段落、换行符、图片、链接以及其他列表等等。
+
+# 图片标签
+
+## \<img> 标签
+
+> `<img>` 标签用于向网页中嵌入一幅图像。
+
+页面上能够插入的图片类型：jpg(jpeg)、gif、png、bmp
+
+不能插入的图片类型：psd、ai
+
+**注意：** `<img>` 标签有两个必需的属性：src 属性 和 alt 属性。
+
+| 属性     | 值            | 描述                             |
+| -------- | ------------- | -------------------------------- |
+| `alt`    | text          | 指定图像的替代文本。             |
+| `src`    | URL           | 指定显示图像的 URL。             |
+| `title`  | text          | 鼠标悬停后的提示信息             |
+| width    | px(pixels)、% | 设置图像的宽度（像素或百分比）。 |
+| height   | px(pixels)、% | 定义图像的高度（像素或百分比）。 |
+| ismap    | URL           | 将图像定义为服务器端图像映射。   |
+| longdesc | URL           | 指定包含长的图像描述文档的 URL。 |
+| usemap   | URL           | 将图像定义为客户器端图像映射。   |
+
+**q1:为什么 img 是单标签而不是标签对？**
+
+因为如果是标签对，里面就包含内容，标签对就是对内容增加语义，而图片就是一个图片。
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Jacob-xyb</title>
+</head>
+<body>
+
+<img src="./images/github_logo.png" alt="github logo"/>
+
+</body>
+</html>
+```
+
+### 图片的宽高
+
+如果单独设置 width 或者 height，图片会按照比例缩放，长宽比并不会改变；
+
+如果同时设置宽高，图片的长宽比就会改变。
+
+# 链接标签
+
+## \<a> 标签
+
+> `<a>` 标签用于定义超链接，超链接可以让用户从一个网页跳转到另一个网页。
+
+**a**: [anchor 锚]
+
+<a> 标签最重要的属性是 href 属性，它指定了链接目标的 URL。
+
+在浏览器中，通常超链接的默认外观是：
+
+![image.png](https://s2.loli.net/2022/11/01/McvRa78gsKSe615.png)
+
+**注意**：
+
+在 HTML 4.01 中，`<a>` 标签可以是超链接或锚。
+
+在 HTML5 中，`<a>` 标签始终是超链接，但是如果未设置 href 属性，则只是超链接的占位符。
+
+HTML5 提供了一些新属性，同时不再支持一些 HTML 4.01 属性。
+
+### 属性
+
+| 属性       | 值                                              | 描述                                                         |
+| ---------- | ----------------------------------------------- | ------------------------------------------------------------ |
+| download   | filename                                        | 指定被下载的超链接目标。                                     |
+| **href**   | URL                                             | 指定链接指向页面的 URL。 [hypertext reference 超文本地址]    |
+| hreflang   | language_code                                   | 指定被链接文档的语言。                                       |
+| media      | media_query                                     | 指定被链接文档是为何种媒介/设备优化的。                      |
+| rel        | text                                            | 规定当前文档与被链接文档之间的关系。                         |
+| **target** | **\_blank**、\_parent、\_self、\_top、framename | 指定在何处打开超链接。 _blank：在新窗口中打开 _parent：在当前的父窗口中打开，如果不存在父窗口，此选项的行为方式与 _self 等同 _self：当前窗口打开（默认） _top：在整个窗口中打开 framename：在指定的框架中打开 |
+| type       | MIME type                                       | 指定被链接文档的的 MIME 类型。                               |
+| title      | description                                     | 鼠标悬停显示的提示文本                                       |
+
+### 超级链接
+
+一个网站，是由很多HTML网页组成的。 HTML 网页之间能够相互跳转，点击超链接，形成“网”。
+
+`<a href="default.htm"> </a>`
+
+```html
+<a href="005_HTML图像.html">这是一个超链接</a>
+<br>
+<a href="005_HTML图像.html" title="这也是个超链接" target="_blank"><img src="images/github_logo.png" alt=""></a>
+```
+
+### HTML 页面锚点
+
+```html
+<a href="#工作经验">点击我就查看工作经验</a>
+<a href="#wdzp">点击我就查看我的作品</a>
+
+<h1>个人简介</h1>
+<h2>基本信息</h2>
+<p>基本信息基本信息... 基本信息基本信息</p>
+<!-- HTML4 -->
+<h2><a name="wdzp">我的作品</a></h2>
+<p>我的作品我的作品...我的作品我的作品</p>
+<div style="height: 800px;"></div>
+<!-- HTML 5 -->
+<h2 id="工作经验">工作经验</h2>
+<p>工作经验工作经验...工作经验工作经验</p>
+```
+
+HTML4：是使用 `<a name="锚点"></a>` 进行跳转的。注意：这里的name属性只是针对a标签，其他标签不可随意添加name属性。
+
+HTML5：支持使用 任意属性的 `id` 进行跳转，也就是说，并不需要依赖内嵌 a 标签了。
 
 #  \<table> 表格
 
