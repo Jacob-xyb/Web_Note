@@ -1693,19 +1693,17 @@ th 元素内部的文本通常会呈现为居中的粗体文本
 | colspan | number                       | 这个属性包含一个正整数表示了每单元格中**扩展列的数量**。默认值为`1` 。超过 1000 的值被视作 1000。 |
 | rowspan | number                       | 这个属性包含一个正整数表示了每单元格中扩展列的数量。默认值为`1.` 如果该值被设置为 `0`, 这个单元格就被扩展为 (thead，tbody 或 tfoot ) 中表格部分的最后一个元素。比 65534 大的值被视作 65534 |
 
-## table 边界融合(坍塌)
+## 表格其他封装
 
-```css
-table {
-	border-collapse: collapse;
-}
-```
+- \<tbody> : 定义表格主要内容的组成部分。
+- \<thead> : 定义了一组定义表格的列头的行。
+- \<tfoot> : 定义了一组表格中各列的汇总行
 
-# \<form> 表单
+# 表单标签
 
 ## \<form>
 
-`<form>` 标签用于为用户输入创建 HTML 表单。用于向服务器传输数据。
+> `<form>` 标签用于为用户输入创建 HTML 表单。用于向服务器传输数据。
 
 表单能够包含 input 元素，比如文本字段、复选框、单选框、提交按钮等等。
 
@@ -1733,129 +1731,7 @@ form elements
 </form> 
 ```
 
----
-
-**HTML 表单包含表单元素。**
-
-表单元素指的是不同类型的 input 元素、复选框、单选按钮、提交按钮等等。
-
-## \<input>
-
-*<input>* 元素是最重要的*表单元素*。
-
-### input 属性
-
-| 属性           | 值                                                           | 描述                                                         |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| accept         | mime_type                                                    | 指定提交的文件类型（多个类型之间使用英文的逗号隔开，文件类型的几种表述方式请参考 -> [传送门）](https://fishc.com.cn/thread-128222-1-1.html) |
-| alt            | text                                                         | 指定图像的说明文字                                           |
-| autocomplete   | on、off                                                      | 指定是否启用浏览器预测输入                                   |
-| autofocus      | autofocus                                                    | 指定是否自动获得焦点                                         |
-| `checked`      | checked                                                      | 指定该属性的复选框，默认显示为勾选状态                       |
-| `disabled`     | disabled                                                     | 指定是否禁用该 input 元素                                    |
-| form           | formname                                                     | 指定其所属的一个或多个表单 id 值（在 HTML5 中，表单允许你将 input 放在文档中的任意位置，当你这么做的时候，可以通过指定该属性来确定元素所关联的表单） |
-| formaction     | URL                                                          | 指定表单提交的位置（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
-| formenctype    | application/x-www-form-urlencoded、multipart/form-data、text/plain | 指定表单提交的编码方式（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
-| formmethod     | get、post                                                    | 指定表单提交的方法（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
-| formnovalidate | formnovalidate                                               | 指定是否重置 form 元素的 novalidate 属性，如果重置，那么当表单提交时 input 元素将不再进行任何验证（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
-| formtarget     | _blank、_self、_parent、_top、framename                      | 指定表单提交后在何处打开 action URL（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
-| height         | pixels、%                                                    | 指定图像的高度（像素）                                       |
-| list           | datalist-id                                                  | 指定一个数据列表，即 datalist 元素的 id 值                   |
-| max            | number、date                                                 | 指定可接受的最大值，以便进行输入验证                         |
-| maxlength      | number                                                       | 指定用户可以在文本框输入的最大字符数                         |
-| min            | number、date                                                 | 指定可接受的最小值，以便进行输入验证                         |
-| multiple       | multiple                                                     | 指定该属性后可以上传多个文件                                 |
-| `name`         | field_name                                                   | 指定元素的名称，用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据，只有设置了 name 属性的表单才能在提交表单时传递该值 |
-| pattern        | regexp_pattern                                               | 指定一个用于输入验证的正则表达式                             |
-| `placeholder`  | text                                                         | 指定一个占位提示文本                                         |
-| `readonly`     | readonly                                                     | 将文本框设为只读模式，防止用户编辑其内容                     |
-| required       | required                                                     | 表明用户必须输入一个值，否则无法通过输入验证                 |
-| size           | number_of_char                                               | 指定文本框的宽度                                             |
-| src            | URL                                                          | 指定要显示的图像的 URL                                       |
-| step           | number                                                       | 指定上下调节数值的步长                                       |
-| `type`         | button、checkbox、color、date、datetime-local、email、file、hidden、image、month、number、password、radio、range、reset、search、submit、tel、text、time、url、week | 规定 input 元素的类型                                        |
-| `value`        | text                                                         | 指定输入字段的初始值                                         |
-| width          | pixels、%                                                    | 指定图像的宽度（像素）                                       |
-
-### input 类型
-
-<input> 元素有很多形态，根据不同的 *type* 属性。
-
-主要使用的类型：
-
-| 类型   | 描述                                 |
-| ------ | ------------------------------------ |
-| text   | 定义常规文本输入。                   |
-| radio  | 定义单选按钮输入（选择多个选择之一） |
-| submit | 定义提交按钮（提交表单）             |
-
-- **文本输入**
-
-`<input type="text">` 定义用于**文本输入**的单行输入字段：
-
-```html
-<form>
- First name:<br>
-<input type="text" name="firstname">
-<br>
- Last name:<br>
-<input type="text" name="lastname">
-</form> 
-```
-
-![image-20220814153029858](https://s2.loli.net/2022/08/14/IKfxNkFpa5QRAMH.png)
-
-**注释**：表单本身并不可见。还要注意文本字段的默认宽度是 20 个字符。
-
-- **单选按钮输入**
-
-`<input type="radio">`  定义**单选按钮**。
-
-单选按钮允许用户在有限数量的选项中选择其中之一：
-
-```html
-<form>
-<input type="radio" name="sex" value="male" checked>Male
-<br>
-<input type="radio" name="sex" value="female">Female
-</form> 
-```
-
-![image-20220814153152130](https://s2.loli.net/2022/08/14/c4XWonEa6RCtTU2.png)
-
-- **提交按钮**
-
-`<input type="submit">`  定义用于向 **表单处理程序**（form-handler）提交表单的按钮。
-
-表单处理程序通常是包含用来处理输入数据的脚本的服务器页面。
-
-表单处理程序在表单的 **action** 属性中指定：
-
-```html
-<form action="action_page.php">
-First name:<br>
-<input type="text" name="firstname" value="Mickey">
-<br>
-Last name:<br>
-<input type="text" name="lastname" value="Mouse">
-<br><br>
-<input type="submit" value="Submit">
-</form> 
-```
-
-![image-20220814153259098](https://s2.loli.net/2022/08/14/wu9d3hT7xV21fPk.png)
-
-- **提交文件**
-
-`<input type="file" name="" id="">`
-
-- **图片按钮**
-
-`<input type="image" src="" alt="">` 图片代替提交按钮
-
-- **隐藏按钮**
-
-`<input type="hidden" name="" id="" value="带给后端的个人信息">`
+### form 属性
 
 - **Action 属性**
 
@@ -1944,6 +1820,182 @@ Last name:<br>
 ```
 
 ![image-20220814155201539](https://s2.loli.net/2022/08/14/P8RW2vB4wyS9ZEz.png)
+
+## \<input>
+
+*<input>* 元素是最重要的*表单元素*。
+
+### input 属性
+
+| 属性           | 值                                                           | 描述                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| accept         | mime_type                                                    | 指定提交的文件类型（多个类型之间使用英文的逗号隔开，文件类型的几种表述方式请参考 -> [传送门）](https://fishc.com.cn/thread-128222-1-1.html) |
+| alt            | text                                                         | 指定图像的说明文字                                           |
+| autocomplete   | on、off                                                      | 指定是否启用浏览器预测输入                                   |
+| autofocus      | autofocus                                                    | 指定是否自动获得焦点                                         |
+| `checked`      | checked                                                      | 指定该属性的复选框，默认显示为勾选状态                       |
+| `disabled`     | disabled                                                     | 指定是否禁用该 input 元素                                    |
+| form           | formname                                                     | 指定其所属的一个或多个表单 id 值（在 HTML5 中，表单允许你将 input 放在文档中的任意位置，当你这么做的时候，可以通过指定该属性来确定元素所关联的表单） |
+| formaction     | URL                                                          | 指定表单提交的位置（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formenctype    | application/x-www-form-urlencoded、multipart/form-data、text/plain | 指定表单提交的编码方式（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formmethod     | get、post                                                    | 指定表单提交的方法（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formnovalidate | formnovalidate                                               | 指定是否重置 form 元素的 novalidate 属性，如果重置，那么当表单提交时 input 元素将不再进行任何验证（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| formtarget     | _blank、_self、_parent、_top、framename                      | 指定表单提交后在何处打开 action URL（只能作用于具有提交性质的按钮，比如 type="submit" 或 type="image"） |
+| height         | pixels、%                                                    | 指定图像的高度（像素）                                       |
+| list           | datalist-id                                                  | 指定一个数据列表，即 datalist 元素的 id 值                   |
+| max            | number、date                                                 | 指定可接受的最大值，以便进行输入验证                         |
+| maxlength      | number                                                       | 指定用户可以在文本框输入的最大字符数                         |
+| min            | number、date                                                 | 指定可接受的最小值，以便进行输入验证                         |
+| multiple       | multiple                                                     | 指定该属性后可以上传多个文件                                 |
+| `name`         | field_name                                                   | 指定元素的名称，用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据，只有设置了 name 属性的表单才能在提交表单时传递该值 |
+| pattern        | regexp_pattern                                               | 指定一个用于输入验证的正则表达式                             |
+| `placeholder`  | text                                                         | 指定一个占位提示文本                                         |
+| `readonly`     | readonly                                                     | 将文本框设为只读模式，防止用户编辑其内容                     |
+| required       | required                                                     | 表明用户必须输入一个值，否则无法通过输入验证                 |
+| size           | number_of_char                                               | 指定文本框的宽度                                             |
+| src            | URL                                                          | 指定要显示的图像的 URL                                       |
+| step           | number                                                       | 指定上下调节数值的步长                                       |
+| `type`         | button、checkbox、color、date、datetime-local、email、file、hidden、image、month、number、password、radio、range、reset、search、submit、tel、text、time、url、week | 规定 input 元素的类型                                        |
+| `value`        | text                                                         | 指定输入字段的初始值                                         |
+| width          | pixels、%                                                    | 指定图像的宽度（像素）                                       |
+
+###  \<input type="text"> **文本输入**
+
+`<input type="text">` 定义用于**文本输入**的单行输入字段：
+
+```html
+<form>
+ First name:<br>
+<input type="text" name="firstname">
+<br>
+ Last name:<br>
+<input type="text" name="lastname">
+</form> 
+```
+
+![image-20220814153029858](https://s2.loli.net/2022/08/14/IKfxNkFpa5QRAMH.png)
+
+**注释**：文本字段的默认宽度是 20 个字符。
+
+- **常用属性**
+
+```html
+<!-- value: 输入字段的初始值 -->
+<input type="text" value="默认有的值，(*^__^*) 嘻嘻……" />
+<!-- placeholder: 占位提示文本 -->
+<input type="text" placeholder="请输入您的姓名"/>
+```
+
+### \<input type="password"> 密码输入
+
+`<input type="password">` 定义用于**密码输入**的单行输入字段：
+
+```html
+<form>
+     User name:<br>
+    <input type="text" name="username">
+    <br>
+     User password:<br>
+    <input type="password" name="psw">
+</form> 
+```
+
+![image-20220814181022021](https://s2.loli.net/2022/08/14/k5OJZibolhCdLn3.png)
+
+- **常用属性**
+
+```html
+<!-- placeholder: 占位提示文本 -->
+<input type="password" placeholder="请输入密码"/>
+```
+
+### \<input type="radio"> **单选按钮输入**
+
+`<input type="radio">`  定义**单选按钮**。
+
+单选按钮允许用户在有限数量的选项中选择其中之一：
+
+```html
+<form>
+<input type="radio" name="sex" value="male" checked>Male
+<br>
+<input type="radio" name="sex" value="female">Female
+</form> 
+```
+
+![image-20220814153152130](https://s2.loli.net/2022/08/14/c4XWonEa6RCtTU2.png)
+
+**注意：** 要起到单选的作用，同类标签的 name 属性必须保持一致。
+
+### \<input type="checkbox"> 复选框
+
+`<input type="checkbox">`  定义复选框。
+
+复选框允许用户在有限数量的选项中选择零个或多个选项。
+
+```html
+<form>
+    <input type="checkbox" name="vehicle" value="Bike">I have a bike
+    <br>
+    <input type="checkbox" name="vehicle" value="Car">I have a car 
+</form> 
+```
+
+![image-20220814182358177](https://s2.loli.net/2022/08/14/mQyx2F531MuNrPe.png)
+
+### \<input type="submit"> **提交按钮**
+
+`<input type="submit">`  定义用于向 **表单处理程序**（form-handler）提交表单的按钮。
+
+`<input type="submit">` 和 `<button type="submit"></button>` 等价。
+
+表单处理程序通常是包含用来处理输入数据的脚本的服务器页面。
+
+表单处理程序在表单的 **action** 属性中指定：
+
+```html
+<form action="action_page.php">
+First name:<br>
+<input type="text" name="firstname" value="Mickey">
+<br>
+Last name:<br>
+<input type="text" name="lastname" value="Mouse">
+<br><br>
+<input type="submit" value="Submit">
+</form> 
+```
+
+![image-20220814153259098](https://s2.loli.net/2022/08/14/wu9d3hT7xV21fPk.png)
+
+**注意：** 提交按钮显示的字段为标签的value属性。
+
+### \<input type="button> 单纯按钮
+
+`<input type="button>` 定义*按钮*。
+
+```html
+<form>
+    <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+</form> 
+```
+
+### \<input type="reset" > 重置按钮
+
+`<input type="reset" />` 定义重置按钮
+
+等价于 `<button type="reset"></button>`
+
+### \<input type="file"> **提交文件**
+
+`<input type="file" name="" id="" />`
+
+### \<input type="image" > **图片按钮**
+
+`<input type="image" src="" alt="" />` 图片代替提交按钮
+
+### \<input type="hidden"> **隐藏按钮**
+
+`<input type="hidden" name="" id="" value="带给后端的个人信息"/>`
 
 ## \<select> 元素（下拉列表）
 
@@ -2087,7 +2139,7 @@ The cat was playing in the garden.
 
 ![image-20220814161055407](https://s2.loli.net/2022/08/14/MsZ4J6HIEruo18B.png)
 
-### HTML5 表单元素
+## HTML5 表单元素
 
 HTML5 增加了如下表单元素：
 
@@ -2101,7 +2153,7 @@ HTML5 增加了如下表单元素：
 
 **注释**：默认地，浏览器不会显示未知元素。新元素不会破坏您的页面。
 
-### HTML5 \<datalist> 元素
+##  \<datalist> 元素
 
 `<datalist>` 元素为 `<input>` 元素规定预定义选项列表。
 
@@ -2122,118 +2174,6 @@ HTML5 增加了如下表单元素：
    <option value="Safari">
 </datalist> 
 </form>
-```
-
-## HTML 输入类型
-
-### 输入类型：text
-
-`<input type="text">` 定义供 **文本输入** 的单行输入字段：
-
-```html
-<form>
-     First name:<br>
-    <input type="text" name="firstname">
-    <br>
-     Last name:<br>
-    <input type="text" name="lastname">
-</form> 
-```
-
- ![image-20220814153029858](https://s2.loli.net/2022/08/14/IKfxNkFpa5QRAMH.png)
-
-### 输入类型：password
-
-`<input type="password">` 定义 **密码字段**：
-
-```html
-<form>
-     User name:<br>
-    <input type="text" name="username">
-    <br>
-     User password:<br>
-    <input type="password" name="psw">
-</form> 
-```
-
-![image-20220814181022021](https://s2.loli.net/2022/08/14/k5OJZibolhCdLn3.png)
-
-注释：password 字段中的字符会被做掩码处理（显示为星号或实心圆）。
-
-### 输入类型：submit
-
-`<input type="submit">`  定义 **提交** 表单数据至 **表单处理程序** 的按钮。
-
-表单处理程序（form-handler）通常是包含处理输入数据的脚本的服务器页面。
-
-在表单的 action 属性中规定表单处理程序（form-handler）：
-
-```html
-<form action="action_page.php">
-    First name:<br>
-    <input type="text" name="firstname" value="Mickey">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname" value="Mouse">
-    <br><br>
-    <input type="submit" value="Submit">
-</form> 
-```
-
-![image-20220814155201539](https://s2.loli.net/2022/08/14/P8RW2vB4wyS9ZEz.png)
-
-如果您省略了提交按钮的 value 属性，那么该按钮将获得默认文本：
-
-### Input Type: radio
-
-`<input type="radio">`  定义单选按钮。
-
-Radio buttons let a user select ONLY ONE of a limited number of choices:
-
-```html
-<form>
-    <input type="radio" name="sex" value="male" checked>Male
-    <br>
-    <input type="radio" name="sex" value="female">Female
-</form> 
-```
-
-![image-20220814181358280](https://s2.loli.net/2022/08/14/ROPxfKkULsQlnTw.png)
-
-**注意：** 如果 radion 中的 name 不一致时，就会出现可以多选的情况。
-
-### Input Type: checkbox
-
-`<input type="checkbox">`  定义复选框。
-
-复选框允许用户在有限数量的选项中选择零个或多个选项。
-
-```html
-<form>
-    <input type="checkbox" name="vehicle" value="Bike">I have a bike
-    <br>
-    <input type="checkbox" name="vehicle" value="Car">I have a car 
-</form> 
-```
-
-![image-20220814182358177](https://s2.loli.net/2022/08/14/mQyx2F531MuNrPe.png)
-
-### Input Type: button
-
-`<input type="button>` 定义*按钮*。
-
-```html
-<form>
-    <input type="button" onclick="alert('Hello World!')" value="Click Me!">
-</form> 
-```
-
-### Input Type: reset
-
-```html
-<form>
-	<input type="reset" />
-</form> 
 ```
 
 ## HTML5 输入类型
