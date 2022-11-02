@@ -48,17 +48,45 @@ HTML 标签原本被设计为用于定义文档内容。通过使用 <h1>、<p>�
 
    `<div style="width:200px; height:200px;"></div>`
 
-2. **内部样式表（Internal Style Sheet）**
+2. **内部样式表（Internal Style Sheet）**：学习比较方便
+
+   `<style type="text/css"></style>` 
 
 3. **外部样式表（External Style Sheet）**：HTML5 推荐用法
 
-   `<link rel="stylesheet" type="text/css" href="" >` 
+   方式1：
+
+   ```html
+   <link rel="stylesheet" type="text/css" href="css文件路径" >
+   ```
+
+   方式2：
+
+   ```html
+   <style>
+   	@import url("css文件路径");
+   </style>
+   ```
+
+## link 和 import 
+
+1. 本质的区别：
+
+   link 属于 XHTML **标签**，而@import完全是 **CSS提供的一种方法**。
+
+2. 加载顺序的差别：
+
+   一个页面被加载时，link引用的CSS **被同时加载**，而@import引用的CSS会等到页面全部被 **下载完再被加载**。
+
+3. 兼容性的差别：
+
+   @import是CSS2.1提出的，IE5以上才能识别，link是原生的。
 
 ## CSS 优先级
 
-外部 < 内部 < 内联；
+浏览器缺省 < 外部 < 内部 < 内联 < !important ；
 
-但是 `!important` 加在样式后可以提高优先级：
+ `!important` 加在样式后可以提高优先级：
 
 语法：`color: red !important;`
 
@@ -90,7 +118,7 @@ selector {property: value}
 h1 {
 	color:red; 
 	font-size:14px;
-	}
+}
 ```
 
 ## 值的不同写法和单位
@@ -122,31 +150,29 @@ p {font-family: "sans serif";}
 
 # 基础选择器
 
-## 元素选择器
+## element 元素选择器
 
-element选择器可以设定某元素的样式。
+> `element` 选择器可以设定某元素的样式。
 
 ```css
-element
-{    
+element {    
     CSS 样式
 }
 ```
 
-## id选择器
+## #id id选择器
 
-id 选择器是唯一的，在一个页面，id不能重复，`#id` 表述
+`id选择器` 是唯一的，在一个页面，id不能重复，`#id` 表述
 
 ```css
-#id
-{
+#id {
     CSS 样式
 }
 ```
 
-## 类选择器
+## .class 类选择器
 
-类选择器允许以一种独立于文档元素的方式来指定样式。
+> `类选择器`允许以一种独立于文档元素的方式来指定样式。
 
 - **class属性可以在HTML文档中出现多次。只有适当地标记文档后，才能使用这些选择器，该选择器可以单独使用，也可以与其他元素结合使用，`.class` 表述**
 
@@ -155,8 +181,7 @@ id 选择器是唯一的，在一个页面，id不能重复，`#id` 表述
 * `<class='class1' class='class2'>` 是错误的！同一个标签不能同时拥有重复的属性
 
 ```css
-.class
-{
+.class {
     CSS 样式
 }
 ```
@@ -165,18 +190,24 @@ id 选择器是唯一的，在一个页面，id不能重复，`#id` 表述
 
 **class上样式，id上行为**
 
-## 通配符*
+## * 通配符选择器
 
-`*` 表示所有元素
+> `*选择器` 选取所有元素。
+
+**注意：\*** 选择器也能选取另一个元素中的所有元素。
 
 ```css
-* {}	/*代表所有元素，不建议使用*/
+/*代表所有元素，不建议使用*/
+* {  
+}
 ```
 
 常用场景：
 
 ```css
-body * {}	/*元素的所有后代*/
+/* body的所有后代 */
+body * {
+}	
 ```
 
 # 复合选择器
@@ -185,16 +216,17 @@ body * {}	/*元素的所有后代*/
 
 ## 交集选择器
 
+> 交集选择器，找到指定标签间的共有部分
+
 ```css
-element.class || element#id
-{
+element.class || element#id {
     CSS 样式;
 }
 ```
 
 交集选择器没有空格
 
-例如：
+**注意**：
 
 ```css
 div.red	/*代表是div 又是.red*/
@@ -203,16 +235,23 @@ div .red /*表达 div 后代中所有 .red */
 
 ## 并集选择器
 
+> 并集选择器，找到所有满足的标签
+
 ```css
-h3,li	/*代表并集选择器*/
+element1,element2,element3,...
+{
+    CSS 样式;
+}
 ```
 
 ## 后代选择器
 
+> 后代选择器（descendant selector），选择elment1元素内部的element2元素
+
 **后代选择器（descendant selector）又称为包含选择器。**
 
 ```css
-选择器1 选择器2 ...{
+element1 element2 {
     CSS 样式;
 }
 ```
@@ -223,19 +262,19 @@ h3,li	/*代表并集选择器*/
 
 ## 子元素选择器
 
-子元素选择器，选择 选择器1 元素中符合直接子元素的 选择器2 元素
+> 子元素选择器，选择 选择器1 元素中符合直接子元素的 选择器2 元素
 
 ```css
-选择器1 > 选择器2 {
+element1 > element2 {
     CSS 样式;
 }
 ```
 
 - **如果元素不是父元素的直接子元素，则不会被选择。**
 
-## 相邻元素选择器
+## 相邻兄弟选择器
 
-选择具有相同父元素且同级的element1相邻的element2
+> 相邻兄弟选择器，选择具有相同父元素且同级的element1相邻的element2
 
 ```css
 element1 + element2 {
@@ -245,7 +284,7 @@ element1 + element2 {
 
 ## 通用兄弟选择器
 
-通用兄弟选择器，选择具有相同父元素且同级的element1之后的element2
+> 通用兄弟选择器，选择具有相同父元素且同级的element1之后的element2
 
 - **两种元素必须拥有相同的父元素，但是 element2 不必直接紧随 element1。**
 
@@ -263,13 +302,14 @@ element1 ~ element2 {
 
 爱恨法则：`l`o`v`e ` ha`te
 
+- :link 选择器用于选取未被访问的链接。
+- :visited 选择器用于选取已被访问的链接。
+- :hover 选择器用于选择鼠标指针浮动在上面的元素。
+- :active 选择器用于选择活动链接。
+
 ### :link
 
-:link 选择器用于选取未被访问的链接。
-
 **注意：**:link 选择器不会设置已经访问过的链接的样式。
-
-请使用[`:hover`](https://man.ilovefishc.com/pageCSS3/dothover.html)选择器用于设置鼠标指针浮动到链接上时的样式，[`:visited`](https://man.ilovefishc.com/pageCSS3/dotvisited.html)用于设置指向已访问页面的链接的样式，[`:active `](https://man.ilovefishc.com/pageCSS3/dotActive.html)选择器用于活动链接。
 
 ### :visited
 
@@ -278,10 +318,6 @@ element1 ~ element2 {
 ### :active
 
 判断激活的标准是鼠标点击，p标签也可以被激活
-
-### :focus
-
-:focus 选择器用于选取获得焦点的元素。
 
 ## UI伪类选择器
 
@@ -331,6 +367,12 @@ element1 ~ element2 {
 ### :read-write
 
 ### :indeterminate
+
+### :focus
+
+:focus 选择器用于选取获得焦点的元素。
+
+比如：input
 
 ## 结构伪类选择器
 
