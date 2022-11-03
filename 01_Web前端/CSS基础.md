@@ -323,17 +323,29 @@ element1 ~ element2 {
 
 ### :enabled
 
+> :enabled 选择器匹配每个已启用的元素（大多用在表单元素上）。
+
 ### :disabled
+
+> :disabled 选择器匹配每个被禁用的元素（大多用在表单元素上）。
 
 ### :checked
 
+> :checked 选择器用于表示选中状态的radio(`<input type="radio">`), checkbox (`<input type="checkbox">`) 或`select`元素中的option HTML元素(“option”)。
+
 ### :required
+
+> :required 选择器在表单元素是必填项时设置指定样式。只适用于表单元素: input, select 和 textarea。
 
 ### :optional
 
+> :optional 选择器在表单元素是可选项时设置指定样式。只适用于表单元素: input, select 和 textarea。
+
+表单元素中如果没有特别设置 required 属性即为 optional 属性。
+
 ### :default
 
-:default选择器用于表示默认状态的按钮（`<input type="button">`），radio(`<input type="radio">`), checkbox (`<input type="checkbox">`) 或select元素中的option HTML元素(“option”)。
+> :default选择器用于表示默认状态的按钮（`<input type="button">`），radio(`<input type="radio">`), checkbox (`<input type="checkbox">`) 或`select`元素中的option HTML元素(“option”)。
 
 ```html
 <style>
@@ -352,15 +364,31 @@ element1 ~ element2 {
 </body>
 ```
 
-![image-20220908112329502](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220908112329502.png)
+![image.png](https://s2.loli.net/2022/11/03/NmaF1EpL7CU49nf.png)
 
 ### :valid
 
-### invalid
+> :valid 选择器在表单元素的值需要根据指定条件验证时设置指定样式。
+
+:valid 选择器只作用于能指定区间值的元素，例如 input 元素中的 min 和 max 属性，及正确的 email 字段, 合法的数字字段等。
+
+### :invalid
+
+> :invalid 选择器用于在表单元素中的值是非法时设置指定样式。
+
+:invalid 选择器只作用于能指定区间值的元素，例如 input 元素中的 min 和 max 属性，及正确的 email 字段, 合法的数字字段等。
 
 ### :in-range
 
+> :in-range选择器用于标签的值在指定区间值时显示的样式。
+
+:in-range 选择器只作用于能指定区间值的元素，例如 input 元素中的 min 和 max 属性。
+
 ### :out-of-range
+
+> :out-of-range 选择器用于标签的值在指定区间之外时显示的样式。
+
+:out-of-range 选择器只作用于能指定区间之外值的元素，例如 input 元素中的 min 和 max 属性。
 
 ### :read-only
 
@@ -378,22 +406,15 @@ element1 ~ element2 {
 
 ### :root
 
-### :nth-child
+> :root 选择器匹配文档根元素。
 
-- 定义
+**注意：**在 HTML 中，根元素始终是 html 元素。
+
+### :nth-child *
 
 > :nth-child(n) 选择器匹配属于其父元素的第 n 个子元素，不论元素的类型。
 
 **注意：**n 可以是数字、关键词或公式。
-
-- 语法
-
-```
-:nth-child(number)
-{
-    CSS 样式
-}
-```
 
 - 基础n
 
@@ -403,48 +424,13 @@ element1 ~ element2 {
 
 **注意：**n是从**1**开始的。
 
-如下代码：
-
-```css
-p:nth-child(1)
-```
-
-只会选中第二个div中第一个子元素p，例如：
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
-    <style>
-        p:nth-child(1)
-        {
-            color:green;
-        }
-    </style>
-</head>
-<body>
-   <div style="border:1px solid;width: 222px">
-       <span>div1 中span</span>
-       <p>div1 中第一个段落。</p>
-       <p>div1 中的最后一个段落。</p>
-   </div><br>
-   <div style="border:1px solid;width: 222px">
-       <p>div2 中第一个段落。</p>
-       <p>div2 中的最后一个段落。</p>
-   </div>
-</body>
-</html>
-```
-
 - 正方向范围
 
   ```css
-  li:nth-child(n+6)
+  :nth-child(n+6)
   ```
 
-  选中从第6个开始的子元素
+  选中从第6个开始的所有子元素。`[6:]`
 
 - 负方向范围
 
@@ -452,13 +438,15 @@ p:nth-child(1)
   :nth-child(-n+9)
   ```
 
-  选中从第1个到第9个子元素。使用 :nth-child(-n+9) ，就相当让你选中第9个和其之前的所有子元素
+  选中从第1个到第9个子元素。使用 :nth-child(-n+9) ，就相当让你选中第9个和其之前的所有子元素。`[1:9]`
 
 - 前后限制范围
 
   ```css
   :nth-child(n+4):nth-child(-n+8)
   ```
+
+  其实就是两个访问取交集。
 
 - 奇数、偶数位
 
