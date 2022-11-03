@@ -27,7 +27,6 @@ class MongoDB {
 public:
 	MongoDB();
 	~MongoDB();
-	mongocxx::instance* instance;
 	mongocxx::client* client;
 	mongocxx::database db;
 	mongocxx::collection coll;

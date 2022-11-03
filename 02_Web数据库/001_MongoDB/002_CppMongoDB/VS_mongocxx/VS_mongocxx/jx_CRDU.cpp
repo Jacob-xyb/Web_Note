@@ -2,6 +2,22 @@
 
 using namespace std;
 
+void test_read_origin_database() {
+	MongoDB mgdb;
+	mgdb.db = mgdb.client->database("EometricsPro");
+	mgdb.coll = mgdb.db.collection("tmp");
+
+	bsoncxx::builder::basic::document query;
+	query.append(kvp("type", "simulate_submit"));
+
+	auto q_res = mgdb.coll.find_one(query.view());
+	bsoncxx::document::view bson = q_res->view();
+
+
+	cout << bsoncxx::to_json(bson) << endl;
+	cout << bson["waveMin"].get_double().value << endl;
+}
+
 void transform_bson_data() {
 	MongoDB mgdb;
 	mgdb.coll = mgdb.db["transform"];
@@ -30,7 +46,8 @@ void transform_bson_data() {
 	// 查询数据库 获取结果
 	auto find_res = mgdb.coll.find_one({});
 	auto bs_view = find_res->view();
-	cout << bs_view["string"].get_utf8().value.to_string() << endl;
+	//cout << bs_view["string"].get_utf8().value.to_string() << endl;
+	cout << bs_view["string"].get_string().value << endl;
 	cout << bs_view["bool"].get_bool().value << endl;
 	cout << "判断类型(double)：\t" << (bs_view["double"].type() == bsoncxx::type::k_double) << endl;
 	cout << "判断类型(int)：\t" << (bs_view["double"].type() == bsoncxx::type::k_int64) << endl;

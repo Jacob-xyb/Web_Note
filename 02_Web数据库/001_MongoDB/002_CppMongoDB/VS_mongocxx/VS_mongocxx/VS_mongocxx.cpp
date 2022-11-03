@@ -4,6 +4,9 @@
 #include "Document.h"
 #include "jx_CRDU.h"
 
+
+mongocxx::instance _instance{};
+
 void sample() {
 	mongocxx::instance instance{}; // This should be done only once.
 	mongocxx::client client{ mongocxx::uri{"mongodb://admin:yg0074@10.100.2.50:27017"} };
@@ -30,6 +33,6 @@ void sample() {
 
 int main()
 {
-	sample();
+	test_read_origin_database();
 	//creat_a_document_by_basic_OOP();
 }

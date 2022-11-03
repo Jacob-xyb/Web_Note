@@ -3,15 +3,13 @@
 
 
 MongoDB::MongoDB() {
-	instance = new mongocxx::instance{};
-	client = new mongocxx::client{ mongocxx::uri{"mongodb://localhost:27017"} };
+	//client = new mongocxx::client{ mongocxx::uri{"mongodb://localhost:27017"} };
+	client = new mongocxx::client{ mongocxx::uri{"mongodb://admin:yg0074@10.100.2.50:27017"} };
 	db = client->database("test");
 	coll = db["col"];
 }
 
 MongoDB::~MongoDB() {
-	delete instance;
-	instance = NULL;
 	delete client;
 	client = NULL;
 }
