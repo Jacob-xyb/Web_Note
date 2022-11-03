@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>w3cschool (www.w3cschool.cn) </title>
+    <!-- 引入 echarts.js -->
+    <script src="../../echarts.min.js"></script>
+    <style>
+        #main {
+            width: 800px;
+            height: 600px;
+            margin: 120px auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+
+        let option = {
+            title: {
+                text: "ECharts 图表",
+                textStyle: {
+                    color: "blue",
+                },
+                left: "50%",
+                textAlign: "center",
+            },
+            legend: {
+                name: '系列1',
+                itemWidth: 40,  // 线形图中 itemWidth 可以拉伸
+                textStyle: {
+                    height: 8,
+                    rich: {},
+                },
+                lineStyle: {
+                    width: 2,
+                    type: "soild",
+                },
+                right: 30,
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '系列1',
+                type: 'line',
+                data: [5, 20, 36, 10, 10, 20]
+            }],
+        }
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>
