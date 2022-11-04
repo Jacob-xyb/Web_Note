@@ -167,9 +167,9 @@ title就是图表标题，可以控制它的属性，如颜色、位置等，**�
 
 ## 基础属性一览
 
-| 属性 | 值类型 | 说明 |
-| ---- | ------ | ---- |
-|      |        |      |
+| 属性                                                         | 值类型 | 说明                 |
+| ------------------------------------------------------------ | ------ | -------------------- |
+| [itemWidth](https://echarts.apache.org/zh/option.html#legend.itemWidth) = 25 | number | 图例标记的图形宽度。 |
 
 ##  [type](https://echarts.apache.org/zh/option.html#legend.type)
 
@@ -276,6 +276,18 @@ dashOffset: 5
 }
 ```
 
+## [itemStyle](https://echarts.apache.org/zh/option.html#legend.itemStyle)
+
+Object
+
+图例的图形样式。其属性的取值为 `'inherit'` 时，表示继承系列中的属性值。
+
+### 基础属性一览
+
+| 属性                                                         | 值类型 | 说明                                                    |
+| ------------------------------------------------------------ | ------ | ------------------------------------------------------- |
+| [opacity](https://echarts.apache.org/zh/option.html#legend.itemStyle.opacity) = inherit | number | 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。 |
+
 ## 图例图标文字对齐
 
 猜测 图例文字的基准线为 图例图标的中线 位置，因此总是会呈现一种对不齐的感觉：
@@ -296,3 +308,154 @@ legend: {
 ```
 
 `height: "8"` 目前来说就是个经验值，基本覆盖全部情况。
+
+# grid 网格
+
+直角坐标系内绘图网格，单个 grid 内最多可以放置上下两个 X 轴，左右两个 Y 轴。
+
+## 基础属性一览
+
+| 属性                                                         | 值类型          | 说明                                                         |
+| ------------------------------------------------------------ | --------------- | ------------------------------------------------------------ |
+| [id](https://echarts.apache.org/zh/option.html#grid.id)      | string          | 图形组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件 |
+| [show](https://echarts.apache.org/zh/option.html#grid.show) = false | boolean         | 是否显示直角坐标系网格。                                     |
+| [borderColor](https://echarts.apache.org/zh/option.html#grid.borderColor) = '#ccc' | Color           | 网格的边框颜色。**注意**：此配置项生效的前提是，设置了 `show: true`。 |
+| [borderWidth](https://echarts.apache.org/zh/option.html#legend.borderWidth) = 0 | number          | 图例的边框线宽。                                             |
+| [padding](https://echarts.apache.org/zh/option.html#legend.padding) = 5 | number \| Array | 图例内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距。 |
+| [itemGap](https://echarts.apache.org/zh/option.html#legend.itemGap) = 10 | number          | 图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。 |
+| [itemWidth](https://echarts.apache.org/zh/option.html#legend.itemWidth) = 25 | number          | 图例标记的图形宽度。                                         |
+| [itemHeight](https://echarts.apache.org/zh/option.html#legend.itemHeight) = 14 | number          | 图例标记的图形高度。                                         |
+
+## 距离属性
+
+| 属性                                                         | 值类型           | 说明                                                         |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
+| [left](https://echarts.apache.org/zh/option.html#grid.left) = '10%' | string \| number | grid 组件离容器左侧的距离。<br /> `20` 这样的具体像素值，可以是 `'20%'` 这样相对于容器高宽的百分比，<br />也可以是 `'left'`, `'center'`, `'right'`。<br />如果 `left` 的值为`'left'`, `'center'`, `'right'`，组件会根据相应的位置自动对齐。 |
+| [top](https://echarts.apache.org/zh/option.html#grid.top) = 60 | string \| number | grid 组件离容器上侧的距离。<br /> `20` 这样的具体像素值，可以是 `'20%'` 这样相对于容器高宽的百分比，<br />也可以是 `'left'`, `'middle'`, `'right'`。<br />如果 `left` 的值为`'left'`, `'middle'`, `'right'`，组件会根据相应的位置自动对齐。 |
+| [right](https://echarts.apache.org/zh/option.html#grid.right) = '10%' | string \|number  | grid 组件离容器右侧的距离。<br />`20` 这样的具体像素值，可以是 `'20%'` 这样相对于容器高宽的百分比。 |
+| [bottom](https://echarts.apache.org/zh/option.html#grid.bottom) = 60 | string \| number | grid 组件离容器下侧的距离。<br />`20` 这样的具体像素值，可以是 `'20%'` 这样相对于容器高宽的百分比。 |
+
+## [containLabel](https://echarts.apache.org/zh/option.html#grid.containLabel)
+
+`boolean`
+
+grid 区域是否包含坐标轴的[刻度标签](https://echarts.apache.org/zh/option.html#yAxis.axisLabel)。
+
+- containLabel 为 `false` 的时候：
+  - `grid.left` `grid.right` `grid.top` `grid.bottom` `grid.width` `grid.height` 决定的是由坐标轴形成的矩形的尺寸和位置。
+  - 这比较适用于多个 `grid` 进行对齐的场景，因为往往多个 `grid` 对齐的时候，是依据坐标轴来对齐的。
+- containLabel 为 `true` 的时候：
+  - `grid.left` `grid.right` `grid.top` `grid.bottom` `grid.width` `grid.height` 决定的是包括了坐标轴标签在内的所有内容所形成的矩形的位置。
+  - 这常用于『防止标签溢出』的场景，标签溢出指的是，标签长度动态变化时，可能会溢出容器或者覆盖其他组件
+
+# xAxis
+
+直角坐标系 grid 中的 x 轴，一般情况下单个 grid 组件最多只能放上下两个 x 轴，多于两个 x 轴需要通过配置 [offset](https://echarts.apache.org/zh/option.html#xAxis.offset) 属性防止同个位置多个 x 轴的重叠。
+
+## 基础属性一览
+
+| 属性                                                         | 值类型  | 说明                                                         |
+| ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
+| [name](https://echarts.apache.org/zh/option.html#xAxis.name) | string  | 坐标轴名称                                                   |
+| [nameLocation](https://echarts.apache.org/zh/option.html#xAxis.nameLocation) = 'end' | string  | 坐标轴名称显示位置。<br />`'start'`、`middle | center`、`end` |
+| [offset](https://echarts.apache.org/zh/option.html#xAxis.offset) | number  | X 轴相对于默认位置的偏移。<br />注：若未将 `xAxis.axisLine.onZero` 设为 `false` , 则该项无法生效<br />这一项并不会拉开坐标轴的值和坐标轴名称的距离。 |
+| [nameGap](https://echarts.apache.org/zh/option.html#xAxis.nameGap) = 15 | number  | 坐标轴名称与轴线之间的距离。                                 |
+| [nameRotate](https://echarts.apache.org/zh/option.html#xAxis.nameRotate) | number  | 坐标轴名字旋转，角度值。**逆时针**                           |
+| [scale](https://echarts.apache.org/zh/option.html#xAxis.scale) | boolean | 只在数值轴中（[type](https://echarts.apache.org/zh/option.html#xAxis.type): 'value'）有效。<br />是否是脱离 0 值比例。设置成 `true` 后坐标刻度不会强制包含零刻度。<br />在双数值轴的散点图中比较有用。<br />在设置 [min](https://echarts.apache.org/zh/option.html#xAxis.min) 和 [max](https://echarts.apache.org/zh/option.html#xAxis.max) 之后该配置项无效。 |
+
+## [type](https://echarts.apache.org/zh/option.html#xAxis.type) = 'category'
+
+`string`
+
+坐标轴类型。
+
+可选：
+
+- `'value'` 数值轴，适用于连续数据。
+
+  如果type设置成value，那么，xAxis.data里面设置的数据无效，因为xAxis.data是为category服务的。
+
+  通常来说，数据用一个二维数组表示。如下，每一列被称为一个『维度』 特别地，当只有一个轴为类目轴（axis.type 为 'category'）的时候，数据可以简化用一个一维数组表示:
+
+  ![](https://img-blog.csdnimg.cn/20210310154706695.png)
+
+- `'category'` 类目轴，适用于离散的类目数据。为该类型时类目数据可自动从 [series.data](https://echarts.apache.org/zh/option.html#series.data) 或 [dataset.source](https://echarts.apache.org/zh/option.html#dataset.source) 中取，或者可通过 [xAxis.data](https://echarts.apache.org/zh/option.html#xAxis.data) 设置类目数据。
+- `'time'` 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化，在刻度计算上也有所不同，例如会根据跨度的范围来决定使用月，星期，日还是小时范围的刻度。
+- `'log'` 对数轴。适用于对数数据。
+
+##  [min](https://echarts.apache.org/zh/option.html#xAxis.min) 和 [max](https://echarts.apache.org/zh/option.html#xAxis.max)
+
+`number` `string` `Function`
+
+坐标轴刻度最小值。
+
+可以设置成特殊值 `'dataMin'`，此时取数据在该轴上的最小值作为最小刻度。
+
+不设置时会自动计算最小值保证坐标轴刻度的均匀分布。
+
+在类目轴中，也可以设置为类目的序数（如类目轴 `data: ['类A', '类B', '类C']` 中，序数 `2` 表示 `'类C'`。也可以设置为负数，如 `-3`）。
+
+当设置成 `function` 形式时，可以根据计算得出的数据最大最小值设定坐标轴的最小值。如：
+
+```css
+min: function (value) {
+    return value.min - 20;
+}
+```
+
+## [boundaryGap](https://echarts.apache.org/zh/option.html#xAxis.boundaryGap)
+
+`boolean` `Array`
+
+坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样。
+
+类目轴中 `boundaryGap` 可以配置为 `true` 和 `false`。默认为 `true`，这时候[刻度](https://echarts.apache.org/zh/option.html#xAxis.axisTick)只是作为分隔线，标签和数据点都会在两个[刻度](https://echarts.apache.org/zh/option.html#xAxis.axisTick)之间的带(band)中间。
+
+非类目轴，包括时间，数值，对数轴，`boundaryGap`是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 [min](https://echarts.apache.org/zh/option.html#xAxis.min) 和 [max](https://echarts.apache.org/zh/option.html#xAxis.max) 后无效。 **示例：**
+
+```css
+boundaryGap: ['20%', '20%'],		// 测试不会小于 ["10%", "10%"]，且搭配 scale: true, 比较好
+```
+
+## [nameTextStyle](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle)
+
+### 基础属性一览
+
+| 属性                                                         | 值类型           | 说明                                                         |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
+| [lineHeight](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.lineHeight) | number           | 行高                                                         |
+| [fontWeight](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.fontWeight) = 'normal' | string \| number | 坐标轴名称文字字体的粗细。                                   |
+| [fontSize](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.fontSize) = 12 | number           | 坐标轴名称文字的字体大小。                                   |
+| [fontStyle](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.fontStyle) = 'normal' | string           | 坐标轴名称文字字体的风格。<br />`'normal'`、`italic`、`oblique` |
+| [color](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.color) | Color            | 坐标轴名称的颜色，默认取 [axisLine.lineStyle.color](https://echarts.apache.org/zh/option.html#xAxis.axisLine.lineStyle.color) |
+| [padding](https://echarts.apache.org/zh/option.html#xAxis.nameTextStyle.padding) | number \| Array  | 文字块的内边距。<br />注意，文字块的 `width` 和 `height` 指定的是内容高宽，不包含 `padding`。 |
+
+## [axisTick](https://echarts.apache.org/zh/option.html#xAxis.axisTick)
+
+坐标轴刻度相关设置。
+
+### 基础属性一览
+
+| 属性                                                         | 值类型  | 说明                           |
+| ------------------------------------------------------------ | ------- | ------------------------------ |
+| [inside](https://echarts.apache.org/zh/option.html#xAxis.axisTick.inside) = false | boolean | 坐标轴刻度是否朝内，默认朝外。 |
+| [length](https://echarts.apache.org/zh/option.html#xAxis.axisTick.length) = 5 | number  | 坐标轴刻度的长度。             |
+
+# echart折线图小圆点去除方式
+
+```css
+series: [{symbol: "none"}]
+```
+
+设置series下的symbol为none可以直接去除小圆点，图例会变成实心圆
+
+```css
+series: [{showSymbol: false}]
+```
+
+设置series下的showSymbol为false是不显示小圆点，图例并不会改变
+
+
+
+
+

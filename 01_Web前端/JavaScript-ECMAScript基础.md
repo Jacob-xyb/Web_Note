@@ -3571,7 +3571,7 @@ alert( str[0] ); // 无法运行
 
   `str.substring(start [, end])` : 返回字符串在 `start` 和 `end` **之间** 的部分。这与 `slice` 几乎相同，但它允许 `start` 大于 `end`。不支持负参数（不像 slice），它们被视为 `0`。
 
-  `str.substr(start [, length])` : 返回字符串从 `start` 开始的给定 `length` 的部分。
+   已弃用 ~~`str.substr(start [, length])` : 返回字符串从 `start` 开始的给定 `length` 的部分。~~
 
   与以前的方法相比，这个允许我们指定 `length` 而不是结束位置：
 
