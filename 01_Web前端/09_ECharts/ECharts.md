@@ -165,11 +165,14 @@ title就是图表标题，可以控制它的属性，如颜色、位置等，**�
 
 # legend 图例
 
+可以设置成数组
+
 ## 基础属性一览
 
-| 属性                                                         | 值类型 | 说明                 |
-| ------------------------------------------------------------ | ------ | -------------------- |
-| [itemWidth](https://echarts.apache.org/zh/option.html#legend.itemWidth) = 25 | number | 图例标记的图形宽度。 |
+| 属性                                                         | 值类型 | 说明                                                  |
+| ------------------------------------------------------------ | ------ | ----------------------------------------------------- |
+| [itemWidth](https://echarts.apache.org/zh/option.html#legend.itemWidth) = 25 | number | 图例标记的图形宽度。                                  |
+| [orient](https://echarts.apache.org/zh/option.html#legend.orient) = 'horizontal' | string | 图例列表的布局朝向。<br />`'horizontal'` `'vertical'` |
 
 ##  [type](https://echarts.apache.org/zh/option.html#legend.type)
 
@@ -358,9 +361,9 @@ grid 区域是否包含坐标轴的[刻度标签](https://echarts.apache.org/zh/
 | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
 | [name](https://echarts.apache.org/zh/option.html#xAxis.name) | string  | 坐标轴名称                                                   |
 | [nameLocation](https://echarts.apache.org/zh/option.html#xAxis.nameLocation) = 'end' | string  | 坐标轴名称显示位置。<br />`'start'`、`middle | center`、`end` |
-| [offset](https://echarts.apache.org/zh/option.html#xAxis.offset) | number  | X 轴相对于默认位置的偏移。<br />注：若未将 `xAxis.axisLine.onZero` 设为 `false` , 则该项无法生效<br />这一项并不会拉开坐标轴的值和坐标轴名称的距离。 |
+| [offset](https://echarts.apache.org/zh/option.html#xAxis.offset) = 0 | number  | X 轴相对于默认位置的偏移。<br />注：若未将 `xAxis.axisLine.onZero` 设为 `false` , 则该项无法生效<br />这一项并不会拉开坐标轴的值和坐标轴名称的距离。 |
 | [nameGap](https://echarts.apache.org/zh/option.html#xAxis.nameGap) = 15 | number  | 坐标轴名称与轴线之间的距离。                                 |
-| [nameRotate](https://echarts.apache.org/zh/option.html#xAxis.nameRotate) | number  | 坐标轴名字旋转，角度值。**逆时针**                           |
+| [nameRotate](https://echarts.apache.org/zh/option.html#xAxis.nameRotate) | number  | 坐标轴名字旋转，角度值。**逆时针** \| **y轴默认是90**        |
 | [scale](https://echarts.apache.org/zh/option.html#xAxis.scale) | boolean | 只在数值轴中（[type](https://echarts.apache.org/zh/option.html#xAxis.type): 'value'）有效。<br />是否是脱离 0 值比例。设置成 `true` 后坐标刻度不会强制包含零刻度。<br />在双数值轴的散点图中比较有用。<br />在设置 [min](https://echarts.apache.org/zh/option.html#xAxis.min) 和 [max](https://echarts.apache.org/zh/option.html#xAxis.max) 之后该配置项无效。 |
 
 ## [type](https://echarts.apache.org/zh/option.html#xAxis.type) = 'category'
@@ -440,6 +443,19 @@ boundaryGap: ['20%', '20%'],		// 测试不会小于 ["10%", "10%"]，且搭配 s
 | ------------------------------------------------------------ | ------- | ------------------------------ |
 | [inside](https://echarts.apache.org/zh/option.html#xAxis.axisTick.inside) = false | boolean | 坐标轴刻度是否朝内，默认朝外。 |
 | [length](https://echarts.apache.org/zh/option.html#xAxis.axisTick.length) = 5 | number  | 坐标轴刻度的长度。             |
+
+# yAxis
+
+## 双Y轴右侧显示刻度
+
+```css
+series: [
+    {
+        type: 'line',
+        yAxisIndex: 0,	// 需要设置数据的Index
+    },
+],
+```
 
 # echart折线图小圆点去除方式
 
