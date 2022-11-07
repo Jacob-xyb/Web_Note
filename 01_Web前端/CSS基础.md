@@ -636,13 +636,16 @@ form input[type='text'] {}
 
 相同权重的选择符，样式遵循就近原则，哪个选择符最后定义，就采用哪个选择符样式。
 
-# 文本属性
+# 字体属性
 
 ## font-size
 
-font-size 属性可设置字体的尺寸。
+> font-size 属性可设置字体的尺寸。
 
-**注意：**该属性设置元素的字体大小。注意，实际上它设置的是字体中字符框的高度；实际的字符字形可能比这些框高或矮（通常会矮）。
+**注意：**该属性设置元素的字体大小。注意，实际上它设置的是字体中**字符框**的高度；实际的字符字形可能比这些框高或矮（通常会矮）。
+
+**浏览器默认 16px，设计图常用字号 12px。**
+
 各关键字对应的字体必须比一个最小关键字相应字体要高，并且要小于下一个最大关键字对应的字体。
 
 语法：` font-size:A|smaller|larger|length|%|inherit`
@@ -678,13 +681,11 @@ font-family 可以把多个字体名称作为一个“`回退`”系统来保存
 "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 ```
 
-## color
-
 ## font-weight
 
 > font-weight 属性设置文本的粗细。
 
-**注意：**该属性用于设置显示元素的文本中所用的字体加粗。数字值 400 相当于 关键字 normal，700 等价于 bold，数字只能取100到900间的整百。
+**注意：**该属性用于设置显示元素的文本中所用的字体加粗。数字值 **400 相当于 关键字 normal**，700 等价于 bold，数字只能取100到900间的整百。
 
 | 值                                          | 说明 （索引中有详细介绍）                                   |
 | ------------------------------------------- | ----------------------------------------------------------- |
@@ -708,59 +709,37 @@ font-family 可以把多个字体名称作为一个“`回退`”系统来保存
 | oblique | 浏览器会显示一个倾斜的字体样式。       |
 | inherit | 规定应该从父元素继承字体样式。         |
 
-## text-align
+## font-variant
 
-> text-align 属性规定元素中的文本的水平对齐方式。
+> font-variant 属性设置小型大写字母的字体显示文本，这意味着所有的小写字母均会被转换为大写。
 
-**注意：**该属性通过指定行框与哪个点对齐，从而设置块级元素内文本的水平对齐方式。通过允许用户代理调整行内容中字母和字之间的间隔，可以支持值 justify；不同用户代理可能会得到不同的结果。
+**注意：**所有使用小型大写字体的字母与其余文本相比，其字体尺寸更小。
 
-| 值      | 描述                                       |
-| ------- | ------------------------------------------ |
-| left    | 把文本排列到左边。默认值：由浏览器决定。   |
-| right   | 把文本排列到右边。                         |
-| center  | 把文本排列到中间。                         |
-| justify | 实现两端对齐文本效果。                     |
-| inherit | 规定应该从父元素继承 text-align 属性的值。 |
+| 值         | 说明 （索引中有详细介绍）                    |
+| ---------- | -------------------------------------------- |
+| normal     | 默认值。浏览器会显示一个标准的字体。         |
+| small-caps | 浏览器会显示小型大写字母的字体。             |
+| inherit    | 规定应该从父元素继承 font-variant 属性的值。 |
 
-## line-height
+## font
 
-> line-height 属性设置行间的距离（行高）。
+> 文字简写
 
-**注意：**该属性会影响行框的布局。在应用到一个块级元素时，它定义了该元素中基线之间的最小距离而不是最大距离。
+```css
+font：font-style font-weight font-size / line-height font-family;
+```
 
-不允许使用负值。
+**注意：** 顺序不能改变，并且同时指定 font-size 和 font-family 才能同时生效
 
-- 属性值
-
-| 值      | 描述                                                 |
-| ------- | ---------------------------------------------------- |
-| normal  | 默认。设置合理的行间距。                             |
-| number  | 设置数字，此数字会与当前的字体尺寸相乘来设置行间距。 |
-| length  | 设置固定的行间距。                                   |
-| %       | 基于当前字体尺寸的百分比行间距。                     |
-| inherit | 规定应该从父元素继承 line-height 属性的值。          |
-
-## text-indent
-
-> text-indent 属性规定文本块中首行文本的缩进。
-
-**注意：**负值是允许的。如果值是负数，将第一行左缩进。
-
-- 属性值
-
-| 值      | 描述                                        |
-| ------- | ------------------------------------------- |
-| length  | 定义固定的缩进。默认值：0。                 |
-| %       | 定义基于父元素宽度的百分比的缩进。          |
-| inherit | 规定应该从父元素继承 text-indent 属性的值。 |
+# 文本属性
 
 ## letter-spacing
 
-> letter-spacing 属性增加或减少字符间的空白（字符间距）。
+> letter-spacing 属性增加或减少字符间的空白（**字符间距**）。
 
 **注意：**该属性定义了在文本字符框之间插入多少空间。由于字符字形通常比其字符框要窄，指定长度值时，会调整字母之间通常的间隔。因此，normal 就相当于值为 0。
 
-允许使用负值，这会让字母之间挤得更紧。
+**允许使用负值，这会让字母之间挤得更紧。**
 
 - 属性值
 
@@ -784,6 +763,52 @@ font-family 可以把多个字体名称作为一个“`回退`”系统来保存
 | break-all | 允许在单词内换行。           |
 | keep-all  | 只能在半角空格或连字符处换行 |
 
+## line-height
+
+> line-height 属性设置行间的距离（行高）。
+
+**注意：**该属性会影响行框的布局。在应用到一个块级元素时，它定义了该元素中基线之间的最小距离而不是最大距离。
+
+不允许使用负值。
+
+- 属性值
+
+| 值      | 描述                                                 |
+| ------- | ---------------------------------------------------- |
+| normal  | 默认。设置合理的行间距。                             |
+| number  | 设置数字，此数字会与当前的字体尺寸相乘来设置行间距。 |
+| length  | 设置固定的行间距。                                   |
+| %       | 基于当前字体尺寸的百分比行间距。                     |
+| inherit | 规定应该从父元素继承 line-height 属性的值。          |
+
+## text-align
+
+> text-align 属性规定元素中的文本的水平对齐方式。
+
+**注意：**该属性通过指定行框与哪个点对齐，从而设置块级元素内文本的水平对齐方式。通过允许用户代理调整行内容中字母和字之间的间隔，可以支持值 justify；不同用户代理可能会得到不同的结果。
+
+| 值      | 描述                                       |
+| ------- | ------------------------------------------ |
+| left    | 把文本排列到左边。默认值：由浏览器决定。   |
+| right   | 把文本排列到右边。                         |
+| center  | 把文本排列到中间。                         |
+| justify | 实现两端对齐文本效果。                     |
+| inherit | 规定应该从父元素继承 text-align 属性的值。 |
+
+## text-indent
+
+> text-indent 属性规定文本块中首行文本的缩进。
+
+**注意：**负值是允许的。如果值是负数，将第一行左缩进。
+
+- 属性值
+
+| 值      | 描述                                        |
+| ------- | ------------------------------------------- |
+| length  | 定义固定的缩进。默认值：0。                 |
+| %       | 定义基于父元素宽度的百分比的缩进。          |
+| inherit | 规定应该从父元素继承 text-indent 属性的值。 |
+
 ## text-decoration
 
 - 定义
@@ -792,7 +817,7 @@ font-family 可以把多个字体名称作为一个“`回退`”系统来保存
 
 - 语法
 
-```
+```css
 text-decoration：none|underline|overline|line-through|blink|inherit;
 ```
 
@@ -806,29 +831,50 @@ text-decoration：none|underline|overline|line-through|blink|inherit;
 | line-through | 定义穿过文本下的一条线。                        |
 | inherit      | 规定应该从父元素继承 text-decoration 属性的值。 |
 
-## font
+## text-overflow
 
-> 文字简写
+> text-overflow 属性规定当文本溢出包含元素时发生的事情。
+
+| 值       | 描述                                 |
+| -------- | ------------------------------------ |
+| clip     | 修剪文本。                           |
+| ellipsis | 显示省略符号来代表被修剪的文本。     |
+| string   | 使用给定的字符串来代表被修剪的文本。 |
+
+string 属性只有火狐浏览器生效
+
+![image.png](https://s2.loli.net/2022/11/07/4NkF8S3LTHxhMUa.png)
+
+text-overflow 生效有一下几个前提：
+
+- 文本超出了宽度指示的区域
+- 宽度指示区域设置了 overflow: hidden;
+
+- 中文字符必须设置 white-space: nowrap; ，因为包含元素宽度不够时，中文单个字符都会换行
+- 通常用 text-overflow: ellipsis; ， string形式目前只有火狐浏览器支持
+
+## text-shadow
+
+> text-shadow属性连接一个或更多的阴影文本。
 
 ```css
-font：font-style font-weight font-size / line-height font-family;
+text-shadow: h-shadow v-shadow blur color;
 ```
 
-**注意：** 顺序不能改变，并且同时指定 font-size 和 font-family 才能同时生效
+| 值       | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| h-shadow | 必需。水平阴影的位置。允许负值。                             |
+| v-shadow | 必需。垂直阴影的位置。允许负值。                             |
+| blur     | 可选。模糊的距离。                                           |
+| color    | 可选。阴影的颜色。参阅 [CSS 颜色值。](http://bbs.fishc.com/thread-81599-1-1.html) |
 
 ## text-transform
 
-- 定义
-
 > text-transform 属性控制文本的大小写。
-
-- 语法
 
 ```css
 text-transform:none|capitalize|uppercase|lowercase|inherit;
 ```
-
-- 属性值
 
 | 值         | 描述                                           |
 | ---------- | ---------------------------------------------- |
@@ -838,23 +884,119 @@ text-transform:none|capitalize|uppercase|lowercase|inherit;
 | lowercase  | 定义无大写字母，仅有小写字母。                 |
 | inherit    | 规定应该从父元素继承 text-transform 属性的值。 |
 
+## color
+
+## direction
+
+> direction 属性规定文本的方向 / 书写方向。
+
+**注意：**该属性指定了块的基本书写方向，以及针对 Unicode 双向算法的嵌入和覆盖方向。
+
+| 值      | 描述                                      |
+| ------- | ----------------------------------------- |
+| ltr     | 默认。文本方向从左到右。                  |
+| rtl     | 文本方向从右到左。                        |
+| inherit | 规定应该从父元素继承 direction 属性的值。 |
+
+搭配 unicode-bidi 属性使用
+
+## unicode-bidi
+
+> unicode-bidi 属性设置文本的方向。
+
+**注意：**unicode-bidi 属性与 [`direction`](https://man.ilovefishc.com/pageCSS3/direction.html) 属性一起使用，来设置或返回文本是否被重写，以便在同一文档中支持多种语言。
+
+| 值                | 描述                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| normal            | 默认。不使用附加的嵌入层面。                                 |
+| embed             | 创建一个附加的嵌入层面。                                     |
+| **bidi-override** | 创建一个附加的嵌入层面。重新排序取决于 direction 属性。(常用) |
+| initial           | 设置该属性为它的默认值。                                     |
+| inherit           | 从父元素继承该属性。                                         |
+
+# white-space
+
+>white-space 属性设置如何处理元素内的空白。
+
+| 值       | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| normal   | 默认。空白会被浏览器忽略。                                   |
+| pre      | 空白会被浏览器保留。其行为方式类似 HTML 中的 [``](https://man.ilovefishc.com/pageHTML5/pre.html) 标签。 |
+| nowrap   | 文本不会换行，文本会在在同一行上继续，直到遇到 [``](https://man.ilovefishc.com/pageHTML5/br.html) 标签为止。 |
+| pre-wrap | 保留空白符序列，但是正常地进行换行。                         |
+| pre-line | 合并空白符序列，但是保留换行符。                             |
+| nherit   | 规定应该从父元素继承 white-space 属性的值。                  |
+
+## word-break
+
+> word-break属性指定非CJK脚本的断行规则。
+
+**注意：**CJK脚本是中国，日本和韩国（”中日韩”）脚本。
+
+| 值        | 描述                           |
+| --------- | ------------------------------ |
+| normal    | 使用浏览器默认的换行规则。     |
+| break-all | 允许在单词内换行。             |
+| keep-all  | 只能在半角空格或连字符处换行。 |
+
+## word-wrap
+
+> word-wrap属性允许长的内容可以自动换行。
+
+| 值         | 描述                                         |
+| ---------- | -------------------------------------------- |
+| normal     | 只在允许的断字点换行（浏览器保持默认处理）。 |
+| break-word | 在长单词或 URL 地址内部进行换行。            |
+
+**word-break 和 word-wrap的区别**
+
+word-break: break-all;的作用是所有的都换行，很霸道的那种，毫不留情，一点儿空隙都不放过的那种换行
+
+word-wrap:break-word则稍微温柔点儿，带有一点怜悯之心，如果这一行文字有可以换行的点，如空格之类的，就不打英文单词或字符的主意了，在这些换行点换行，至于对不对齐、好不好看则不关心，因此，很容易出现一片一片空白区域的情况。
+
+![image.png](https://s2.loli.net/2022/11/07/afpeL6hV2nmHczi.png)
+
+## vertical-align
+
+> vertical-align属性设置一个元素的垂直对齐。
+
+```css
+/* Keyword values */
+vertical-align: baseline;
+vertical-align: sub;
+vertical-align: super;
+vertical-align: text-top;
+vertical-align: text-bottom;
+vertical-align: middle;
+vertical-align: top;
+vertical-align: bottom;
+
+/* <length> values */
+vertical-align: 10em;
+vertical-align: 4px;
+
+/* <percentage> values */
+vertical-align: 20%;
+
+/* Global values */
+vertical-align: inherit;
+vertical-align: initial;
+vertical-align: unset;
+```
+
+![image-20221107151204753](https://s2.loli.net/2022/11/07/f1OneuSbzYMRXPD.png)
+
 # 列表属性
 
 ## list-style-type
 
-- 定义
-
 > list-style-type 属性设置或检索对象的列表项所使用的预设标记。
-
-- 语法
 
 ```css
 list-style-type：A;
 ```
 
 其中，A 支持 20 余种样式，见下表所示。
-
-- 属性值
 
 | 值              | 描述               |
 | --------------- | ------------------ |
@@ -881,17 +1023,11 @@ list-style-type：A;
 
 ## list-style-image
 
-- 定义
-
 > list-style-image 属性使用图像来替换列表项的标记。
-
-- 语法
 
 ```css
 list-style-image:URL|none|inherit;
 ```
-
-- 属性值
 
 | 值      | 描述                                             |
 | ------- | ------------------------------------------------ |

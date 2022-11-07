@@ -364,6 +364,30 @@ $(selector).bind(eventType [, eventData], hander(eventObject));
 
   `$("元素").事件名(function(){}).事件名(function(){});`
 
+## on 动态绑定事件
+
+on() 方法在被选元素及子元素上添加一个或多个事件处理程序。
+
+自从jQuery 1.7 版本之后，on() 方法是bind() 、live()、和 delegate() 方法的新的替代品。
+
+on可以绑定没有页面渲染时不存在的dom，bind不可以。
+
+on是jquery推荐使用的，bind是从某个版本开始就不推荐使用的。
+
+```js
+$(document).on(type, selector, function () {
+});
+```
+
+- 示例
+
+```js
+ProfileList.on('dblclick', ".Profile_right li", function () {
+    let Profile_btnOK = $("#Profile_btnOK");
+    Profile_btnOK.click();
+});
+```
+
 # jQuery Ajax
 
 ## $.ajax

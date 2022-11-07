@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+    <style>
+        .a {
+            /*规定段落中的文本不进行换行*/
+            white-space: nowrap;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: clip;
+            border: 1px solid #000000;
+        }
+
+        .b {
+            /*规定段落中的文本不进行换行*/
+            white-space: nowrap;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 1px solid #000000;
+        }
+
+        .c {
+            /*规定段落中的文本不进行换行*/
+            white-space: nowrap;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: "----";
+            border: 1px solid #000000;
+        }
+        .d {
+            /*规定段落中的文本不进行换行*/
+            /* white-space: nowrap; */
+            width: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>text-overflow: clip (default):</h2>
+    <div class="a">Welcome to FishC.com</div>
+    <h2>text-overflow: ellipsis:</h2>
+    <div class="b">Welcome to FishC.com</div>
+    <h2>text-overflow: "----" (user defined string):</h2>
+    <div class="c">Welcome to FishC.com</div>
+    <h2>text-overflow: 中文换行:</h2>
+    <div class="d">欢迎来到鱼C论坛</div>
+</body>
+
+</html>
