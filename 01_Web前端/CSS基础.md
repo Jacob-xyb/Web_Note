@@ -848,10 +848,10 @@ string 属性只有火狐浏览器生效
 text-overflow 生效有一下几个前提：
 
 - 文本超出了宽度指示的区域
-- 宽度指示区域设置了 overflow: hidden;
+- 溢出内容为隐藏: overflow: hidden;
 
 - 中文字符必须设置 white-space: nowrap; ，因为包含元素宽度不够时，中文单个字符都会换行
-- 通常用 text-overflow: ellipsis; ， string形式目前只有火狐浏览器支持
+- 溢出文本显示省略号：text-overflow: ellipsis; ， string形式目前只有火狐浏览器支持
 
 ## text-shadow
 
@@ -914,7 +914,7 @@ text-transform:none|capitalize|uppercase|lowercase|inherit;
 | initial           | 设置该属性为它的默认值。                                     |
 | inherit           | 从父元素继承该属性。                                         |
 
-# white-space
+## white-space
 
 >white-space 属性设置如何处理元素内的空白。
 
@@ -1094,19 +1094,13 @@ list-style:list-style-type|list-style-position|list-style-image|initial|inherit;
 
 ## background-color
 
-- 定义
-
 > background-color属性设置一个元素的背景颜色。
 
 **注意：**元素的背景是元素的总大小，包括填充和边界（但不包括边距）。
 
-- 语法
-
 ```css
 background-color: color|transparent|inherit;
 ```
-
-- 属性值
 
 | 值          | 说明                             |
 | ----------- | -------------------------------- |
@@ -1149,20 +1143,14 @@ background-color: color|transparent|inherit;
 
 ## background-image
 
-- 定义
-
 > background-image 属性为元素设置背景图像。
 
 **注意：**元素的背景占据了元素的全部尺寸，包括内边距和边框，但不包括外边距。
 默认地，背景图像位于元素的左上角，并在水平和垂直方向上重复。
 
-- 语法
-
 ```css
  background-image: url('URL')|none|inherit;
 ```
-
-- 属性值
 
 | 值         | 说明                                               |
 | ---------- | -------------------------------------------------- |
@@ -1174,19 +1162,13 @@ background-color: color|transparent|inherit;
 
 ## background-repeat
 
-- 定义
-
 > background-repeat 属性设置是否及如何重复背景图像。
 
 **注意：**默认地，背景图像在水平和垂直方向上重复，铺满整个屏幕。背景图像的位置是根据 `background-position` 属性设置的。如果未规定 background-position 属性，图像会被放置在元素的左上角。
 
-- 语法
-
 ```css
  background-repeat:repeat|repeat-x|repeat-y|no-repeat|inherit;
 ```
-
-- 属性值
 
 | 值        | 说明                                                |
 | --------- | --------------------------------------------------- |
@@ -1198,17 +1180,11 @@ background-color: color|transparent|inherit;
 
 ## background-size
 
-- 定义
-
 > background-size 属性规定背景图像的尺寸。
-
-- 语法
 
 ```css
 background-size: length|percentage|cover|contain;
 ```
-
-- 属性值
 
 | 值         | 说明                                                         |
 | ---------- | ------------------------------------------------------------ |
@@ -1220,19 +1196,13 @@ background-size: length|percentage|cover|contain;
 
 ## background-position
 
-- 定义
-
 > background-position 属性设置背景图像的起始位置。
 
 **注意：**这个属性设置背景原图像（由 `background-image` 定义）的位置，背景图像如果要重复，将从这一点开始。需要把 background-attachment 属性设置为 `"fixed"`，才能保证该属性在 Firefox 中正常工作。
 
-- 语法
-
 ```css
 background-position:A|B|C;
 ```
-
-- 属性值
 
 | 值                                            | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
@@ -1242,19 +1212,13 @@ background-position:A|B|C;
 
 ## background-attachment
 
-- 定义
-
 > background-attachment设置背景图像是否固定或者随着页面的其余部分滚动。
 
 fixed 属性会让默认以浏览器窗口左上角作定位，谨慎使用。
 
-- 语法
-
 ```css
 background-attachment:scroll || fixed || inherit || local;
 ```
-
-- 属性值
 
 | 值      | 说明                                            |
 | ------- | ----------------------------------------------- |
@@ -1265,17 +1229,11 @@ background-attachment:scroll || fixed || inherit || local;
 
 ## background-clip
 
-- 定义
-
 > background-clip属性指定背景绘制区域。
-
-- 语法
 
 ```css
 background-clip: border-box|padding-box|content-box;
 ```
-
-- 属性值
 
 | 值          | 说明                                             |
 | ----------- | ------------------------------------------------ |
@@ -1285,19 +1243,13 @@ background-clip: border-box|padding-box|content-box;
 
 ## background-origin
 
-- 定义
-
 > background-origin 属性规定 background-position 属性相对于什么位置来定位。
 
 **注意：**如果背景图像的 background-attachment 属性为 “fixed”，则该属性没有效果。
 
-- 语法
-
 ```css
 background-origin: padding-box|border-box|content-box;
 ```
-
-- 属性值
 
 | 值          | 说明                           |
 | ----------- | ------------------------------ |
@@ -1312,8 +1264,6 @@ background: background-color background-img background-repeat background-positio
 ```
 
 **background-size 只能单独用**
-
-
 
 # 浮动属性
 
@@ -1331,7 +1281,9 @@ background: background-color background-img background-repeat background-positio
 
    ![image-20220821213505903.png](https://s2.loli.net/2022/08/21/29WkdrLUfjvtzGB.png)
 
-   4.浮动元素有自围绕效果
+4. 浮动元素有自围绕效果。
+
+5. 块级元素浮动前，宽度是 100%，浮动后宽度自适应。
 
 ## 浮动的作用
 
@@ -1426,6 +1378,157 @@ background: background-color background-img background-repeat background-positio
 ```
 
 `overflow:hidden;` 触发 `BFC` ，让浮动元素计算高度，从而使父元素获得高度。
+
+# 位置属性
+
+## clear
+
+> clear属性指定段落的左侧或右侧不允许浮动的元素。
+
+**注意：**clear 属性定义了元素的哪边上不允许出现浮动元素。如果声明为左边或右边清除，会使元素的上外边框边界刚好在该边上浮动元素的下外边距边界之下。
+
+| 值      | 说明 （索引中有详细介绍）             |
+| ------- | ------------------------------------- |
+| none    | 默认值。允许浮动元素出现在两侧。      |
+| left    | 在左侧不允许浮动元素。                |
+| right   | 在右侧不允许浮动元素。                |
+| both    | 在左右两侧均不允许浮动元素。          |
+| inherit | 规定应该从父元素继承 clear 属性的值。 |
+
+## clip
+
+> clip 属性剪裁绝对定位元素。
+
+```css
+clip: rect (top, right, bottom, left);
+```
+
+## cursor
+
+> cursor属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状
+
+| 值        | 说明 （索引中有详细介绍）                                    |
+| --------- | ------------------------------------------------------------ |
+| auto      | 默认。浏览器设置的光标。                                     |
+| url       | 需使用的自定义光标的 URL。<br />注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。 |
+| auto      | 默认。浏览器设置的光标。                                     |
+| crosshair | 光标呈现为十字线。                                           |
+| pointer   | 光标呈现为指示链接的指针（一只手）                           |
+| move      | 此光标指示某对象可被移动。                                   |
+| e-resize  | 此光标指示矩形框的边缘可被向右（东）移动。                   |
+| ne-resize | 此光标指示矩形框的边缘可被向上及向右移动（北/东）。          |
+| nw-resize | 此光标指示矩形框的边缘可被向上及向左移动（北/西）。          |
+| n-resize  | 此光标指示矩形框的边缘可被向上（北）移动。                   |
+| se-resize | 此光标指示矩形框的边缘可被向下及向右移动（南/东）。          |
+| sw-resize | 此光标指示矩形框的边缘可被向下及向左移动（南/西）。          |
+| s-resize  | 此光标指示矩形框的边缘可被向下移动（北/西）。                |
+| w-resize  | 此光标指示矩形框的边缘可被向左移动（西）。                   |
+| text      | 此光标指示文本。                                             |
+| wait      | 此光标指示程序正忙（通常是一只表或沙漏）。                   |
+| help      | 此光标指示可用的帮助（通常是一个问号或一个气球）。           |
+
+## display
+
+> display 属性规定元素应该生成的框的类型。
+
+**注意：**这个属性用于定义建立布局时元素生成的显示框类型。对于 HTML 等文档类型，如果使用 display 不谨慎会很危险，因为可能违反 HTML 中已经定义的显示层次结构。
+
+| 值                 | 说明 （索引中有详细介绍）                                    |
+| ------------------ | ------------------------------------------------------------ |
+| inline             | 默认。此元素会被显示为内联元素，元素前后没有换行符。         |
+| block              | 此元素将显示为块级元素。                                     |
+| content            | 盒子文本正常绘制，而围绕在盒子中的框并不会生成。             |
+| flex               | 此元素将显示为弹性盒容器。                                   |
+| grid               | 此元素将显示为栅格容器。                                     |
+| inline-block       | 此元素将显示为行内块元素。                                   |
+| inline-flex        | 此元素将显示为行内弹性盒容器。                               |
+| inline-grid        | 此元素将显示为行内栅格容器。                                 |
+| inline-table       | 此元素会作为内联表格来显示（类似 ），表格前后没有换行符。    |
+| list-item          | 此元素会作为列表显示。                                       |
+| run-in             | 此元素会根据上下文作为块级元素或内联元素显示。               |
+| table              | 此元素会作为块级表格来显示（类似 table元素），表格前后带有换行符。 |
+| table-caption      | 此元素会作为一个表格标题显示（类似 caption 元素）。          |
+| table-column-group | 此元素会作为一个或多个列的分组来显示（类似 colgroup 元素）。 |
+| table-header-group | 此元素会作为一个或多个行的分组来显示（类似 thead 元素）。    |
+| table-footer-group | 此元素会作为一个或多个行的分组来显示（类似 tfoot 元素）。    |
+| table-row-group    | 此元素会作为一个或多个行的分组来显示（类似 tbody 元素）。    |
+| table-cell         | 此元素会作为一个表格单元格显示（类似 td 元素）               |
+| table-column       | 此元素会作为一个单元格列显示（类似 col 元素）                |
+| table-row          | 此元素会作为一个表格行显示（类似 tr 元素）。                 |
+| none               | 此元素不会被显示。                                           |
+| initial            | 设置该属性为默认元素。                                       |
+| inherit            | 规定应该从父元素继承 display 属性的值。                      |
+
+## overflow
+
+> overflow 属性规定当内容溢出元素框时发生的事情。
+
+**注意：**这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。
+
+| 值      | 说明                                                     |
+| ------- | -------------------------------------------------------- |
+| visible | 默认值。内容不会被修剪，会呈现在元素框之外。             |
+| hidden  | 内容会被修剪，并且其余内容是不可见的。                   |
+| scroll  | 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 |
+| auto    | 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。 |
+| inherit | 规定应该从父元素继承 overflow 属性的值。                 |
+
+同时提供：`overflow-x`、`overflow-y` 分轴设置属性
+
+## position
+
+position 属性规定元素的定位类型。
+
+| 值       | 文档流 | 说明                                                         |
+| -------- | ------ | ------------------------------------------------------------ |
+| static   | 默认   | 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 |
+| absolute | 脱离   | 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| fixed    | 脱离   | 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
+| relative | 不脱离 | 生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 |
+| sticky   | /      | 粘性定位，可以做吸顶效果，css3.0新增                         |
+| inherit  | /      | 规定应该从父元素继承 position 属性的值。                     |
+
+要使用绝对定位时，推荐使用 `子绝父相`
+
+absolute 的绝对定位是相对于第一屏， fixed 是相对于浏览器窗口。
+
+- **居中：**
+
+  ```css
+  {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+  ```
+
+## visibility
+
+> visibility 属性规定元素是否可见。
+
+**注意：**即使不可见的元素也会占据页面上的空间。请使用 “display” 属性来创建不占据页面空间的不可见元素。
+
+| 值       | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| visible  | 默认值。元素是可见的。                                       |
+| hidden   | 元素是不可见的。                                             |
+| collapse | 当在表格元素中使用时，此值可删除一行或一列，但是它不会影响表格的布局。被行或列占据的空间会留给其他内容使用。如果此值被用在其他的元素上，会呈现为 “hidden”。 |
+| inherit  | 规定应该从父元素继承 visibility 属性的值。                   |
+
+> 虽然会占据页面空间，但是并不像一个透明页面挡在前面阻挡操作。
+
+## z-index
+
+> z-index 属性设置元素的堆叠顺序。
+
+**注意：**拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。
+
+| 值      | 说明                                    |
+| ------- | --------------------------------------- |
+| auto    | 默认。堆叠顺序与父元素相等。默认 0。    |
+| number  | 设置元素的堆叠顺序。                    |
+| inherit | 规定应该从父元素继承 z-index 属性的值。 |
 
 # 盒子模型
 
@@ -1656,62 +1759,6 @@ border-image -width属性指定图像边界的宽度。
   
   overflow: hidden; 后 position: sticky; 就失效了。
 
-# overflow 溢出
-
-overflow 属性规定当内容溢出元素框时发生的事情。
-
-**注意：**这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。
-
-| 值      | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| visible | 默认值。内容不会被修剪，会呈现在元素框之外。                 |
-| hidden  | 内容会被修剪，并且其余内容是不可见的。                       |
-| scroll  | 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。     |
-| auto    | 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。推荐。 |
-| inherit | 规定应该从父元素继承 overflow 属性的值。                     |
-
-同时提供：`overflow-x`、`overflow-y` 分轴设置属性
-
-# white-space
-
-- 定义
-
-> white-space 属性设置如何处理元素内的空白。
-
-- 语法
-
-```css
- white-space:normal|pre|nowrap|pre-wrap|pre-line|inherit;
-```
-
-- 属性值
-
-| 值       | 描述                                                         |
-| -------- | ------------------------------------------------------------ |
-| normal   | 默认。空白会被浏览器忽略。                                   |
-| `pre`    | 空白会被浏览器保留。其行为方式类似 HTML 中的 `<pre>` 标签。  |
-| `nowrap` | 文本不会换行，文本会在在同一行上继续，直到遇到 `<br>` 标签为止。 |
-| pre-wrap | 保留空白符序列，但是正常地进行换行。                         |
-| pre-line | 合并空白符序列，但是保留换行符。                             |
-| nherit   | 规定应该从父元素继承 white-space 属性的值。                  |
-
-## 溢出省略号
-
-```css
-div {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-```
-
-当单行文本溢出显示省略号需要同时设置以下声明：
-
-1. 容器宽度：width: 200px;
-2. 强制文本在一行内显示：white-space: nowrap;
-3. 溢出内容为隐藏：overflow: hidden;
-4. 溢出文本显示省略号：text-overflow: ellipsis;
-
 # 元素显示类型
 
 - **块元素**
@@ -1734,63 +1781,10 @@ p 标签内部只能放 文本，不能放块元素，但是可以放行内块�
 
 **其中增加 padding 可以蔓延背景，但是上下 padding 的边距距离是不生效的。**
 
-## 元素类型互相转换
-
-`display: block;`
-
 # 定位
 
-## position
 
-position 属性规定元素的定位类型。
-
-| 值       | 文档流 | 说明                                                         |
-| -------- | ------ | ------------------------------------------------------------ |
-| static   | 默认   | 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。 |
-| absolute | 脱离   | 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
-| fixed    | 脱离   | 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。 |
-| relative | 不脱离 | 生成相对定位的元素，相对于其正常位置进行定位。因此，”left:20” 会向元素的 LEFT 位置添加 20 像素。 |
-| sticky   | /      | 粘性定位，可以做吸顶效果，css3.0新增                         |
-| inherit  | /      | 规定应该从父元素继承 position 属性的值。                     |
-
-要使用绝对定位时，推荐使用 `子绝父相`
-
-absolute 的绝对定位是相对于第一屏， fixed 是相对于浏览器窗口。
-
-- **居中：**
-
-  ```css
-  {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-  }
-  ```
-
-## z-index 层级
-
-- 定义
-
-> z-index 属性设置元素的堆叠顺序。
-
-**注意：**拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。
-
-- 语法
-
-```css
-z-index:auto|number|inherit;
-```
-
-- 属性值
-
-| 值      | 说明                                    |
-| ------- | --------------------------------------- |
-| auto    | 默认。堆叠顺序与父元素相等。            |
-| number  | 设置元素的堆叠顺序。                    |
-| inherit | 规定应该从父元素继承 z-index 属性的值。 |
-
-### 父子层级
+## 父子层级
 
 ```html
 <!DOCTYPE html>
@@ -1830,23 +1824,6 @@ z-index:auto|number|inherit;
 此时父子定位只有 child 的 z-index 设置为负值时，才能被父元素覆盖；同时 child position 为 static 时， 无论怎么设置，子元素都不会被覆盖。（因为 static 处于标准文档流中）
 
 但是兄弟关系的绝对定位可以随意覆盖。
-
-## 水平垂直居中
-
-```css
-.box1 {
-    width: 600px;
-    height: 600px;
-    background-color: red;
-    margin: 0 auto;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -300px;
-    margin-left: -300px;
-}
-```
 
 # CSS 精灵图
 
