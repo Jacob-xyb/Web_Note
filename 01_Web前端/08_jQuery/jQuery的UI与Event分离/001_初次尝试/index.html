@@ -5,18 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../jquery.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <script>
-        let fruits = ["Apple", "Orange", "Plum"];
-        console.log(fruits[0]);  // "Apple"
-        console.log(fruits[1]);  // "Orange"
-        console.log(fruits[2]);  // "Plum"
-
-        fruits[3] = 'Lemon';
-        console.log(fruits.length);  // 4
+        $.get("ui.html", function(data) {
+            console.log(data);  // Chorme 需要通过特殊设置 还是比较麻烦的，最好能提前写到html里
+        });
     </script>
 </body>
 

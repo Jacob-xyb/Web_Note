@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let john = { name: "John" };
+        let array = [john];     // array[0] 引用了对象的内存
+        john = null; // 覆盖引用
+        console.log(array[0]);
+
+        let bob = { name: "bob" };
+        bob = null; // 覆盖引用
+        console.log(bob);   // bob 的内存就被释放了
+
+
+        let sherry = { name: "sherry" };
+        let map = new Map();
+        map.set(sherry, "...");
+        sherry = null; // 覆盖引用
+        // sherry 被存储在 map 中，
+        // 我们可以使用 map.keys() 来获取它
+        console.log(map.keys());
+        // Map 和 Array 一样会阻止内存的释放
+    </script>
+</body>
+
+</html>

@@ -507,6 +507,13 @@ render_template('show.html', obj=obj)
     `loop.revindex` 序号倒序，结束是 1；`loop.revindex0` 序号倒序，结束是 0；
     
     `loop.first` 、`loop.last` 返回 True/False，判断
+    
+- for 循环
+
+    ```jinja2
+    {% for i in range(10) %}
+        <li>{{ books[i] }}</li>
+    {% endfor %}
 
 ## 过滤器
 

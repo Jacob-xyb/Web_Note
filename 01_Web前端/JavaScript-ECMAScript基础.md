@@ -2470,7 +2470,7 @@ let user = {
 
 **属性名（key）必须是字符串或 Symbol（标识符的一种特殊类型，稍后将介绍）。**
 
-其它类型将被自动地转化为字符串。
+**其它类型将被自动地转化为字符串。**
 
 例如当我们使用数字 `0` 作为属性 `key` 时，它将被转化为字符串 `"0"`：
 
@@ -3579,7 +3579,161 @@ alert( str[0] ); // 无法运行
 
   相较于其他两个变体，`slice` 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 `slice` 就足够了。
 
+# Iterable object 可迭代对象
+
+```js
+let range = {
+  from: 1,
+  to: 5
+};
+// 1. for..of 调用首先会调用这个：
+range[Symbol.iterator] = function() {
+  // ……它返回迭代器对象（iterator object）：
+  // 2. 接下来，for..of 仅与此迭代器一起工作，要求它提供下一个值
+  return {
+    current: this.from,
+    last: this.to,
+    // 3. next() 在 for..of 的每一轮循环迭代中被调用
+    next() {
+      // 4. 它将会返回 {done:.., value :...} 格式的对象
+      if (this.current <= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
+    }
+  };
+};
+// 现在它可以运行了！
+for (let num of range) {
+  alert(num); // 1, 然后是 2, 3, 4, 5
+}
+```
+
+# Map 映射对象
+
+[Map](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Map) 是一个带键的数据项的集合，就像一个 `Object` 一样。 但是它们最大的差别是 `Map` 允许任何类型的键（key）。
+
+它的方法和属性如下：
+
+- `new Map()` —— 创建 map。
+- `map.set(key, value)` —— 根据键存储值。
+- `map.get(key)` —— 根据键来返回值，如果 `map` 中不存在对应的 `key`，则返回 `undefined`。
+- `map.has(key)` —— 如果 `key` 存在则返回 `true`，否则返回 `false`。
+- `map.delete(key)` —— 删除指定键的值。
+- `map.clear()` —— 清空 map。
+- `map.size` —— 返回当前元素个数。
+
+## 链式调用
+
+每一次 `map.set` 调用都会返回 map 本身，所以我们可以进行“链式”调用：
+
+```js
+map.set('1', 'str1').set(1, 'num1').set(true, 'bool1');
+```
+
+## Object.entries：从对象创建 Map
+
+当创建一个 `Map` 后，我们可以传入一个带有键值对的数组（或其它可迭代对象）来进行初始化，如下所示：
+
+```js
+// 键值对 [key, value] 数组
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+alert( map.get('1') ); // str1
+```
+
+如果我们想从一个已有的普通对象（plain object）来创建一个 `Map`，那么我们可以使用内建方法 [Object.entries(obj)](https://developer.mozilla.org/zh/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)，该返回对象的键/值对数组，该数组格式完全按照 `Map` 所需的格式。
+
+所以可以像下面这样从一个对象创建一个 Map：
+
+```js
+let obj = {
+  name: "John",
+  age: 30
+};
+let map = new Map(Object.entries(obj));
+alert( map.get('name') ); // John
+```
+
+这里，`Object.entries` 返回键/值对数组：`[ ["name","John"], ["age", 30] ]`。这就是 `Map` 所需要的格式。
+
+# Set
+
+# WeakMap
+
+# WeakSet
+
+# 解构赋值
+
+# 日期和时间
+
+# JSON 方法
+
+JavaScript 提供了如下方法：
+
+- `JSON.stringify` 将对象转换为 JSON。
+- `JSON.parse` 将 JSON 转换回对象。
+
+## JSON.stringify
+
+## JSON.parse
+
+`json` 字符串是一个被称为 **JSON 编码（JSON-encoded）** 或 **序列化（serialized）** 或 **字符串化（stringified）** 或 **编组化（marshalled）** 的对象。
+
+请注意，JSON 编码的对象与对象字面量有几个重要的区别：
+
+- 字符串使用双引号。JSON 中没有单引号或反引号。所以 `'John'` 被转换为 `"John"`。
+- 对象属性名称也是双引号的。这是强制性的。所以 `age:30` 被转换成 `"age":30`。
+
+错误写法列举：
+
+```js
+let json = `{
+  name: "John",                     // 错误：属性名没有双引号
+  "surname": 'Smith',               // 错误：值使用的是单引号（必须使用双引号）
+  'isAdmin': false,                 // 错误：键使用的是单引号（必须使用双引号）
+  "birthday": new Date(2000, 2, 3), // 错误：不允许使用 "new"，只能是裸值
+  "friends": [0,1,2,3],             // 这个没问题
+}`;
+```
+
 # 函数进阶
+
+## 递归
+
+## Rest 参数与 Spread 语法
+
+在 JavaScript 中，无论函数是如何定义的，你都可以使用任意数量的参数调用函数。
+
+```js
+function sum(a, b) {
+  return a + b;
+}
+alert( sum(1, 2, 3, 4, 5) );
+```
+
+虽然这里不会因为传入“过多”的参数而报错。但是当然，在结果中只有前两个参数被计算进去了。
+
+Rest 参数可以通过使用三个点 `...` 并在后面跟着包含剩余参数的数组名称，来将它们包含在函数定义中。这些点的字面意思是“将剩余参数收集到一个数组中”。
+
+例如，我们需要把所有的参数都放到数组 `args` 中：
+
+```js
+function sumAll(...args) { // 数字名为 args
+  let sum = 0;
+  for (let arg of args) sum += arg;
+  return sum;
+}
+alert( sumAll(1) ); // 1
+alert( sumAll(1, 2) ); // 3
+alert( sumAll(1, 2, 3) ); // 6
+```
+
+**Rest 参数必须放到参数列表的末尾**
 
 # 对象进阶
 
