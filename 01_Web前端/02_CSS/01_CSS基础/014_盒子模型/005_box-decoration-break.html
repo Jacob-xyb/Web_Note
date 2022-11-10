@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>鱼C-零基础入门学习Web（Html5+Css3）</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 1em;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+        }
+
+        .box {
+            margin: 0 1em;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+
+        span {
+            border: 4px solid red;
+            font-size: 1.2em;
+            padding: 10px;
+            line-height: 2.5;
+            hyphens: auto;
+            background: orange;
+            color: #fff;
+        }
+
+        .clone {
+            border: 4px solid green;
+            background-color: #f36;
+            color: #fff;
+            /* box-decoration-break: clone; */
+            -webkit-box-decoration-break: clone;
+        }
+
+        .slice {
+            /* box-decoration-break: slice; */
+            -webkit-box-decoration-break: slice;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h2>slice</h2>
+        <div class="demo">
+            <span class="slice">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequuntur debitis, dolore dolorum
+                explicabo facere facilis ipsa ipsum magnam maxime neque omnis placeat rem repellat reprehenderit sed
+                sunt ullam voluptatum.</span>
+        </div>
+    </div>
+    <div class="box">
+        <h2>clone</h2>
+        <div class="demo">
+            <span class="clone">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis cumque
+                delectus deserunt exercitationem hic id in modi molestiae nostrum officia, officiis perferendis
+                perspiciatis rerum sint soluta sunt, unde voluptas.</span>
+        </div>
+    </div>
+</body>
+
+</html>
