@@ -8,14 +8,25 @@ void test_read_origin_database() {
 	mgdb.coll = mgdb.db.collection("tmp");
 
 	bsoncxx::builder::basic::document query;
-	query.append(kvp("type", "simulate_submit"));
+	query.append(kvp("type", "profile"));
 
 	auto q_res = mgdb.coll.find_one(query.view());
 	bsoncxx::document::view bson = q_res->view();
 
 
-	cout << bsoncxx::to_json(bson) << endl;
-	cout << bson["waveMin"].get_double().value << endl;
+	//cout << bsoncxx::to_json(bson) << endl;
+	//cout << bson["waveMin"].get_double().value << endl;
+	// 
+	//cout << bsoncxx::to_json(bson["v_lay_ui"].get_array().value) << endl;
+	//cout << bsoncxx::to_json(bson["v_lay_ui"].get_array().value[0].get_document().view()) << endl;
+
+	// 对于 array 只能用迭代器来进行遍历获取
+	for (auto& arr : bson["v_lay_ui"].get_array().value)
+	{
+		cout << bsoncxx::to_json(arr.get_document().view()) << endl;
+
+	}
+	//cout << bson["v_lay_ui"].get_array().value[0] << endl;
 }
 
 void transform_bson_data() {
