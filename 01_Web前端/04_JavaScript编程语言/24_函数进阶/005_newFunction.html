@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let sum = new Function('a', 'b', 'return a+b');
+        console.log(sum(1, 2));
+
+        // 使用 new Function 创建函数的应用场景非常特殊，比如在复杂的 Web 应用程序中，我们需要从服务器获取代码或者动态地从模板编译函数时才会使用。
+        let a = 10;
+        let code = "a+=10;console.log(a);";
+        let code_func = new Function(code);
+        code_func();
+    </script>
+</body>
+
+</html>

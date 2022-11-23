@@ -3739,6 +3739,29 @@ alert( sumAll(1, 2, 3) ); // 6
 
 比较难理解
 
+## 函数对象，NFE
+
+### 函数自定义属性
+
+函数属性用来替代闭包：
+
+```js
+function makeCounter() {
+  // 不需要这个了
+  // let count = 0
+  function counter() {
+    return counter.count++;
+  };
+  counter.count = 0;
+  return counter;
+}
+let counter = makeCounter();
+alert( counter() ); // 0
+alert( counter() ); // 1
+```
+
+## “new Function” 语法
+
 # 对象进阶
 
 # 原型，继承

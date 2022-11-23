@@ -1935,7 +1935,7 @@ Last name:<br>
 
 ### \<input type="checkbox"> 复选框
 
-`<input type="checkbox">`  定义复选框。
+`<input type="checkbox">`  定义**复选框**。
 
 复选框允许用户在有限数量的选项中选择零个或多个选项。
 
@@ -2019,6 +2019,10 @@ Last name:<br>
 | required   |           | 指定文本区域是必填的                 |
 | `size`     | number    | 指定下拉列表中可见选项的数目         |
 
+```html
+<select size="3" multiple name="省份" id=""></select>
+```
+
 - **option 属性**
 
 | 属性       | 值       | 描述                           |
@@ -2066,7 +2070,7 @@ Last name:<br>
 | 属性          | 值               | 描述                                                         |
 | ------------- | ---------------- | ------------------------------------------------------------ |
 | autofocus     | autofocus        | 指定在页面加载后文本区域自动获得焦点                         |
-| cols          | number           | 指定文本区域的可见宽度                                       |
+| cols          | number           | 指定文本区域的可见宽度；值为字符数                           |
 | disabled      | disabled         | 禁用该文本区域                                               |
 | form          | form_id          | 指定文本区域所属的一个或多个表单                             |
 | maxlength     | number           | 指定文本区域的最大字符数                                     |
@@ -2074,7 +2078,7 @@ Last name:<br>
 | `placeholder` | text             | 指定文本区域的占位提示文本                                   |
 | readonly      | readonly         | 指定文本区为只读                                             |
 | required      | required         | 指定文本区域为必填项                                         |
-| rows          | number           | 指定文本区内的可见行数                                       |
+| rows          | number           | 指定文本区内的可见行数；可以理解为初始高度                   |
 | wrap          | hard、soft、off  | 指定在表单提交时，如何处理文本区域的自动换行：soft 表示在页面渲染中对文本进行自动换行，但换行符（CR + LF）不提交hard 表示在页面渲染中对文本进行自动换行，换行符（CR + LF）也会一并提交。如果元素的该属性设置为 hard，则必须同时指定 cols 属性。off 表示在页面渲染中不对文本进行自动换行。 |
 
 CSS 设置属性：`resize: vertiacl | horizontal | both | none;`
