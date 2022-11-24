@@ -272,9 +272,11 @@ element1 > element2 {
 
 - **如果元素不是父元素的直接子元素，则不会被选择。**
 
-## 相邻兄弟选择器
+## + 相邻兄弟选择器
 
 > 相邻兄弟选择器，选择具有相同父元素且同级的element1相邻的element2
+
+只能往后查找第一个兄弟。
 
 ```css
 element1 + element2 {
@@ -282,11 +284,13 @@ element1 + element2 {
 }
 ```
 
-## 通用兄弟选择器
+## ~ 通用兄弟选择器
 
 > 通用兄弟选择器，选择具有相同父元素且同级的element1之后的element2
 
 - **两种元素必须拥有相同的父元素，但是 element2 不必直接紧随 element1。**
+
+往后查找到的所有兄弟。
 
 ```css
 element1 ~ element2 {
@@ -332,6 +336,17 @@ element1 ~ element2 {
 ### :checked
 
 > :checked 选择器用于表示选中状态的radio(`<input type="radio">`), checkbox (`<input type="checkbox">`) 或`select`元素中的option HTML元素(“option”)。
+
+使用之前需要去掉默认样式：
+
+```css
+input[type=checkbox] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+```
 
 ### :required
 
@@ -490,9 +505,13 @@ element1 ~ element2 {
 
 ### :only-child
 
-### only-of-type
+> :only-child 选择器匹配父元素下唯一子元素
+
+### :only-of-type
 
 ### :empty
+
+> :empty 选择器匹配没有子元素（包括文本节点）的每个元素。
 
 ## 其他伪类选择器
 
@@ -501,6 +520,8 @@ element1 ~ element2 {
 :target 选择器可用于选取当前活动的目标元素。
 
 **注意：**URL 带有后面跟有锚名称 #，指向文档内某个具体的元素。这个被链接的元素就是目标元素(target element)。
+
+失去目标后会还原样式
 
 ```css
 <style>
@@ -526,6 +547,10 @@ element1 ~ element2 {
 ### :lang
 
 ### :not
+
+> :not(tagName) 选择器匹配非指定元素/选择器的每个元素。
+
+**注意：**tagName也要指定样式，否则非指定后，默认样式也会被设置。
 
 # 伪元素选择器
 
@@ -581,6 +606,8 @@ p::after
 
 [attribute] 选择器用于选取带有指定属性的元素。
 
+`div[class]` 在标签 `class=""` 也生效
+
 ```css
 <style>
 a[target]
@@ -606,7 +633,7 @@ form input[type='text'] {}
 
 ## [attribute~=value]
 
-[attribute~=value] 选择器用于选取属性值中包含指定词汇的元素。 **`包含不是匹配`**
+[attribute~=value] 选择器用于选取属性值中包含指定 **词汇** 的元素。 **`包含不是匹配`**
 
 ## [attribute^=value]
 
@@ -618,7 +645,7 @@ form input[type='text'] {}
 
 ## [attribute*=value]
 
-[attribute*=value] 选择器匹配属性值包含指定值的每个元素。
+[attribute*=value] 选择器匹配属性值包含指定 **字符** 的每个元素。
 
 ## [attribute|=value]
 
