@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- autofocus 的控件默认隐藏然后显示 是不生效的 -->
+    <button>Click Me</button>
+    <form action="">
+        <table style="display: none;">
+            <tbody>
+                <tr>
+                    <td>Value</td>
+                    <td><input type="text" name="value" id="" value="" autofocus></td>
+                </tr>
+                <tr>
+                    <td>Min</td>
+                    <td><input type="text" name="min" id="" value=""></td>
+                </tr>
+                <tr>
+                    <td>Max</td>
+                    <td><input type="text" name="max" id="" value=""></td>
+                </tr>
+                <tr>
+                    <td>Step</td>
+                    <td><input type="text" name="step" id="" value=""></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+    <script>
+        let btn = document.querySelector("button");
+        btn.onclick = function() {
+            let table = document.querySelector("table");
+            table.style.display = "block";
+        };
+    </script>
+</body>
+
+</html>
