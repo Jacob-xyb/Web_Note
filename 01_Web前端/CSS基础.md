@@ -1,4 +1,10 @@
-# CSS
+# @font-face
+
+{
+
+font-properties
+
+}CSS
 
 ## CSS 概述
 
@@ -2024,6 +2030,74 @@ resize属性指定一个元素是否是由用户调整大小的。
 
 轮廓并不属于元素尺寸的一部分，不会影响到原有的页面布局。
 
+# 阴影
+
+## box-shadow
+
+> box-shadow 属性向框添加一个或多个阴影。
+
+`box-shadow: h-shadow v-shadow blur spread color inset;`
+
+**注意：**box-shadow 向框添加一个或多个阴影。该属性是由逗号分隔的阴影列表，每个阴影由 2-4 个长度值、可选的颜色值以及可选的 inset 关键词来规定。省略长度的值是 0。
+
+| 值       | 描述                                   |
+| -------- | -------------------------------------- |
+| h-shadow | 必需。水平阴影的位置。允许负值。       |
+| v-shadow | 必需。垂直阴影的位置。允许负值。       |
+| blur     | 可选。模糊距离。                       |
+| spread   | 可选。阴影的尺寸。                     |
+| color    | 可选。阴影的颜色。                     |
+| inset    | 可选。将外部阴影 (outset) 改为内部阴影 |
+
+# 圆角
+
+## border-radius
+
+> border-radius 属性是一个简写属性，用于设置四个 border-*-radius 属性。
+
+```python
+# 四角一致
+border-radius: px;
+
+# 对角一致：左上右下，左下右上
+border-radius: px px;
+
+# 三个值：左上，左下右上，右下
+
+# 四个值：从左上顺时针设置
+
+# 椭圆圆角：水平/垂直
+border-radius: px/px;
+
+# 多个椭圆圆角：
+boder-radius: px px px px / px px px px;
+```
+
+`/` 只支持 boder-radius。
+
+# 字体引入
+
+## @font-face
+
+> font-face规则，网页设计师再也不必使用的”web-safe”的字体之一。
+
+| 值            | 说明 （索引中有详细介绍）                                    |
+| ------------- | ------------------------------------------------------------ |
+| font-family   | 必需的。定义字体的名称。                                     |
+| src           | 应该从父元素继承 opacity 属性的值。                          |
+| font-stretch  | 可选。定义该字体应该如何被拉长。默认值是”正常”               |
+| font-style    | 可选。定义该字体应该是怎样样式。默认值是”正常”               |
+| font-weight   | 可选。定义字体的粗细。默认值是”正常”                         |
+| unicode-range | 可选。定义该字体支持Unicode字符的范围。默认值是”ü+0-10 FFFF” |
+
+```css
+@font-face
+{
+	font-family: jx-font;
+    src: url(font/xx.TTF);
+}
+```
+
 # 表格属性
 
 ## border-collapse
@@ -2047,8 +2121,6 @@ border-collapse:collapse|separate|inherit;
 | collapse | 如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性 |
 | separate | 默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性 |
 | inherit  | 规定应该从父元素继承 border-collapse 属性的值                |
-
-# 阴影
 
 # box-sizing
 
