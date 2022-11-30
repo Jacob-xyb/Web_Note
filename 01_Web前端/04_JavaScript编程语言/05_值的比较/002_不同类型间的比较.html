@@ -10,9 +10,15 @@
 
 <body>
     <script>
+        // **当对不同类型的值进行比较时，JavaScript 会首先将其转化为数字（number）再判定大小。**
         document.write(`'2' > 1: ${'2' > 1}`); // true
         document.write(`<br>`);
-        document.write(`'01' == '1': ${'01' == 1}`); // true
+        document.write(`'01' == 1: ${'01' == 1}`); // true
+        document.write(`<br>`);
+        document.write(`'011' == 11: ${'011' == 11}`); // true
+        document.write(`<br>`);
+        // 虽然 Number(null) = 0, 但是 null == 0 结果为 false
+        document.write(`'null' == 0: ${null == 0}`); // false
         document.write(`<br>`);
     </script>
 </body>

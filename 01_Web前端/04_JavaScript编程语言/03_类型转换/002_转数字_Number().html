@@ -37,6 +37,11 @@
         value1 = NaN;
         document.write(Number(value1));  // NaN
         document.write(`<br>`);
+
+        // 只有 null 会被转为 0，其他对象会被转为 NaN
+        value1 = {name: "jx"};
+        document.write(Number(value1));  // NaN
+        document.write(`<br>`);
     </script>
 </body>
 

@@ -255,11 +255,42 @@ document.write(typeof(n2), `<br>`); // number
   document.write(2E5, `<br>`); // 200000
   // 十六进制，大小写不敏感
   document.write(0x100, `<br>`); // 256
-  // 八进制
+  // 八进制， 加不加 o 均生效
   document.write(0o100, `<br>`); // 64
+  document.write(0100, `<br>`); // 64
   // 二进制
   document.write(0b100, `<br>`); // 4
   ```
+
+除了常规的数字，还包括所谓的“特殊数值（“special numeric values”）”也属于这种类型：`Infinity`、`-Infinity` 和 `NaN`。
+
+- `Infinity` 代表数学概念中的 [无穷大](https://en.wikipedia.org/wiki/Infinity) ∞。是一个比任何数字都大的特殊值。
+
+  我们可以通过除以 0 来得到它：
+
+  ```js
+  alert( 1 / 0 ); // Infinity
+  ```
+
+  或者在代码中直接使用它：
+
+  ```js
+  alert( Infinity ); // Infinity
+  ```
+
+- `NaN` 代表一个计算错误。它是一个不正确的或者一个未定义的数学操作所得到的结果，比如：
+
+  ```js
+  alert( "not a number" / 2 ); // NaN，这样的除法是错误的
+  ```
+
+  `NaN` 是粘性的。任何对 `NaN` 的进一步操作都会返回 `NaN`：
+
+  ```js
+  alert( "not a number" / 2 + 5 ); // NaN
+  ```
+
+  所以，如果在数学表达式中有一个 `NaN`，会被传播到最终结果。
 
 ## bigint 类型
 
@@ -466,6 +497,7 @@ document.write(`<br>`);
 | `null`          | `0`                                                          |
 | `true 和 false` | `1` and `0`                                                  |
 | `string`        | 去掉首尾空格后的纯数字字符串中含有的数字。如果剩余字符串为空，则转换结果为 `0`。否则，将会从剩余字符串中“读取”数字。当类型转换出现 error 时返回 `NaN`。 |
+| 其他对象        | NaN                                                          |
 
 ```js
 let value1 = '123';
@@ -495,6 +527,18 @@ document.write(`<br>`);
 value1 = NaN;
 document.write(Number(value1));  // NaN
 document.write(`<br>`);
+```
+
+特殊的：
+
+```js
+// 进制数
+Number('0b11'); 	// 3
+Number('0x11'); 	// 17
+// 但是
+Number('011');		// 11 而不是 9
+// 更推荐的写法
+Number('0o11');		// 9
 ```
 
 ### parseInt()
@@ -864,6 +908,14 @@ document.write(`<br>`);
 
 对于布尔类型值，`true` 会被转化为 `1`、`false` 转化为 `0`。
 
+特殊的：
+
+```js
+// 虽然 Number(null) = 0, 但是 null == 0 结果为 false
+document.write(`'null' == 0: ${null == 0}`); // false
+document.write(`<br>`);
+```
+
 ## 严格相等
 
 普通的相等性检查 `==` 存在一个问题，它不能区分出 `0` 和 `false`：
@@ -925,9 +977,9 @@ alert( null == undefined ); // true
 通过比较 `null` 和 0 可得：
 
 ```js
-alert( null > 0 );  // (1) 
-falsealert( null == 0 ); // (2) 
-falsealert( null >= 0 ); // (3) true
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
 ```
 
 是的，上面的结果完全打破了你对数学的认识。在最后一行代码显示“`null` 大于等于 0”的情况下，前两行代码中一定会有一个是正确的，然而事实表明它们的结果都是 false。
@@ -3578,6 +3630,24 @@ alert( str[0] ); // 无法运行
   ---
 
   相较于其他两个变体，`slice` 稍微灵活一些，它允许以负值作为参数并且写法更简短。因此仅仅记住这三种方法中的 `slice` 就足够了。
+
+### 包含字符串
+
+`str.includes(substr)` 
+
+```js
+console.log('hello'.includes('ll'));  // true
+```
+
+### 字符串替换
+
+`str.replace(str1, str2)`
+
+```js
+let s1 = "aabbcc";
+console.log(s1.replace("b", "x"));      // aaxbcc
+console.log(s1.replace(/b/g, "x"));     // aaxxcc
+```
 
 # Iterable object 可迭代对象
 
