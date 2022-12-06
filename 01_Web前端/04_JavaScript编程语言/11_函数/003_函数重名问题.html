@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  let 变量是不能重复声明的
+        let myname = "jacob";
+
+        function test() {
+            console.log("test1");
+        }
+
+        function test() {
+            console.log("test2");
+        }
+
+        // 后声明的会覆盖
+        test();
+
+        // 变量名和方法名冲突的情况
+        // ++ let 声明的变量，函数名不允许冲突，会报错
+        // ++ var 声明的变量，不会冲突，也不会报错
+        // let age = 100;
+        age();
+        var age = 100;
+        function age() {
+            console.log("age is 100");
+        }
+        console.log(age);
+    </script>
+</body>
+
+</html>
