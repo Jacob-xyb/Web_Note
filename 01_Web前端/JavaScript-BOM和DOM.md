@@ -92,6 +92,32 @@ setTimeout(function(){
 }, 5000);
 ```
 
+### 停止定时器
+
+```html
+<body>
+    <button id="btn1">清除定时器 1</button>
+    <button id="btn2">清除定时器 2</button>
+    <script>
+        let time1 = setInterval(function () {
+            console.log(Date.now());
+        }, 1000);
+
+        let time2 = setInterval(function () {
+            console.log('Jacob-xyb');
+        }, 1000);
+
+        btn1.onclick = function(){
+            clearInterval(time1);
+        };
+
+        btn2.onclick = function(){
+            clearInterval(time2);
+        };
+    </script>
+</body>
+```
+
 # JavaScript DOM 操作
 
 ## DOM 结构
