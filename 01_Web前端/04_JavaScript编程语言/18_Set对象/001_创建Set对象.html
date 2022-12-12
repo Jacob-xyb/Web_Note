@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [1, 1, 2, 3, 4, 4, 5]
+        let set = new Set(arr);
+        console.log(set);
+
+        // Set转数组方法
+        // ++ 1.使用扩展运算符
+        let arr_1 = [...set];
+        console.log(arr_1);
+
+        // ++ 2.使用 Array.from() 方法
+        let arr_2 = Array.from(set);
+        console.log(arr_2);
+    </script>
+</body>
+
+</html>

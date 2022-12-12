@@ -3249,6 +3249,24 @@ let res;
   console.log(res);   // false
   ```
 
+### 叠加方法
+
+- **reduce**
+
+  ```js
+  let arr = [1, 2, 3, 4, 5];
+  // 初始 prev = 0 开始累加
+  let arr2 = arr.reduce(function (prev, item) {
+      return prev + item;
+  }, 0);
+  console.log(arr2);  // 15
+  // 初始 prev = 1 开始累乘
+  let arr3 = arr.reduce(function (prev, item) {
+      return prev * item;
+  }, 1);
+  console.log(arr3);  // 120
+  ```
+
 # 基础数据类型常用方法
 
 ## 数字类型
@@ -3580,6 +3598,8 @@ for (let char of "Hello") {
 }
 ```
 
+`charCodeAt()` 返回字符的 ASCII 编码。
+
 ### 字符串是不可变的
 
 在 JavaScript 中，字符串不可更改。改变字符是不可能的。
@@ -3647,6 +3667,14 @@ console.log('hello'.includes('ll'));  // true
 let s1 = "aabbcc";
 console.log(s1.replace("b", "x"));      // aaxbcc
 console.log(s1.replace(/b/g, "x"));     // aaxxcc
+```
+
+### 删除空格
+
+```js
+str.trim()		// 删除首尾空格
+str.trimStart() | str.trimLeft()	// 删除首空格
+str.trimEnd() | srt.trimRight()		// 删除尾空格
 ```
 
 # Iterable object 可迭代对象
@@ -3733,6 +3761,23 @@ alert( map.get('name') ); // John
 
 # Set
 
+## 集合与数组相互转换
+
+```js
+let arr = [1, 1, 2, 3, 4, 4, 5]
+let set = new Set(arr);
+console.log(set);
+
+// Set转数组方法
+// ++ 1.使用扩展运算符
+let arr_1 = [...set];
+console.log(arr_1);
+
+// ++ 2.使用 Array.from() 方法
+let arr_2 = Array.from(set);
+console.log(arr_2);
+```
+
 # WeakMap
 
 # WeakSet
@@ -3740,6 +3785,90 @@ alert( map.get('name') ); // John
 # 解构赋值
 
 # 日期和时间
+
+## 时间对象 Date
+
+```js
+// new Date()
+// ++不带参数 —— 创建一个表示当前日期和时间的 Date 对象：
+let now_time = new Date();
+console.log(now_time);  
+
+// new Date(milliseconds)
+// ++创建一个 Date 对象，其时间等于 1970-01-01 00:00:00 UTC+0 再过一毫秒（1/1000 秒）。
+let Jan01_1970 = new Date(0);
+console.log(Jan01_1970);  
+
+// new Date(datestring)
+// ++如果只有一个参数，并且是字符串，那么它会被自动解析。
+let date = new Date("2017-01-26");
+console.log(date); 
+// ++ 该时间未被设定，因此被假定为格林尼治标准时间（GMT）的午夜（midnight）
+// ++ 并会根据你运行代码时的时区进行调整
+
+// new Date(year, month, date, hours, minutes, seconds, ms)
+// ++ 使用当前时区中的给定组件创建日期。只有前两个参数是必须的。
+// ++ - year 必须是四位数：2013 是合法的，98 是不合法的。
+// ++ - month 计数从 0（一月）开始，到 11（十二月）结束。
+let test_date = new Date(2022, 11);
+console.log(test_date);
+```
+
+## 访问日期组件
+
+```js
+let now_time = new Date();
+console.log(now_time.getFullYear());   // 2022
+console.log(now_time.getMonth());      // 11  // [0, 11]
+console.log(now_time.getDate());       // 12
+console.log(now_time.getDay());        // 1
+console.log(now_time.getHours());      // 14
+console.log(now_time.getMinutes());    // 16
+console.log(now_time.getSeconds());    // 7
+
+// getTime() 时间戳
+console.log(now_time.getTime());    // 1670825767825
+
+// getTimezoneOffset() 获取时区之间的时差
+console.log(new Date().getTimezoneOffset());
+```
+
+## 设置日期组件
+
+```js
+let now_time = new Date();
+now_time.setFullYear(2016);
+now_time.setMonth(2);
+now_time.setDate(21);
+now_time.setHours(12);
+now_time.setMinutes(30);
+now_time.setMilliseconds(100);
+console.log(now_time);
+
+// setTime() 时间戳
+now_time.setTime(1670825767825);
+console.log(now_time);    // 1670825767825
+```
+
+## Date.now()
+
+如果我们仅仅想要测量时间间隔，我们不需要 `Date` 对象。
+
+有一个特殊的方法 `Date.now()`，它会返回当前的时间戳。
+
+它相当于 `new Date().getTime()`，但它不会创建中间的 `Date` 对象。因此它更快，而且不会对垃圾处理造成额外的压力。
+
+这种方法很多时候因为方便，又或是因性能方面的考虑而被采用，例如使用 JavaScript 编写游戏或其他的特殊应用场景。
+
+```js
+let start = Date.now(); // 从 1 Jan 1970 至今的时间戳
+// do the job
+for (let i = 0; i < 100000; i++) {
+  let doSomething = i * i * i;
+}
+let end = Date.now(); // 完成
+alert( `The loop took ${end - start} ms` ); // 相减的是时间戳，而不是日期
+```
 
 # JSON 方法
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let now_time = new Date();
+        console.log(now_time.getFullYear());   // 2022
+        console.log(now_time.getMonth());      // 11  // [0, 11]
+        console.log(now_time.getDate());       // 12
+        console.log(now_time.getDay());        // 1
+        console.log(now_time.getHours());      // 14
+        console.log(now_time.getMinutes());    // 16
+        console.log(now_time.getSeconds());    // 7
+
+        // getTime() 时间戳
+        console.log(now_time.getTime());    // 1670825767825
+
+        // getTimezoneOffset() 获取时区之间的时差
+        console.log(new Date().getTimezoneOffset());
+    </script>
+</body>
+
+</html>
