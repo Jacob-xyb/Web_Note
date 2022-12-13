@@ -1,5 +1,9 @@
 # JavaScript BOM 操作
 
+## BOM 
+
+**BOM（Browser Object Model）**： 浏览器对象模型
+
 一整套操作浏览器相关内容的属性和方法：
 
 - 操作浏览器历史记录
@@ -13,6 +17,8 @@
 获取可视窗口宽度：`console.log(window.innerWidth)`
 
 获取可视窗口高度：`console.log(window.innerHeight)`
+
+**注意：** 窗口宽高是包含滚动条的宽高。
 
 ## 浏览器弹出层
 
@@ -116,6 +122,15 @@ setTimeout(function(){
         };
     </script>
 </body>
+```
+
+## 浏览器相关信息
+
+- **window.location.herf** : 获取浏览器 url 
+
+```js
+// 获取的 url 是编码后的字符串
+console.log(location.href);
 ```
 
 # JavaScript DOM 操作
