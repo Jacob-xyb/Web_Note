@@ -243,6 +243,10 @@ DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：
 
 ## 获取元素
 
+- **特殊元素节点**
+
+  html, head, body
+
 - **根据 id 名称获取**
 
   `document.getElementById('id名称');`
