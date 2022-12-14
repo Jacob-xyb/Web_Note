@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">存</button>
+    <button id="btn2">取</button>
+    <button id="btn3">删</button>
+    <button id="btn4">清空</button>
+    <script>
+        btn1.onclick = function () {
+            sessionStorage.setItem("name", "Jacob-xyb");
+            sessionStorage.setItem("obj", JSON.stringify({ name: "Jacob-xyb" }));
+        }
+        btn2.onclick = function () {
+            console.log(sessionStorage.getItem("name"));
+            console.log(JSON.parse(sessionStorage.getItem("obj")));
+        }
+        btn3.onclick = function () {
+            sessionStorage.removeItem("name");
+        }
+        btn4.onclick = function () {
+            sessionStorage.clear();
+        }
+    </script>
+</body>
+
+</html>

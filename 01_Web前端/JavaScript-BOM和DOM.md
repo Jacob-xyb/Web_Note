@@ -54,13 +54,22 @@
 
 `window.history.forward()` : 前进页面
 
-## 浏览器卷去的尺寸
+`window.history.go()`: 
+
+```js
+window.history.go(1)	// 前进一个页面
+window.history.go(-1)	// 后退一个页面
+```
+
+## 浏览器滚动
+
+### 浏览器卷去的尺寸
 
 卷去的高度: `document.documentElement.scrollTop || document.body.scrollTop`
 
 卷去的宽度: `document.documentElement.scrollLeft || document.body.scrollLeft`
 
-## 浏览器滚动到
+### 浏览器滚动到
 
 设置浏览器滚动条的位置
 
@@ -132,6 +141,42 @@ setTimeout(function(){
 // 获取的 url 是编码后的字符串
 console.log(location.href);
 ```
+
+## 浏览器本地存储
+
+### localStorage
+
+```html
+<button id="btn1">存</button>
+<button id="btn2">取</button>
+<button id="btn3">删</button>
+<button id="btn4">清空</button>
+<script>
+    btn1.onclick = function () {
+        localStorage.setItem("name", "Jacob-xyb");
+        localStorage.setItem("obj", JSON.stringify({ name: "Jacob-xyb" }));
+    }
+    btn2.onclick = function () {
+        console.log(localStorage.getItem("name"));
+        console.log(JSON.parse(localStorage.getItem("obj")));
+    }
+    btn3.onclick = function () {
+        localStorage.removeItem("name");
+    }
+    btn4.onclick = function () {
+        localStorage.clear();
+    }
+</script>
+```
+
+**注意：** 存储的时候只能存储字符串，如果是对象，需要先转成 JSON 字符串。
+
+### sessionStorage
+
+操作和 localStorage 一样，他们的区别在于：
+
+- **localStorage**： 永久存储，关闭页面不会丢失
+- **sessionStorage**： 会话存储，关闭页面会丢失
 
 # JavaScript DOM 操作
 
