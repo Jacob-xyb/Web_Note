@@ -434,6 +434,28 @@ DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：
 
 ##  节点操作
 
+### 获取节点
+
+- `元素.childNodes`
+
+  获取元素所有子节点，包括文本节点，注释节点等。
+
+- `元素.children`
+
+  获取元素所有元素子节点。
+
+- `元素.firstChild` / `元素.lastChild`
+
+  获取第一个节点 / 获取最后一个节点
+
+- `元素.firstElementChild` / `元素.lastElementChild`
+
+  获取第一个元素节点 / 获取最后一个元素节点
+
+- `元素.previousSibling` / `元素.previousElementSibling`
+
+  获取上一个兄弟节点 / 获取上一个兄弟元素节点
+
 ### 创建节点
 
 语法：`document.creatElement('标签名称')`
