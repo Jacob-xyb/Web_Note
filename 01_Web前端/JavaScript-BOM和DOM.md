@@ -376,12 +376,6 @@ DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：
 
 删除：`元素.removeAttribute('属性名')`
 
-## 操作元素类名
-
-获取：`元素.className`
-
-设置：`元素.className = '新类名'`
-
 ## 操作元素行内样式
 
 获取：`元素.style.样式名`
@@ -420,7 +414,25 @@ DOM 将 HTML 表示为标签的树形结构。它看起来如下所示：
 
 > JavaScript 不能设置元素的非行内样式
 
-## 节点操作
+## 操作元素类名
+
+- 元素.className
+
+获取：`元素.className`
+
+设置：`元素.className = '新类名'`
+
+- 元素.classList
+
+获取：`元素.classList`
+
+增加：`元素.classList.add(类名)`  // 会自动去重
+
+删除：`元素.classList.remove(类名)`
+
+切换：`元素.classList.toggle(类名)`  // 有则删除，无则添加。
+
+##  节点操作
 
 ### 创建节点
 
