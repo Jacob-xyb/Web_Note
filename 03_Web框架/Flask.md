@@ -816,7 +816,38 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
+# flask 模板与vue 的冲突
 
+解决方法一、
+
+flask 代码增加：
+
+```
+app.jinja_env.variable_start_string = '<<'  # 解决与vue 标签的冲突
+app.jinja_env.variable_end_string = '>>'
+```
+
+这样，flask 模板中，变量用<<>>申明
+
+解决方法二、
+
+vue 代码增加：
+
+delimiters: ['<<', '>>']  
+
+那到vue的代码中就，用<<>>申明变量，但好像不可行。推荐使用delimiters: ['${', '}']  ,测试可行。
+
+解决方法三：（这是我比较喜欢的方式）
+
+将vue的变量放到raw标签内
+
+```jinja2
+{% raw %}
+<div id="app">
+  {{ something }}
+</div>
+{% endraw %}
+```
 
 
 

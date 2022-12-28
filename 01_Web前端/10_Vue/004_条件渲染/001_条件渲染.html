@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <div v-if="isCreated">1111</div>
+        <div v-if="!isCreated">2222</div>
+        <ul>
+            <li v-for="item in datalist">
+                {{item.title}} --
+                <span v-if="item.state===0">未付款</span>
+                <span v-else-if="item.state===1">已发货</span>
+                <span v-else-if="item.state===2">已完成</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let obj = {
+            data() {
+                return {
+                    isCreated: true,
+                    datalist: [
+                        {
+                            title: "111",
+                            state: 0,
+                        },
+                        {
+                            title: "222",
+                            state: 1,
+                        },
+                        {
+                            title: "333",
+                            state: 2,
+                        }
+                    ],
+                }
+            },
+        }
+        Vue.createApp(obj).mount("#box");
+    </script>
+</body>
+
+</html>
