@@ -95,3 +95,38 @@ Vue.set(vm.classobj, "dd", true)
 </script>
 ```
 
+# 列表渲染
+
+## key 值设置
+
+```html
+<div id="box">
+    <ul>
+        <li v-for="item in datalist" :key="item.title">
+            {{item}}
+        </li>
+    </ul>
+</div>
+```
+
+key 值是唯一字段。
+
+## 数组更新检测
+
+1. 以下数组方法操作数组，可以检测变动
+
+   pop()、push()、shift()、unshift()、splice()、sort()、reverse()
+
+2. 以下方法不会影响原数组，不会检测到变动，使用新数组替换解决
+
+   filter()、concat()、slice()、map()
+
+3. 直接改变数组的某个值，也不能检测到
+
+   例如：vm.items[indexOfItem] = newValue
+
+   解决：(1)Vue.set(vm.items, indexOfItem, newValue)
+
+   ​		    (2) splice()
+
+> Vue3 不会有上述问题
