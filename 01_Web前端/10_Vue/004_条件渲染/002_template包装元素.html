@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <!-- temlpate 包装节点 不会破坏DOM结构 -->
+        <template v-if="isCreated">
+            <div>1111</div>
+            <div>2222</div>
+            <div>3333</div>
+        </template>   
+    </div>
+    <script>
+        let obj = {
+            data() {
+                return {
+                    isCreated: true,
+                    datalist: [
+                        {
+                            title: "111",
+                            state: 0,
+                        },
+                        {
+                            title: "222",
+                            state: 1,
+                        },
+                        {
+                            title: "333",
+                            state: 2,
+                        }
+                    ],
+                }
+            },
+        }
+        Vue.createApp(obj).mount("#box");
+    </script>
+</body>
+
+</html>
