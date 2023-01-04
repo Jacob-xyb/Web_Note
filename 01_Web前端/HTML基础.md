@@ -471,10 +471,12 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 - **b 标签**
 
-  > `<b>` 标签用于定义表示粗体的文本。
+  全拼：bold
   
-  b 元素仅表示粗体的文本，并**没有**附带任何表示重要的语义。
+  > `<b>` 标签用于定义表示粗体的文本。
 
+  b 元素仅表示粗体的文本，并**没有**附带任何表示重要的语义。
+  
   根据 HTML5 的规范，如果你只是想实现加粗效果，强烈建议使用 CSS 代替。
   
 - **css**
@@ -485,11 +487,15 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 - **em**
 
+  全拼：emphasize
+
   > `<em>` 标签用于定义表示强调的文本。
 
   提示：如果只是为了达到某种视觉效果而使用这个标签的话，强烈建议使用 CSS 代替。
 
 - **i**
+
+  全拼：italic
 
   > `<i>` 标签用于定义表示斜体的文本。
 
@@ -510,6 +516,8 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
   请与 [<ins>](https://man.ilovefishc.com/pageHTML5/ins.html) 标签配合使用，来描述文档中的更新和修正。
 
 - **s**
+
+  全拼：strike
 
   > `<s>`标签用来定义那些不正确的文本
 
@@ -1562,7 +1570,7 @@ HTML5 提供了一些新属性，同时不再支持一些 HTML 4.01 属性。
 | hreflang   | language_code                                   | 指定被链接文档的语言。                                       |
 | media      | media_query                                     | 指定被链接文档是为何种媒介/设备优化的。                      |
 | rel        | text                                            | 规定当前文档与被链接文档之间的关系。                         |
-| **target** | **\_blank**、\_parent、\_self、\_top、framename | 指定在何处打开超链接。 _blank：在新窗口中打开 _parent：在当前的父窗口中打开，如果不存在父窗口，此选项的行为方式与 _self 等同 _self：当前窗口打开（默认） _top：在整个窗口中打开 framename：在指定的框架中打开 |
+| **target** | **\_blank**、\_parent、\_self、\_top、framename | 指定在何处打开超链接。\_blank：在新窗口中打开 ；\_parent：在当前的父窗口中打开，如果不存在父窗口，此选项的行为方式与 _self 等同 _self：当前窗口打开（默认） _top：在整个窗口中打开 framename：在指定的框架中打开 |
 | type       | MIME type                                       | 指定被链接文档的的 MIME 类型。                               |
 | title      | description                                     | 鼠标悬停显示的提示文本                                       |
 
@@ -2506,7 +2514,7 @@ pattern = "[0-9][A-Z]{3}"
 
 而新版本的 (X)HTML 要求使用小写属性。
 
-**注意：** 大写属性 在JS使用时会在大写前自动添加 `-` 连接符，所以非常在属性中出现大写字母，推荐用 `_` 下划线分割。
+**注意：** 大写属性 在JS使用时会在大写前自动添加 `-` 连接符，所以非常不推荐在属性中出现大写字母，推荐用 `_` 下划线分割。
 
 ## HTML 全局属性
 
@@ -2516,7 +2524,7 @@ pattern = "[0-9][A-Z]{3}"
 | [class](https://www.runoob.com/tags/att-global-class.html)   | 规定元素的类名（classname）                                |
 | [contenteditable](https://www.runoob.com/tags/att-global-contenteditable.html)**New** | 规定是否可编辑元素的内容。                                 |
 | [contextmenu](https://www.runoob.com/tags/att-global-contextmenu.html)**New** | 指定一个元素的上下文菜单。当用户右击该元素，出现上下文菜单 |
-| [data-*](https://www.runoob.com/tags/att-global-data.html)**New** | 用于存储页面的自定义数据                                   |
+| [data-*](https://www.runoob.com/tags/att-global-data.html) **New** | 用于存储页面的自定义数据                                   |
 | [dir](https://www.runoob.com/tags/att-global-dir.html)       | 设置元素中内容的文本方向。                                 |
 | [draggable](https://www.runoob.com/tags/att-global-draggable.html)**New** | 指定某个元素是否可以拖动                                   |
 | [dropzone](https://www.runoob.com/tags/att-global-dropzone.html)**New** | 指定是否将数据复制，移动，或链接，或删除                   |
