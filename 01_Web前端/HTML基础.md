@@ -1014,38 +1014,6 @@ HTML5 提供的新语义元素定义了网页的不同部分：
 
 ![image-20220814152614911](https://s2.loli.net/2022/08/14/abtUiV7WBJjdNS9.png)
 
-## HTML label标签
-
-label 可以起到一个绑定的作用
-
-```html
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Document</title>
-</head>
-
-<body>
-    <p>
-        请选择你的性别：
-        <input type="radio" name="sex" id="nan" /> <label for="nan">男</label>
-        <input type="radio" name="sex" id="nv" /> <label for="nv">女</label>
-    </p>
-    <p>
-        <input type="checkbox" id="kk" />
-        <label for="kk">10天内免登陆</label>
-    </p>
-    <p>
-        <label for="xingming">姓名：</label>
-        <input type="text" id="xingming" />
-    </p>
-</body>
-
-</html>
-```
-
 ## pre
 
 `<pre>` 标签用于定义预格式化的文本。
@@ -2138,7 +2106,7 @@ Last name:<br>
 | 属性          | 值               | 描述                                                         |
 | ------------- | ---------------- | ------------------------------------------------------------ |
 | autofocus     | autofocus        | 指定在页面加载后文本区域自动获得焦点                         |
-| cols          | number           | 指定文本区域的可见宽度；值为字符数                           |
+| `cols`        | number           | 指定文本区域的可见宽度；值为字符数                           |
 | disabled      | disabled         | 禁用该文本区域                                               |
 | form          | form_id          | 指定文本区域所属的一个或多个表单                             |
 | maxlength     | number           | 指定文本区域的最大字符数                                     |
@@ -2146,7 +2114,7 @@ Last name:<br>
 | `placeholder` | text             | 指定文本区域的占位提示文本                                   |
 | readonly      | readonly         | 指定文本区为只读                                             |
 | required      | required         | 指定文本区域为必填项                                         |
-| rows          | number           | 指定文本区内的可见行数；可以理解为初始高度                   |
+| `rows`        | number           | 指定文本区内的可见行数；可以理解为初始高度                   |
 | wrap          | hard、soft、off  | 指定在表单提交时，如何处理文本区域的自动换行：soft 表示在页面渲染中对文本进行自动换行，但换行符（CR + LF）不提交hard 表示在页面渲染中对文本进行自动换行，换行符（CR + LF）也会一并提交。如果元素的该属性设置为 hard，则必须同时指定 cols 属性。off 表示在页面渲染中不对文本进行自动换行。 |
 
 CSS 设置属性：`resize: vertiacl | horizontal | both | none;`
@@ -2216,6 +2184,38 @@ The cat was playing in the garden.
 ```
 
 ![image-20220814161055407](https://s2.loli.net/2022/08/14/MsZ4J6HIEruo18B.png)
+
+## \<label> 
+
+label 可以起到一个绑定的作用
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        请选择你的性别：
+        <input type="radio" name="sex" id="nan" /> <label for="nan">男</label>
+        <input type="radio" name="sex" id="nv" /> <label for="nv">女</label>
+    </p>
+    <p>
+        <input type="checkbox" id="kk" />
+        <label for="kk">10天内免登陆</label>
+    </p>
+    <p>
+        <label for="xingming">姓名：</label>
+        <input type="text" id="xingming" />
+    </p>
+</body>
+
+</html>
+```
 
 # HTML5 标签 \*\*\*\*\*\*\*\*\*\*
 
