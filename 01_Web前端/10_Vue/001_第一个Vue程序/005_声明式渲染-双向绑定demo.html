@@ -10,23 +10,19 @@
 </head>
 
 <body>
-    <div id="counter">
-        Counter: {{ counter }}
+    <div id="two-way-binding">
+        <p>{{ message }}</p>
+        <input v-model="message" />
     </div>
     <script>
-        const Counter = {
+        const TwoWayBinding = {
             data() {
                 return {
-                    counter: 0
+                    message: 'Hello Vue!'
                 }
-            },
-            mounted() {
-                setInterval(() => {
-                    this.counter++
-                }, 1000)
-            },
+            }
         }
-        Vue.createApp(Counter).mount('#counter')
+        Vue.createApp(TwoWayBinding).mount('#two-way-binding')
     </script>
 </body>
 
