@@ -1663,10 +1663,16 @@ table {
 | bordercolor (不推荐使用) | color               | 表格边框的颜色，应该使用 `border-color` 替代                 |
 | cellpadding (不推荐使用) | pixel\| %           | 这个属性定义了表格单元的内容和边框之间的空间。如果它是一个像素长度单位，这个像素将被应用到所有的四个侧边；如果它是一个百分比的长度单位，内容将被作为中心，总的垂直（上和下）长度将代表这个百分比。这同样适用于总的水平（左和右）空间。<br/>应该使用 `table {border-collapse: collapse} td {padding: pixel}` 替代 |
 | cellspacing (不推荐使用) | pixel\| %           | 定义了两个单元格之间空间的大小（从水平和垂直方向上），应该使用`border-spacing` 替代 |
+| width                    | int                 | 表格的总宽度                                                 |
+| height                   | int                 | 表格的总高度                                                 |
+
+当 width 大于应有宽度时，多余宽度会平均分配到每一列；小于应用宽度时，整个表格会缩小到显示文本的程度；宽度不够时，单个单词不会换行，多个单词会换行。
+
+当 height 大于应有高度时，高度会平均分配，没有内容的行会分配的少一些。
 
 ## \<tr>
 
-`<tr>` 标签用于定义 HTML 表格中的行。
+`<tr>` 标签用于定义 HTML 表格中的行。全拼：table row
 
 tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.html) 或 [`td`](https://man.ilovefishc.com/pageHTML5/td.html) 元素。
 
@@ -1676,10 +1682,14 @@ tr 元素包含一个或多个 [`th`](https://man.ilovefishc.com/pageHTML5/th.ht
 | ------------------- | ------------------- | ------------------------------------------------------------ |
 | align (不推荐使用)  | left、center、right | 每个单元格中内容的水平对齐方式，应该使用 `text-align` 替代   |
 | valign (不推荐使用) | top、middle、bottom | 每个单元格中内容的垂直对齐方式，应该使用 `vertical-align` 替代 |
+| height              | int                 | 表格行高                                                     |
+| bordercolor         | color               | 表格行背景颜色                                               |
+
+**tr 没有 width 属性，设置无效。**
 
 ## \<th>
 
-`<th>` 标签用于定义表格内的表头单元格。
+`<th>` 标签用于定义表格内的表头单元格。全拼: table header cell
 
 th 元素内部的文本通常会呈现为居中的粗体文本
 
@@ -1698,7 +1708,7 @@ th 元素内部的文本通常会呈现为居中的粗体文本
 
 ## \<td>
 
-**\<td>** : table data
+**\<td>** : table data cell
 
 ### 属性
 
@@ -1708,6 +1718,54 @@ th 元素内部的文本通常会呈现为居中的粗体文本
 | headers | header_id                    | 规定与表头单元格相关联的一个或多个表头单元格。               |
 | colspan | number                       | 这个属性包含一个正整数表示了每单元格中**扩展列的数量**。默认值为`1` 。超过 1000 的值被视作 1000。 |
 | rowspan | number                       | 这个属性包含一个正整数表示了每单元格中扩展列的数量。默认值为`1.` 如果该值被设置为 `0`, 这个单元格就被扩展为 (thead，tbody 或 tfoot ) 中表格部分的最后一个元素。比 65534 大的值被视作 65534 |
+| width   | int                          | 单元格宽度，会改变单元格所在整列宽度，宽度为所有单元格最大宽度 |
+| height  | int                          | 单元格高度，会改变单元格所在整行高度，高度为此行所有单元格最大高度 |
+
+## \<caption> 表格标题
+
+> `<caption>` 元素定义表格标题。
+
+`<caption>` 标签必须紧随 `<table>` 标签之后。只能对每个表格定义一个标题。通常这个标题会被居中于表格之上。
+
+## \<thead> 、\<tbody> 、\<tfoot>
+
+将表格分区，分别显示对应样式。
+
+W3C标准约定，表格的行分组标签，一个表格只允许使用一个 thead 和一个 tfoot，但是允许使用多个tbody。
+
+## \<colgroup>、\<col>  列分组标签
+
+`<colgroup>` 标签用于对表格中的列进行组合，以便对其进行格式化。
+
+注意：用CSS对 colgroup 标签设置样式并不会对表格发生任何变化
+
+```html
+<table>
+    <colgroup>
+        <col span="2" style="background-color:green">
+        <col style="background-color:yellow">
+    </colgroup>
+    <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>3476896</td>
+        <td>零基础入门学习Web（Html5+Css3）</td>
+        <td>$53</td>
+    </tr>
+    <tr>
+        <td>2489604</td>
+        <td>零基础入门学习Web（JavaScript）</td>
+        <td>$47</td>
+    </tr>
+</table>
+```
+
+| 属性 | 值              | 描述                 |
+| ---- | --------------- | -------------------- |
+| span | number 规定 col | 元素应该横跨的列数。 |
 
 ## 表格其他封装
 
