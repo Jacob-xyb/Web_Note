@@ -449,11 +449,15 @@ HTML 标签是分等级的，HTML 将所有的标签分为两种：容器级和�
 
 > `<hr>` 标签用于在 HTML 页面中创建一条水平分隔线。
 
-属性有：color、width、align（对齐的意思）、noshade
+属性有：color、size、width、align（对齐的意思）、noshade
 
-- width: 默认 100%，
+- width: 宽度；默认 100%；
 
-- align: 默认 center 
+- size: 高度；默认为 2px；
+
+- align: 默认 center ；生效的前提是 hr 具有 width 属性
+
+- noshade：去掉水平线的阴影
 
 ```html
 <hr color="pink" width="300px" align="left" noshade>
@@ -588,8 +592,8 @@ pre 元素中的文本通常会保留空格和换行符，而文本自身也会�
 | 字符 | 实体编号 | 实体名称 | 描述                        |
 | ---- | -------- | -------- | --------------------------- |
 |      | `&#160;`      | `&nbsp;`      | non-breaking space  |
-| 		|  				| `&ensp;` | En Space 半角空格|
-| 		|  				| `&emsp;` | Em Space 全角空格|
+| ` ` |  				| `&ensp;` | En Space 半角空格|
+| ` ` |  				| `&emsp;` | Em Space 全角空格|
 | ¡    | `&#161;` | `&iexcl;` | inverted exclamation mark   |
 | ¢    | `¢`      | `¢`      | cent                        |
 | £    | `£`      | `£`      | pound                       |
@@ -1508,6 +1512,56 @@ link 元素最常见的用途是链接样式表。
 如果单独设置 width 或者 height，图片会按照比例缩放，长宽比并不会改变；
 
 如果同时设置宽高，图片的长宽比就会改变。
+
+## \<map> 标签
+
+`<map>`标签定义一个客户端图像映射。图像映射（image-map）指带有可点击区域的一幅图像。
+
+area 元素永远嵌套在 map 元素内部，用于定义图像映射中的区域。
+
+属性： name：指定图像映射的名字（必须被定义的属性，与img标签的usemap属性相关联）。
+
+且 map 标签必须搭配 area 标签一起使用
+
+### \<area> 标签
+
+`<area>` 标签定义图像映射中的区域（注：图像映射指得是带有可点击区域的图像）。
+
+area 元素总是嵌套在 \<map> 标签中。
+
+| 属性                                                     | 值                                                           | 描述                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| alt                                                      | text                                                         | 定义此区域的替换文本。                                       |
+| `coords`                                                 | coordinates                                                  | 定义可点击区域（对鼠标敏感的区域）的坐标。                   |
+| download                                                 | filename                                                     | 该属性（如果存在）表明开发者想把超链接用于下载一个资源。     |
+| `href`                                                   | URL                                                          | 定义此区域的目标 URL。                                       |
+| hreflang                                                 | language_code                                                | 指示链接资源的语言。仅当存在 **href ** 属性时才使用此属性。  |
+| [media](https://man.ilovefishc.com/pageHTML5/media.html) | media query                                                  | 链接资源的媒体提示，例如 print and screen。如果省略，则默认为 all。仅当存在** href** 属性时才使用此属性。 |
+| rel                                                      | alternate、author、bookmark、help、license、next、nofollow、noreferrer、prefetch、prev、search、tag | 对于包含 href 属性的锚点，此属性指定目标对象与链接对象的关系。仅当存在 href 属性时才使用此属性。 |
+| `shape`                                                  | default、rect、circle、poly                                  | 定义区域的形状。                                             |
+| target                                                   | \_blank、\_parent、\_self、\_top                             | 规定在何处打开 href 属性指定的目标 URL。                     |
+| type                                                     | media_type                                                   | 该属性指定了用于链接目标的MIME类型的媒体类型。               |
+
+- **shape**
+
+  **rect** ：coords="x1,y1,x2,y2"；(x1,y1)为左上角，(x2,y2)为右下角
+
+  **circle** ：coords="x,y,r" ；(x,y)为圆心的坐标，r为圆形半径；
+
+  **poly** ：coords="x1,y1,x2,y2,...,xn,yn"；连接每个(x,y)成一个封闭多边形
+
+```html
+<p>请点击图像上左上和中间区域</p>
+<img src="https://img2.baidu.com/it/u=405255502,2791623259&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=393" border="0" usemap="#fishc" alt="Planets" />
+
+<map name="fishc" id="fishc">
+    <!--中心x，中心y，半径-->
+    <area shape="circle" coords="300,200,50" href="https://img2.baidu.com/it/u=638530658,1213982409&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=420" target="_blank" alt="F" />
+    <!--左上角坐标x，左上角坐标y，横轴，纵轴-->
+    <area shape="rect" coords="0,0,66,77" href="https://img0.baidu.com/it/u=3592359160,1111133342&fm=253&fmt=auto&app=138&f=JPG?w=682&h=452" target="_blank" alt="Python" />
+</map>
+<p><b>注释：</b>img 元素中的 "usemap" 属性引用 map 元素中的 "id" 或 "name" 属性（根据浏览器），所以我们同时向 map 元素添加了 "id" 和 "name" 属性。</p>
+```
 
 # 链接标签
 
