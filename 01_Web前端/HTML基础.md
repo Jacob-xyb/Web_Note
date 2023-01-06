@@ -2176,7 +2176,7 @@ The cat was playing in the garden.
 | formnovalidate | formnovalidate                                               | 覆盖 form 元素的 novalidate 属性。注释：该属性与 type="submit" 配合使用。 |
 | formtarget     | _blank、_self、_parent、_top、framename                      | 覆盖 form 元素的 target 属性。注释：该属性与 type="submit" 配合使用。 |
 | name           | button_name                                                  | 指定按钮的名称。                                             |
-| type           | button、reset、submit                                        | 指定按钮的类型。                                             |
+| type           | button、reset、submit                                        | 指定按钮的类型。在表单里默认为 submit。                      |
 | value          | text                                                         | 指定按钮的初始值。注释：可由脚本进行修改。                   |
 
 ```html
