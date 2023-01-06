@@ -1563,6 +1563,62 @@ area 元素总是嵌套在 \<map> 标签中。
 <p><b>注释：</b>img 元素中的 "usemap" 属性引用 map 元素中的 "id" 或 "name" 属性（根据浏览器），所以我们同时向 map 元素添加了 "id" 和 "name" 属性。</p>
 ```
 
+## \<svg> 可缩放矢量图
+
+VG的代码可以直接嵌入到HTML页面中，或可以直接链接到SVG文件。 全拼：scalable vector graphics。
+
+平时的图像是基于像素处理的，放大后会明显失真，但是SVG是对形状进行描述，记录的都是点位信息。
+
+重要属性：width和height设置画布的宽高。
+
+### 绘制图形
+
+- 通用属性：
+  - fill：定义矩形的填充颜色
+  - stroke：定义矩形的边框颜色
+  - stroke-width：定义矩形的边框宽度；这个属性经常导致rect左右不对齐，慎用。
+  - opacity：0-1；整个元素的透明度
+  - fill-opacity: 0-1；填充颜色的透明度
+  - stroke-opacity: 0-1；边框颜色的透明度
+
+- \<rect> ：rectangle 矩形标签
+  - width：定义矩形的宽度
+  - height：定义矩形的高度
+  - fill：定义矩形的填充颜色
+  - stroke-width：定义矩形的边框宽度；
+  - stroke：定义矩形的边框颜色
+  - x: 矩形左边的距离
+  - y: 矩形上边的距离
+  - rx: 弧度
+  - ry: 弧度
+- \<circle> : 圆形标签
+  - cx: 定义圆心x坐标
+  - cy: 定义圆心y坐标
+  - r: 定义圆半径
+- \<ellipse> : 椭圆标签
+  - cx: 定义椭圆中心x坐标
+  - cy: 定义椭圆中心y坐标
+  - rx: 定义水平半径
+  - ry: 定义垂直半径
+
+### 绘制线条
+
+- line: 线条标签
+  - x1: 起点坐标
+  - y1: 起点坐标
+  - x2: 终点坐标
+  - y2: 终点坐标
+  - stroke：线条颜色
+  - stroke-width：线条宽度
+- polygon: 多边形标签
+  - points: "x1,y1 x2,y2 x3,y3"；至少3对坐标才能形成封闭图形
+  - fill：定义填充颜色
+  - stroke：线条颜色
+  - stroke-width：线条宽度
+- polyline: 多线条标签
+  - points: "x1,y1 x2,y2"; 至少两对坐标，多个点位连接；
+  - fill: "none"; 不主动设置为none的话，会默认填充黑色；
+
 # 链接标签
 
 ## \<a> 标签
@@ -2611,11 +2667,19 @@ pattern = "[0-9][A-Z]{3}"
 | **src**    | URL                                                          | 指定在 iframe 中显示的文档的 URL 地址。                      |
 | srcdoc     | HTML_code                                                    | 指定在 `<iframe>` 中显示的页面的 HTML 内容。                 |
 | **width**  | pixels、%                                                    | 指定 iframe 的宽度。                                         |
+| scrolling  | no                                                           | 是否显示滚动条，也代表能否滚动                               |
 
 ```html
-<body>
-    <iframe src="https://jacob-xyb.github.io/" width="1600px" height="800px" frameborder="0">不支持iframe</iframe>
-</body>
+<iframe src="https://jacob-xyb.github.io/" width="1600px" height="800px" frameborder="0">不支持iframe</iframe>
+```
+
+- a链接跳转显示：用name属性来接收a标签的target值。
+
+```html
+<a href="https://jacob-xyb.github.io/" target="iframe_a">click me</a>
+<br>
+<iframe name="iframe_a" width="1600px" height="800px" frameborder="1"
+        scrolling="no">不支持iframe</iframe>
 ```
 
 # 属性
